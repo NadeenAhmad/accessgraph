@@ -1,0 +1,39 @@
+# D3 (W3C ACT test cases) and D6 (Rampa's corrupted pairs): which cases are scored and which AccessGraph type each
+# one exercises. Kept apart from taxonomy_sc_rules.yaml (whose `act` and `rampa` slots stay empty) so no file of the
+# first freeze changed; added to FREEZE.json (v2) after the PI approved it (EVALUATION_SPEC Step 4).
+# Scoring is by success criterion, as in Rampa's harness (lib/score.mjs): a unit is (test case or pair half,
+# criterion), and AccessGraph flags it when a judged violation of a type mapped to that criterion is on the page.
+status: approved by the PI on 2026-11-16 (frozen with FREEZE.json v2)
+harness: {repository: guilhermebsantiago/rampa-cli, commit: df32363, act_testcases_sha256: a9a1483e24335d9ec49429468963823673d7e27ca3085999ecc2770d5307d053}
+
+act:   # D3: the spec's 8 rules
+  qt1vmo: {name: Image accessible name is descriptive, criterion: '1.1.1', type: image-alt-not-descriptive}
+  5effbb: {name: Link in context is descriptive, criterion: '2.4.4', type: link-text-mismatch}
+  b49b2e: {name: Heading is descriptive, criterion: '2.4.6', type: heading-not-descriptive}
+  c4a8a4: {name: HTML page title is descriptive, criterion: '2.4.2', type: page-title-not-descriptive}
+  ucwvc8: {name: HTML page language subtag matches default language, criterion: '3.1.1', type: lang-mismatch}
+  off6ek: {name: HTML element language subtag matches language, criterion: '3.1.2', type: language-of-parts-mismatch}
+  36b590: {name: Error message describes invalid form field value, criterion: '3.3.1', type: error-message-mismatch}
+act_excluded:
+  aizyf1: {name: Link is descriptive, criterion: '2.4.9', reason: 'Level AAA: outside the harness''s A/AA scope, so no stored result of any other tool exists for its 12 cases'}
+
+rampa_pairs:   # D6: the spec's keep list (51 pairs), approved by the PI on 2026-11-16
+  keep:
+    alt-placeholder: {pairs: 1, criterion: '1.1.1', type: image-alt-not-descriptive}
+    alt-swap: {pairs: 1, criterion: '1.1.1', type: image-alt-not-descriptive}
+    title-generic: {pairs: 3, criterion: '2.4.2', type: page-title-not-descriptive}
+    heading-generic: {pairs: 9, criterion: '2.4.6', type: heading-not-descriptive}
+    link-generic: {pairs: 11, criterion: '2.4.4', type: link-text-mismatch}
+    link-mismatch: {pairs: 10, criterion: '2.4.4', type: link-text-mismatch}
+    html-lang-swap: {pairs: 4, criterion: '3.1.1', type: lang-mismatch}
+    lang-swap: {pairs: 5, criterion: '3.1.2', type: language-of-parts-mismatch}
+    autocomplete-swap: {pairs: 7, criterion: '1.3.5', type: autocomplete-purpose-mismatch}
+  exclude:   # reported as out of scope, never as misses
+    lang-drop: {pairs: 5, reason: 'markup removed: syntactic'}
+    autocomplete-drop: {pairs: 9, reason: 'markup removed: syntactic'}
+    label-hidden: {pairs: 7, reason: '3.3.2, label visibility: layout, not semantics'}
+    label-unseen: {pairs: 7, reason: '3.3.2, label visibility: layout, not semantics'}
+    label-detached: {pairs: 4, reason: '2.5.3: not in the taxonomy'}
+    text-as-image: {pairs: 4, reason: '1.4.5: not in the taxonomy'}
+    sensory-only: {pairs: 6, reason: '1.3.3: not in the taxonomy'}
+    heading-as-text: {pairs: 3, reason: '1.3.1, missing heading markup: syntactic'}

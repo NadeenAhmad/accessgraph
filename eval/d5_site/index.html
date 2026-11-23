@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility Expert Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap" style="max-width:820px">
+  <div class="eyebrow">Accessibility expert review</div>
+  <h1>Thank you for helping</h1>
+  <section class="panel task">
+    <p class="big">You will look at elements that a tool found in real web apps and decide, for each one, whether it is an accessibility problem under WCAG 2.2.</p>
+  </section>
+  <section class="panel">
+    <h2>How it works</h2>
+    <ul style="margin:0;padding-left:22px;display:grid;gap:8px">
+      <li>Each item asks one question, for example whether a link's text says where it goes.</li>
+      <li>You see the screen with the element outlined in orange and, where the user does something, a short video and the screen afterwards.</li>
+      <li><b>Step 1:</b> give your own answer, <b>Yes, it's fine</b>, <b>No (violation)</b> or <b>Can't tell</b>, with a short reason. Judge only what you see.</li>
+      <li><b>Step 2:</b> after you save, the tool's answer and its explanation appear, and you say whether you agree. Your step 1 answer cannot be changed after that.</li>
+      <li>Each item takes about 1–2 minutes: <b><span id="count">…</span> items</b> in total. You can stop at any time and come back with the same link; your answers are kept.</li>
+    </ul>
+  </section>
+  <div class="actions">
+    <a class="button primary" id="start" href="review.html">Start the review</a>
+    <span class="status" id="who"></span>
+  </div>
+</main>
+<script>
+(function () {
+  var reviewer = new URLSearchParams(location.search).get('reviewer') || '';
+  var start = document.getElementById('start');
+  if (!reviewer) {
+    start.removeAttribute('href'); start.setAttribute('aria-disabled', 'true'); start.style.opacity = '.45';
+    document.getElementById('who').textContent = 'Please open the personal link you received; it contains your reviewer code.';
+  } else {
+    start.href = 'review.html?reviewer=' + encodeURIComponent(reviewer);
+  }
+  fetch('items.json').then(function (r) { return r.json(); }).then(function (data) {
+    var n = data.items.filter(function (it) { return reviewer.indexOf('second-') !== 0 || it.double; }).length;
+    document.getElementById('count').textContent = n;
+  }).catch(function () { document.getElementById('count').textContent = 'the'; });
+})();
+</script>
+</body>
+</html>

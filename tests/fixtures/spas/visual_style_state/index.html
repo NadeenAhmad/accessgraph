@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Visual style fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Visual style fixture</h1>
+      <button id="paint-button" type="button">Paint visual state</button>
+      <p id="status">Style-sensitive status</p>
+    </main>
+    <script>
+      document.querySelector("#paint-button").addEventListener("click", () => {
+        const status = document.querySelector("#status");
+        status.style.backgroundColor = "rgb(208, 244, 222)";
+        status.style.color = "rgb(0, 83, 59)";
+      });
+    </script>
+  </body>
+</html>

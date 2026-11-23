@@ -1,0 +1,1377 @@
+{
+  "candidate_type": "error-message-mismatch",
+  "variants": [
+    {
+      "variant_id": "co-sem-076",
+      "seeded_behavior": "After progressing to the Address route, keep the Email control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from Email is required. to ZIP code is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "label": "Email",
+        "error_text": "ZIP code is required."
+      },
+      "baseline_behavior": "On invalid Address submission with only Email empty, the Email field remains invalid and associated with its own Email is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-076",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"address-email\"]",
+            "control": {
+              "id": "address-email",
+              "name": "email"
+            },
+            "attributes": {
+              "type": "email",
+              "autocomplete": "email",
+              "aria_invalid": "true",
+              "aria_describedby": "address-email-error"
+            },
+            "attribute_contains": {
+              "label": "Email"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "ZIP code is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form after submitting with all required Address fields filled except Email.",
+          "purpose_evidence": "Email keeps id address-email, name email, type email, autocomplete email, required state, aria-invalid true, and aria-describedby address-email-error while its associated error text says ZIP code is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S010 /checkout/address Shipping address invalid Email",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.email",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S010"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-076 focused acquisition, submit Address with all required fields except Email filled, inspect form-control and referenced error evidence on the invalid Address state, build error-message-mismatch candidates, and match the Email control candidate with id address-email, name email, type email, aria-invalid true, aria-describedby address-email-error, and associated error text ZIP code is required."
+    },
+    {
+      "variant_id": "co-sem-077",
+      "seeded_behavior": "After progressing to the Address route, keep the ZIP code control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from ZIP code is required. to Email is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "label": "ZIP code",
+        "error_text": "Email is required."
+      },
+      "baseline_behavior": "On invalid Address submission with only ZIP code empty, the ZIP code field remains invalid and associated with its own ZIP code is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-077",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"address-postal-code\"]",
+            "control": {
+              "id": "address-postalCode",
+              "name": "postalCode"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "postal-code",
+              "aria_invalid": "true",
+              "aria_describedby": "address-postalCode-error"
+            },
+            "attribute_contains": {
+              "label": "ZIP code"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Email is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form after submitting with ZIP code empty and all other required Address fields filled.",
+          "purpose_evidence": "ZIP code keeps id address-postalCode, name postalCode, type text, autocomplete postal-code, required state, aria-invalid true, and aria-describedby address-postalCode-error while its associated error text says Email is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S010 /checkout/address Shipping address invalid ZIP code",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.postalCode",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S010"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-077 focused acquisition, submit Address with ZIP code empty and all other required Address fields filled, inspect form-control and referenced error evidence on the invalid Address state, build error-message-mismatch candidates, and match the ZIP code control candidate with id address-postalCode, name postalCode, type text, aria-invalid true, aria-describedby address-postalCode-error, and associated error text Email is required."
+    },
+    {
+      "variant_id": "co-sem-078",
+      "seeded_behavior": "After progressing to the Address route, keep the Full name control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from Full name is required. to Street address is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"address-full-name\"]",
+        "label": "Full name",
+        "error_text": "Street address is required."
+      },
+      "baseline_behavior": "On invalid Address submission with only Full name empty, the Full name field remains invalid and associated with its own Full name is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-078",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-full-name\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"address-full-name\"]",
+            "control": {
+              "id": "address-fullName",
+              "name": "fullName"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "name",
+              "aria_invalid": "true",
+              "aria_describedby": "address-fullName-error"
+            },
+            "attribute_contains": {
+              "label": "Full name"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Street address is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form after submitting with Full name empty and all other required Address fields filled.",
+          "purpose_evidence": "Full name keeps id address-fullName, name fullName, type text, autocomplete name, required state, aria-invalid true, and aria-describedby address-fullName-error while its associated error text says Street address is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S010 /checkout/address Shipping address invalid Full name",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.fullName",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S010"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-078 focused acquisition, submit Address with Full name empty and all other required Address fields filled, inspect form-control and referenced error evidence on the invalid Address state, build error-message-mismatch candidates, and match the Full name control candidate with id address-fullName, name fullName, type text, aria-invalid true, aria-describedby address-fullName-error, and associated error text Street address is required."
+    },
+    {
+      "variant_id": "co-sem-079",
+      "seeded_behavior": "After progressing to the Payment route, keep the Card number control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, input mode, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from Card number is required. to Security code is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "label": "Card number",
+        "error_text": "Security code is required."
+      },
+      "baseline_behavior": "On invalid Payment submission with only Card number empty, the Card number field remains invalid and associated with its own Card number is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-079",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"payment-card-number\"]",
+            "control": {
+              "id": "payment-cardNumber",
+              "name": "cardNumber"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "cc-number",
+              "aria_invalid": "true",
+              "aria_describedby": "payment-cardNumber-error"
+            },
+            "attribute_contains": {
+              "label": "Card number"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Security code is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form after submitting with Card number empty and all other required Payment fields filled.",
+          "purpose_evidence": "Card number keeps id payment-cardNumber, name cardNumber, type text, autocomplete cc-number, numeric input mode, required state, aria-invalid true, and aria-describedby payment-cardNumber-error while its associated error text says Security code is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S011 /checkout/payment Payment invalid Card number",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardNumber",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S011"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-079 focused acquisition, submit Payment with Card number empty and all other required Payment fields filled, inspect form-control and referenced error evidence on the invalid Payment state, build error-message-mismatch candidates, and match the Card number control candidate with id payment-cardNumber, name cardNumber, type text, aria-invalid true, aria-describedby payment-cardNumber-error, and associated error text Security code is required."
+    },
+    {
+      "variant_id": "co-sem-080",
+      "seeded_behavior": "After progressing to the Payment route, keep the Security code control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, input mode, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from Security code is required. to Card number is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "label": "Security code",
+        "error_text": "Card number is required."
+      },
+      "baseline_behavior": "On invalid Payment submission with only Security code empty, the Security code field remains invalid and associated with its own Security code is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-080",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"payment-security-code\"]",
+            "control": {
+              "id": "payment-securityCode",
+              "name": "securityCode"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "cc-csc",
+              "aria_invalid": "true",
+              "aria_describedby": "payment-securityCode-error"
+            },
+            "attribute_contains": {
+              "label": "Security code"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Card number is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form after submitting with Security code empty and all other required Payment fields filled.",
+          "purpose_evidence": "Security code keeps id payment-securityCode, name securityCode, type text, autocomplete cc-csc, numeric input mode, required state, aria-invalid true, and aria-describedby payment-securityCode-error while its associated error text says Card number is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S011 /checkout/payment Payment invalid Security code",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.securityCode",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S011"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-080 focused acquisition, submit Payment with Security code empty and all other required Payment fields filled, inspect form-control and referenced error evidence on the invalid Payment state, build error-message-mismatch candidates, and match the Security code control candidate with id payment-securityCode, name securityCode, type text, aria-invalid true, aria-describedby payment-securityCode-error, and associated error text Card number is required."
+    },
+    {
+      "variant_id": "co-sem-081",
+      "seeded_behavior": "After progressing to the Payment route, keep the Expiry control empty and invalid with unchanged label, accessible name, id, name, type, autocomplete, input mode, required state, aria-invalid, aria-describedby relationship, focus behavior, validation rule, and route behavior, but change only its associated error message text from Expiry is required. to Cardholder name is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"payment-expiry\"]",
+        "label": "Expiry",
+        "error_text": "Cardholder name is required."
+      },
+      "baseline_behavior": "On invalid Payment submission with only Expiry empty, the Expiry field remains invalid and associated with its own Expiry is required. error message.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-081",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-expiry\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"payment-expiry\"]",
+            "control": {
+              "id": "payment-expiry",
+              "name": "expiry"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "cc-exp",
+              "aria_invalid": "true",
+              "aria_describedby": "payment-expiry-error"
+            },
+            "attribute_contains": {
+              "label": "Expiry"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Cardholder name is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form after submitting with Expiry empty and all other required Payment fields filled.",
+          "purpose_evidence": "Expiry keeps id payment-expiry, name expiry, type text, autocomplete cc-exp, numeric input mode, required state, aria-invalid true, and aria-describedby payment-expiry-error while its associated error text says Cardholder name is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S011 /checkout/payment Payment invalid Expiry",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.expiry",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S011"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-081 focused acquisition, submit Payment with Expiry empty and all other required Payment fields filled, inspect form-control and referenced error evidence on the invalid Payment state, build error-message-mismatch candidates, and match the Expiry control candidate with id payment-expiry, name expiry, type text, aria-invalid true, aria-describedby payment-expiry-error, and associated error text Cardholder name is required."
+    },
+    {
+      "variant_id": "co-sem-134",
+      "seeded_behavior": "On the Shipping address route, keep the ZIP code control filled with malformed non-empty text and invalid because it does not match the five-digit format. Preserve its label, accessible name, id, name, type, autocomplete, required state, aria-invalid state, aria-describedby relationship, route, focus behavior, validation rule, and all other fields, but change only its associated error message from Enter a valid 5-digit ZIP code. to ZIP code is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "label": "ZIP code",
+        "error_text": "ZIP code is required."
+      },
+      "baseline_behavior": "After all other required Address fields are valid, entering malformed non-empty ZIP text and submitting keeps the ZIP code control invalid with value_missing false and pattern_mismatch true, and associates it with the format-specific message Enter a valid 5-digit ZIP code.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-134",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"address-postal-code\"]",
+            "control": {
+              "id": "address-postalCode",
+              "name": "postalCode"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "postal-code",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "address-postalCode-error",
+              "invalid": true,
+              "has_value": true,
+              "native_validity": {
+                "valid": false,
+                "value_missing": false,
+                "type_mismatch": false,
+                "pattern_mismatch": true,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "ZIP code"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "ZIP code is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form after submitting with malformed non-empty ZIP text and all other required Address fields valid.",
+          "purpose_evidence": "ZIP code keeps id address-postalCode, name postalCode, type text, autocomplete postal-code, required state, aria-invalid true, and aria-describedby address-postalCode-error. The control is filled with value_missing false and pattern_mismatch true, while its associated error text says ZIP code is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S022 /checkout/address Shipping address malformed ZIP code with required message",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.postalCode",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S022"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-134 focused acquisition, submit Address with ZIP code empty and all other required fields valid, then enter deterministic malformed non-empty ZIP text. Confirm the initial empty Required state, clean malformed format-message state, valid ZIP state, and unrelated error cases do not recover. In final CO-S022, conjunctively match the stable ZIP control identity, filled native pattern-mismatch validity state, unchanged error association, and incorrect ZIP code is required. message."
+    },
+    {
+      "variant_id": "co-sem-135",
+      "seeded_behavior": "On the Shipping address route, submitting the Email control empty first produces the correct Email is required. message. After replacing the empty value with malformed non-empty text, keep the same Email control, label, accessible name, id, name, type, autocomplete, required state, aria-invalid state, aria-describedby relationship, route, focus behavior, validation rules, and all other fields unchanged, but retain Email is required. even though the active native validity failure is now email format mismatch rather than value missing.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "label": "Email",
+        "error_text": "Email is required."
+      },
+      "baseline_behavior": "After an empty Email submission correctly produces Email is required., replacing it with malformed non-empty text changes the active validation failure to email format mismatch and changes the associated message to Enter a valid email address.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-135",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"address-email\"]",
+            "control": {
+              "id": "address-email",
+              "name": "email"
+            },
+            "attributes": {
+              "type": "email",
+              "autocomplete": "email",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "address-email-error",
+              "invalid": true,
+              "has_value": true,
+              "native_validity": {
+                "valid": false,
+                "value_missing": false,
+                "type_mismatch": true,
+                "pattern_mismatch": true,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Email"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Email is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form after an initially empty Email submission and a subsequent malformed non-empty Email entry.",
+          "purpose_evidence": "Email keeps id address-email, name email, type email, autocomplete email, required state, aria-invalid true, and aria-describedby address-email-error. The final control is filled with value_missing false and type_mismatch plus pattern_mismatch true, while its associated error text remains Email is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S021 /checkout/address Shipping address malformed Email with stale required message",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.email",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S021"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-135 focused acquisition, submit Address with Email empty and all other required fields valid, then enter deterministic malformed non-empty Email text. Confirm the initial CO-S010 Required state, clean malformed format-message state, valid Email state, and unrelated error cases do not recover. In final CO-S021, conjunctively match the stable Email control identity, filled native format-mismatch validity state, unchanged error association, and stale Email is required. message."
+    },
+    {
+      "variant_id": "co-sem-136",
+      "seeded_behavior": "On the Payment route, keep the Security code control filled with malformed non-empty text and invalid because it does not match the three-or-four-digit format. Preserve its label, accessible name, id, name, type, autocomplete, required state, aria-invalid state, aria-describedby relationship, route, focus behavior, validation rule, and all other fields, but change only its associated error message from Enter a 3 or 4 digit security code. to Security code is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "label": "Security code",
+        "error_text": "Security code is required."
+      },
+      "baseline_behavior": "After all other required Payment fields are valid, entering malformed non-empty Security code text and submitting keeps the Security code control invalid with value_missing false and pattern_mismatch true, and associates it with the format-specific message Enter a 3 or 4 digit security code.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-136",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"payment-security-code\"]",
+            "control": {
+              "id": "payment-securityCode",
+              "name": "securityCode"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "cc-csc",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "payment-securityCode-error",
+              "invalid": true,
+              "has_value": true,
+              "native_validity": {
+                "valid": false,
+                "value_missing": false,
+                "type_mismatch": false,
+                "pattern_mismatch": true,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Security code"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "attributes": {
+              "text": "Security code is required."
+            },
+            "primary_evidence_key": "error_message"
+          }
+        ],
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment details form after submitting with malformed non-empty Security code text and all other required Payment fields valid.",
+          "purpose_evidence": "Security code keeps id payment-securityCode, name securityCode, type text, autocomplete cc-csc, required state, aria-invalid true, and aria-describedby payment-securityCode-error. The control is filled with value_missing false and pattern_mismatch true, while its associated error text says Security code is required."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S023 /checkout/payment Payment malformed Security code with required message",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.securityCode",
+          "mutation_property": "error_message_text"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S023"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-136 focused acquisition, submit Payment with Security code empty and all other required fields valid, then enter deterministic malformed non-empty Security code text. Confirm the initial empty Required state, clean malformed format-message state, valid Security code state, and unrelated error cases do not recover. In final CO-S023, conjunctively match the stable Security code control identity, filled native pattern-mismatch validity state, unchanged error association, and incorrect Security code is required. message."
+    },
+    {
+      "variant_id": "bs-sem-119",
+      "seeded_behavior": "On the Booking details route, keep the Phone control empty, required, invalid, focused after submission, and associated with its existing error element while blocking progression, but change only the associated error text from Phone is required. to Choose a date and available time before entering booking details.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "input#details-phone",
+        "label": "Phone",
+        "error_text": "Choose a date and available time before entering booking details."
+      },
+      "baseline_behavior": "After selecting the canonical service, date, and time, submitting Booking details with Full name and Email valid but Phone empty keeps the required Phone control invalid, focuses it, blocks progression, and associates it with Phone is required.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-119",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-phone",
+        "all_of": [
+          {
+            "selector_hint": "input#details-phone",
+            "control": {
+              "id": "details-phone",
+              "name": "phone"
+            },
+            "attributes": {
+              "type": "tel",
+              "autocomplete": "tel",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "details-phone-error",
+              "invalid": true,
+              "has_value": false,
+              "native_validity": {
+                "valid": false,
+                "value_missing": true,
+                "type_mismatch": false,
+                "pattern_mismatch": false,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Phone",
+              "accessible_name": "Phone"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "selector_hint": "p#details-phone-error",
+            "attributes": {
+              "text": "Choose a date and available time before entering booking details."
+            },
+            "primary_evidence_key": "error_message",
+            "candidate_evidence": {
+              "primary": {
+                "form_control": {
+                  "selector": "input#details-phone",
+                  "type": "tel",
+                  "name": "phone",
+                  "id": "details-phone",
+                  "autocomplete": "tel",
+                  "required": true,
+                  "aria_invalid": "true",
+                  "aria_describedby": "details-phone-error",
+                  "invalid": true,
+                  "has_value": false
+                },
+                "error_message": {
+                  "selector": "p#details-phone-error",
+                  "text": "Choose a date and available time before entering booking details.",
+                  "relationship_type": "describes",
+                  "method": "aria-describedby"
+                }
+              },
+              "supporting": {
+                "error_message_context_v1": {
+                  "schema_version": "error_message_context_v1",
+                  "control": {
+                    "selector": "input#details-phone",
+                    "type": "tel",
+                    "name": "phone",
+                    "id": "details-phone",
+                    "value_state": "empty"
+                  },
+                  "validation_state_observations": {
+                    "aria_invalid": "true",
+                    "has_value": false,
+                    "value_content_recorded": false
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Booking Details form after submitting with Full name and Email valid but the required Phone control empty.",
+          "purpose_evidence": "Phone keeps id details-phone, name phone, type tel, autocomplete tel, required state, empty value state, aria-invalid true, and aria-describedby details-phone-error while its associated error text incorrectly describes the already completed scheduling prerequisite."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details with Phone required error",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.phone",
+          "mutation_property": "validationMessage"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Booking bs-sem-119 focused acquisition to Details, fill Full name and Email, leave Phone empty, and submit. Capture BS-S003 after validation appears, then conjunctively match the required empty invalid Phone control and its aria-describedby-associated seeded message. Confirm clean recovery 0/1, seeded recovery 1/1, no extra matches, and ordinary progression after correcting Phone."
+    },
+    {
+      "variant_id": "bs-sem-138",
+      "seeded_behavior": "On the Booking details route, keep the Full name control empty, required, invalid, focused after submission, and associated with its existing error element while Email and Phone remain valid and progression stays blocked, but change only the associated error text from Full name is required. to Email is required.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "input#details-fullName",
+        "label": "Full name",
+        "error_text": "Email is required."
+      },
+      "baseline_behavior": "After selecting the canonical service, date, and time, submitting Booking details with Email and Phone valid but Full name empty keeps the required Full name control invalid, focuses it, blocks progression, and associates it with Full name is required.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-138",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-fullName",
+        "all_of": [
+          {
+            "selector_hint": "input#details-fullName",
+            "control": {
+              "id": "details-fullName",
+              "name": "fullName"
+            },
+            "attributes": {
+              "type": "text",
+              "autocomplete": "name",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "details-fullName-error",
+              "invalid": true,
+              "has_value": false,
+              "native_validity": {
+                "valid": false,
+                "value_missing": true,
+                "type_mismatch": false,
+                "pattern_mismatch": false,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Full name",
+              "accessible_name": "Full name"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "selector_hint": "p#details-fullName-error",
+            "attributes": {
+              "text": "Email is required."
+            },
+            "primary_evidence_key": "error_message",
+            "candidate_evidence": {
+              "primary": {
+                "form_control": {
+                  "selector": "input#details-fullName",
+                  "type": "text",
+                  "name": "fullName",
+                  "id": "details-fullName",
+                  "autocomplete": "name",
+                  "required": true,
+                  "aria_invalid": "true",
+                  "aria_describedby": "details-fullName-error",
+                  "invalid": true,
+                  "has_value": false
+                },
+                "error_message": {
+                  "selector": "p#details-fullName-error",
+                  "text": "Email is required.",
+                  "relationship_type": "describes",
+                  "method": "aria-describedby"
+                }
+              },
+              "supporting": {
+                "error_message_context_v1": {
+                  "schema_version": "error_message_context_v1",
+                  "control": {
+                    "selector": "input#details-fullName",
+                    "type": "text",
+                    "name": "fullName",
+                    "id": "details-fullName",
+                    "value_state": "empty"
+                  },
+                  "validation_state_observations": {
+                    "aria_invalid": "true",
+                    "has_value": false,
+                    "value_content_recorded": false
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Booking Details form after submitting with Email and Phone valid but the required Full name control empty.",
+          "purpose_evidence": "Full name keeps id details-fullName, name fullName, type text, autocomplete name, required state, empty value state, aria-invalid true, and aria-describedby details-fullName-error while its associated error text incorrectly identifies the valid Email sibling."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details with Full name required error",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.fullName",
+          "mutation_property": "validationMessage"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Booking bs-sem-138 focused acquisition to Details, fill Email and Phone, leave Full name empty, and submit. Capture BS-S003 after validation appears, then conjunctively match the required empty invalid Full name control and its aria-describedby-associated seeded message. Confirm clean recovery 0/1, seeded recovery 1/1, no extra matches, and ordinary progression after correcting Full name."
+    },
+    {
+      "variant_id": "bs-sem-139",
+      "seeded_behavior": "On the Booking details route, keep the Email control empty, required, invalid because of a missing value, focused after submission, and associated with its existing error element while Full name and Phone remain valid and progression stays blocked, but change only the associated error text from Email is required. to Email format is invalid.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "input#details-email",
+        "label": "Email",
+        "error_text": "Email format is invalid."
+      },
+      "baseline_behavior": "After selecting the canonical service, date, and time, submitting Booking details with Full name and Phone valid but Email empty keeps the required Email control invalid because of valueMissing, with typeMismatch false, focuses it, blocks progression, and associates it with Email is required.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-139",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-email",
+        "all_of": [
+          {
+            "selector_hint": "input#details-email",
+            "control": {
+              "id": "details-email",
+              "name": "email"
+            },
+            "attributes": {
+              "type": "email",
+              "autocomplete": "email",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "details-email-error",
+              "invalid": true,
+              "has_value": false,
+              "native_validity": {
+                "valid": false,
+                "value_missing": true,
+                "type_mismatch": false,
+                "pattern_mismatch": false,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Email",
+              "accessible_name": "Email"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "selector_hint": "p#details-email-error",
+            "attributes": {
+              "text": "Email format is invalid."
+            },
+            "primary_evidence_key": "error_message",
+            "candidate_evidence": {
+              "primary": {
+                "form_control": {
+                  "selector": "input#details-email",
+                  "type": "email",
+                  "name": "email",
+                  "id": "details-email",
+                  "autocomplete": "email",
+                  "required": true,
+                  "aria_invalid": "true",
+                  "aria_describedby": "details-email-error",
+                  "invalid": true,
+                  "has_value": false,
+                  "native_validity": {
+                    "valid": false,
+                    "value_missing": true,
+                    "type_mismatch": false
+                  }
+                },
+                "error_message": {
+                  "selector": "p#details-email-error",
+                  "text": "Email format is invalid.",
+                  "relationship_type": "describes",
+                  "method": "aria-describedby"
+                }
+              },
+              "supporting": {
+                "error_message_context_v1": {
+                  "schema_version": "error_message_context_v1",
+                  "control": {
+                    "selector": "input#details-email",
+                    "type": "email",
+                    "name": "email",
+                    "id": "details-email",
+                    "value_state": "empty",
+                    "native_validity": {
+                      "valid": false,
+                      "value_missing": true,
+                      "type_mismatch": false
+                    }
+                  },
+                  "validation_state_observations": {
+                    "aria_invalid": "true",
+                    "native_validity": {
+                      "valid": false,
+                      "value_missing": true,
+                      "type_mismatch": false
+                    },
+                    "has_value": false,
+                    "value_content_recorded": false
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Booking Details form after submitting with Full name and Phone valid but the required Email control empty.",
+          "purpose_evidence": "Email keeps id details-email, name email, type email, autocomplete email, required state, empty value state, valueMissing true, typeMismatch false, aria-invalid true, and aria-describedby details-email-error while its associated error text incorrectly claims a format failure."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details with Email required error",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.email",
+          "mutation_property": "validationMessage"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Booking bs-sem-139 focused acquisition to Details, fill Full name and Phone, leave Email empty, and submit. Capture BS-S003 after validation appears, then conjunctively match the required empty Email control's valueMissing true and typeMismatch false state with its aria-describedby-associated seeded format message. Confirm clean recovery 0/1, seeded recovery 1/1, no extra matches, and ordinary progression after correcting Email."
+    },
+    {
+      "variant_id": "bs-sem-140",
+      "seeded_behavior": "On the Booking details route, keep the Phone control empty, required, invalid because of a missing value, focused after submission, and associated with its existing error element while Full name and Email remain valid and progression stays blocked, but change only the associated error text from Phone is required. to Phone is optional.",
+      "expected_candidate": {
+        "candidate_type": "error-message-mismatch",
+        "selection_reason": "invalid_form_control_with_associated_message_evidence",
+        "type": "error-message-mismatch",
+        "selector_hint": "input#details-phone",
+        "label": "Phone",
+        "error_text": "Phone is optional."
+      },
+      "baseline_behavior": "After selecting the canonical service, date, and time, submitting Booking details with Full name and Email valid but Phone empty keeps the required Phone control invalid because of valueMissing, focuses it, blocks progression, and associates it with Phone is required.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-140",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-phone",
+        "all_of": [
+          {
+            "selector_hint": "input#details-phone",
+            "control": {
+              "id": "details-phone",
+              "name": "phone"
+            },
+            "attributes": {
+              "type": "tel",
+              "autocomplete": "tel",
+              "required": true,
+              "aria_invalid": "true",
+              "aria_describedby": "details-phone-error",
+              "invalid": true,
+              "has_value": false,
+              "native_validity": {
+                "valid": false,
+                "value_missing": true,
+                "type_mismatch": false,
+                "pattern_mismatch": false,
+                "too_long": false,
+                "too_short": false,
+                "range_underflow": false,
+                "range_overflow": false,
+                "step_mismatch": false,
+                "bad_input": false,
+                "custom_error": false
+              }
+            },
+            "attribute_contains": {
+              "label": "Phone",
+              "accessible_name": "Phone"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "bucket": "referenced_elements",
+            "selector_hint": "p#details-phone-error",
+            "attributes": {
+              "text": "Phone is optional."
+            },
+            "primary_evidence_key": "error_message",
+            "candidate_evidence": {
+              "primary": {
+                "form_control": {
+                  "selector": "input#details-phone",
+                  "type": "tel",
+                  "name": "phone",
+                  "id": "details-phone",
+                  "autocomplete": "tel",
+                  "required": true,
+                  "aria_invalid": "true",
+                  "aria_describedby": "details-phone-error",
+                  "invalid": true,
+                  "has_value": false,
+                  "native_validity": {
+                    "valid": false,
+                    "value_missing": true,
+                    "type_mismatch": false
+                  }
+                },
+                "error_message": {
+                  "selector": "p#details-phone-error",
+                  "text": "Phone is optional.",
+                  "relationship_type": "describes",
+                  "method": "aria-describedby"
+                }
+              },
+              "supporting": {
+                "error_message_context_v1": {
+                  "schema_version": "error_message_context_v1",
+                  "control": {
+                    "selector": "input#details-phone",
+                    "type": "tel",
+                    "name": "phone",
+                    "id": "details-phone",
+                    "value_state": "empty",
+                    "native_validity": {
+                      "valid": false,
+                      "value_missing": true,
+                      "type_mismatch": false
+                    }
+                  },
+                  "validation_state_observations": {
+                    "aria_invalid": "true",
+                    "native_validity": {
+                      "valid": false,
+                      "value_missing": true,
+                      "type_mismatch": false
+                    },
+                    "has_value": false,
+                    "value_content_recorded": false
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Booking Details form after submitting with Full name and Email valid but the required Phone control empty.",
+          "purpose_evidence": "Phone keeps id details-phone, name phone, type tel, autocomplete tel, required state, empty value state, valueMissing true, aria-invalid true, and aria-describedby details-phone-error while its associated error text incorrectly declares the field optional."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details with Phone required error",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.phone",
+          "mutation_property": "validationMessage"
+        }
+      ],
+      "candidate_type": "error-message-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification",
+          "criterion": "3.3.1 Error Identification"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions",
+          "criterion": "3.3.2 Labels or Instructions"
+        }
+      ],
+      "validation_approach": "Run the Booking bs-sem-140 focused acquisition to Details, fill Full name and Email, leave Phone empty, and submit. Capture BS-S003 after validation appears, then conjunctively match the required empty Phone control's missing-value state with its aria-describedby-associated seeded optionality message. Confirm clean recovery 0/1, seeded recovery 1/1, no extra matches, and ordinary progression after correcting Phone."
+    }
+  ]
+}

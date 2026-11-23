@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "media": {
+    "src": "/media/brightlane-checkout-walkthrough.mp4"
+  },
+  "reference": {
+    "kind": "narration_transcript",
+    "language": "en",
+    "source": "supervisor_provided",
+    "exactness_claim": "Exact narration transcript",
+    "text": "Shopping with Brightlane takes just a few steps. First, choose your products and add them to your cart. In Cart, check quantities and the order total. Continue to Shipping address and enter your delivery details. Next, provide your payment details, then move to Review. Check your address, payment summary, items, and totals. When you are ready, use Place order. Need to change something? Use the navigation to return to Cart.",
+    "transcript_path": "narration-transcript.txt",
+    "provenance_path": "provenance.txt"
+  }
+}

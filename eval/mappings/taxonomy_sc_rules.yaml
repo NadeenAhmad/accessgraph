@@ -1,0 +1,55 @@
+# Type -> WCAG success criteria mapping (from SEMANTIC_VIOLATION_TAXONOMY.json) and external rule mappings.
+# Strict type match uses `types`; lenient match uses the success criteria.
+types:
+  image-alt-not-descriptive:
+    success_criteria: ['1.1.1']
+    page_level: false
+  video-captions-inaccurate:
+    success_criteria: ['1.2.2']
+    page_level: false
+  lang-mismatch:
+    success_criteria: ['3.1.1']
+    page_level: true
+  language-of-parts-mismatch:
+    success_criteria: ['3.1.2']
+    page_level: false
+  link-text-mismatch:
+    success_criteria: ['2.4.4']
+    page_level: false
+  button-label-mismatch:
+    success_criteria: ['2.4.6']
+    page_level: false
+  form-label-mismatch:
+    success_criteria: ['2.4.6']
+    page_level: false
+  widget-label-purpose-mismatch:
+    success_criteria: ['2.4.6', '4.1.2']
+    page_level: false
+  heading-not-descriptive:
+    success_criteria: ['2.4.6']
+    page_level: false
+  landmark-purpose-mismatch:
+    success_criteria: ['1.3.6']
+    page_level: false
+  page-title-not-descriptive:
+    success_criteria: ['2.4.2']
+    page_level: true
+  autocomplete-purpose-mismatch:
+    success_criteria: ['1.3.5']
+    page_level: false
+  aria-state-mismatch:
+    success_criteria: ['4.1.2']
+    page_level: false
+  table-header-association-mismatch:
+    success_criteria: ['1.3.1']
+    page_level: false
+  error-message-mismatch:
+    success_criteria: ['3.3.1']
+    page_level: false
+external:
+  intera11y:   # D2; criteria InterA11y and AccessGraph share
+    '1.1.1': image-alt-not-descriptive
+    '2.4.4': link-text-mismatch
+    '3.3.1': error-message-mismatch   # partial
+  act: {}      # D3: filled in Phase 4 from the pinned ACT rule metadata
+  rampa: {}    # D6: filled in Phase 4 after the PI approves the keep list

@@ -1,0 +1,682 @@
+{
+  "candidate_type": "heading-not-descriptive",
+  "variants": [
+    {
+      "why_semantic": "The unchanged Consultation name, 30-minute duration, and Change service link establish that the first Review summary describes the selected service while its heading identifies the sibling Date and time summary.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S004"
+        ],
+        "routes": [
+          "/review"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "text",
+          "subject": "booking.review.serviceHeading"
+        }
+      ],
+      "variant_id": "bs-sem-118",
+      "seeded_behavior": "On Review, change only the Service summary h3 text and natural accessible name from Service to Date and time while preserving the native heading level, Consultation name, 30-minute duration, Change service link, route, and the genuine Date and time summary.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h3#review-service-heading",
+        "tag": "h3",
+        "level": 3,
+        "text": "Date and time",
+        "accessible_name": "Date and time"
+      },
+      "baseline_behavior": "The Review Service summary uses a native h3 whose visible text and accessible name are Service above the Consultation name, 30-minute duration, and Change service link, while the sibling schedule summary is correctly headed Date and time.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-118",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h3#review-service-heading",
+        "attributes": {
+          "tag": "h3",
+          "text": "Date and time",
+          "level": 3,
+          "accessible_name": "Date and time"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "candidate_evidence": {
+          "primary": {
+            "heading": {
+              "tag": "h3",
+              "selector": "h3#review-service-heading",
+              "text": "Date and time",
+              "level": 3,
+              "accessible_name": "Date and time"
+            }
+          },
+          "supporting": {
+            "context": {
+              "nearby_text": "NameConsultationDuration30 minutes",
+              "parent_text": "Date and timeNameConsultationDuration30 minutesChange service",
+              "section_heading": "Date and time"
+            },
+            "heading_scoped_content": {
+              "schema_version": "heading_scoped_content_v1",
+              "source": "labelledby_landmark_text_sample",
+              "source_element_ref": {
+                "bucket": "landmarks",
+                "tag": "section"
+              },
+              "text_excerpt": "Date and time Name Consultation Duration 30 minutes Change service",
+              "truncated": false
+            }
+          }
+        },
+        "context": {
+          "route": "/review",
+          "document_title": "Review appointment | Booking Scheduler Benchmark",
+          "target_panel": "Service summary containing Name Consultation, Duration 30 minutes, and Change service.",
+          "sibling_panel": "The genuine Date and time summary contains Date June 16, 2026, Time 09:00, and Change appointment."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S004 /review Review appointment",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-118 Review acquisition, verify the first native h3 changes from Service to Date and time while both summary panels remain otherwise unchanged, build heading-not-descriptive candidates, and recover only the seeded Service-summary heading through stable heading identity and its Consultation-specific scoped content rather than the legitimate Date and time sibling."
+    },
+    {
+      "why_semantic": "Payment details is a meaningful checkout concept, but it identifies a different checkout state than the current Products route, whose surrounding content establishes product browsing through featured products, category controls, product cards, and the current cart summary.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.pageHeading"
+        }
+      ],
+      "variant_id": "co-sem-041",
+      "seeded_behavior": "On the Products route, keep the native h1 element, heading level, route, document title, and page content unchanged but change the page h1 visible text and natural accessible name to Payment details.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h1:nth-of-type(1)",
+        "tag": "h1",
+        "level": 1,
+        "text": "Payment details",
+        "accessible_name": "Payment details"
+      },
+      "baseline_behavior": "The Products route exposes a native h1 whose visible text and computed accessible name are Products while the page content supports product browsing.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-041",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h1:nth-of-type(1)",
+        "attributes": {
+          "tag": "h1",
+          "text": "Payment details",
+          "level": 1,
+          "accessible_name": "Payment details"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "outline_context": "h1 Payment details, h2 Featured products, h3 Browse by category",
+          "page_purpose_evidence": "Browse featured products and update the cart summary; Featured products; Desk lamp; Notebook set; Cable organizer."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-041 focused acquisition, inspect heading evidence on the Products state, build heading-not-descriptive candidates, and match the Products page h1 candidate with visible and accessible name Payment details while the document title remains Products."
+    },
+    {
+      "why_semantic": "Fishing techniques is meaningful language for another subject, but it has no plausible semantic connection to the current Products route, whose surrounding content establishes product browsing through featured products, category controls, product cards, and the current cart summary.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.pageHeading"
+        }
+      ],
+      "variant_id": "co-sem-042",
+      "seeded_behavior": "On the Products route, keep the native h1 element, heading level, route, document title, and page content unchanged but change the page h1 visible text and natural accessible name to Fishing techniques.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h1:nth-of-type(1)",
+        "tag": "h1",
+        "level": 1,
+        "text": "Fishing techniques",
+        "accessible_name": "Fishing techniques"
+      },
+      "baseline_behavior": "The Products route exposes a native h1 whose visible text and computed accessible name are Products while the page content supports product browsing.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-042",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h1:nth-of-type(1)",
+        "attributes": {
+          "tag": "h1",
+          "text": "Fishing techniques",
+          "level": 1,
+          "accessible_name": "Fishing techniques"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "outline_context": "h1 Fishing techniques, h2 Featured products, h3 Browse by category",
+          "page_purpose_evidence": "Browse featured products and update the cart summary; Featured products; Desk lamp; Notebook set; Cable organizer."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-042 focused acquisition, inspect heading evidence on the Products state, build heading-not-descriptive candidates, and match the Products page h1 candidate with visible and accessible name Fishing techniques while the document title remains Products."
+    },
+    {
+      "why_semantic": "Order summary is meaningful checkout language, but it describes the wrong purpose for this Products-route section, whose content is the featured product catalogue rather than cart totals or order-review information.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.featuredProductsHeading"
+        }
+      ],
+      "variant_id": "co-sem-044",
+      "seeded_behavior": "On the Products route, keep the native h2 element, heading level, product-list section, aria-labelledby relationship, route, document title, and product cards unchanged but change the product-list h2 visible text and natural accessible name to Order summary. The product-list section accessible name derives from that h2.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h2#product-list-heading",
+        "tag": "h2",
+        "level": 2,
+        "text": "Order summary",
+        "accessible_name": "Order summary"
+      },
+      "baseline_behavior": "The Products route exposes a product-list section labelled by a native h2 whose visible text and computed accessible name are Featured products while the section contains the product catalogue cards.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-044",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h2#product-list-heading",
+        "attributes": {
+          "tag": "h2",
+          "text": "Order summary",
+          "level": 2,
+          "accessible_name": "Order summary"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "outline_context": "h1 Products, h2 Order summary, h3 Browse by category",
+          "section_selector": "section[data-testid='products-list-region']",
+          "section_accessible_name": "Order summary",
+          "section_aria_labelledby": "product-list-heading",
+          "section_content_evidence": "Browse featured products for your workspace; Browse by category; Desk lamp; Notebook set; Cable organizer."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-044 focused acquisition, inspect heading evidence on the Products state, build heading-not-descriptive candidates, and match the product-list h2 candidate with visible and accessible name Order summary while the Products h1 and document title remain Products."
+    },
+    {
+      "why_semantic": "Weather forecast is meaningful and specific language, but it has no semantic connection to this Products-route section, whose content is a product catalogue with category browsing and product cards.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.featuredProductsHeading"
+        }
+      ],
+      "variant_id": "co-sem-045",
+      "seeded_behavior": "On the Products route, keep the native h2 element, heading level, product-list section, aria-labelledby relationship, route, document title, and product cards unchanged but change the product-list h2 visible text and natural accessible name to Weather forecast. The product-list section accessible name derives from that h2.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h2#product-list-heading",
+        "tag": "h2",
+        "level": 2,
+        "text": "Weather forecast",
+        "accessible_name": "Weather forecast"
+      },
+      "baseline_behavior": "The Products route exposes a product-list section labelled by a native h2 whose visible text and computed accessible name are Featured products while the section contains the product catalogue cards.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-045",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h2#product-list-heading",
+        "attributes": {
+          "tag": "h2",
+          "text": "Weather forecast",
+          "level": 2,
+          "accessible_name": "Weather forecast"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "outline_context": "h1 Products, h2 Weather forecast, h3 Browse by category",
+          "section_selector": "section[data-testid='products-list-region']",
+          "section_accessible_name": "Weather forecast",
+          "section_aria_labelledby": "product-list-heading",
+          "section_content_evidence": "Browse featured products for your workspace; Browse by category; Desk lamp; Notebook set; Cable organizer."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-045 focused acquisition, inspect heading evidence on the Products state, build heading-not-descriptive candidates, and match the product-list h2 candidate with visible and accessible name Weather forecast while the Products h1 and document title remain Products."
+    },
+    {
+      "why_semantic": "Products is stale previous-page wording in the Cart state. The route, document title, checkout progress, cart items, quantity controls, order totals, and continue-to-address action establish the current page purpose as Cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.cart.pageHeading"
+        }
+      ],
+      "variant_id": "co-sem-047",
+      "seeded_behavior": "After normal Products to Cart navigation, keep the Cart route, native h1 element, heading level, document title, cart content, quantity controls, order totals, checkout progress, and continue-to-address action unchanged but change the Cart page h1 visible text and natural accessible name to Products.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_cart_state_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h1:nth-of-type(1)",
+        "tag": "h1",
+        "level": 1,
+        "text": "Products",
+        "accessible_name": "Products"
+      },
+      "baseline_behavior": "After navigating to the Cart route, the page exposes a native h1 whose visible text and computed accessible name are Cart while the state contains cart items, quantity controls, checkout progress, order totals, and a continue-to-address action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-047",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "h1:nth-of-type(1)",
+        "attributes": {
+          "tag": "h1",
+          "text": "Products",
+          "level": 1,
+          "accessible_name": "Products"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "outline_context": "h1 Products, h2 Checkout progress, h2 Cart items, h2 Desk lamp, h2 Cart summary",
+          "current_state_purpose_evidence": "Review cart items and quantity controls; Checkout progress; Cart items; Desk lamp quantity controls; Cart summary; Order totals; Continue to address.",
+          "incoming_transition_evidence": "Products state -> activate Cart navigation link -> Cart state.",
+          "state_identity_note": "The Products state can also expose h1 Products, so recovery must ground this candidate in the Cart state route and surrounding Cart content."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-047 focused acquisition, inspect heading evidence on the Cart state, build heading-not-descriptive candidates, and match the Cart route h1 candidate with visible and accessible name Products while the document title remains Cart and the Cart content remains unchanged."
+    },
+    {
+      "why_semantic": "Shipping address names a future checkout step rather than the current Cart state. The /cart route, Cart document title, checkout progress, cart items, quantity controls, order totals, and continue-to-address action establish the current page purpose as Cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.cart.pageHeading"
+        }
+      ],
+      "variant_id": "co-sem-091",
+      "seeded_behavior": "After normal Products to Cart navigation, keep the Cart route, native h1 element, heading level, document title, checkout progress, cart content, quantity controls, order totals, and continue-to-address action unchanged but change the Cart page h1 visible text and natural accessible name to Shipping address.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h1:nth-of-type(1)",
+        "tag": "h1",
+        "level": 1,
+        "text": "Shipping address",
+        "accessible_name": "Shipping address"
+      },
+      "baseline_behavior": "After navigating to the Cart route, the page exposes a native h1 whose visible text and computed accessible name are Cart while the state contains cart items, quantity controls, checkout progress, order totals, and a continue-to-address action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-091",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "h1:nth-of-type(1)",
+        "attributes": {
+          "tag": "h1",
+          "text": "Shipping address",
+          "level": 1,
+          "accessible_name": "Shipping address"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "outline_context": "h1 Shipping address, h2 Checkout progress, h2 Cart items, h2 Desk lamp, h2 Cart summary",
+          "current_state_purpose_evidence": "Review cart items and quantity controls; Checkout progress; Cart items; Desk lamp quantity controls; Cart summary; Order totals; Continue to address.",
+          "incoming_transition_evidence": "Products state -> activate Cart navigation link -> Cart state.",
+          "state_identity_note": "Shipping address is the next checkout step, while the saved state remains the Cart route with Cart content and Cart current in checkout progress."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-091 focused acquisition, inspect heading evidence on the Cart state, build heading-not-descriptive candidates, and match the Cart route h1 candidate with visible and accessible name Shipping address while the document title remains Cart, Cart remains current in checkout progress, and the Cart content remains unchanged."
+    },
+    {
+      "why_semantic": "Cart items describes the non-empty Cart list, but the current conditional state contains zero items and instead presents the empty-cart explanation and Browse products action. The heading is therefore stale for the actual empty Cart condition even though the route remains /cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S017"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.cart.emptyHeading"
+        }
+      ],
+      "variant_id": "co-sem-092",
+      "seeded_behavior": "After the sole Desk lamp item is removed through its normal decrement control, keep the /cart route, Cart document title, Cart h1, native empty-state h2, empty-cart description, Browse products action, zero-item state, navigation, and behavior unchanged but change the empty-state h2 visible text and natural accessible name to Cart items.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h2#empty-cart-heading",
+        "tag": "h2",
+        "level": 2,
+        "text": "Cart items",
+        "accessible_name": "Cart items"
+      },
+      "baseline_behavior": "After the sole Desk lamp item is removed through its normal decrement control, the /cart route keeps its Cart h1 and renders a native empty-state h2 whose visible text and computed accessible name are Your cart is empty above the empty-cart explanation and Browse products action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-092",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "h2#empty-cart-heading",
+        "attributes": {
+          "tag": "h2",
+          "text": "Cart items",
+          "level": 2,
+          "accessible_name": "Cart items"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "outline_context": "h1 Cart, h2 Cart items",
+          "current_state_purpose_evidence": "Review cart items and quantity controls; Add a product before continuing checkout; Browse products; no Cart item list is present.",
+          "incoming_transition_evidence": "Non-empty Cart state -> activate Decrease Desk lamp quantity at quantity one -> empty Cart state.",
+          "state_identity_note": "The final state remains /cart but contains zero cart-item elements and the empty-cart description and Browse products action, distinguishing this conditional h2 from the Cart route h1 and the non-empty Cart items h2."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S017 /cart Empty cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-092 focused acquisition, remove the sole Desk lamp item through the normal decrement control, inspect heading and empty-state evidence on CO-S017, build heading-not-descriptive candidates, and recover the h2#empty-cart-heading candidate with visible and accessible name Cart items while the route, Cart title and h1, zero-item state, empty explanation, Browse products action, and transition evidence remain unchanged."
+    },
+    {
+      "why_semantic": "Card number names only one child field, but the section contains the complete payment method form: Cardholder name, Card number, Expiry, and Security code. The heading therefore misrepresents the broader section purpose.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.payment.methodHeading"
+        }
+      ],
+      "variant_id": "co-sem-093",
+      "seeded_behavior": "On the Payment route, keep the native h2 element, heading level, payment section, aria-labelledby relationship, document title, Payment h1, checkout progress, form fields, validation, route behavior, and Continue to review action unchanged but change the payment method section h2 visible text and natural accessible name to Card number.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "selector_hint": "h2#payment-form-heading",
+        "tag": "h2",
+        "level": 2,
+        "text": "Card number",
+        "accessible_name": "Card number"
+      },
+      "baseline_behavior": "The Payment route exposes a payment form section labelled by a native h2 whose visible text and computed accessible name are Payment method while the section contains Cardholder name, Card number, Expiry, and Security code controls.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-093",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "h2#payment-form-heading",
+        "attributes": {
+          "tag": "h2",
+          "text": "Card number",
+          "level": 2,
+          "accessible_name": "Card number"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "outline_context": "h1 Payment, h2 Checkout progress, h2 Card number, h2 Cart summary",
+          "section_selector": "section[aria-labelledby='payment-form-heading']",
+          "section_accessible_name": "Card number",
+          "section_aria_labelledby": "payment-form-heading",
+          "section_content_evidence": "Add card details before reviewing the order; Card details; Cardholder name; Card number; Expiry; Security code; Continue to review."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-093 focused acquisition, inspect heading evidence on the Payment state, build heading-not-descriptive candidates, and match the payment section h2 candidate with visible and accessible name Card number while the Payment title, Payment h1, section content, field labels, checkout progress, and route remain unchanged."
+    },
+    {
+      "why_semantic": "The retained Products heading and Products-oriented introduction form a locally coherent but stale header block on the Cart destination. The /cart route, Cart document title, current Cart checkout step, cart items, quantity controls, order totals, and Continue to address action establish that the current page purpose is Cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "heading-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.cart.pageHeading"
+        },
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.cart.pageSummary"
+        }
+      ],
+      "variant_id": "co-sem-094",
+      "seeded_behavior": "After normal Products to Cart navigation, retain the Products route header block on the Cart destination by keeping the native Cart h1 position and level but rendering Products together with Browse featured products and update the cart summary. Keep the /cart route, Cart document title, current Cart navigation and checkout step, cart items, quantity controls, order totals, and Continue to address action correct.",
+      "expected_candidate": {
+        "candidate_type": "heading-not-descriptive",
+        "selection_reason": "heading_with_section_context_evidence",
+        "type": "heading-not-descriptive",
+        "tag": "h1",
+        "level": 1,
+        "text": "Products",
+        "accessible_name": "Products"
+      },
+      "baseline_behavior": "After navigating from Products to Cart, the Cart route exposes a native h1 Cart followed by Review cart items and quantity controls while the surrounding destination state contains Cart checkout progress, cart items, quantity controls, order totals, and a Continue to address action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-094",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "h1",
+          "text": "Products",
+          "level": 1,
+          "accessible_name": "Products"
+        },
+        "bucket": "headings",
+        "primary_evidence_key": "heading",
+        "candidate_evidence": {
+          "supporting": {
+            "heading_scoped_content": {
+              "schema_version": "heading_scoped_content_v1",
+              "source_element_ref": {
+                "bucket": "landmarks",
+                "tag": "main"
+              },
+              "truncated": false
+            },
+            "heading_scope": {
+              "sampled_items": [
+                {
+                  "kind": "paragraph",
+                  "text": "Browse featured products and update the cart summary."
+                }
+              ]
+            }
+          }
+        },
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "outline_context": "h1 Products, h2 Checkout progress, h2 Cart items, h2 Desk lamp, h2 Cart summary",
+          "current_state_purpose_evidence": "Cart is current in navigation and checkout progress; Cart items; Desk lamp quantity controls; Cart summary; Order totals; Continue to address.",
+          "incoming_transition_evidence": "Products state -> activate Cart navigation link -> Cart state.",
+          "state_identity_note": "The Products source state contains the same heading and introduction, so recovery must bind the stale Products block to the Cart route and CO-S002 destination state."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-094 focused acquisition through the real Products-to-Cart transition, inspect the Cart h1 candidate's heading_scoped_content structure and candidate-local heading_scope sampled paragraph, and recover only the Cart destination candidate that combines Products heading evidence with the retained Products introduction. Verify clean Cart, the Products source, co-sem-047 h1-only evidence, missing or wrong scoped evidence, and Products text elsewhere do not recover this seed."
+    }
+  ]
+}

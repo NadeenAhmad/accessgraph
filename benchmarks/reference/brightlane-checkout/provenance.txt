@@ -1,0 +1,15 @@
+Brightlane Checkout walkthrough reference provenance
+
+Source: Supervisor-provided.
+Original transcript filename: Brightlane_Checkout_Transcript.txt
+Paired video filename: Brightlane_Checkout_Walkthrough.mp4
+Transcript declaration: Exact narration transcript
+Timestamp data supplied: No.
+Crawler-generated: No.
+Automatic speech recognition: No.
+
+Caption timing note: Cue boundaries in the clean WebVTT baseline were manually
+aligned to speech regions in the decoded video audio. They are practical caption
+timings, not supervisor-provided or authoritative timing data.
+
+Future benchmark scope: semantic caption content accuracy, not timing accuracy.

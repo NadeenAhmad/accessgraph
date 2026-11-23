@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Keyboard focus exposure</title>
+    <style>
+      #focus-layout {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      #focus-layout a {
+        grid-column: 3;
+      }
+
+      #focus-layout button {
+        grid-column: 1;
+      }
+
+      #focus-layout input {
+        grid-column: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Keyboard focus exposure</h1>
+      <button id="show-focus" type="button">Show focus layout</button>
+      <section id="focus-layout" hidden>
+        <a href="#third">Third visually</a>
+        <button type="button">First visually</button>
+        <label>
+          Second visually
+          <input name="focus-input" value="Focusable input">
+        </label>
+      </section>
+    </main>
+    <script>
+      document.querySelector("#show-focus").addEventListener("click", () => {
+        document.querySelector("#show-focus").hidden = true;
+        document.querySelector("#focus-layout").hidden = false;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Duplicate state loop fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Duplicate state loop fixture</h1>
+      <p id="status">Home state</p>
+      <button id="go-alt" type="button">Go alternate</button>
+      <section id="alternate" hidden>
+        <h2>Alternate state</h2>
+        <button id="back-home" type="button">Back home</button>
+      </section>
+    </main>
+    <script>
+      const status = document.querySelector("#status");
+      const goAlt = document.querySelector("#go-alt");
+      const alternate = document.querySelector("#alternate");
+
+      goAlt.addEventListener("click", () => {
+        goAlt.hidden = true;
+        alternate.hidden = false;
+        status.textContent = "Alternate state";
+      });
+
+      document.querySelector("#back-home").addEventListener("click", () => {
+        goAlt.hidden = false;
+        alternate.hidden = true;
+        status.textContent = "Home state";
+      });
+    </script>
+  </body>
+</html>

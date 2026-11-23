@@ -1,0 +1,568 @@
+{
+  "candidate_type": "language-of-parts-mismatch",
+  "variants": [
+    {
+      "why_semantic": "The Products explanatory passage is substantive English text with a valid local French language declaration while the page root remains correctly declared as English.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.products.description"
+        }
+      ],
+      "variant_id": "co-sem-016",
+      "seeded_behavior": "Keep the initial Products page in English with document language en, but declare the Products explanatory paragraph itself as French with lang=fr.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "fr",
+        "root_lang": "en",
+        "effective_lang": "fr"
+      },
+      "baseline_behavior": "The initial Products page declares the document language as en and the Products explanatory paragraph inherits that language without an explicit local lang attribute.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-016",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "text": "Browse featured products for your workspace.",
+          "root_lang": "en",
+          "local_lang": "fr",
+          "effective_lang": "fr"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"products-description\"]",
+        "content_markers": {
+          "english": [
+            "Browse featured products for your workspace."
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-016 focused acquisition, inspect language_samples evidence on the initial Products state, build language-of-parts-mismatch candidates, and match the Products description paragraph candidate."
+    },
+    {
+      "why_semantic": "The Products page cart-summary component groups substantive English labels and status text under a valid local German language declaration while the page root remains correctly declared as English.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.products.cartSummary"
+        }
+      ],
+      "variant_id": "co-sem-017",
+      "seeded_behavior": "Keep the initial Products page and compact cart summary in English with document language en, but declare the Products cart-summary component itself as German with lang=de.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "de",
+        "root_lang": "en",
+        "effective_lang": "de"
+      },
+      "baseline_behavior": "The Products page cart-summary component inherits document language en and contains English labels such as Cart summary, Items, Subtotal, Shipping, and Order total.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-017",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "section",
+          "root_lang": "en",
+          "local_lang": "de",
+          "effective_lang": "de"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"cart-summary\"]",
+        "content_markers": {
+          "english": [
+            "Cart summary",
+            "Items",
+            "1 item",
+            "Subtotal",
+            "Shipping",
+            "Order total"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-017 focused acquisition, inspect language_samples evidence on the initial Products state, build language-of-parts-mismatch candidates, and match the Products cart-summary component candidate."
+    },
+    {
+      "why_semantic": "The Cart instruction passage is substantive English text with a valid local French language declaration while the page root remains correctly declared as English.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.cart.description"
+        }
+      ],
+      "variant_id": "co-sem-018",
+      "seeded_behavior": "After navigating to Cart, keep the Cart page in English with document language en, but declare the Cart instruction paragraph itself as French with lang=fr.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "fr",
+        "root_lang": "en",
+        "effective_lang": "fr"
+      },
+      "baseline_behavior": "The Cart instruction paragraph inherits document language en and reads Review selected products before entering checkout details.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-018",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Review selected products before entering checkout details.",
+          "root_lang": "en",
+          "local_lang": "fr",
+          "effective_lang": "fr"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"cart-description\"]",
+        "content_markers": {
+          "english": [
+            "Review selected products before entering checkout details."
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-018 focused acquisition, inspect language_samples evidence on the Cart state, build language-of-parts-mismatch candidates, and match the Cart instruction paragraph candidate."
+    },
+    {
+      "why_semantic": "The Spanish Products description is substantive Spanish text under a valid stale English local language declaration while the page root remains correctly declared as Spanish.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S007"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.products.description"
+        }
+      ],
+      "variant_id": "co-sem-019",
+      "seeded_behavior": "After choosing Spanish on Products, keep the normal Spanish Products content and document language es, but leave the Products explanatory paragraph declared as English with lang=en.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "en",
+        "root_lang": "es",
+        "effective_lang": "en"
+      },
+      "baseline_behavior": "After choosing Spanish on Products, the Products explanatory paragraph is Spanish text and inherits the correctly synchronized document language es.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-019",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Explora productos destacados para tu espacio de trabajo.",
+          "root_lang": "es",
+          "local_lang": "en",
+          "effective_lang": "en"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"products-description\"]",
+        "content_markers": {
+          "spanish": [
+            "Explora productos destacados para tu espacio de trabajo."
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S007 /products Spanish language",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-019 focused acquisition, click the normal Products Spanish language control, inspect language_samples evidence in CO-S007, build language-of-parts-mismatch candidates, and match the Spanish Products description paragraph candidate."
+    },
+    {
+      "why_semantic": "The Spanish Shipping information passage has a valid local English language declaration while the dialog and surrounding page remain correctly localized in Spanish.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S016"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.cart.shippingInformationBody"
+        }
+      ],
+      "variant_id": "co-sem-138",
+      "seeded_behavior": "After choosing Spanish and opening Shipping information on Cart, keep the Spanish root, dialog title, body copy, and modal behavior, but declare the dialog body itself as English with lang=en.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "en",
+        "root_lang": "es",
+        "effective_lang": "en"
+      },
+      "baseline_behavior": "After choosing Spanish and opening Shipping information on Cart, the Spanish dialog body has no explicit local lang attribute and inherits the correctly synchronized document language es.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-138",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "El envío estándar se calcula durante la compra. Los detalles de entrega se confirman después de ingresar la dirección de envío.",
+          "root_lang": "es",
+          "local_lang": "en",
+          "effective_lang": "en"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"shipping-information-body\"]",
+        "content_markers": {
+          "spanish": [
+            "El envío estándar se calcula durante la compra.",
+            "Los detalles de entrega se confirman después de ingresar la dirección de envío."
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S016 /cart Shipping information dialog",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-138 focused acquisition, choose Spanish, open the Shipping information dialog on Cart, inspect language_samples evidence for the dialog body in CO-S016, build language-of-parts-mismatch candidates, and match the stable dialog-body candidate."
+    },
+    {
+      "why_semantic": "The cancellation-policy paragraph is substantive English text with a valid local French language declaration while the document root remains correctly declared as English.",
+      "expected_state": {
+        "routes": [
+          "/help"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.help.cancellationPolicy"
+        }
+      ],
+      "variant_id": "bs-sem-155",
+      "seeded_behavior": "Keep the Help page and cancellation-policy passage in English with document language en, but declare the cancellation-policy paragraph itself as French with lang=fr.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "fr",
+        "root_lang": "en",
+        "effective_lang": "fr"
+      },
+      "baseline_behavior": "The Help cancellation-policy paragraph contains substantive English instructions and inherits document language en without an explicit local lang attribute.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-155",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Contact the clinic at least 24 hours before your appointment if you need to cancel. Late cancellations may require a new booking.",
+          "root_lang": "en",
+          "local_lang": "fr",
+          "effective_lang": "fr"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"cancellation-policy-text\"]",
+        "content_markers": {
+          "english": [
+            "Contact the clinic at least 24 hours before your appointment if you need to cancel.",
+            "Late cancellations may require a new booking."
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "/help Help and policies",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-155 focused acquisitions by directly opening Help, verify only the cancellation-policy paragraph gains lang=fr while its exact English text, native paragraph semantics, surrounding sections, root lang, navigation, and behavior remain unchanged, inspect language_samples evidence, build language-of-parts-mismatch candidates, and recover only the seeded cancellation-policy paragraph through its stable selector, passage text, declared local language, root language, route, and initial state."
+    },
+    {
+      "why_semantic": "The booking-confirmation message is substantive English text with a valid local Spanish language declaration while the document root remains correctly declared as English.",
+      "expected_state": {
+        "routes": [
+          "/confirmation"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.confirmation.successMessage"
+        }
+      ],
+      "variant_id": "bs-sem-156",
+      "seeded_behavior": "Keep the Confirmation page and success message in English with document language en, but declare the success-message paragraph itself as Spanish with lang=es.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "es",
+        "root_lang": "en",
+        "effective_lang": "es"
+      },
+      "baseline_behavior": "The Confirmation success-message paragraph contains substantive English text and inherits document language en without an explicit local lang attribute.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-156",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Your booking is complete. A confirmation has been prepared for the contact details below.",
+          "root_lang": "en",
+          "local_lang": "es",
+          "effective_lang": "es"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"confirmation-message\"]",
+        "content_markers": {
+          "english": [
+            "Your booking is complete.",
+            "A confirmation has been prepared for the contact details below."
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "/confirmation Booking confirmed",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-156 focused acquisitions through the canonical booking workflow to Confirmation, verify only the confirmation-message paragraph gains lang=es while its exact English text, native paragraph semantics, confirmed booking data, root lang, navigation, and behavior remain unchanged, inspect language_samples evidence, build language-of-parts-mismatch candidates, and recover only the seeded success-message paragraph through its stable selector, passage text, declared local language, root language, route, and post-interaction state."
+    },
+    {
+      "why_semantic": "The appointment-preparation paragraph is substantive English text with a valid local German language declaration while the document root remains correctly declared as English.",
+      "expected_state": {
+        "routes": [
+          "/help"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.help.preparationInstructions"
+        }
+      ],
+      "variant_id": "bs-sem-157",
+      "seeded_behavior": "Keep the Help page and appointment-preparation instructions in English with document language en, but declare the preparation paragraph itself as German with lang=de.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "de",
+        "root_lang": "en",
+        "effective_lang": "de"
+      },
+      "baseline_behavior": "The Help preparation paragraph contains substantive English instructions and inherits document language en without an explicit local lang attribute.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-157",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Arrive 10 minutes early and bring any documents or notes relevant to the service you selected.",
+          "root_lang": "en",
+          "local_lang": "de",
+          "effective_lang": "de"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"preparation-instructions-text\"]",
+        "content_markers": {
+          "english": [
+            "Arrive 10 minutes early",
+            "bring any documents or notes relevant to the service you selected."
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "/help Help and policies",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-157 focused acquisitions by directly opening Help, verify only the preparation-instructions paragraph gains lang=de while its exact English text, native paragraph semantics, preparation heading, surrounding sections, root lang, navigation, and behavior remain unchanged, inspect language_samples evidence, build language-of-parts-mismatch candidates, and recover only the seeded preparation paragraph through its stable selector, passage text, declared local language, root language, route, and initial state."
+    },
+    {
+      "why_semantic": "The clinic-arrival paragraph is substantive English wayfinding text with a local Italian language declaration while the document root remains correctly declared as English.",
+      "expected_state": {
+        "routes": [
+          "/help"
+        ]
+      },
+      "candidate_type": "language-of-parts-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.help.arrivalInstructions"
+        }
+      ],
+      "variant_id": "bs-sem-158",
+      "seeded_behavior": "Keep the Help page and clinic-arrival instructions in English with document language en, but declare the arrival paragraph itself as Italian with lang=it.",
+      "expected_candidate": {
+        "candidate_type": "language-of-parts-mismatch",
+        "selection_reason": "visible_passage_with_local_language_declaration",
+        "type": "language-of-parts-mismatch",
+        "local_lang": "it",
+        "root_lang": "en",
+        "effective_lang": "it"
+      },
+      "baseline_behavior": "The Help directions paragraph contains substantive English arrival instructions and inherits document language en without an explicit local lang attribute.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-158",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "p",
+          "text": "Use the Cedar Lane entrance and check in at reception on the ground floor.",
+          "root_lang": "en",
+          "local_lang": "it",
+          "effective_lang": "it"
+        },
+        "bucket": "language_samples",
+        "primary_evidence_key": "language_sample",
+        "selector_hint": "[data-testid=\"arrival-instructions-text\"]",
+        "content_markers": {
+          "english": [
+            "Use the Cedar Lane entrance",
+            "check in at reception on the ground floor."
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "/help Help and policies",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts",
+          "criterion": "3.1.2 Language of Parts"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H58",
+          "technique": "H58"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-158 focused acquisitions by directly opening Help, verify only the arrival-instructions paragraph gains lang=it while its exact English text, native paragraph semantics, Directions heading, clinic address, surrounding sections, root lang, navigation, and behavior remain unchanged, inspect language_samples evidence, build language-of-parts-mismatch candidates, and recover only the seeded arrival paragraph through its stable selector, passage text, declared local language, root language, route, and initial state."
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "candidate_type": "page-title-not-descriptive",
+  "variants": [
+    {
+      "variant_id": "co-sem-058",
+      "why_semantic": "Payment is a meaningful checkout step title, but the saved route, heading, and product-browsing content establish that the current state is the Products page.",
+      "seeded_behavior": "On the Products route, keep the route, h1, product cards, navigation, language, landmarks, controls, and page structure unchanged but change the document title to Payment | Brightlane Checkout.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Payment | Brightlane Checkout",
+        "route": "/products",
+        "primary_heading": "Products"
+      },
+      "baseline_behavior": "The Products route has document title Products | Brightlane Checkout and visible Products content.",
+      "risk_subjectivity": "medium",
+      "profile": "checkout-co-sem-058",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Payment | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/products",
+          "expected_visible_heading": "Products",
+          "expected_products_context": "Featured products, product cards, and current cart summary are visible."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.products",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-058 focused acquisition, inspect page-title evidence on the Products state, build page-title-not-descriptive candidates, and match the page candidate with title Payment | Brightlane Checkout on route /products while visible Products content remains unchanged."
+    },
+    {
+      "variant_id": "co-sem-059",
+      "why_semantic": "Weather Forecast is meaningful page-title text, but the saved route, heading, and product-browsing content establish that the current state is the Products page.",
+      "seeded_behavior": "On the Products route, keep the route, h1, product cards, navigation, language, landmarks, controls, and page structure unchanged but change the document title to Weather Forecast | Brightlane Checkout.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Weather Forecast | Brightlane Checkout",
+        "route": "/products",
+        "primary_heading": "Products"
+      },
+      "baseline_behavior": "The Products route has document title Products | Brightlane Checkout and visible Products content.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-059",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Weather Forecast | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/products",
+          "expected_visible_heading": "Products",
+          "expected_products_context": "Featured products, product cards, and current cart summary are visible."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.products",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-059 focused acquisition, inspect page-title evidence on the Products state, build page-title-not-descriptive candidates, and match the page candidate with title Weather Forecast | Brightlane Checkout on route /products while visible Products content remains unchanged."
+    },
+    {
+      "variant_id": "co-sem-060",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Payment route, h1, payment form fields, checkout progress, validation, and focus behavior unchanged, but leave the document title at Shipping address | Brightlane Checkout.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Shipping address | Brightlane Checkout",
+        "route": "/checkout/payment",
+        "primary_heading": "Payment"
+      },
+      "baseline_behavior": "After submitting a valid shipping address, the Payment route has document title Payment | Brightlane Checkout and visible Payment content.",
+      "risk_subjectivity": "medium",
+      "profile": "checkout-co-sem-060",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Shipping address | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/checkout/payment",
+          "expected_visible_heading": "Payment",
+          "expected_payment_context": "Payment method form with card fields is visible.",
+          "previous_state_title": "Shipping address | Brightlane Checkout"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.payment",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-060 focused acquisition through Address to Payment, inspect page-title evidence on the Payment state, build page-title-not-descriptive candidates, and match the page candidate with title Shipping address | Brightlane Checkout on route /checkout/payment while visible Payment content remains unchanged."
+    },
+    {
+      "variant_id": "co-sem-119",
+      "why_semantic": "Cart is the correct title for the source state, but after the real Cart-to-Address transition the saved route, Shipping address heading, checkout progress, and shipping form establish that the current state is the Shipping address page.",
+      "seeded_behavior": "Keep Cart correct before navigation. After activating Continue to address, keep the Address route, h1, checkout progress, shipping form fields, validation, focus behavior, and Continue to payment action unchanged, but retain the previous Cart | Brightlane Checkout document title.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Cart | Brightlane Checkout",
+        "route": "/checkout/address",
+        "primary_heading": "Shipping address"
+      },
+      "baseline_behavior": "The Cart source state has document title Cart | Brightlane Checkout. Activating Continue to address updates the title to Shipping address | Brightlane Checkout together with the Address route, heading, progress, and form content.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-119",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Cart | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/checkout/address",
+          "expected_visible_heading": "Shipping address",
+          "expected_shipping_context": "Shipping details form with shipping-address fields is visible.",
+          "expected_progress_state": "Shipping address is the current checkout step.",
+          "previous_state_title": "Cart | Brightlane Checkout",
+          "next_step_action": "Continue to payment"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.address",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-119 focused acquisition through Cart to Shipping address, verify the Cart title is correct in CO-S002, then inspect page-title evidence in CO-S003 and recover only the Address candidate with title Cart | Brightlane Checkout while the Shipping address heading, Shipping details form, checkout progress, and Continue to payment action remain unchanged."
+    },
+    {
+      "variant_id": "co-sem-120",
+      "why_semantic": "Billing address names a related but different address purpose from the current Shipping address step. The route, heading, shipping form, checkout progress, and Continue to payment action all establish shipping as the actual page purpose.",
+      "seeded_behavior": "On the Shipping address route, keep the route, h1, shipping form fields, autocomplete values, checkout progress, validation, focus behavior, and Continue to payment action unchanged, but change the document title to Billing address | Brightlane Checkout.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Billing address | Brightlane Checkout",
+        "route": "/checkout/address",
+        "primary_heading": "Shipping address"
+      },
+      "baseline_behavior": "After advancing from Cart, the Shipping address route has document title Shipping address | Brightlane Checkout, Shipping address heading and form content, Shipping address marked as the current checkout step, and a Continue to payment action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-120",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Billing address | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/checkout/address",
+          "expected_visible_heading": "Shipping address",
+          "expected_shipping_context": "Shipping details form with shipping-address fields is visible.",
+          "expected_progress_state": "Shipping address is the current checkout step.",
+          "next_step_action": "Continue to payment"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.address",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-120 focused acquisition through Cart to Shipping address, inspect page-title evidence on CO-S003, build page-title-not-descriptive candidates, and recover the page candidate with title Billing address | Brightlane Checkout on route /checkout/address while the Shipping address heading, Shipping details form, checkout progress, and Continue to payment action remain unchanged."
+    },
+    {
+      "variant_id": "co-sem-121",
+      "why_semantic": "Review names the future checkout step rather than the current Payment page. The Payment route, heading, card-entry form, checkout progress, and Continue to review action establish Payment as the current purpose and Review as the next destination.",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Payment route, h1, payment form fields, checkout progress, validation, focus behavior, and Continue to review action unchanged, but change the document title to Review | Brightlane Checkout.",
+      "expected_candidate": {
+        "candidate_type": "page-title-not-descriptive",
+        "selection_reason": "page_title_with_route_and_content_context",
+        "type": "page-title-not-descriptive",
+        "title": "Review | Brightlane Checkout",
+        "route": "/checkout/payment",
+        "primary_heading": "Payment"
+      },
+      "baseline_behavior": "After submitting a valid shipping address, the Payment route has document title Payment | Brightlane Checkout, Payment heading and form content, Payment marked as the current checkout step, and a Continue to review action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-121",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "page",
+        "primary_evidence_key": "page",
+        "attributes": {
+          "title": "Review | Brightlane Checkout"
+        },
+        "context": {
+          "route": "/checkout/payment",
+          "expected_visible_heading": "Payment",
+          "expected_payment_context": "Payment method form with card fields is visible.",
+          "expected_progress_state": "Payment is the current checkout step.",
+          "next_step_action": "Continue to review"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.page.payment",
+          "mutation_property": "document_title"
+        }
+      ],
+      "candidate_type": "page-title-not-descriptive",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled",
+          "criterion": "2.4.2 Page Titled"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-121 focused acquisition through Address to Payment, inspect page-title evidence on the Payment state, build page-title-not-descriptive candidates, and match the page candidate with title Review | Brightlane Checkout on route /checkout/payment while the Payment heading, form, checkout progress, and Continue to review action remain unchanged."
+    }
+  ]
+}

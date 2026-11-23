@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fixture shop</title>
+  </head>
+  <body>
+    <main id="app"></main>
+    <script>
+      // Small SPA for exploration tests: stored bag (localStorage), a newsletter form with validation,
+      // a login form (must be skipped), a disclosure, and a button that writes to an external API.
+      if (localStorage.getItem('bag') === null) localStorage.setItem('bag', JSON.stringify(['Storm Shell']));
+      const app = document.getElementById('app');
+      let view = 'home', error = '';
+      const bag = () => JSON.parse(localStorage.getItem('bag') || '[]');
+      function render() {
+        if (view === 'thanks') {
+          app.innerHTML = '<h1>Thanks for subscribing</h1><button id="back">Back to shop</button>';
+          document.getElementById('back').onclick = () => { view = 'home'; render(); };
+          return;
+        }
+        const items = bag().map((name) => `<li>${name} <button class="rm" data-name="${name}">Remove ${name}</button></li>`).join('');
+        app.innerHTML = `
+          <h1>Shop</h1>
+          <h2>Your bag</h2><ul id="bag">${items || '<li>Empty</li>'}</ul>
+          <button id="toggle" aria-expanded="false" aria-controls="details">Show details</button>
+          <div id="details" hidden><p>Free delivery over 50 euros.</p></div>
+          <button id="feedback">Send feedback</button>
+          <form id="newsletter" aria-label="Newsletter" novalidate>
+            <label>Email <input id="email" name="email" type="email" required></label>
+            <p id="email-error" role="alert">${error}</p>
+            <button type="submit">Subscribe</button>
+          </form>
+          <form id="login" aria-label="Sign in form">
+            <label>User <input name="user"></label>
+            <label>Password <input name="pw" type="password"></label>
+            <button type="submit">Continue</button>
+          </form>`;
+        app.querySelectorAll('.rm').forEach((b) => b.onclick = () => {
+          localStorage.setItem('bag', JSON.stringify(bag().filter((n) => n !== b.dataset.name))); render(); });
+        document.getElementById('toggle').onclick = (e) => {
+          const d = document.getElementById('details'); d.hidden = !d.hidden;
+          e.target.setAttribute('aria-expanded', String(!d.hidden)); };
+        document.getElementById('feedback').onclick = () => {
+          fetch('http://example.invalid/api/feedback', { method: 'POST', body: 'x' }).catch(() => {});
+          document.getElementById('feedback').textContent = 'Feedback sent';
+        };
+        document.getElementById('newsletter').onsubmit = (e) => {
+          e.preventDefault();
+          const value = document.getElementById('email').value;
+          if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) { error = 'Enter a valid email address'; render(); return; }
+          error = ''; view = 'thanks'; render();
+        };
+        document.getElementById('login').onsubmit = (e) => e.preventDefault();
+      }
+      render();
+    </script>
+  </body>
+</html>

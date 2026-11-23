@@ -1,0 +1,1377 @@
+{
+  "candidate_type": "autocomplete-purpose-mismatch",
+  "variants": [
+    {
+      "variant_id": "bs-sem-151",
+      "seeded_behavior": "On the Booking Details route, keep the required Email control, native label association, email type, name, value handling, presence-only application validation, error relationships, submission, navigation, and the genuine Phone control unchanged, but change only its autocomplete value from email to the syntactically valid telephone purpose tel.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "input#details-email",
+        "label": "EmailRequired",
+        "autocomplete": "tel"
+      },
+      "baseline_behavior": "On the Booking Details route, the required Email field is natively labelled Email, uses type email, name email, and autocomplete email; the separate required Phone field uses type tel, name phone, and autocomplete tel.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-151",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-email",
+        "control": {
+          "id": "details-email",
+          "name": "email"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "email",
+          "autocomplete": "tel",
+          "required": true,
+          "accessible_name": "EmailRequired",
+          "label": "EmailRequired"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#details-email",
+              "tag": "input",
+              "type": "email",
+              "name": "email",
+              "id": "details-email",
+              "autocomplete": "tel",
+              "required": true,
+              "accessible_name": "EmailRequired",
+              "label": "EmailRequired"
+            }
+          },
+          "supporting": {
+            "autocomplete_purpose_context_v1": {
+              "schema_version": "autocomplete_purpose_context_v1",
+              "control": {
+                "selector": "input#details-email",
+                "tag": "input",
+                "type": "email",
+                "name": "email",
+                "id": "details-email",
+                "autocomplete": "tel",
+                "required": true,
+                "value_state": "empty"
+              },
+              "labeling": {
+                "visible_label": "Email REQUIRED",
+                "computed_accessible_name": "EmailRequired",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Email",
+                      "Required"
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "input_type": "email",
+                "name": "email",
+                "id": "details-email",
+                "visible_label": "Email REQUIRED",
+                "computed_accessible_name": "EmailRequired",
+                "form_step_or_route_context": {
+                  "route": "/details",
+                  "section_heading": "Customer details",
+                  "title": "Booking details | Booking Scheduler Benchmark"
+                }
+              },
+              "autocomplete_evidence": {
+                "raw_value": "tel",
+                "tokens": [
+                  "tel"
+                ],
+                "section_tokens": [],
+                "context_tokens": [],
+                "purpose_token": "tel",
+                "recognized_purpose": "telephone number",
+                "token_category": "tel",
+                "is_known_token": true,
+                "unknown_tokens": []
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form containing separate Email and Phone controls.",
+          "purpose_evidence": "The target keeps selector details-email, id details-email, name email, type email, and associated Email label while its autocomplete purpose says tel; the genuine Phone control remains a separate telephone field."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.email",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-151 acquisition through the canonical Booking flow to Details, verify only the Email autocomplete value changes from email to tel while its email identity, native label, accessible name, required validation, value handling, submission, and the genuine Phone field remain unchanged, build autocomplete-purpose candidates, and recover only the seeded Email input through its stable identity, associated label, email-purpose evidence, parsed tel token, route, and canonical state."
+    },
+    {
+      "variant_id": "bs-sem-152",
+      "seeded_behavior": "On the Booking Details route, keep the required Phone control, native label association, telephone type, name, value handling, presence-only application validation, error relationships, submission, navigation, and the genuine Email control unchanged, but change only its autocomplete value from tel to the syntactically valid email purpose email.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "input#details-phone",
+        "label": "PhoneRequired",
+        "autocomplete": "email"
+      },
+      "baseline_behavior": "On the Booking Details route, the required Phone field is natively labelled Phone, uses type tel, name phone, and autocomplete tel; the separate required Email field uses type email, name email, and autocomplete email.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-152",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-phone",
+        "control": {
+          "id": "details-phone",
+          "name": "phone"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "tel",
+          "autocomplete": "email",
+          "required": true,
+          "accessible_name": "PhoneRequired",
+          "label": "PhoneRequired"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#details-phone",
+              "tag": "input",
+              "type": "tel",
+              "name": "phone",
+              "id": "details-phone",
+              "autocomplete": "email",
+              "required": true,
+              "accessible_name": "PhoneRequired",
+              "label": "PhoneRequired"
+            }
+          },
+          "supporting": {
+            "autocomplete_purpose_context_v1": {
+              "schema_version": "autocomplete_purpose_context_v1",
+              "control": {
+                "selector": "input#details-phone",
+                "tag": "input",
+                "type": "tel",
+                "name": "phone",
+                "id": "details-phone",
+                "autocomplete": "email",
+                "required": true,
+                "value_state": "empty"
+              },
+              "labeling": {
+                "visible_label": "Phone REQUIRED",
+                "computed_accessible_name": "PhoneRequired",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Phone",
+                      "Required"
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "input_type": "tel",
+                "name": "phone",
+                "id": "details-phone",
+                "visible_label": "Phone REQUIRED",
+                "computed_accessible_name": "PhoneRequired",
+                "form_step_or_route_context": {
+                  "route": "/details",
+                  "section_heading": "Customer details",
+                  "title": "Booking details | Booking Scheduler Benchmark"
+                }
+              },
+              "autocomplete_evidence": {
+                "raw_value": "email",
+                "tokens": [
+                  "email"
+                ],
+                "section_tokens": [],
+                "context_tokens": [],
+                "purpose_token": "email",
+                "recognized_purpose": "email address",
+                "token_category": "email",
+                "is_known_token": true,
+                "unknown_tokens": []
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form containing separate Email and Phone controls.",
+          "purpose_evidence": "The target keeps selector details-phone, id details-phone, name phone, type tel, and associated Phone label while its autocomplete purpose says email; the genuine Email control remains a separate email field."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.phone",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-152 acquisition through the canonical Booking flow to Details, verify only the Phone autocomplete value changes from tel to email while its telephone identity, native label, accessible name, required validation, value handling, submission, and the genuine Email field remain unchanged, build autocomplete-purpose candidates, and recover only the seeded Phone input through its stable identity, associated label, telephone-purpose evidence, parsed email token, route, and canonical state."
+    },
+    {
+      "variant_id": "bs-sem-153",
+      "seeded_behavior": "On the Booking Details route, keep the required Full name control, native label association, text type, name, value handling, presence-only application validation, error relationships, submission, navigation, and the Email and Phone controls unchanged, but change only its autocomplete value from name to the syntactically valid organization-title purpose.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "input#details-fullName",
+        "label": "Full nameRequired",
+        "autocomplete": "organization-title"
+      },
+      "baseline_behavior": "On the Booking Details route, the required Full name field is natively labelled Full name, uses type text, name fullName, and autocomplete name; it collects the customer's complete personal name.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-153",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-fullName",
+        "control": {
+          "id": "details-fullName",
+          "name": "fullName"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "text",
+          "autocomplete": "organization-title",
+          "required": true,
+          "accessible_name": "Full nameRequired",
+          "label": "Full nameRequired"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#details-fullName",
+              "tag": "input",
+              "type": "text",
+              "name": "fullName",
+              "id": "details-fullName",
+              "autocomplete": "organization-title",
+              "required": true,
+              "accessible_name": "Full nameRequired",
+              "label": "Full nameRequired"
+            }
+          },
+          "supporting": {
+            "autocomplete_purpose_context_v1": {
+              "schema_version": "autocomplete_purpose_context_v1",
+              "control": {
+                "selector": "input#details-fullName",
+                "tag": "input",
+                "type": "text",
+                "name": "fullName",
+                "id": "details-fullName",
+                "autocomplete": "organization-title",
+                "required": true,
+                "value_state": "empty"
+              },
+              "labeling": {
+                "visible_label": "Full name REQUIRED",
+                "computed_accessible_name": "Full nameRequired",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Full name",
+                      "Required"
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "input_type": "text",
+                "name": "fullName",
+                "id": "details-fullName",
+                "visible_label": "Full name REQUIRED",
+                "computed_accessible_name": "Full nameRequired",
+                "form_step_or_route_context": {
+                  "route": "/details",
+                  "section_heading": "Customer details",
+                  "title": "Booking details | Booking Scheduler Benchmark"
+                }
+              },
+              "autocomplete_evidence": {
+                "raw_value": "organization-title",
+                "tokens": [
+                  "organization-title"
+                ],
+                "section_tokens": [],
+                "context_tokens": [],
+                "purpose_token": "organization-title",
+                "recognized_purpose": "organization title",
+                "token_category": "organization",
+                "is_known_token": true,
+                "unknown_tokens": []
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form collecting a complete personal name plus separate Email and Phone controls.",
+          "purpose_evidence": "The target keeps selector details-fullName, id details-fullName, name fullName, type text, and associated Full name label while its autocomplete purpose says organization-title."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.fullName",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-153 acquisition through the canonical Booking flow to Details, verify only the Full name autocomplete value changes from name to organization-title while its complete-name identity, native label, accessible name, required validation, value handling, submission, and the Email and Phone fields remain unchanged, build autocomplete-purpose candidates, and recover only the seeded Full name input through its stable identity, associated label, complete-name purpose evidence, parsed organization-title token, route, and canonical state."
+    },
+    {
+      "variant_id": "bs-sem-154",
+      "seeded_behavior": "On the Booking Details route, keep the required Full name control, native label association, text type, name, value handling, presence-only application validation, error relationships, submission, navigation, and the Email and Phone controls unchanged, but change only its autocomplete value from name to the syntactically valid given-name purpose.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "input#details-fullName",
+        "label": "Full nameRequired",
+        "autocomplete": "given-name"
+      },
+      "baseline_behavior": "On the Booking Details route, the required Full name field is natively labelled Full name, uses type text, name fullName, and autocomplete name; it collects the customer's complete personal name.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-154",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-fullName",
+        "control": {
+          "id": "details-fullName",
+          "name": "fullName"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "text",
+          "autocomplete": "given-name",
+          "required": true,
+          "accessible_name": "Full nameRequired",
+          "label": "Full nameRequired"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#details-fullName",
+              "tag": "input",
+              "type": "text",
+              "name": "fullName",
+              "id": "details-fullName",
+              "autocomplete": "given-name",
+              "required": true,
+              "accessible_name": "Full nameRequired",
+              "label": "Full nameRequired"
+            }
+          },
+          "supporting": {
+            "autocomplete_purpose_context_v1": {
+              "schema_version": "autocomplete_purpose_context_v1",
+              "control": {
+                "selector": "input#details-fullName",
+                "tag": "input",
+                "type": "text",
+                "name": "fullName",
+                "id": "details-fullName",
+                "autocomplete": "given-name",
+                "required": true,
+                "value_state": "empty"
+              },
+              "labeling": {
+                "visible_label": "Full name REQUIRED",
+                "computed_accessible_name": "Full nameRequired",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Full name",
+                      "Required"
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "input_type": "text",
+                "name": "fullName",
+                "id": "details-fullName",
+                "visible_label": "Full name REQUIRED",
+                "computed_accessible_name": "Full nameRequired",
+                "form_step_or_route_context": {
+                  "route": "/details",
+                  "section_heading": "Customer details",
+                  "title": "Booking details | Booking Scheduler Benchmark"
+                }
+              },
+              "autocomplete_evidence": {
+                "raw_value": "given-name",
+                "tokens": [
+                  "given-name"
+                ],
+                "section_tokens": [],
+                "context_tokens": [],
+                "purpose_token": "given-name",
+                "recognized_purpose": "given name",
+                "token_category": "name",
+                "is_known_token": true,
+                "unknown_tokens": []
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form collecting a complete personal name plus separate Email and Phone controls.",
+          "purpose_evidence": "The target keeps selector details-fullName, id details-fullName, name fullName, type text, and associated Full name label while its autocomplete purpose says given-name."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.fullName",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-154 acquisition through the canonical Booking flow to Details, verify only the Full name autocomplete value changes from name to given-name while its complete-name identity, native label, accessible name, required validation, value handling, submission, and the Email and Phone fields remain unchanged, build autocomplete-purpose candidates, and recover only the seeded Full name input through its stable identity, associated label, complete-name purpose evidence, parsed given-name token, route, and canonical state."
+    },
+    {
+      "why_semantic": "The field asks for a street address, but the machine-readable autocomplete purpose says email.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "autocomplete",
+          "subject": "checkout.address.street"
+        }
+      ],
+      "variant_id": "co-sem-001",
+      "seeded_behavior": "Keep the street address field purpose but set autocomplete to email.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "autocomplete": "email",
+        "type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context"
+      },
+      "baseline_behavior": "Street address field is visibly labeled Street address, uses name streetAddress, and has autocomplete street-address.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-pilot-001",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "control": {
+          "id": "address-streetAddress",
+          "name": "streetAddress"
+        },
+        "attributes": {
+          "autocomplete": "email"
+        },
+        "bucket": "form_controls"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "failure": "F107",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout pilot profile focused acquisition, inspect form-control autocomplete evidence, build candidates, and match the street address control candidate."
+    },
+    {
+      "variant_id": "co-sem-061",
+      "seeded_behavior": "On the Address route, keep the Full name control in place with unchanged label, accessible name, id, name, type, validation, value handling, and focus order, but change its autocomplete value from name to organization-title.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-full-name\"]",
+        "label": "Full name",
+        "autocomplete": "organization-title"
+      },
+      "baseline_behavior": "On the Address route, the Full name field is labelled Full name, uses type text, name fullName, and autocomplete name.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-061",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-full-name\"]",
+        "control": {
+          "id": "address-fullName",
+          "name": "fullName"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "organization-title"
+        },
+        "attribute_contains": {
+          "label": "Full name"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "Full name keeps id address-fullName, name fullName, type text, and visible label Full name while its autocomplete value says organization-title."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.fullName",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-061 focused acquisition, inspect form-control evidence on the Address state, build autocomplete-purpose candidates, and match the Full name control candidate with id address-fullName, name fullName, type text, label containing Full name, and autocomplete organization-title."
+    },
+    {
+      "variant_id": "co-sem-062",
+      "seeded_behavior": "On the Address route, keep the Street address control in place with unchanged label, accessible name, id, name, type, validation, value handling, and focus order, but change its autocomplete value from street-address to email.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "label": "Street address",
+        "autocomplete": "email"
+      },
+      "baseline_behavior": "On the Address route, the Street address field is labelled Street address, uses type text, name streetAddress, and autocomplete street-address.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-062",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "control": {
+          "id": "address-streetAddress",
+          "name": "streetAddress"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "email"
+        },
+        "attribute_contains": {
+          "label": "Street address"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "Street address keeps id address-streetAddress, name streetAddress, type text, and visible label Street address while its autocomplete value says email."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.street",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-062 focused acquisition, inspect form-control evidence on the Address state, build autocomplete-purpose candidates, and match the Street address control candidate with id address-streetAddress, name streetAddress, type text, label containing Street address, and autocomplete email."
+    },
+    {
+      "variant_id": "co-sem-063",
+      "seeded_behavior": "On the Address route, keep the ZIP code control in place with unchanged label, accessible name, id, name, type, validation, value handling, and focus order, but change its autocomplete value from postal-code to address-level2.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "label": "ZIP code",
+        "autocomplete": "address-level2"
+      },
+      "baseline_behavior": "On the Address route, the ZIP code field is labelled ZIP code, uses type text, name postalCode, and autocomplete postal-code.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-063",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-postal-code\"]",
+        "control": {
+          "id": "address-postalCode",
+          "name": "postalCode"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "address-level2"
+        },
+        "attribute_contains": {
+          "label": "ZIP code"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "ZIP code keeps id address-postalCode, name postalCode, type text, and visible label ZIP code while its autocomplete value says address-level2."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.postalCode",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-063 focused acquisition, inspect form-control evidence on the Address state, build autocomplete-purpose candidates, and match the ZIP code control candidate with id address-postalCode, name postalCode, type text, label containing ZIP code, and autocomplete address-level2."
+    },
+    {
+      "variant_id": "co-sem-064",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Card number control in place with unchanged label, accessible name, id, name, type, input mode, validation, value handling, and focus order, but change its autocomplete value from cc-number to cc-name.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "label": "Card number",
+        "autocomplete": "cc-name"
+      },
+      "baseline_behavior": "On the Payment route, the Card number field is labelled Card number, uses type text, name cardNumber, input mode numeric, and autocomplete cc-number.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-064",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "control": {
+          "id": "payment-cardNumber",
+          "name": "cardNumber"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-name"
+        },
+        "attribute_contains": {
+          "label": "Card number"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form, Card details fieldset.",
+          "purpose_evidence": "Card number keeps id payment-cardNumber, name cardNumber, type text, input mode numeric, and visible label Card number while its autocomplete value says cc-name."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardNumber",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-064 focused acquisition through Address to Payment, inspect form-control evidence on the Payment state, build autocomplete-purpose candidates, and match the Card number control candidate with id payment-cardNumber, name cardNumber, type text, label containing Card number, and autocomplete cc-name."
+    },
+    {
+      "variant_id": "co-sem-065",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Security code control in place with unchanged label, accessible name, id, name, type, input mode, validation, value handling, and focus order, but change its autocomplete value from cc-csc to cc-exp.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "label": "Security code",
+        "autocomplete": "cc-exp"
+      },
+      "baseline_behavior": "On the Payment route, the Security code field is labelled Security code, uses type text, name securityCode, input mode numeric, and autocomplete cc-csc.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-065",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-security-code\"]",
+        "control": {
+          "id": "payment-securityCode",
+          "name": "securityCode"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-exp"
+        },
+        "attribute_contains": {
+          "label": "Security code"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form, Card details fieldset.",
+          "purpose_evidence": "Security code keeps id payment-securityCode, name securityCode, type text, input mode numeric, and visible label Security code while its autocomplete value says cc-exp."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.securityCode",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-065 focused acquisition through Address to Payment, inspect form-control evidence on the Payment state, build autocomplete-purpose candidates, and match the Security code control candidate with id payment-securityCode, name securityCode, type text, label containing Security code, and autocomplete cc-exp."
+    },
+    {
+      "variant_id": "co-sem-122",
+      "seeded_behavior": "On the Shipping address route, keep the City control in place with unchanged label, accessible name, id, name, type, validation, value handling, required state, and field order, but change its autocomplete value from address-level2 to the syntactically valid sibling purpose address-level1 while the separate State control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-city\"]",
+        "label": "City",
+        "autocomplete": "address-level1"
+      },
+      "baseline_behavior": "On the Shipping address route, the City field is labelled City, uses type text, name city, and autocomplete address-level2; the separate State field is labelled State and uses autocomplete address-level1.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-122",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-city\"]",
+        "control": {
+          "id": "address-city",
+          "name": "city"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "address-level1"
+        },
+        "attribute_contains": {
+          "label": "City"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated control keeps selector address-city, id address-city, name city, type text, and visible label City while its autocomplete purpose says address-level1; the separate State control keeps selector address-state, name state, label State, and autocomplete address-level1."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.city",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-122 focused acquisition to Shipping address, inspect form-control evidence on CO-S003, build autocomplete-purpose candidates, and recover exactly the City control with selector address-city, id address-city, name city, label containing City, and autocomplete address-level1. Confirm parsed purpose token address-level1 with no context or unknown tokens, and distinguish it from the genuine State control using stable selector, input identity, label, and subject evidence rather than autocomplete value alone."
+    },
+    {
+      "variant_id": "co-sem-123",
+      "seeded_behavior": "On the Shipping address route, keep the State control in place with unchanged label, accessible name, id, name, type, validation, value handling, required state, and field order, but change its autocomplete value from address-level1 to the syntactically valid sibling purpose address-level2 while the separate City control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-state\"]",
+        "label": "State",
+        "autocomplete": "address-level2"
+      },
+      "baseline_behavior": "On the Shipping address route, the State field is labelled State, uses type text, name state, and autocomplete address-level1; the separate City field is labelled City and uses autocomplete address-level2.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-123",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-state\"]",
+        "control": {
+          "id": "address-state",
+          "name": "state"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "address-level2"
+        },
+        "attribute_contains": {
+          "label": "State"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated control keeps selector address-state, id address-state, name state, type text, and visible label State while its autocomplete purpose says address-level2; the separate City control keeps selector address-city, name city, label City, and autocomplete address-level2."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.state",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-123 focused acquisition to Shipping address, inspect form-control evidence on CO-S003, build autocomplete-purpose candidates, and recover exactly the State control with selector address-state, id address-state, name state, label containing State, and autocomplete address-level2. Confirm parsed purpose token address-level2 with no context or unknown tokens, and distinguish it from the genuine City control using stable selector, input identity, label, and subject evidence rather than autocomplete value alone."
+    },
+    {
+      "variant_id": "co-sem-124",
+      "seeded_behavior": "On the Shipping address route, keep the Street address control in place with unchanged label, accessible name, id, name, type, validation, value handling, and focus order, but change its autocomplete value from street-address to the syntactically valid compound value billing street-address.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "label": "Street address",
+        "autocomplete": "billing street-address"
+      },
+      "baseline_behavior": "On the Shipping address route, the Street address field is labelled Street address, uses type text, name streetAddress, and autocomplete street-address.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-124",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-street\"]",
+        "control": {
+          "id": "address-streetAddress",
+          "name": "streetAddress"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "billing street-address"
+        },
+        "attribute_contains": {
+          "label": "Street address"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "Street address keeps id address-streetAddress, name streetAddress, type text, and visible label Street address on the Shipping address route while its autocomplete context token says billing and its purpose token remains street-address."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.street",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-124 focused acquisition to Shipping address, inspect form-control evidence on CO-S003, build autocomplete-purpose candidates, and recover exactly the Street address control with id address-streetAddress, name streetAddress, label containing Street address, and autocomplete billing street-address. Confirm parsed context token billing and purpose token street-address while route and Shipping form context remain unchanged."
+    },
+    {
+      "variant_id": "co-sem-125",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Expiry control in place with unchanged label, accessible name, id, name, type, input mode, validation, value handling, required state, and field order, but change its autocomplete value from cc-exp to the syntactically valid sibling purpose cc-csc while the separate Security code control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "selector_hint": "[data-testid=\"payment-expiry\"]",
+        "label": "Expiry",
+        "autocomplete": "cc-csc"
+      },
+      "baseline_behavior": "On the Payment route, the Expiry field is labelled Expiry, uses type text, name expiry, input mode numeric, and autocomplete cc-exp; the separate Security code field is labelled Security code and uses autocomplete cc-csc.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-125",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-expiry\"]",
+        "control": {
+          "id": "payment-expiry",
+          "name": "expiry"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-csc"
+        },
+        "attribute_contains": {
+          "label": "Expiry"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form, Card details fieldset.",
+          "purpose_evidence": "Expiry keeps selector payment-expiry, id payment-expiry, name expiry, type text, input mode numeric, and visible label Expiry while its autocomplete purpose says cc-csc; the separate Security code control keeps selector payment-security-code, id payment-securityCode, name securityCode, label Security code, and autocomplete cc-csc."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.expiry",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-125 focused acquisition through Address to Payment, inspect form-control evidence on CO-S004, build autocomplete-purpose candidates, and recover exactly the Expiry control with selector payment-expiry, id payment-expiry, name expiry, label containing Expiry, and autocomplete cc-csc. Confirm parsed purpose token cc-csc with no context or unknown tokens, and distinguish it from the genuine Security code control using stable selector, input identity, label, and subject evidence rather than autocomplete value alone."
+    },
+    {
+      "variant_id": "co-sem-126",
+      "seeded_behavior": "On the Shipping address route, keep the Country/region native select in place with unchanged label, accessible name, name, options, selected value, validation, required state, value handling, submission, and Review persistence, but change its autocomplete value from country-name to the syntactically valid sibling address purpose address-level1 while the separate State control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "autocomplete-purpose-mismatch",
+        "selection_reason": "control_with_autocomplete_and_purpose_context",
+        "type": "autocomplete-purpose-mismatch",
+        "tag": "select",
+        "label": "Country/region",
+        "autocomplete": "address-level1"
+      },
+      "baseline_behavior": "On the Shipping address route, the Country/region native select uses name country and autocomplete country-name; the separate State text input uses name state and autocomplete address-level1.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-126",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "control": {
+          "name": "country"
+        },
+        "attributes": {
+          "tag": "select",
+          "autocomplete": "address-level1",
+          "required": true,
+          "has_value": true
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "supporting": {
+            "autocomplete_purpose_context_v1": {
+              "schema_version": "autocomplete_purpose_context_v1",
+              "control": {
+                "tag": "select",
+                "name": "country",
+                "autocomplete": "address-level1",
+                "required": true,
+                "value_state": "filled"
+              },
+              "labeling": {
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Country/region"
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "name": "country"
+              },
+              "autocomplete_evidence": {
+                "raw_value": "address-level1",
+                "tokens": [
+                  "address-level1"
+                ],
+                "section_tokens": [],
+                "context_tokens": [],
+                "purpose_token": "address-level1",
+                "recognized_purpose": "address administrative level 1",
+                "token_category": "address",
+                "is_known_token": true,
+                "unknown_tokens": []
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated native select keeps name country, the exact associated Country/region label segment, a filled country value, and country options while its autocomplete purpose says address-level1; the separate input with name state and autocomplete address-level1 remains correctly labelled State."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.country",
+          "mutation_property": "autocomplete"
+        }
+      ],
+      "candidate_type": "autocomplete-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
+          "criterion": "1.3.5 Identify Input Purpose"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H98.html",
+          "technique": "H98"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F107",
+          "failure": "F107"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-126 focused acquisition to Shipping address, inspect neutral form-control evidence on CO-S003, build autocomplete-purpose candidates, and recover only the native select with name country, autocomplete address-level1, a filled value, and an associated label source containing the exact Country/region text segment. Confirm parsed purpose token address-level1 with no context or unknown tokens. The selector-free expectation must reject the clean Country/region select with country-name, the genuine State input, other address-level1 controls, and near-match Country labels."
+    }
+  ]
+}

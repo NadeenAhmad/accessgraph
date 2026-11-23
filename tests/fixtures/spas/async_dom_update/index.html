@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Async DOM fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Async DOM fixture</h1>
+      <p id="status">Async state pending</p>
+      <button id="async-button" type="button">Start async update</button>
+    </main>
+    <script>
+      document.querySelector("#async-button").addEventListener("click", () => {
+        setTimeout(() => {
+          document.querySelector("#status").textContent = "Async state ready";
+        }, 120);
+      });
+    </script>
+  </body>
+</html>

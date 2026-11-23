@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Modal fixture</title>
+    <style>
+      #modal {
+        border: 2px solid #333;
+        padding: 16px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Modal fixture</h1>
+      <p id="status">Modal closed</p>
+      <button id="open-modal" type="button">Open modal</button>
+      <section id="modal" role="dialog" aria-modal="true" aria-label="Fixture modal" hidden>
+        <h2>Modal open</h2>
+        <button id="close-modal" type="button">Close modal</button>
+      </section>
+    </main>
+    <script>
+      const modal = document.querySelector("#modal");
+      const openButton = document.querySelector("#open-modal");
+      const status = document.querySelector("#status");
+
+      openButton.addEventListener("click", () => {
+        openButton.hidden = true;
+        modal.hidden = false;
+        status.textContent = "Modal open";
+      });
+
+      document.querySelector("#close-modal").addEventListener("click", () => {
+        openButton.hidden = false;
+        modal.hidden = true;
+        status.textContent = "Modal closed";
+      });
+    </script>
+  </body>
+</html>

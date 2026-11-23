@@ -1,0 +1,14 @@
+{
+    "version":  "0.0.0",
+    "dataset_id":  "accessgraph-controlled-local-spa-benchmark",
+    "description":  "Controlled benchmark dataset manifest for AccessGraph. Accepted dataset batches are explicitly listed here; no accepted dataset batches exist yet.",
+    "accepted_batches":  [
+
+                         ],
+    "registry_path":  "benchmarks/registry/benchmark-case-registry.json",
+    "notes":  [
+                  "Dataset membership is distinct from acquisition/profile fixtures.",
+                  "Individual cases count toward the final dataset only after researcher acceptance and inclusion in an accepted manifest batch.",
+                  "Developer pilot validation runs must not be added as accepted final batches."
+              ]
+}

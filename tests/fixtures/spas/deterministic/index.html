@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deterministic fixture</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 24px;
+      }
+
+      main {
+        max-width: 720px;
+      }
+
+      button,
+      [role="button"],
+      [role="tab"] {
+        display: inline-block;
+        margin: 4px;
+        padding: 8px 10px;
+        border: 1px solid #555;
+        background: #f7f7f7;
+        color: #111;
+        cursor: pointer;
+      }
+
+      #paint-target {
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid #777;
+        background-color: white;
+        color: black;
+      }
+
+      #panel {
+        margin-top: 16px;
+        padding: 12px;
+        border: 1px solid #146c94;
+        background-color: #eef8fc;
+      }
+
+      .tab-panel {
+        margin-top: 8px;
+        padding: 8px;
+        border: 1px solid #999;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Deterministic crawler fixture</h1>
+      <p id="status">Home ready</p>
+
+      <section id="panel" hidden>
+        <h2>Panel open</h2>
+        <p>This state can return to the already known home state.</p>
+        <button id="close-panel" type="button">Close panel</button>
+        <button id="panel-next" type="button">Panel next</button>
+      </section>
+
+      <section aria-label="Primary controls">
+        <button id="open-panel" type="button" aria-expanded="false" aria-controls="panel">Open panel</button>
+        <button id="paint-status" type="button">Paint status</button>
+        <button id="hidden-noise" type="button">Hidden noise</button>
+        <button id="animate-only" type="button">Animate only</button>
+        <button id="delete-account" type="button">Delete account</button>
+        <button id="checkout-now" type="button">Checkout now</button>
+        <div id="role-launch" role="button" tabindex="0">Role launch</div>
+      </section>
+
+      <section id="paint-target">Neutral paint target</section>
+
+      <details id="details-widget">
+        <summary>More details</summary>
+        <p>Expanded details are visible now.</p>
+      </details>
+
+      <section aria-label="Tabs">
+        <div id="specs-tab" role="tab" tabindex="0" aria-controls="specs-panel">Specs tab</div>
+        <div id="specs-panel" class="tab-panel" hidden>Specs panel is active.</div>
+      </section>
+
+      <p id="hidden-sink" hidden>Hidden baseline</p>
+    </main>
+
+    <script>
+      const status = document.querySelector("#status");
+      const panel = document.querySelector("#panel");
+      const openPanel = document.querySelector("#open-panel");
+      const paintTarget = document.querySelector("#paint-target");
+      const hiddenSink = document.querySelector("#hidden-sink");
+      const specsPanel = document.querySelector("#specs-panel");
+
+      openPanel.addEventListener("click", () => {
+        panel.hidden = false;
+        openPanel.setAttribute("aria-expanded", "true");
+        status.textContent = "Panel opened";
+      });
+
+      document.querySelector("#close-panel").addEventListener("click", () => {
+        panel.hidden = true;
+        openPanel.setAttribute("aria-expanded", "false");
+        status.textContent = "Home ready";
+      });
+
+      document.querySelector("#panel-next").addEventListener("click", () => {
+        status.textContent = "Panel next reached";
+      });
+
+      document.querySelector("#paint-status").addEventListener("click", () => {
+        paintTarget.style.backgroundColor = "rgb(208, 244, 222)";
+        paintTarget.style.color = "rgb(0, 83, 59)";
+        paintTarget.textContent = "Painted target";
+      });
+
+      document.querySelector("#hidden-noise").addEventListener("click", () => {
+        hiddenSink.textContent = `Hidden noise ${Date.now()}`;
+      });
+
+      document.querySelector("#animate-only").addEventListener("click", () => {
+        paintTarget.style.transform = "translateX(12px)";
+        paintTarget.style.animation = "fixture-slide 300ms linear";
+      });
+
+      document.querySelector("#role-launch").addEventListener("click", () => {
+        status.textContent = "Role button launched";
+      });
+
+      document.querySelector("#specs-tab").addEventListener("click", () => {
+        specsPanel.hidden = false;
+        status.textContent = "Specs selected";
+      });
+    </script>
+  </body>
+</html>

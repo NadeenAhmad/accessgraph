@@ -1,0 +1,32 @@
+{
+  "tool": "accessgraph",
+  "label": "AccessGraph, single-page mode (W4A evaluation)",
+  "versions": {
+    "accessgraph": "w4a-eval (frozen; see eval/FREEZE.json)",
+    "judge": "AG-main, isolated context"
+  },
+  "claimed": [
+    "1.1.1",
+    "1.2.2",
+    "1.3.1",
+    "1.3.5",
+    "2.4.2",
+    "2.4.4",
+    "2.4.6",
+    "3.1.1",
+    "3.1.2",
+    "3.3.1",
+    "4.1.2"
+  ],
+  "notes": [
+    "AccessGraph judges semantic candidates only; missing or invalid markup is left to rule checkers."
+  ],
+  "workers": 2,
+  "segments": [
+    {
+      "startedAt": "2026-11-19T16:19:24.953Z",
+      "finishedAt": "2026-11-19T16:27:14.965Z",
+      "pages": 181
+    }
+  ]
+}

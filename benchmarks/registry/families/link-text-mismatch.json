@@ -1,0 +1,730 @@
+{
+  "candidate_type": "link-text-mismatch",
+  "variants": [
+    {
+      "why_semantic": "The Service summary and unchanged /services destination establish service editing as the link purpose while its visible and accessible label identifies the sibling appointment-editing action.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S004"
+        ],
+        "routes": [
+          "/review"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "text",
+          "subject": "booking.review.changeService"
+        }
+      ],
+      "variant_id": "bs-sem-114",
+      "seeded_behavior": "On Review, change only the Change service link text and computed accessible name to Change appointment while preserving its /services href and ordinary Services activation.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"change-service\"]",
+        "text": "Change appointment",
+        "accessible_name": "Change appointment",
+        "href": "/services"
+      },
+      "baseline_behavior": "The Review Service summary provides a Change service link whose visible text, accessible name, /services href, and ordinary activation all identify service editing.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-114",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"change-service\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Change appointment",
+          "accessible_name": "Change appointment",
+          "href": "/services"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "candidate_evidence": {
+          "primary": {
+            "link": {
+              "tag": "a",
+              "text": "Change appointment",
+              "accessible_name": "Change appointment",
+              "href": "/services"
+            }
+          },
+          "supporting": {
+            "context": {
+              "nearby_text": "NameConsultationDuration30 minutes",
+              "section_heading": "Service"
+            },
+            "structure": {
+              "nearest_heading": {
+                "selector": "h3#review-service-heading",
+                "tag": "h3",
+                "text": "Service"
+              }
+            },
+            "link_destination_context_v1": {
+              "schema_version": "link_destination_context_v1",
+              "raw_href": "/services",
+              "resolved_path": "/services"
+            }
+          }
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S004 /review Review appointment",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-114 Review acquisition, verify the target remains in the Service summary with href and activation /services, build link-text-mismatch candidates, and recover only the seeded Change service subject rather than the legitimate Change appointment sibling in the Date and time summary."
+    },
+    {
+      "why_semantic": "The Date and time context, unchanged Change appointment text and accessible name, and unchanged /schedule href identify schedule editing, while the captured activation transition reaches Services instead.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S004"
+        ],
+        "routes": [
+          "/review"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "activationTargetRoute",
+          "subject": "booking.review.changeAppointment"
+        }
+      ],
+      "variant_id": "bs-sem-115",
+      "seeded_behavior": "On Review, preserve the Change appointment link text, computed accessible name, and /schedule href while changing only its SPA activation destination to /services.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"change-appointment\"]",
+        "text": "Change appointment",
+        "accessible_name": "Change appointment",
+        "href": "/schedule"
+      },
+      "baseline_behavior": "The Review Date and time summary provides a Change appointment link whose visible text, accessible name, /schedule href, and ordinary activation all identify schedule editing.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-115",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"change-appointment\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Change appointment",
+          "accessible_name": "Change appointment",
+          "href": "/schedule"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "candidate_evidence": {
+          "primary": {
+            "link": {
+              "tag": "a",
+              "text": "Change appointment",
+              "accessible_name": "Change appointment",
+              "href": "/schedule"
+            }
+          },
+          "supporting": {
+            "context": {
+              "section_heading": "Date and time"
+            },
+            "structure": {
+              "nearest_heading": {
+                "selector": "h3#review-schedule-heading",
+                "tag": "h3",
+                "text": "Date and time"
+              }
+            },
+            "link_destination_context_v1": {
+              "schema_version": "link_destination_context_v1",
+              "raw_href": "/schedule",
+              "resolved_path": "/schedule"
+            },
+            "destination_state_context_v1": {
+              "schema_version": "destination_state_context_v1",
+              "match_count": 1,
+              "destinations": [
+                {
+                  "target_route": "/services",
+                  "target_title": "Select service | Booking Scheduler Benchmark",
+                  "target_primary_headings": [
+                    {
+                      "level": 1,
+                      "tag": "h1",
+                      "text": "Select service",
+                      "accessible_name": "Select service"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S004 /review Review appointment -> BS-S001 /services Select service",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-115 Review acquisition, capture the Change appointment trigger and destination state, verify source-only and clean Review-to-Schedule evidence do not recover, and recover only the seeded Review-to-Services transition."
+    },
+    {
+      "why_semantic": "The link label Weather forecast describes an unrelated weather task while the unchanged link destination is the Cart route.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "text",
+          "subject": "checkout.navigation.cart"
+        }
+      ],
+      "variant_id": "co-sem-020",
+      "seeded_behavior": "On the Products route, keep the Cart navigation link href as /cart but change its visible and computed accessible name to Weather forecast.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "text": "Weather forecast",
+        "accessible_name": "Weather forecast",
+        "href": "/cart"
+      },
+      "baseline_behavior": "The Cart navigation link uses visible text Cart, has no accessible-name override, and points to /cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-020",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Weather forecast",
+          "accessible_name": "Weather forecast",
+          "href": "/cart"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "/cart",
+          "match_status": "matched_state",
+          "target_benchmark_state_id": "CO-S002",
+          "target_route": "/cart",
+          "target_title": "Cart | Brightlane Checkout",
+          "target_heading": "Cart"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-020 focused acquisition, inspect link evidence on the Products state, build link-text-mismatch candidates, and match the Cart navigation link candidate with destination context for /cart."
+    },
+    {
+      "why_semantic": "The link's visible text and href still identify Cart, but its accessible name exposes the unrelated purpose Weather forecast.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.navigation.cart"
+        }
+      ],
+      "variant_id": "co-sem-021",
+      "seeded_behavior": "On the Products route, keep the Cart navigation link visible text and href as Cart and /cart, but set its accessible name to Weather forecast with aria-label.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "text": "Cart",
+        "accessible_name": "Weather forecast",
+        "aria_label": "Weather forecast",
+        "href": "/cart"
+      },
+      "baseline_behavior": "The Cart navigation link uses visible text Cart, has no accessible-name override, and points to /cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-021",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Cart",
+          "accessible_name": "Weather forecast",
+          "aria_label": "Weather forecast",
+          "href": "/cart"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "/cart",
+          "match_status": "matched_state",
+          "target_benchmark_state_id": "CO-S002",
+          "target_route": "/cart",
+          "target_title": "Cart | Brightlane Checkout",
+          "target_heading": "Cart"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-021 focused acquisition, inspect link evidence on the Products state, build link-text-mismatch candidates, and match the Cart navigation link candidate with accessible-name and destination context for /cart."
+    },
+    {
+      "why_semantic": "Shipping address names a different checkout step than Cart while the unchanged link destination is the Cart route.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "text",
+          "subject": "checkout.navigation.cart"
+        }
+      ],
+      "variant_id": "co-sem-023",
+      "seeded_behavior": "On the Products route, keep the Cart navigation link href as /cart but change its visible and computed accessible name to Shipping address.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "text": "Shipping address",
+        "accessible_name": "Shipping address",
+        "href": "/cart"
+      },
+      "baseline_behavior": "The Cart navigation link uses visible text Cart, has no accessible-name override, and points to /cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-023",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Shipping address",
+          "accessible_name": "Shipping address",
+          "href": "/cart"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "/cart",
+          "match_status": "matched_state",
+          "target_benchmark_state_id": "CO-S002",
+          "target_route": "/cart",
+          "target_title": "Cart | Brightlane Checkout",
+          "target_heading": "Cart"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-023 focused acquisition, inspect link evidence on the Products state, build link-text-mismatch candidates, and match the Cart navigation link candidate with visible-text and destination context for /cart."
+    },
+    {
+      "why_semantic": "The link's visible text and href still identify Cart, but its accessible name identifies the different checkout step Shipping address.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.navigation.cart"
+        }
+      ],
+      "variant_id": "co-sem-024",
+      "seeded_behavior": "On the Products route, keep the Cart navigation link visible text and href as Cart and /cart, but set its accessible name to Shipping address with aria-label.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "text": "Cart",
+        "accessible_name": "Shipping address",
+        "aria_label": "Shipping address",
+        "href": "/cart"
+      },
+      "baseline_behavior": "The Cart navigation link uses visible text Cart, has no accessible-name override, and points to /cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-024",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"nav-cart\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Cart",
+          "accessible_name": "Shipping address",
+          "aria_label": "Shipping address",
+          "href": "/cart"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "/cart",
+          "match_status": "matched_state",
+          "target_benchmark_state_id": "CO-S002",
+          "target_route": "/cart",
+          "target_title": "Cart | Brightlane Checkout",
+          "target_heading": "Cart"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-024 focused acquisition, inspect link evidence on the Products state, build link-text-mismatch candidates, and match the Cart navigation link candidate with accessible-name and destination context for /cart."
+    },
+    {
+      "why_semantic": "The source link label Shipping information identifies a support topic that differs from the unchanged controlled Returns and refunds destination established by the captured target title and heading.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.support.returns"
+        }
+      ],
+      "variant_id": "co-sem-027",
+      "seeded_behavior": "On the Products route, keep the controlled support link href as http://127.0.0.1:8771/returns-and-refunds.html but change its visible and computed accessible name to Shipping information. Focused acquisition captures the unchanged Returns and refunds destination state.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"support-returns\"]",
+        "text": "Shipping information",
+        "accessible_name": "Shipping information",
+        "href": "http://127.0.0.1:8771/returns-and-refunds.html"
+      },
+      "baseline_behavior": "The controlled support link uses visible text Returns and refunds, has no accessible-name override, and points to the benchmark-owned Returns and refunds fixture.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-027",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required_destination_state_evidence",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"support-returns\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Shipping information",
+          "accessible_name": "Shipping information",
+          "href": "http://127.0.0.1:8771/returns-and-refunds.html"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "http://127.0.0.1:8771/returns-and-refunds.html",
+          "match_status": "external_or_out_of_scope",
+          "target_benchmark_state_id": "CO-S008",
+          "target_route": "/returns-and-refunds.html",
+          "target_title": "Returns and refunds",
+          "target_heading": "Returns and refunds"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-027 focused acquisition, inspect support-link evidence on the Products state, verify the Products -> controlled Returns destination edge, build link-text-mismatch candidates, and match the support link candidate with destination-state context for /returns-and-refunds.html."
+    },
+    {
+      "why_semantic": "The link text and accessible name identify Products while the explicit destination points to the Cart route.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "href",
+          "subject": "checkout.navigation.products"
+        }
+      ],
+      "variant_id": "co-sem-100",
+      "seeded_behavior": "On the Products route, keep the Products navigation link visible and accessible name as Products but change its href and navigation destination to /cart.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "selector_hint": "[data-testid=\"nav-products\"]",
+        "text": "Products",
+        "accessible_name": "Products",
+        "href": "/cart"
+      },
+      "baseline_behavior": "The Products navigation link uses visible and accessible name Products and points to /products.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-100",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"nav-products\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Products",
+          "accessible_name": "Products",
+          "href": "/cart"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "destination_context": {
+          "raw_href": "/cart",
+          "match_status": "matched_state",
+          "target_benchmark_state_id": "CO-S002",
+          "target_route": "/cart",
+          "target_title": "Cart | Brightlane Checkout",
+          "target_heading": "Cart"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-100 focused acquisition, inspect Products navigation-link evidence on the Products state, build link-text-mismatch candidates, and match the Products link by stable selector, label, route, and /cart destination evidence."
+    },
+    {
+      "why_semantic": "The Shipping help heading, delivery and shipping context, link text, and accessible name consistently identify Shipping information while the explicit resolved destination path identifies Returns and refunds.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "href",
+          "subject": "checkout.support.shippingInformation"
+        }
+      ],
+      "variant_id": "co-sem-101",
+      "seeded_behavior": "On the Products route, keep the Shipping help context and Shipping information link text and accessible name unchanged but change the link destination from the controlled Shipping information fixture to the controlled Returns and refunds fixture.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "text": "Shipping information",
+        "accessible_name": "Shipping information"
+      },
+      "baseline_behavior": "The Shipping help block describes delivery times and shipping options, and its Shipping information link points to the controlled Shipping information fixture.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-101",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "a",
+          "text": "Shipping information",
+          "accessible_name": "Shipping information"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "candidate_evidence": {
+          "primary": {
+            "link": {
+              "tag": "a",
+              "text": "Shipping information",
+              "accessible_name": "Shipping information"
+            }
+          },
+          "supporting": {
+            "context": {
+              "nearby_text": "Learn about delivery times and available shipping options."
+            },
+            "structure": {
+              "nearest_heading": {
+                "tag": "h3",
+                "text": "Shipping help"
+              }
+            },
+            "link_destination_context_v1": {
+              "schema_version": "link_destination_context_v1",
+              "resolved_path": "/returns-and-refunds.html",
+              "match_status": "external_or_out_of_scope"
+            }
+          }
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run ordinary Checkout co-sem-101 acquisition, inspect the Shipping information candidate in the Products source state, and recover it from exact Shipping source semantics plus the stable resolved Returns and refunds path without requiring destination-state capture."
+    },
+    {
+      "why_semantic": "The Shipping help heading, delivery and shipping context, link text, and accessible name consistently identify Shipping information, while activation of the purpose-opaque resource target reaches a captured destination whose title and primary heading identify Returns and refunds.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "link-text-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "href",
+          "subject": "checkout.support.shippingInformation"
+        }
+      ],
+      "variant_id": "co-sem-102",
+      "seeded_behavior": "On the Products route, keep the Shipping help context and Shipping information link text and accessible name unchanged, point the link at the controlled purpose-opaque resource fixture, and capture its redirect to the Returns and refunds destination state.",
+      "expected_candidate": {
+        "candidate_type": "link-text-mismatch",
+        "selection_reason": "visible_link_with_text_destination_and_context",
+        "type": "link-text-mismatch",
+        "text": "Shipping information",
+        "accessible_name": "Shipping information"
+      },
+      "baseline_behavior": "The Shipping help block describes delivery times and shipping options, and its Shipping information link activates the controlled Shipping information destination.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-102",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required",
+      "expected_evidence": {
+        "attributes": {
+          "tag": "a",
+          "text": "Shipping information",
+          "accessible_name": "Shipping information"
+        },
+        "bucket": "links",
+        "primary_evidence_key": "link",
+        "candidate_evidence": {
+          "primary": {
+            "link": {
+              "tag": "a",
+              "text": "Shipping information",
+              "accessible_name": "Shipping information"
+            }
+          },
+          "supporting": {
+            "context": {
+              "nearby_text": "Learn about delivery times and available shipping options."
+            },
+            "structure": {
+              "nearest_heading": {
+                "tag": "h3",
+                "text": "Shipping help"
+              }
+            },
+            "link_destination_context_v1": {
+              "schema_version": "link_destination_context_v1",
+              "resolved_path": "/resource.html",
+              "match_status": "external_or_out_of_scope"
+            },
+            "destination_state_context_v1": {
+              "schema_version": "destination_state_context_v1",
+              "match_count": 1,
+              "destinations": [
+                {
+                  "target_route": "/returns-and-refunds.html",
+                  "target_title": "Returns and refunds",
+                  "target_primary_headings": [
+                    {
+                      "level": 1,
+                      "tag": "h1",
+                      "text": "Returns and refunds",
+                      "accessible_name": "Returns and refunds"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products -> CO-S008 /returns-and-refunds.html Returns and refunds",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context",
+          "criterion": "2.4.4 Link Purpose (In Context)"
+        }
+      ],
+      "validation_approach": "Run destination-aware Checkout co-sem-102 acquisition, verify that source-only Shipping evidence with the purpose-opaque /resource.html target does not recover, then capture the same link transition and recover only when its destination-state context contains the Returns and refunds title and primary heading."
+    }
+  ]
+}

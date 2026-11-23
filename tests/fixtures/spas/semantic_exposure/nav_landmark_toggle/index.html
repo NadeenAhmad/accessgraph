@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navigation landmark exposure</title>
+  </head>
+  <body>
+    <main>
+      <h1>Navigation landmark exposure</h1>
+      <button id="open-regions" type="button">Open navigation regions</button>
+      <section id="regions" hidden>
+        <header>
+          <nav aria-label="Primary navigation">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#reports">Reports</a>
+          </nav>
+        </header>
+        <aside role="complementary" aria-label="Support links">
+          <nav aria-label="Support navigation">
+            <a href="#help">Help center</a>
+            <a href="#contact">Contact support</a>
+          </nav>
+        </aside>
+        <footer>
+          <nav aria-label="Footer navigation">
+            <a href="#privacy">Privacy</a>
+          </nav>
+        </footer>
+      </section>
+    </main>
+    <script>
+      document.querySelector("#open-regions").addEventListener("click", () => {
+        document.querySelector("#regions").hidden = false;
+      });
+    </script>
+  </body>
+</html>

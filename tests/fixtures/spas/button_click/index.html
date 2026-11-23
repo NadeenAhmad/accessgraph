@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Button click fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Button click fixture</h1>
+      <p id="status">Button state closed</p>
+      <button id="show-state" type="button">Show button state</button>
+      <section id="button-state" hidden>
+        <h2>Button state visible</h2>
+      </section>
+    </main>
+    <script>
+      document.querySelector("#show-state").addEventListener("click", () => {
+        document.querySelector("#status").textContent = "Button state open";
+        document.querySelector("#button-state").hidden = false;
+      });
+    </script>
+  </body>
+</html>

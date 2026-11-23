@@ -1,0 +1,26 @@
+{
+  "out": "<repo>/results/d3d6-v13",
+  "rules": [
+    "qt1vmo",
+    "5effbb",
+    "b49b2e",
+    "c4a8a4",
+    "ucwvc8",
+    "off6ek",
+    "36b590"
+  ],
+  "keep": [
+    "alt-placeholder",
+    "alt-swap",
+    "title-generic",
+    "heading-generic",
+    "link-generic",
+    "link-mismatch",
+    "html-lang-swap",
+    "lang-swap",
+    "autocomplete-swap"
+  ],
+  "port": 8765,
+  "workers": 2,
+  "dryRun": false
+}

@@ -1,0 +1,741 @@
+{
+  "candidate_type": "button-label-mismatch",
+  "variants": [
+    {
+      "variant_id": "bs-sem-112",
+      "seeded_behavior": "On the June 16 Schedule state, keep the available 09:00 slot's visible text, stable identity, activation, selection result, and pressed state unchanged, but set its accessible name to the real sibling slot name 13:00 Available.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"slot-button-0900\"]",
+        "visible_text": "09:00 Available",
+        "accessible_name": "13:00 Available",
+        "aria_label": "13:00 Available"
+      },
+      "baseline_behavior": "On the June 16 Schedule state, the available 09:00 slot has visible text and computed accessible name 09:00 Available, and activation selects 09:00.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-112",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"slot-button-0900\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "09:00 Available",
+          "accessible_name": "13:00 Available",
+          "aria_label": "13:00 Available"
+        },
+        "primary_evidence_key": "button",
+        "candidate_evidence": {
+          "supporting": {
+            "button_action_context_v1": {
+              "schema_version": "button_action_context_v1",
+              "button": {
+                "type": "button",
+                "disabled": false
+              },
+              "labeling": {
+                "visible_text": "09:00 Available",
+                "computed_accessible_name": "13:00 Available",
+                "aria_label": "13:00 Available"
+              },
+              "local_context": {
+                "section_heading": "Available times for June 16, 2026"
+              },
+              "action_evidence": {
+                "button_type": "button",
+                "data_testid": "slot-button-0900"
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/schedule",
+          "document_title": "Schedule appointment | Booking Scheduler Benchmark",
+          "section_heading": "Available times for June 16, 2026",
+          "purpose_evidence": "The target remains the visible 09:00 Available control and activation still selects 09:00, while only its computed accessible name identifies the separate available 13:00 sibling slot."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S002 /schedule Schedule appointment",
+      "mutation_targets": [
+        {
+          "subject": "booking.schedule.slot.0900",
+          "mutation_property": "accessibleName"
+        }
+      ],
+      "candidate_type": "button-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S002"
+        ],
+        "routes": [
+          "/schedule"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-112 acquisition through Consultation to the June 16 Schedule state, build neutral button-label-mismatch candidates, and recover only the stable 09:00 slot whose visible text remains 09:00 Available while its aria-label and computed accessible name say 13:00 Available; verify activation still selects 09:00 and the real 13:00 sibling remains unchanged."
+    },
+    {
+      "variant_id": "bs-sem-113",
+      "seeded_behavior": "On the June 18 Schedule state, keep the available 14:00 slot's visible text, stable identity, activation, selection result, and pressed state unchanged, but set its accessible name to 14:00 Available on June 16, 2026.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"slot-button-1400\"]",
+        "visible_text": "14:00 Available",
+        "accessible_name": "14:00 Available on June 16, 2026",
+        "aria_label": "14:00 Available on June 16, 2026"
+      },
+      "baseline_behavior": "On the June 18 Schedule state, the available 14:00 slot has visible text and computed accessible name 14:00 Available, and activation selects 14:00.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-113",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"slot-button-1400\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "14:00 Available",
+          "accessible_name": "14:00 Available on June 16, 2026",
+          "aria_label": "14:00 Available on June 16, 2026"
+        },
+        "primary_evidence_key": "button",
+        "candidate_evidence": {
+          "supporting": {
+            "button_action_context_v1": {
+              "schema_version": "button_action_context_v1",
+              "button": {
+                "type": "button",
+                "disabled": false
+              },
+              "labeling": {
+                "visible_text": "14:00 Available",
+                "computed_accessible_name": "14:00 Available on June 16, 2026",
+                "aria_label": "14:00 Available on June 16, 2026"
+              },
+              "local_context": {
+                "section_heading": "Available times for June 18, 2026"
+              },
+              "action_evidence": {
+                "button_type": "button",
+                "data_testid": "slot-button-1400"
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/schedule",
+          "document_title": "Schedule appointment | Booking Scheduler Benchmark",
+          "section_heading": "Available times for June 18, 2026",
+          "purpose_evidence": "The target remains the visible 14:00 Available control and activation still selects 14:00 in the current June 18 schedule, while only its computed accessible name refers to June 16."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S002 /schedule Schedule appointment",
+      "mutation_targets": [
+        {
+          "subject": "booking.schedule.slot.1400",
+          "mutation_property": "accessibleName"
+        }
+      ],
+      "candidate_type": "button-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S002"
+        ],
+        "routes": [
+          "/schedule"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-113 acquisition through Consultation to the June 18 Schedule state, build neutral button-label-mismatch candidates, and recover only the stable 14:00 slot whose visible time and activation remain 14:00 while its aria-label and computed accessible name refer to June 16; verify the June 18 heading and surrounding slots remain unchanged and a clean June 16 state does not match."
+    },
+    {
+      "why_semantic": "The visible button text offers to add a product while the accessible name communicates a remove action.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.products.deskLamp.addButton"
+        }
+      ],
+      "variant_id": "co-sem-002",
+      "seeded_behavior": "Keep the visible Add Desk lamp button but override its accessible name to Remove Desk lamp.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "selector_hint": "[data-testid=\"product-add-prod-desk-lamp\"]",
+        "type": "button-label-mismatch",
+        "visible_text": "Add Desk lamp",
+        "accessible_name": "Remove Desk lamp"
+      },
+      "baseline_behavior": "Desk lamp product card has a visible Add Desk lamp button whose accessible name matches the visible text.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-pilot-001",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-desk-lamp\"]",
+        "attributes": {
+          "accessible_name": "Remove Desk lamp",
+          "aria_label": "Remove Desk lamp",
+          "type": "button",
+          "text": "Add Desk lamp"
+        },
+        "bucket": "buttons"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G208",
+          "technique": "G208"
+        }
+      ],
+      "validation_approach": "Run the Checkout pilot profile focused acquisition, inspect button evidence on the products route, build candidates, and match the Desk lamp add button candidate."
+    },
+    {
+      "why_semantic": "The button label Weather forecast describes an unrelated weather task while the unchanged button action adds the Notebook set product to the cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.notebookSet.addButton"
+        }
+      ],
+      "variant_id": "co-sem-028",
+      "seeded_behavior": "On the Products route, keep the Notebook set product-card button action unchanged but change its visible and computed accessible name to Weather forecast.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "visible_text": "Weather forecast",
+        "accessible_name": "Weather forecast"
+      },
+      "baseline_behavior": "Notebook set product card has a visible Add Notebook set button whose accessible name matches the visible text and adds Notebook set to the cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-028",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Weather forecast",
+          "accessible_name": "Weather forecast"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "button",
+        "context": {
+          "nearest_heading": "Notebook set",
+          "section_heading": "Featured products",
+          "data_testid": "product-add-prod-notebook-set"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-028 focused acquisition, inspect button evidence on the Products state, build button-label-mismatch candidates, and match the Notebook set add button candidate."
+    },
+    {
+      "why_semantic": "The button's visible text and action still add Notebook set, but its accessible name exposes the unrelated purpose Weather forecast.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.products.notebookSet.addButton"
+        }
+      ],
+      "variant_id": "co-sem-029",
+      "seeded_behavior": "On the Products route, keep the Notebook set product-card button visible text and action as Add Notebook set, but set its accessible name to Weather forecast with aria-label.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "visible_text": "Add Notebook set",
+        "accessible_name": "Weather forecast",
+        "aria_label": "Weather forecast"
+      },
+      "baseline_behavior": "Notebook set product card has a visible Add Notebook set button whose accessible name matches the visible text and adds Notebook set to the cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-029",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Add Notebook set",
+          "accessible_name": "Weather forecast",
+          "aria_label": "Weather forecast"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "button",
+        "context": {
+          "nearest_heading": "Notebook set",
+          "section_heading": "Featured products",
+          "data_testid": "product-add-prod-notebook-set"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-029 focused acquisition, inspect button evidence on the Products state, build button-label-mismatch candidates, and match the Notebook set add button candidate with visible text Add Notebook set and accessible name Weather forecast."
+    },
+    {
+      "why_semantic": "The button label Remove Notebook set states the opposite product action while the unchanged button action still adds Notebook set to the cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.notebookSet.addButton"
+        }
+      ],
+      "variant_id": "co-sem-031",
+      "seeded_behavior": "On the Products route, keep the Notebook set product-card button action unchanged but change its visible and computed accessible name to Remove Notebook set with no aria-label override.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "visible_text": "Remove Notebook set",
+        "accessible_name": "Remove Notebook set"
+      },
+      "baseline_behavior": "Notebook set product card has a visible Add Notebook set button whose accessible name matches the visible text and adds Notebook set to the cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-031",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Remove Notebook set",
+          "accessible_name": "Remove Notebook set"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "button",
+        "context": {
+          "nearest_heading": "Notebook set",
+          "section_heading": "Featured products",
+          "data_testid": "product-add-prod-notebook-set"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-031 focused acquisition, inspect button evidence on the Products state, build button-label-mismatch candidates, and match the Notebook set add button candidate with visible and accessible name Remove Notebook set."
+    },
+    {
+      "why_semantic": "The accessible name Remove Notebook set states the opposite product action while the visible label and unchanged button action still add Notebook set to the cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.products.notebookSet.addButton"
+        }
+      ],
+      "variant_id": "co-sem-032",
+      "seeded_behavior": "On the Products route, keep the Notebook set product-card button visible text and action unchanged but set aria-label to Remove Notebook set so the computed accessible name contradicts the add action.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "visible_text": "Add Notebook set",
+        "accessible_name": "Remove Notebook set",
+        "aria_label": "Remove Notebook set"
+      },
+      "baseline_behavior": "Notebook set product card has a visible Add Notebook set button whose accessible name matches the visible text and adds Notebook set to the cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-032",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Add Notebook set",
+          "accessible_name": "Remove Notebook set",
+          "aria_label": "Remove Notebook set"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "button",
+        "context": {
+          "nearest_heading": "Notebook set",
+          "section_heading": "Featured products",
+          "data_testid": "product-add-prod-notebook-set"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-032 focused acquisition, inspect button evidence on the Products state, build button-label-mismatch candidates, and match the Notebook set add button candidate with visible text Add Notebook set and accessible name Remove Notebook set."
+    },
+    {
+      "why_semantic": "The button label Add Cable organizer uses the correct Add action verb but names the wrong product object while the unchanged button action still adds Notebook set to the cart.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "button-label-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.notebookSet.addButton"
+        }
+      ],
+      "variant_id": "co-sem-035",
+      "seeded_behavior": "On the Products route, keep the Notebook set product-card button action unchanged but change its visible and computed accessible name to Add Cable organizer with no aria-label override.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "visible_text": "Add Cable organizer",
+        "accessible_name": "Add Cable organizer"
+      },
+      "baseline_behavior": "Notebook set product card has a visible Add Notebook set button whose accessible name matches the visible text and adds Notebook set to the cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-035",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-add-prod-notebook-set\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Add Cable organizer",
+          "accessible_name": "Add Cable organizer"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "button",
+        "context": {
+          "nearest_heading": "Notebook set",
+          "section_heading": "Featured products",
+          "data_testid": "product-add-prod-notebook-set"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name",
+          "criterion": "2.5.3 Label in Name"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-035 focused acquisition, inspect button evidence on the Products state, build button-label-mismatch candidates, and match the Notebook set add button candidate with visible and accessible name Add Cable organizer."
+    },
+    {
+      "variant_id": "co-sem-089",
+      "seeded_behavior": "On the Cart route, keep the Delivery estimate button labelled Delivery estimate with valid button semantics, but route its activation to the existing Shipping information dialog instead of the delivery-estimate panel.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "visible_text": "Delivery estimate",
+        "accessible_name": "Delivery estimate",
+        "destination_heading": "Shipping information"
+      },
+      "baseline_behavior": "On the Cart route, Delivery estimate expands the delivery-estimate panel with timing text, while Shipping information separately opens its own dialog.",
+      "risk_subjectivity": "medium",
+      "profile": "checkout-co-sem-089",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "Delivery estimate",
+          "accessible_name": "Delivery estimate"
+        },
+        "primary_evidence_key": "button",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "source_purpose": "Delivery estimate is the source control.",
+          "destination_state_context_v1": "The matched outgoing transition destination is a saved Cart state with the Shipping information dialog title and body visible."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.deliveryEstimate",
+          "mutation_property": "activation_result"
+        }
+      ],
+      "candidate_type": "button-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-089 focused acquisition, inspect the Delivery estimate button candidate on the source Cart state, and confirm its neutral matched transition and destination-state context point to the saved Shipping information dialog result."
+    },
+    {
+      "variant_id": "co-sem-103",
+      "seeded_behavior": "On the Shipping address route, keep the Continue to payment submit button and valid address form unchanged, but route a valid submission to the existing Cart page instead of Payment.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"continue-to-payment\"]",
+        "visible_text": "Continue to payment",
+        "accessible_name": "Continue to payment",
+        "destination_route": "/cart",
+        "destination_heading": "Cart"
+      },
+      "baseline_behavior": "After a valid Shipping address submission, Continue to payment advances to the Payment route with the Payment page title, heading, form, and checkout step.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-103",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"continue-to-payment\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "submit",
+          "text": "Continue to payment",
+          "accessible_name": "Continue to payment"
+        },
+        "primary_evidence_key": "button",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "source_purpose": "Continue to payment is the Shipping address form submit control.",
+          "destination_state_context_v1": "The uniquely matched outgoing transition leads to a saved /cart state with title Cart | Brightlane Checkout and h1 Cart."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.continueToPayment",
+          "mutation_property": "activation_destination"
+        }
+      ],
+      "candidate_type": "button-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-103 focused acquisition through a valid Shipping address submission, inspect the Continue to payment source-button candidate, and confirm its uniquely matched outgoing transition and destination-state context identify the saved Cart result."
+    },
+    {
+      "variant_id": "co-sem-104",
+      "seeded_behavior": "In a two-item Cart, keep the Desk lamp increment button's visible label, accessible name, native semantics, and row placement unchanged, but bind its activation to the Notebook set so Desk lamp remains at quantity 1 and Notebook set increases to quantity 2.",
+      "expected_candidate": {
+        "candidate_type": "button-label-mismatch",
+        "selection_reason": "visible_button_with_label_and_context_evidence",
+        "type": "button-label-mismatch",
+        "selector_hint": "[data-testid=\"cart-increment-prod-desk-lamp\"]",
+        "visible_text": "+",
+        "accessible_name": "Increase Desk lamp quantity",
+        "destination_route": "/cart",
+        "destination_heading": "Cart",
+        "destination_elements": [
+          {
+            "bucket": "visual_cues",
+            "accessible_name": "Desk lamp quantity controls",
+            "text": "- 1 +"
+          },
+          {
+            "bucket": "visual_cues",
+            "accessible_name": "Notebook set quantity controls",
+            "text": "- 2 +"
+          }
+        ]
+      },
+      "baseline_behavior": "In a two-item Cart starting at quantity 1 for both products, Increase Desk lamp quantity increases Desk lamp to quantity 2 and leaves Notebook set at quantity 1.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-104",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"cart-increment-prod-desk-lamp\"]",
+        "attributes": {
+          "tag": "button",
+          "type": "button",
+          "text": "+",
+          "accessible_name": "Increase Desk lamp quantity"
+        },
+        "primary_evidence_key": "button",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "nearest_heading": "Desk lamp",
+          "source_purpose": "Increase Desk lamp quantity is the increment control in the Desk lamp row.",
+          "destination_state_context_v1": "The uniquely matched outgoing transition stays on Cart and exposes Desk lamp quantity controls at 1 and Notebook set quantity controls at 2."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.deskLamp.increment",
+          "mutation_property": "activation_target"
+        }
+      ],
+      "candidate_type": "button-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-104 focused acquisition through the two-item Cart, inspect the Desk lamp increment source-button candidate, and require its uniquely matched same-page destination to contain both the unchanged Desk lamp quantity 1 controls and the incremented Notebook set quantity 2 controls."
+    }
+  ]
+}

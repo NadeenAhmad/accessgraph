@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AccessGraph Benchmark SPA Explorer</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>AccessGraph Benchmark SPA Explorer</h1>
+      <p>Browse controlled benchmark cases and open implemented Checkout or Booking variants for manual review.</p>
+    </header>
+
+    <main class="layout">
+      <section class="case-browser" aria-labelledby="case-browser-title">
+        <h2 id="case-browser-title">Cases</h2>
+        <div class="controls">
+          <label for="case-search">Search</label>
+          <input id="case-search" type="search" autocomplete="off" placeholder="Case ID, type, pattern, description">
+
+          <div class="filter-grid">
+            <label>
+              Type
+              <select id="filter-type"></select>
+            </label>
+            <label>
+              App
+              <select id="filter-app"></select>
+            </label>
+            <label>
+              Tier
+              <select id="filter-tier"></select>
+            </label>
+            <label>
+              Evidence state
+              <select id="filter-evidence"></select>
+            </label>
+            <label>
+              Status
+              <select id="filter-status"></select>
+            </label>
+          </div>
+        </div>
+
+        <p id="case-count" class="muted" aria-live="polite">Loading cases...</p>
+        <ul id="case-list" class="case-list"></ul>
+      </section>
+
+      <section class="case-detail" aria-labelledby="case-detail-title">
+        <div class="detail-heading">
+          <div>
+            <h2 id="case-detail-title">Select a case</h2>
+            <p id="case-summary" class="muted">Case details will appear here.</p>
+          </div>
+          <div class="actions">
+            <button id="open-variant" type="button" disabled>Open Variant</button>
+            <button id="stop-variant" type="button" disabled>Stop</button>
+          </div>
+        </div>
+
+        <div id="session-status" class="status-line" role="status" aria-live="polite">
+          Session: idle
+        </div>
+        <div id="case-message" class="message" role="status" aria-live="polite"></div>
+
+        <dl id="detail-fields" class="detail-fields"></dl>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

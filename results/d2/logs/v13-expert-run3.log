@@ -1,0 +1,7 @@
+[estimate] expert run 3: 129 cases, about $0.52 (stage fix_round5: $3.126 of $6.95 used)
+{
+  "output": "<repo>/runs/w4a-d2/runs/expert-v13-run-3",
+  "cases": 129,
+  "evaluations": 129,
+  "errors": 1
+}

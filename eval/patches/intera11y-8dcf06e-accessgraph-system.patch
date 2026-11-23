@@ -1,0 +1,93 @@
+diff --git a/adapters/registry.py b/adapters/registry.py
+index fe76bac..28ce5f7 100644
+--- a/adapters/registry.py
++++ b/adapters/registry.py
+@@ -28,6 +28,7 @@ TOOLS = {
+     'browser-use': ('Browser Use', 'agentic'),
+     'agentlab': ('AgentLab', 'agentic'),
+     'ia-rubrics': ('InterA11y (Rubrics only)', 'ablation'),
++    'accessgraph': ('AccessGraph (single-page mode; W4A evaluation)', 'llm-driven'),
+ }
+ ALIASES = {'nuVal': 'nuval', 'html_codesniffer': 'htmlcs', 'editoria11y': 'ed11y',
+            'alfa-rules': 'alfa', 'accessibility-checker': 'ibm'}
+diff --git a/adapters/worker.py b/adapters/worker.py
+index 697563d..8eef322 100644
+--- a/adapters/worker.py
++++ b/adapters/worker.py
+@@ -263,12 +263,41 @@ def run_research(tool,entry,options):
+     return answer
+ 
+ 
++def run_accessgraph(entry, options):
++    """AccessGraph single-page mode (W4A 2027 evaluation; local addition, not part of InterA11y)."""
++    home=Path(os.environ['ACCESSGRAPH_HOME'])
++    python=os.environ.get('ACCESSGRAPH_PYTHON',str(home/'.venv/bin/python'))
++    condition=options.get('condition') or 'run-1'
++    page=re.sub(r'[^A-Za-z0-9]+','-',str(entry.get('page') or entry['url'])).strip('-').lower()[-120:]
++    page=page+'-'+hashlib.sha1(str(entry.get('page') or entry['url']).encode()).hexdigest()[:8]
++    request={'url':entry['url'],'intera11y_sc':entry['sc'],'case_id':entry['case_id'],
++        'out_dir':str(home/'runs/w4a-d2/pages'/page),'stage':os.environ.get('ACCESSGRAPH_STAGE','external'),
++        'run_idx':int(condition.rsplit('-',1)[-1]) if condition.startswith('run-') else 1,
++        'target_xpath':entry.get('xpath') if entry.get('scope')=='element' else None}
++    output=Path(options['output_dir']);output.mkdir(parents=True,exist_ok=True)
++    with tempfile.TemporaryDirectory(prefix='accessgraph-') as temporary:
++        source=Path(temporary)/'request.json';target=Path(temporary)/'result.json'
++        source.write_text(json.dumps(request))
++        process=subprocess.run([python,'-m','eval.adapters.ag_single',str(source),str(target)],cwd=home,
++            stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
++        (output/'accessgraph.log').write_text(process.stdout+process.stderr)
++        if not target.exists():raise RuntimeError(process.stderr[-4000:] or 'AccessGraph returned no result')
++        reply=json.loads(target.read_text())
++    if reply.get('state')=='error':raise RuntimeError(reply.get('error') or 'AccessGraph error')
++    usage={'calls':reply['calls'],'paidCalls':reply['paid_calls'],'apiCostUsd':reply['cost_usd'],
++        'reportedApiCostUsd':reply['cost_usd'],'costSource':'accessgraph-cost-ledger'}
++    rows=[{'sc':r['sc'],'xpath':r['xpath'],'ruleId':r['type'],'outcome':r['outcome'],'reason':r['reason'],
++        'confidence':r.get('confidence')} for r in reply['rows']]
++    return normalized(entry,rows,usage=usage,timing={'seconds':reply.get('seconds')},raw=reply)
++
++
+ def main(request):
+     tool,entry,options=request['tool'],request['case'],request['options']
+     os.environ['A11Y_HTTP_MAX_ATTEMPTS']='1'
+     os.environ['A11Y_ANSWER_MAX_ATTEMPTS']='1'
+     if tool in ['gena11y','ia-rubrics']:return run_gena11y(entry,options,rubrics=tool=='ia-rubrics')
+     if tool=='accessguru':return run_accessguru(entry,options)
++    if tool=='accessgraph':return run_accessgraph(entry,options)
+     if tool=='lopez-pereira':return run_lopez(entry,options)
+     if tool in ['browser-use','agentlab']:return run_agents(tool,entry,options)
+     if tool in ['bagel','lynx']:return run_research(tool,entry,options)
+diff --git a/intera11y_benchmark/experiments.py b/intera11y_benchmark/experiments.py
+index 37b155f..5768c16 100644
+--- a/intera11y_benchmark/experiments.py
++++ b/intera11y_benchmark/experiments.py
+@@ -1,5 +1,6 @@
+ """Experiment names and conditions used in the paper."""
+ CRITERIA = ['1.1.1', '1.4.1', '1.4.13', '2.1.1', '2.1.2', '2.4.3', '2.4.4', '2.4.7', '3.3.1', '4.1.3']
++CRITERIA_W4A = ['2.4.2', '2.4.6']  # InterA11y+ (W4A evaluation): extended rubrics
+ CATEGORIES = {
+     'Content Alternatives': ['1.1.1'],
+     'Link Purpose': ['2.4.4'],
+@@ -9,12 +10,12 @@ CATEGORIES = {
+ CHECKERS = ['alfa', 'aslint', 'axe', 'bagel', 'ed11y', 'htmlcs', 'ibm', 'lynx', 'nuval', 'qualweb', 'testaro']
+ EXPERIMENTS = {
+     'conformance-evaluation': dict(title='Evaluation of Current Checkers', dataset='conformance',
+-        systems=CHECKERS+['rule-ensemble', 'gena11y', 'accessguru', 'lopez-pereira']),
++        systems=CHECKERS+['rule-ensemble', 'gena11y', 'accessguru', 'lopez-pereira', 'accessgraph']),
+     'ablation-study': dict(title='InterA11y Ablations', dataset='conformance',
+         systems=['gena11y', 'intera11y'],
+         conditions=['rubrics', 'deterministic', 'deterministic-rubrics', 'full']),
+     'expert-evaluation': dict(title='Expert Evaluation', dataset='expert',
+-        systems=CHECKERS+['rule-ensemble', 'gena11y', 'accessguru', 'agentlab', 'browser-use', 'intera11y']),
++        systems=CHECKERS+['rule-ensemble', 'gena11y', 'accessguru', 'agentlab', 'browser-use', 'intera11y', 'accessgraph']),
+     'tool-contribution': dict(title='General-Purpose Web Agents', dataset='expert',
+         systems=['agentlab', 'browser-use'], conditions=['general-tools', 'intera11y-tools']),
+ }
+@@ -33,6 +34,8 @@ def includes(experiment, row):
+ 
+ def conditions(experiment, system):
+     spec = EXPERIMENTS[experiment]
++    if system == 'accessgraph':  # W4A evaluation: three runs of the same configuration
++        return ['run-1', 'run-2', 'run-3']
+     if system == 'intera11y':
+         return spec.get('conditions', ['full'])
+     if system in ['agentlab', 'browser-use']:

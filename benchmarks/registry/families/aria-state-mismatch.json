@@ -1,0 +1,1103 @@
+{
+  "candidate_type": "aria-state-mismatch",
+  "variants": [
+    {
+      "why_semantic": "The slot's visible Selected text, unchanged accessible name, booking summary, status message, and available continuation establish 09:00 as the selected appointment while aria-pressed falsely reports the opposite state.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S002"
+        ],
+        "routes": [
+          "/schedule"
+        ]
+      },
+      "candidate_type": "aria-state-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "ariaPressed",
+          "subject": "booking.schedule.slot.0900"
+        }
+      ],
+      "variant_id": "bs-sem-117",
+      "seeded_behavior": "After selecting the 09:00 appointment on June 16, preserve its Selected text, accessible name, selected styling, summary, status, continuation, and booking behavior while exposing aria-pressed=\"false\".",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"slot-button-0900\"]",
+        "text": "09:00 Selected",
+        "declared_state": {
+          "aria_pressed": "false"
+        }
+      },
+      "baseline_behavior": "After selecting the 09:00 appointment on June 16, the slot displays Selected, has the accessible name 09:00 Selected, exposes aria-pressed=\"true\", and remains the appointment used by the summary and continuation flow.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-117",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"slot-button-0900\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "09:00 Selected",
+          "accessible_name": "09:00 Selected"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_pressed": "false"
+        },
+        "candidate_evidence": {
+          "primary": {
+            "aria_state": {
+              "bucket": "buttons",
+              "tag": "button",
+              "text": "09:00 Selected",
+              "accessible_name": "09:00 Selected",
+              "state_attributes": {
+                "aria_pressed": "false"
+              }
+            }
+          },
+          "supporting": {
+            "aria_state_context_v1": {
+              "declared_state": {
+                "aria_pressed": "false"
+              },
+              "labeling": {
+                "visible_text": "09:00 Selected",
+                "computed_accessible_name": "09:00 Selected"
+              },
+              "rendered_state_observations": {
+                "is_visible": true,
+                "disabled": false
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/schedule",
+          "declared_state": "The selected 09:00 slot carries aria-pressed false.",
+          "actual_state_evidence": "The same button visibly reads 09:00 Selected and retains the selected appointment behavior.",
+          "summary_state_evidence": "The booking summary and status continue to identify 09:00 for Consultation, and Continue to details remains available."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S002 /schedule Schedule appointment with June 16 09:00 selected",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-117 Schedule acquisition, select June 16 and 09:00 before capture, verify every functional and visible selection signal remains aligned, build aria-state-mismatch candidates, and recover only the seeded 09:00 slot with Selected text and aria-pressed false."
+    },
+    {
+      "why_semantic": "The target remains visibly and functionally unselected as 13:00 Available while the unchanged 09:00 Selected peer, booking summary, status message, and available continuation establish 09:00 as the actual appointment, yet aria-pressed falsely reports the 13:00 target as pressed.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S002"
+        ],
+        "routes": [
+          "/schedule"
+        ]
+      },
+      "candidate_type": "aria-state-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "ariaPressed",
+          "subject": "booking.schedule.slot.1300"
+        }
+      ],
+      "variant_id": "bs-sem-135",
+      "seeded_behavior": "After selecting the 09:00 appointment on June 16, preserve the unselected 13:00 slot's Available text, accessible name, ordinary styling, activation behavior, availability, and booking data while exposing aria-pressed=\"true\".",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"slot-button-1300\"]",
+        "text": "13:00 Available",
+        "declared_state": {
+          "aria_pressed": "true"
+        }
+      },
+      "baseline_behavior": "After selecting the 09:00 appointment on June 16, the 13:00 slot displays Available, has the accessible name 13:00 Available, retains ordinary unselected styling, and has no aria-pressed attribute.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-135",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"slot-button-1300\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "13:00 Available",
+          "accessible_name": "13:00 Available"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_pressed": "true"
+        },
+        "candidate_evidence": {
+          "primary": {
+            "aria_state": {
+              "bucket": "buttons",
+              "tag": "button",
+              "text": "13:00 Available",
+              "accessible_name": "13:00 Available",
+              "state_attributes": {
+                "aria_pressed": "true"
+              }
+            }
+          },
+          "supporting": {
+            "aria_state_context_v1": {
+              "declared_state": {
+                "aria_pressed": "true"
+              },
+              "labeling": {
+                "visible_text": "13:00 Available",
+                "computed_accessible_name": "13:00 Available"
+              },
+              "rendered_state_observations": {
+                "is_visible": true,
+                "disabled": false
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/schedule",
+          "declared_state": "The unselected 13:00 Available slot carries aria-pressed true.",
+          "actual_state_evidence": "The same button retains Available text and ordinary unselected styling.",
+          "peer_state_evidence": "The unchanged 09:00 peer visibly reads Selected and carries aria-pressed true.",
+          "summary_state_evidence": "The booking summary and status continue to identify 09:00 for Consultation, and Continue to details remains available."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S002 /schedule Schedule appointment with June 16 09:00 selected",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-135 Schedule acquisition, select June 16 and 09:00 before capture, verify the 13:00 slot remains functionally and visibly unselected while only its declared pressed state changes, build aria-state-mismatch candidates, and recover only the seeded 13:00 slot with the unchanged selected 09:00 peer."
+    },
+    {
+      "variant_id": "co-sem-066",
+      "seeded_behavior": "On the initial Products route, keep the Desk accessories category tab functionally selected with selected styling, roving tabindex 0, and its controlled panel visible, but render aria-selected=\"false\" on that same tab.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "text": "Desk accessories",
+        "role": "tab",
+        "declared_state": {
+          "aria_selected": "false"
+        }
+      },
+      "baseline_behavior": "On the initial Products route, the Desk accessories tab is the selected tab, has aria-selected=\"true\", tabindex 0, selected styling, and controls the visible Desk accessories panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-066",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Desk accessories",
+          "accessible_name": "Desk accessories"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_selected": "false"
+        },
+        "context": {
+          "route": "/products",
+          "declared_state": "Desk accessories tab carries aria-selected false.",
+          "actual_state_evidence": "Desk accessories keeps selected styling, tabindex 0, and its controlled panel remains visible.",
+          "controlled_panel_evidence": "The desk-accessories-panel remains the visible tabpanel labelled by the Desk accessories tab while the office-supplies-panel remains hidden.",
+          "peer_state_evidence": "The Office supplies tab remains inactive with aria-selected false and its panel hidden."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.products.categoryTabs.deskAccessories",
+          "mutation_property": "aria_selected"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-066 focused acquisition, inspect aria-state evidence on the initial Products state, build aria-state-mismatch candidates, and match the Desk accessories tab candidate with role tab, text/accessibility identity Desk accessories, declared aria-selected false, visible selected panel context, and Office supplies peer state unchanged."
+    },
+    {
+      "variant_id": "co-sem-067",
+      "seeded_behavior": "After activating Office supplies, keep Office supplies functionally selected with selected styling, roving tabindex 0, and its controlled panel visible, but leave aria-selected=\"true\" on Desk accessories and aria-selected=\"false\" on Office supplies.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-office-supplies\"]",
+        "text": "Office supplies",
+        "role": "tab",
+        "declared_state": {
+          "aria_selected": "false"
+        }
+      },
+      "baseline_behavior": "After activating Office supplies, the Office supplies tab has aria-selected=\"true\", tabindex 0, selected styling, and controls the visible Office supplies panel, while Desk accessories has aria-selected=\"false\" and is inactive.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-067",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"product-category-tab-office-supplies\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Office supplies",
+          "accessible_name": "Office supplies"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_selected": "false"
+        },
+        "context": {
+          "route": "/products",
+          "declared_state": "Office supplies carries aria-selected false while Desk accessories carries aria-selected true.",
+          "actual_state_evidence": "Office supplies has selected styling and tabindex 0 while Desk accessories is inactive with tabindex -1.",
+          "controlled_panel_evidence": "The office-supplies-panel is visible and labelled by the Office supplies tab while the desk-accessories-panel is hidden.",
+          "peer_state_evidence": "Desk accessories remains declared selected despite its inactive styling, tabindex -1, and hidden panel."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S012 /products Office supplies",
+      "mutation_targets": [
+        {
+          "subject": "checkout.products.categoryTabs.deskAccessories",
+          "mutation_property": "aria_selected"
+        },
+        {
+          "subject": "checkout.products.categoryTabs.officeSupplies",
+          "mutation_property": "aria_selected"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S012"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-067 focused acquisition, activate Office supplies, inspect aria-state evidence in CO-S012, build aria-state-mismatch candidates, and match the Office supplies tab candidate with declared aria-selected false, selected styling, tabindex 0, visible controlled panel, and stale Desk accessories peer state."
+    },
+    {
+      "variant_id": "co-sem-068",
+      "seeded_behavior": "After activating Delivery estimate on the Cart route, keep the disclosure functionally expanded with its controlled panel visible, but render aria-expanded=\"false\" on the trigger.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "text": "Delivery estimate",
+        "declared_state": {
+          "aria_expanded": "false"
+        }
+      },
+      "baseline_behavior": "After activating Delivery estimate on the Cart route, the trigger has aria-expanded=\"true\" and controls the visible delivery-estimate-panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-068",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "Delivery estimate",
+          "accessible_name": "Delivery estimate"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_expanded": "false"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Delivery estimate carries aria-expanded false.",
+          "actual_state_evidence": "The disclosure remains functionally expanded after activating the Delivery estimate trigger.",
+          "controlled_panel_evidence": "The persistent delivery-estimate-panel is the aria-controls target and remains visible with its normal delivery text."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S013 /cart Delivery estimate expanded",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.deliveryEstimate",
+          "mutation_property": "aria_expanded"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S013"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-068 focused acquisition, activate Delivery estimate, inspect aria-state evidence in CO-S013, build aria-state-mismatch candidates, and match the Delivery estimate button with declared aria-expanded false, its stable aria-controls relationship, and visible controlled-panel context."
+    },
+    {
+      "variant_id": "co-sem-069",
+      "seeded_behavior": "On the Cart route, keep the Delivery estimate disclosure functionally collapsed with its controlled panel hidden, but render aria-expanded=\"true\" on the trigger.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "text": "Delivery estimate",
+        "declared_state": {
+          "aria_expanded": "true"
+        }
+      },
+      "baseline_behavior": "On the Cart route, the Delivery estimate trigger has aria-expanded=\"false\" and controls the hidden delivery-estimate-panel until the user activates it.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-069",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"delivery-estimate-trigger\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "Delivery estimate",
+          "accessible_name": "Delivery estimate"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_expanded": "true"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Delivery estimate carries aria-expanded true.",
+          "actual_state_evidence": "The disclosure remains functionally collapsed without activating the Delivery estimate trigger.",
+          "controlled_panel_evidence": "The persistent delivery-estimate-panel is the aria-controls target and remains hidden."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.deliveryEstimate",
+          "mutation_property": "aria_expanded"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-069 focused acquisition, inspect aria-state evidence in the ordinary CO-S002 Cart state, build aria-state-mismatch candidates, and match the Delivery estimate button with declared aria-expanded true, its stable aria-controls relationship, and hidden controlled-panel context."
+    },
+    {
+      "variant_id": "co-sem-070",
+      "seeded_behavior": "After activating Gift receipt on the Cart route, keep the switch functionally enabled with is-on styling and its enabled helper text, but render aria-checked=\"false\" on the switch.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"gift-receipt-switch\"]",
+        "text": "Gift receipt",
+        "role": "switch",
+        "declared_state": {
+          "aria_checked": "false"
+        }
+      },
+      "baseline_behavior": "After activating Gift receipt on the Cart route, the switch is functionally enabled, has aria-checked=\"true\", uses is-on styling, and shows the helper text A gift receipt will be included.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-070",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"gift-receipt-switch\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "switch",
+          "text": "Gift receipt",
+          "accessible_name": "Gift receipt"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_checked": "false"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Gift receipt carries aria-checked false.",
+          "actual_state_evidence": "The switch remains functionally enabled with its cart-switch is-on classes.",
+          "helper_state_evidence": "The helper text A gift receipt will be included. remains visible, confirming the enabled functional state."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S014 /cart Gift receipt enabled",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.giftReceipt",
+          "mutation_property": "aria_checked"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S014"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-070 focused acquisition, activate Gift receipt, inspect aria-state evidence in CO-S014, build aria-state-mismatch candidates, and match the Gift receipt switch with role switch, declared aria-checked false, enabled is-on styling, and visible enabled helper text."
+    },
+    {
+      "variant_id": "co-sem-071",
+      "seeded_behavior": "On the Cart route, keep Gift receipt functionally off with its normal off styling and no enabled helper text, but render aria-checked=\"true\" on the switch.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"gift-receipt-switch\"]",
+        "text": "Gift receipt",
+        "role": "switch",
+        "declared_state": {
+          "aria_checked": "true"
+        }
+      },
+      "baseline_behavior": "On the Cart route, Gift receipt is functionally off, has aria-checked=\"false\", lacks is-on styling, and has no enabled helper text.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-071",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"gift-receipt-switch\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "switch",
+          "text": "Gift receipt",
+          "accessible_name": "Gift receipt"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_checked": "true"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Gift receipt carries aria-checked true.",
+          "actual_state_evidence": "The switch remains functionally off with its normal cart-switch class and without is-on styling.",
+          "helper_state_evidence": "The enabled Gift receipt helper text is absent, consistent with the switch remaining off."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.giftReceipt",
+          "mutation_property": "aria_checked"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-071 focused acquisition, inspect aria-state evidence in the ordinary CO-S002 Cart state, build aria-state-mismatch candidates, and match the Gift receipt switch with role switch, declared aria-checked true, off-state styling, and absent enabled helper text."
+    },
+    {
+      "variant_id": "co-sem-072",
+      "seeded_behavior": "After activating Save cart on the Cart route, keep the cart functionally saved with is-saved styling and the saved helper text, but render aria-pressed=\"false\" on the toggle button.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"save-cart-toggle\"]",
+        "text": "Save cart",
+        "declared_state": {
+          "aria_pressed": "false"
+        }
+      },
+      "baseline_behavior": "After activating Save cart on the Cart route, the cart is functionally saved, the button has aria-pressed=\"true\" and is-saved styling, and the saved helper text is visible.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-072",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"save-cart-toggle\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "Save cart",
+          "accessible_name": "Save cart"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_pressed": "false"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Save cart carries aria-pressed false.",
+          "actual_state_evidence": "The toggle remains functionally saved with is-saved styling.",
+          "helper_state_evidence": "The visible Cart saved for later. helper confirms the cart remains saved."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S015 /cart Save cart active",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.saveCart",
+          "mutation_property": "aria_pressed"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S015"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-072 focused acquisition, activate Save cart, inspect aria-state evidence in CO-S015, build aria-state-mismatch candidates, and match the Save cart button with declared aria-pressed false, active is-saved styling, and visible saved helper text."
+    },
+    {
+      "variant_id": "co-sem-073",
+      "seeded_behavior": "On the Cart route, keep Save cart functionally unsaved with its normal inactive styling and no saved helper text, but render aria-pressed=\"true\" on the toggle button.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"save-cart-toggle\"]",
+        "text": "Save cart",
+        "declared_state": {
+          "aria_pressed": "true"
+        }
+      },
+      "baseline_behavior": "On the Cart route, Save cart is functionally unsaved, has aria-pressed=\"false\", lacks is-saved styling, and has no saved helper text.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-073",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"save-cart-toggle\"]",
+        "attributes": {
+          "tag": "button",
+          "text": "Save cart",
+          "accessible_name": "Save cart"
+        },
+        "primary_evidence_key": "aria_state",
+        "state_attributes": {
+          "aria_pressed": "true"
+        },
+        "context": {
+          "route": "/cart",
+          "declared_state": "Save cart carries aria-pressed true.",
+          "actual_state_evidence": "The toggle remains functionally unsaved with its normal cart-save-toggle class and without is-saved styling.",
+          "helper_state_evidence": "The saved-cart helper text is absent, consistent with the cart remaining unsaved."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.saveCart",
+          "mutation_property": "aria_pressed"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-073 focused acquisition, inspect aria-state evidence in the ordinary CO-S002 Cart state, build aria-state-mismatch candidates, and match the Save cart button with declared aria-pressed true, inactive styling, and absent saved helper text."
+    },
+    {
+      "variant_id": "co-sem-090",
+      "seeded_behavior": "After navigating from Products to Cart, keep the route, visible Cart heading, nav link text, hrefs, DOM order, and active styling unchanged, but leave aria-current=\"page\" on the Products nav link and omit aria-current from the Cart nav link.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"nav-products\"]",
+        "text": "Products",
+        "href": "/products",
+        "declared_state": {
+          "aria_current": "page"
+        }
+      },
+      "baseline_behavior": "On the Cart route, the Cart nav link has aria-current=\"page\" and the Products nav link has no aria-current.",
+      "risk_subjectivity": "medium",
+      "profile": "checkout-co-sem-090",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "links",
+        "selector_hint": "[data-testid=\"nav-products\"]",
+        "attributes": {
+          "tag": "a",
+          "text": "Products",
+          "accessible_name": "Products",
+          "href": "/products"
+        },
+        "primary_evidence_key": "aria_state",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "declared_state": "Products link carries aria-current page.",
+          "current_page_evidence": "The route URL, document title, visible Cart h1, and Cart page content identify Cart as the current page.",
+          "peer_navigation_evidence": "The Cart nav link remains labelled Cart with href /cart and has no aria-current."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.navigation.products",
+          "mutation_property": "aria_current"
+        },
+        {
+          "subject": "checkout.navigation.cart",
+          "mutation_property": "aria_current"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-090 focused acquisition, inspect aria-state evidence on the Cart state, build aria-state-mismatch candidates, and match the Products nav link candidate with href /products, declared aria-current page, route /cart, visible Cart heading/content, and Cart peer link not current."
+    },
+    {
+      "variant_id": "co-sem-127",
+      "seeded_behavior": "After navigating from Products to Cart, keep the route, title, Cart heading and content, progress labels, visible current-step styling, and progress status text unchanged, but move the single aria-current=\"step\" declaration from Cart to Shipping address.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"checkout-progress-address\"]",
+        "declared_state": {
+          "aria_current": "step"
+        },
+        "peer_state": {
+          "selector_hint": "[data-testid=\"checkout-progress-cart\"]",
+          "absent_state_attributes": [
+            "aria_current"
+          ]
+        }
+      },
+      "baseline_behavior": "On the Cart route, the Cart progress step has aria-current=\"step\" and Shipping address, Payment, and Review have no aria-current declaration.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-127",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "visual_cues",
+        "selector_hint": "[data-testid=\"checkout-progress-address\"]",
+        "attributes": {
+          "tag": "li"
+        },
+        "attribute_contains": {
+          "text": "Shipping address"
+        },
+        "state_attributes": {
+          "aria_current": "step"
+        },
+        "peer_state": {
+          "selector_hint": "[data-testid=\"checkout-progress-cart\"]",
+          "attributes": {
+            "tag": "li"
+          },
+          "attribute_contains": {
+            "text": "Cart"
+          },
+          "absent_state_attributes": [
+            "aria_current"
+          ]
+        },
+        "primary_evidence_key": "aria_state",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "declared_state": "Shipping address carries aria-current step while the Cart peer has no aria-current declaration.",
+          "actual_state_evidence": "The /cart route, Cart document title, visible Cart h1, cart items, quantity controls, order totals, Cart is-current styling, and Current step status text identify Cart as the actual workflow step.",
+          "unchanged_progress_evidence": "The progress landmark remains Checkout progress and keeps the Cart, Shipping address, Payment, and Review labels in their normal order."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.progress.cart",
+          "mutation_property": "aria_current"
+        },
+        {
+          "subject": "checkout.progress.address",
+          "mutation_property": "aria_current"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-127 focused acquisition, navigate from Products to Cart, inspect neutral aria-state evidence on CO-S002, build aria-state-mismatch candidates, and conjunctively match the Shipping address step with aria-current step plus the Cart peer with no aria-current declaration."
+    },
+    {
+      "variant_id": "co-sem-128",
+      "seeded_behavior": "Navigate normally from Products through Cart to Shipping address, keep the /checkout/address route, title, Shipping address heading and form, progress labels, visible current-step styling, and progress status text unchanged, but retain the single aria-current=\"step\" declaration on Cart instead of moving it to Shipping address.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "[data-testid=\"checkout-progress-cart\"]",
+        "declared_state": {
+          "aria_current": "step"
+        },
+        "peer_state": {
+          "selector_hint": "[data-testid=\"checkout-progress-address\"]",
+          "absent_state_attributes": [
+            "aria_current"
+          ]
+        }
+      },
+      "baseline_behavior": "After Continue to address, the Shipping address progress step has aria-current=\"step\" and Cart, Payment, and Review have no aria-current declaration.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-128",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "visual_cues",
+        "selector_hint": "[data-testid=\"checkout-progress-cart\"]",
+        "attributes": {
+          "tag": "li"
+        },
+        "attribute_contains": {
+          "text": "Cart"
+        },
+        "state_attributes": {
+          "aria_current": "step"
+        },
+        "peer_state": {
+          "selector_hint": "[data-testid=\"checkout-progress-address\"]",
+          "attributes": {
+            "tag": "li"
+          },
+          "attribute_contains": {
+            "text": "Shipping address"
+          },
+          "absent_state_attributes": [
+            "aria_current"
+          ]
+        },
+        "primary_evidence_key": "aria_state",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "declared_state": "Cart retains stale aria-current step while the Shipping address peer has no aria-current declaration.",
+          "actual_state_evidence": "The /checkout/address route, Shipping address document title and h1, address form, Shipping address is-current styling, and Current step status text identify Shipping address as the actual workflow step.",
+          "unchanged_progress_evidence": "The progress landmark remains Checkout progress and keeps the Cart, Shipping address, Payment, and Review labels in their normal order."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.progress.cart",
+          "mutation_property": "aria_current"
+        },
+        {
+          "subject": "checkout.progress.address",
+          "mutation_property": "aria_current"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-128 focused acquisition, preserve the correct seeded Cart CO-S002 state, activate Continue to address through the real UI, inspect neutral aria-state evidence in CO-S003, and conjunctively match Cart with stale aria-current step plus the Shipping address peer with no aria-current declaration. Clean Address and co-sem-127 Cart-state controls must not recover."
+    },
+    {
+      "variant_id": "co-sem-129",
+      "seeded_behavior": "On the initial English Products page, keep the active locale, root language, localized content, and selected-language styling English, but expose aria-pressed=\"true\" on Spanish and aria-pressed=\"false\" on English.",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "button#products-language-es",
+        "text": "Spanish",
+        "declared_state": {
+          "aria_pressed": "true"
+        },
+        "peer_state": {
+          "selector_hint": "button#products-language-en",
+          "declared_state": {
+            "aria_pressed": "false"
+          }
+        }
+      },
+      "baseline_behavior": "On the initial English Products page, the root language is en, English content is visible, English has aria-pressed=\"true\", and Spanish has aria-pressed=\"false\".",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-129",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "button#products-language-es",
+        "attributes": {
+          "tag": "button",
+          "role": "button",
+          "text": "Spanish",
+          "accessible_name": "Spanish"
+        },
+        "state_attributes": {
+          "aria_pressed": "true"
+        },
+        "peer_state": {
+          "selector_hint": "button#products-language-en",
+          "attributes": {
+            "text": "English",
+            "accessible_name": "English"
+          },
+          "state_attributes": {
+            "aria_pressed": "false"
+          }
+        },
+        "primary_evidence_key": "aria_state",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "document_language": "en",
+          "actual_locale_evidence": "The root lang, Products heading, English navigation, product copy, and English selected-language styling identify English as the active locale.",
+          "declared_state": "Spanish carries aria-pressed true while the English peer carries aria-pressed false."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.products.language.en",
+          "mutation_property": "aria_pressed"
+        },
+        {
+          "subject": "checkout.products.language.es",
+          "mutation_property": "aria_pressed"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-129 focused acquisition without changing language, verify CO-S001 remains the English Products state, inspect neutral aria-state evidence, and conjunctively match Spanish with aria-pressed true plus the English peer with aria-pressed false. The CO-S001 constraint excludes the genuine Spanish CO-S007 state."
+    },
+    {
+      "variant_id": "co-sem-130",
+      "seeded_behavior": "Begin on the correct English Products state, activate Spanish through the normal language control, and keep the resulting Spanish content, root lang=es, selected-language styling, route, and behavior correct, but retain the previous pressed-state mapping with English aria-pressed=\"true\" and Spanish aria-pressed=\"false\".",
+      "expected_candidate": {
+        "candidate_type": "aria-state-mismatch",
+        "selection_reason": "element_with_observable_aria_state_attribute",
+        "type": "aria-state-mismatch",
+        "selector_hint": "button#products-language-en",
+        "text": "Ingl\u00e9s",
+        "declared_state": {
+          "aria_pressed": "true"
+        },
+        "peer_state": {
+          "selector_hint": "button#products-language-es",
+          "declared_state": {
+            "aria_pressed": "false"
+          }
+        }
+      },
+      "baseline_behavior": "After activating Spanish from the initial English Products state, the page is localized to Spanish with root lang=es, English reports aria-pressed=\"false\", and Spanish reports aria-pressed=\"true\".",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-130",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "button#products-language-en",
+        "attributes": {
+          "tag": "button",
+          "role": "button",
+          "text": "Ingl\u00e9s",
+          "accessible_name": "Ingl\u00e9s"
+        },
+        "state_attributes": {
+          "aria_pressed": "true"
+        },
+        "peer_state": {
+          "selector_hint": "button#products-language-es",
+          "attributes": {
+            "text": "Espa\u00f1ol",
+            "accessible_name": "Espa\u00f1ol"
+          },
+          "state_attributes": {
+            "aria_pressed": "false"
+          }
+        },
+        "primary_evidence_key": "aria_state",
+        "context": {
+          "route": "/products",
+          "document_title": "Productos | Brightlane Checkout",
+          "document_language": "es",
+          "actual_locale_evidence": "The root lang, Productos heading, Spanish navigation, localized product copy, and Spanish selected-language styling identify Spanish as the active locale.",
+          "declared_state": "English carries stale aria-pressed true while the Spanish peer carries aria-pressed false.",
+          "transition_evidence": "CO-S007 is captured after activating the Spanish language control from the initial English CO-S001 state."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S007 /products Productos",
+      "mutation_targets": [
+        {
+          "subject": "checkout.products.language.en",
+          "mutation_property": "aria_pressed"
+        },
+        {
+          "subject": "checkout.products.language.es",
+          "mutation_property": "aria_pressed"
+        }
+      ],
+      "candidate_type": "aria-state-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S007"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-130 focused acquisition, preserve the correct initial English CO-S001 state, activate Spanish through the real UI, inspect neutral aria-state evidence in the Spanish CO-S007 result, and conjunctively match English with stale aria-pressed true plus the Spanish peer with aria-pressed false. Clean Spanish and co-sem-129 initial-state controls must not recover."
+    }
+  ]
+}

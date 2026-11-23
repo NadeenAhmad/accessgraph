@@ -1,0 +1,55 @@
+{
+  "tests": [
+    {
+      "key": "expert/all/InterA11y",
+      "dataset": "expert",
+      "subset": "all",
+      "baseline": "InterA11y",
+      "cases": 129,
+      "ag_f1": 0.47517730496453897,
+      "baseline_f1": 0.9197080291970803,
+      "diff": -0.4445307242325413,
+      "ci": [
+        -0.7685549093136088,
+        -0.16317611063679624
+      ],
+      "p": 9.999000099990002e-05,
+      "p_holm": 0.00029997000299970003
+    },
+    {
+      "key": "conformance/all/InterA11y",
+      "dataset": "conformance",
+      "subset": "all",
+      "baseline": "InterA11y",
+      "cases": 394,
+      "ag_f1": 0.812023743748849,
+      "baseline_f1": 0.825503355704698,
+      "diff": -0.013479611955849014,
+      "ci": [
+        -0.07640171241634007,
+        0.04869362592424102
+      ],
+      "p": 0.6686331366863314,
+      "p_holm": 1.0
+    },
+    {
+      "key": "conformance/all/Lopez-Pereira",
+      "dataset": "conformance",
+      "subset": "all",
+      "baseline": "Lopez-Pereira",
+      "cases": 394,
+      "ag_f1": 0.812023743748849,
+      "baseline_f1": 0.8289473684210527,
+      "diff": -0.016923624672203652,
+      "ci": [
+        -0.07768816339238925,
+        0.042412316215000884
+      ],
+      "p": 0.5812418758124187,
+      "p_holm": 1.0
+    }
+  ],
+  "cost_per_case_usd": {
+    "expert/InterA11y": 0.0029983922480620187
+  }
+}

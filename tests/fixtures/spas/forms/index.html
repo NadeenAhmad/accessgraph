@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form policy fixture</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 24px;
+      }
+
+      main {
+        max-width: 720px;
+      }
+
+      form {
+        margin: 16px 0;
+        padding: 12px;
+        border: 1px solid #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Form crawler fixture</h1>
+      <p id="form-status">No form submitted</p>
+
+      <form id="safe-form" action="/forms/safe" aria-label="preference form">
+        <label>
+          Email
+          <input name="email" type="email" required value="ready@example.test">
+        </label>
+        <button id="safe-submit" type="submit">Save preference</button>
+      </form>
+
+      <form id="empty-required-form" action="/forms/empty">
+        <label>
+          Required empty
+          <input name="empty" required>
+        </label>
+        <button type="submit">Submit empty form</button>
+      </form>
+
+      <form id="login-form" action="/forms/login">
+        <label>
+          Username
+          <input name="username" required value="admin">
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" required value="secret">
+        </label>
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="file-form" action="/forms/upload">
+        <input name="upload" type="file">
+        <button type="submit">Upload file</button>
+      </form>
+
+      <label>
+        Optional text
+        <input id="free-text" name="free-text">
+      </label>
+      <label>
+        Optional checkbox
+        <input id="agree-checkbox" name="agree" type="checkbox">
+      </label>
+    </main>
+
+    <script>
+      const status = document.querySelector("#form-status");
+
+      document.querySelector("#safe-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        status.textContent = "Preference saved";
+      });
+
+      for (const form of document.querySelectorAll("form:not(#safe-form)")) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          status.textContent = `${form.id} submitted`;
+        });
+      }
+    </script>
+  </body>
+</html>
