@@ -83,7 +83,7 @@ class BudgetedJsonClient:
 # Fixed ports: the explorer prompt lists the URLs it has seen, so a fixed origin keeps prompts (and cache keys)
 # identical across runs.
 PORTS = {"checkout-flow": 4311, "booking-scheduler": 4312}
-# Settings compared on dev in phase 1 (W4A 2026-11-17); each gets its own ports so they can run in parallel.
+# Settings compared on dev in phase 1 (2026-11-17); each gets its own ports so they can run in parallel.
 SETTINGS = {
   "base": dict(max_states=100, max_depth=5, max_actions_per_state=5, outcome_completion_per_state=0, port_offset=10),
   "complete3": dict(max_states=100, max_depth=5, max_actions_per_state=5, outcome_completion_per_state=3, port_offset=20),

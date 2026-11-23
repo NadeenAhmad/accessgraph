@@ -20,4 +20,4 @@ The tool's per-item D5 verdicts and the saved model answers stay **out of the pu
 
 - [ ] D1 evaluation run and its results (RQ1, RQ3).
 - [ ] Data archive on Zenodo (DOI) and the same files as GitHub release assets (each at most 2 GB).
-- [ ] Add the DOI and the paper's citation to `README.md` and `CITATION.cff`; tag the release.
+- [ ] Add the DOI to `README.md` (and the paper's citation, once it is published); tag the final release.

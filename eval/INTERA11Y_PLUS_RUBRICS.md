@@ -1,4 +1,4 @@
-# InterA11y+ rubrics for review (W4A addition to InterA11y 8dcf06e)
+# InterA11y+ rubrics for review (addition to InterA11y 8dcf06e for AccessGraph's evaluation)
 
 Written in InterA11y's own rubric format, modelled on its 2.4.4 and 1.1.1 rubrics, from WCAG 2.2 Understanding documents and ACT rules only; no mention of history or transitions. Below is exactly what InterA11y's judge receives (its renderer strips ACT ids). Source files: runtime/intera11y/rubrics/2.4.2.js and 2.4.6.js; criterion modules src/criteria/2.4.2.js, 2.4.6.js (patch: eval/patches/intera11y-8dcf06e-w4a-rubrics.patch).
 

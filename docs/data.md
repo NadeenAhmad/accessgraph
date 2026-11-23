@@ -1,4 +1,4 @@
-# AccessGraph: data for the W4A 2027 paper
+# AccessGraph: data for the paper
 
 Recordings and review material behind the paper "Broken Promises: Detecting Semantic Accessibility Violations
 Across the States and Transitions of Single-Page Applications". The code, the results tables and the logs are in
