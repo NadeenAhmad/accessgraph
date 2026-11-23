@@ -106,17 +106,7 @@ verdicts on these items are published after the review ends, so that reviewers c
 Still to come: the benchmark (D1) and its results, the expert labels for the real SPAs, and the archive DOI. See
 [TODO.md](TODO.md); contributors adding the benchmark follow its instructions.
 
-## Citation
 
-```bibtex
-@inproceedings{fathallah2027brokenpromises,
-  title     = {Broken Promises: Detecting Semantic Accessibility Violations Across the States and Transitions of Single-Page Applications},
-  author    = {Fathallah, Nadeen and Do, Andre and Staab, Steffen},
-  booktitle = {Proceedings of the 24th International Web for All Conference (W4A '27)},
-  year      = {2027},
-  note      = {To appear}
-}
-```
 
 ## License
 
