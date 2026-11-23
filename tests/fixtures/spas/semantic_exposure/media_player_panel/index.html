@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Media player exposure</title>
+  </head>
+  <body>
+    <main>
+      <h1>Media player exposure</h1>
+      <button id="show-media" type="button">Show media player</button>
+      <section id="media-panel" hidden>
+        <h2>Training video</h2>
+        <video id="training-video" controls width="320">
+          <source src="training-video.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English captions" src="captions.vtt">
+        </video>
+        <section aria-label="Transcript">
+          <h3>Transcript</h3>
+          <p>The training video explains the current workflow.</p>
+        </section>
+      </section>
+    </main>
+    <script>
+      document.querySelector("#show-media").addEventListener("click", () => {
+        document.querySelector("#media-panel").hidden = false;
+      });
+    </script>
+  </body>
+</html>

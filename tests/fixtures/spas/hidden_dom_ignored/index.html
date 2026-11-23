@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hidden DOM fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Hidden DOM fixture</h1>
+      <p id="status">Visible state unchanged</p>
+      <button id="hidden-button" type="button">Change hidden DOM</button>
+      <p id="hidden-target" hidden>Hidden baseline</p>
+    </main>
+    <script>
+      document.querySelector("#hidden-button").addEventListener("click", () => {
+        document.querySelector("#hidden-target").textContent = `Hidden ${Date.now()}`;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "candidate_type": "video-captions-inaccurate",
+  "variants": [
+    {
+      "variant_id": "co-sem-139",
+      "candidate_type": "video-captions-inaccurate",
+      "seeded_behavior": "Keep the Brightlane Checkout walkthrough video and English captions track intact, but change the payment-step cue so it says the user moves to Cart instead of Review.",
+      "expected_candidate": {
+        "candidate_type": "video-captions-inaccurate",
+        "selection_reason": "visible_video_with_loaded_caption_track_and_cue_text",
+        "type": "video-captions-inaccurate"
+      },
+      "baseline_behavior": "The Checkout walkthrough caption accurately says that after providing payment details the user moves to Review, matching the authoritative narration and application workflow.",
+      "why_semantic": "The seeded caption remains present, non-empty, grammatical, and valid WebVTT, but names Cart as the post-payment destination while the authoritative narration and workflow identify Review.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-139",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "mutation_targets": [
+        {
+          "mutation_property": "track_src",
+          "subject": "checkout.products.walkthrough.captionTrack"
+        }
+      ],
+      "expected_evidence": {
+        "bucket": "videos",
+        "primary_evidence_key": "video",
+        "attributes": {
+          "tag": "video",
+          "accessible_name": "How Brightlane Checkout Works"
+        },
+        "attribute_contains": {
+          "current_src": "/media/brightlane-checkout-walkthrough.mp4"
+        },
+        "candidate_evidence": {
+          "primary": {
+            "caption_track": {
+              "kind": "captions",
+              "srclang": "en",
+              "label": "English",
+              "default": true,
+              "cue_count": 9,
+              "cues_truncated": false,
+              "cues": [
+                {
+                  "index": 4,
+                  "start_time": 13.4,
+                  "end_time": 16.8,
+                  "text": "Next, provide your payment details, then move to Cart."
+                }
+              ]
+            }
+          },
+          "supporting": {
+            "reference_evidence": {
+              "available": true,
+              "media_src": "/media/brightlane-checkout-walkthrough.mp4",
+              "reference_kind": "narration_transcript",
+              "language": "en",
+              "reference_transcript": "Shopping with Brightlane takes just a few steps. First, choose your products and add them to your cart. In Cart, check quantities and the order total. Continue to Shipping address and enter your delivery details. Next, provide your payment details, then move to Review. Check your address, payment summary, items, and totals. When you are ready, use Place order. Need to change something? Use the navigation to return to Cart."
+            }
+          }
+        },
+        "context": {
+          "route": "/products",
+          "video": "How Brightlane Checkout Works",
+          "track": "English captions",
+          "seeded_cue": "Next, provide your payment details, then move to Cart.",
+          "authoritative_reference": "Next, provide your payment details, then move to Review."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded",
+          "criterion": "1.2.2 Captions (Prerecorded)"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-139 initial Products acquisition, verify the English captions track contains the seeded Cart cue while the authoritative reference retains Review, build the neutral video-caption candidate, and recover it through structured video, track, cue, and reference evidence."
+    }
+  ]
+}

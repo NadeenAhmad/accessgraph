@@ -1,0 +1,31 @@
+diff --git a/runtime/intera11y/src/core/session.js b/runtime/intera11y/src/core/session.js
+index 2740db5..b52c1cc 100644
+--- a/runtime/intera11y/src/core/session.js
++++ b/runtime/intera11y/src/core/session.js
+@@ -40,6 +40,8 @@ async function openPage(browser, url, viewport = CONFIG.viewport) {
+     page.on('dialog', (d) => { page.__dialogs.push({ type: d.type(), message: d.message() }); d.dismiss().catch(() => {}); });
+     await page.evaluateOnNewDocument(installHelpers);
+     await page.evaluateOnNewDocument(installListenerLog);
++    // W4A evaluation (local patch): the benchmark app's profile (e.g. its seeded variant), set before every load
++    if (process.env.W4A_INIT_SCRIPT) await page.evaluateOnNewDocument(process.env.W4A_INIT_SCRIPT);
+   });
+   let lastNav = Date.now();
+   page.on('framenavigated', (f) => { if (f === page.mainFrame()) lastNav = Date.now(); });
+@@ -62,6 +64,17 @@ async function openPage(browser, url, viewport = CONFIG.viewport) {
+   }
+   if (lastNav !== loadedAt) navigated = true;
+   if (navigated) await awaitSettle(page, { force: true, floorMs: CONFIG.settleFloorMs });
++  if (process.env.W4A_REPLAY_URL) {
++    // W4A evaluation (local patch, not part of InterA11y): bring every page, including tools' fresh pages, to the
++    // recorded app state by replaying its path (AccessGraph's replay service, over CDP).
++    const token = `w4a-${Date.now()}-${Math.random().toString(36).slice(2)}`;
++    await page.evaluate((t) => { window.name = t; }, token);
++    const res = await fetch(process.env.W4A_REPLAY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' },
++      body: JSON.stringify({ ws: browser.wsEndpoint(), token }) });
++    const out = await res.json();
++    if (!out.ok) throw new Error(`W4A replay failed: ${out.error || 'state not reached'}`);
++    await awaitSettle(page, { force: true, floorMs: CONFIG.settleFloorMs });
++  }
+   return page;
+ }
+ 

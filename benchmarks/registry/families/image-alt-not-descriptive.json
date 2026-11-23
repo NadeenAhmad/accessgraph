@@ -1,0 +1,386 @@
+{
+  "candidate_type": "image-alt-not-descriptive",
+  "variants": [
+    {
+      "why_semantic": "The image and surrounding product content identify a desk lamp while the seeded alt text describes an unrelated dog.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-006",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to A dog.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "A dog"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-006",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "A dog"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-006 focused acquisition, inspect image evidence on the products route, build candidates, and match the Desk lamp product image candidate."
+    },
+    {
+      "why_semantic": "The image and surrounding product content identify a desk lamp while the seeded alt text describes a floor lamp.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-007",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to Floor lamp.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "Floor lamp"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-007",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "Floor lamp"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-007 focused acquisition, inspect image evidence on the products route, build candidates, and match the Desk lamp product image candidate."
+    },
+    {
+      "why_semantic": "The image and surrounding Featured products content identify a desk lamp while the seeded alt text describes a user profile avatar.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-008",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to User profile avatar.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "User profile avatar"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-008",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "User profile avatar"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-008 focused acquisition, inspect image evidence on the products route, build candidates, and match the Desk lamp product image candidate."
+    },
+    {
+      "why_semantic": "The image depicts the desk lamp but contains no purple coloration while the seeded alt text incorrectly describes the lamp as purple.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-009",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to Purple desk lamp.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "Purple desk lamp"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-009",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "Purple desk lamp"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-009 focused acquisition, inspect image evidence on the products route, build candidates, and match the Desk lamp product image candidate."
+    },
+    {
+      "why_semantic": "The image clearly depicts one desk lamp while the seeded alt text states that two desk lamps are shown.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-010",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to Two desk lamps.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "Two desk lamps"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-010",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "Two desk lamps"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-010 focused acquisition, inspect image evidence on the products route, build candidates, and match the Desk lamp product image candidate."
+    },
+    {
+      "why_semantic": "The image and surrounding product context identify a Desk lamp while the generic seeded alt text Image communicates only the element type and not what the image depicts.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        }
+      ],
+      "variant_id": "co-sem-095",
+      "seeded_behavior": "Keep the Desk lamp product image visible but change its alt text to Image.",
+      "expected_candidate": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive",
+        "alt": "Image"
+      },
+      "baseline_behavior": "Desk lamp product image uses descriptive alt text Desk lamp with adjustable brass shade.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-095",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-image-prod-desk-lamp\"]",
+        "attributes": {
+          "alt": "Image"
+        },
+        "bucket": "images"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-095 focused acquisition, inspect image evidence on the products route, build candidates, and match the stable Desk lamp product image selector with alt text Image."
+    },
+    {
+      "why_semantic": "The two visible product images remain in their correct product cards, but each text alternative identifies the other product.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "image-alt-not-descriptive",
+      "mutation_targets": [
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.deskLamp.image"
+        },
+        {
+          "mutation_property": "alt",
+          "subject": "checkout.products.notebookSet.image"
+        }
+      ],
+      "variant_id": "co-sem-097",
+      "seeded_behavior": "Swap the Desk lamp and Notebook set alternative text while keeping both visible product images and cards correct.",
+      "expected_candidate": {
+        "candidate_type": "image-alt-not-descriptive",
+        "selection_reason": "visible_image_with_text_alternative_and_context",
+        "type": "image-alt-not-descriptive"
+      },
+      "baseline_behavior": "Each product image uses alternative text that correctly identifies its own product.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-097",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "all_of": [
+          {
+            "bucket": "images",
+            "attributes": {
+              "alt": "Three notebooks with blue, teal, and coral covers"
+            },
+            "attribute_contains": {
+              "src": "/desk-lamp.svg"
+            }
+          },
+          {
+            "bucket": "images",
+            "attributes": {
+              "alt": "Desk lamp with adjustable brass shade"
+            },
+            "attribute_contains": {
+              "src": "/notebook-set.svg"
+            }
+          }
+        ]
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content",
+          "criterion": "1.1.1 Non-text Content"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F30",
+          "failure": "F30"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-097 focused acquisition, verify both reciprocal image-alt mismatches on the products route, build candidates, and require both structured image evidence clauses to recover the seed."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workspace home</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <main>
+        <h1>Workspace home</h1>
+        <p id="summary">Choose a project route to reveal route-specific content.</p>
+        <button id="open-route" type="button">Open project route</button>
+        <section id="route-panel" hidden>
+          <h1>Project overview</h1>
+          <div class="section-like">Release planning, status notes, and owner details.</div>
+        </section>
+      </main>
+    </div>
+    <script>
+      document.querySelector("#open-route").addEventListener("click", () => {
+        history.pushState({}, "", "project?view=overview#summary");
+        document.title = "Project overview";
+        document.querySelector("#summary").textContent = "Project route loaded.";
+        document.querySelector("#route-panel").hidden = false;
+      });
+    </script>
+  </body>
+</html>

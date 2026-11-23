@@ -1,0 +1,23 @@
+# Dated price table for the cost guard (evaluation protocol: docs/evaluation.md). USD per million tokens.
+# Re-check against the providers' pricing pages before the first paid run and record the check here.
+date: 2026-11-13
+models:
+  claude-haiku-5-5:
+    provider: anthropic
+    input: 0.10
+    output: 0.50
+    long_prompt_over_tokens: 100000   # above this prompt size: 0.50 / 2.50
+    long_input: 0.50
+    long_output: 2.50
+    cache_read_multiplier: 0.1
+    cache_write_5min_multiplier: 1.25
+    source: "Anthropic API reference (cached 2026-11-03); live pricing page check pending"
+    verified: partial
+  gpt-6-luna:
+    provider: openai
+    input: 0.10
+    output: 0.50
+    source: "the evaluation protocol, citing Rampa's docs; model id and price not yet checked with OpenAI"
+    verified: false
+notes:
+  - "Claude models reject non-default temperature; the spec's temperature 0 cannot be sent. Repeat runs are made reproducible by the response cache instead."

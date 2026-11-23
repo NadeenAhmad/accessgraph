@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Schedule</title></head>
+<body>
+<main>
+  <section aria-label="Choose a date">
+    <h1>Schedule</h1>
+    <label for="date">Date</label> <input id="date" type="date">
+    <div id="slots"></div>
+  </section>
+  <section aria-label="Your details">
+    <h2>Your details</h2>
+    <label for="email">Email</label> <input id="email" type="email" required>
+    <p id="echo"></p>
+  </section>
+  <p><a href="#help">Help</a></p>
+</main>
+<script>
+  document.getElementById('date').addEventListener('change', (e) => {
+    document.getElementById('slots').innerHTML = e.target.value ? '<button id="slot">09:00 Available</button>' : '';
+  });
+  document.getElementById('email').addEventListener('input', (e) => {
+    document.getElementById('echo').textContent = e.target.value ? 'Confirmation goes to ' + e.target.value : '';
+  });
+</script>
+</body></html>

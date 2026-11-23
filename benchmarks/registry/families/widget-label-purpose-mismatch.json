@@ -1,0 +1,445 @@
+{
+  "candidate_type": "widget-label-purpose-mismatch",
+  "variants": [
+    {
+      "why_semantic": "The label Fishing supplies identifies an unrelated shopping category while the unchanged tab still selects the Desk accessories panel containing Desk lamp and Cable organizer.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.categoryTabs.deskAccessories"
+        }
+      ],
+      "variant_id": "co-sem-036",
+      "seeded_behavior": "On the Products route, keep the Desk accessories tab role, state, and aria-controls relationship unchanged but change its visible and computed accessible name to Fishing supplies with no aria-label override.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "visible_text": "Fishing supplies",
+        "accessible_name": "Fishing supplies"
+      },
+      "baseline_behavior": "The Products page exposes a selected Desk accessories tab whose visible text and computed accessible name are Desk accessories and whose aria-controls target is desk-accessories-panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-036",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Fishing supplies",
+          "accessible_name": "Fishing supplies",
+          "aria_controls": "desk-accessories-panel",
+          "aria_selected": "true"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "widget",
+        "context": {
+          "controlled_panel": "desk-accessories-panel",
+          "controlled_panel_content": "Desk lamp; Cable organizer",
+          "data_testid": "product-category-tab-desk-accessories"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-036 focused acquisition, inspect widget evidence on the Products state, build widget-label-purpose-mismatch candidates, and match the Desk accessories tab candidate with visible and accessible name Fishing supplies while aria-controls remains desk-accessories-panel."
+    },
+    {
+      "why_semantic": "The label Stationery is related to office retail and appears elsewhere in the product catalog, but the unchanged tab still selects the Desk accessories panel containing Desk lamp and Cable organizer.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.categoryTabs.deskAccessories"
+        }
+      ],
+      "variant_id": "co-sem-037",
+      "seeded_behavior": "On the Products route, keep the Desk accessories tab role, state, and aria-controls relationship unchanged but change its visible and computed accessible name to Stationery with no aria-label override.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "visible_text": "Stationery",
+        "accessible_name": "Stationery"
+      },
+      "baseline_behavior": "The Products page exposes a selected Desk accessories tab whose visible text and computed accessible name are Desk accessories and whose aria-controls target is desk-accessories-panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-037",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Stationery",
+          "accessible_name": "Stationery",
+          "aria_controls": "desk-accessories-panel",
+          "aria_selected": "true"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "widget",
+        "context": {
+          "controlled_panel": "desk-accessories-panel",
+          "controlled_panel_content": "Desk lamp; Cable organizer",
+          "data_testid": "product-category-tab-desk-accessories"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-037 focused acquisition, inspect widget evidence on the Products state, build widget-label-purpose-mismatch candidates, and match the Desk accessories tab candidate with visible and accessible name Stationery while aria-controls remains desk-accessories-panel."
+    },
+    {
+      "why_semantic": "The visible Desk accessories label and unchanged aria-controls relationship identify the Desk accessories panel, but assistive technology receives the unrelated accessible name Fishing supplies.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.products.categoryTabs.deskAccessories"
+        }
+      ],
+      "variant_id": "co-sem-038",
+      "seeded_behavior": "On the Products route, keep the Desk accessories tab visible text, role, state, and aria-controls relationship unchanged but set its aria-label and computed accessible name to Fishing supplies.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "visible_text": "Desk accessories",
+        "accessible_name": "Fishing supplies"
+      },
+      "baseline_behavior": "The Products page exposes a selected Desk accessories tab whose visible text and computed accessible name are Desk accessories and whose aria-controls target is desk-accessories-panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-038",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Desk accessories",
+          "accessible_name": "Fishing supplies",
+          "aria_label": "Fishing supplies",
+          "aria_controls": "desk-accessories-panel",
+          "aria_selected": "true"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "widget",
+        "context": {
+          "controlled_panel": "desk-accessories-panel",
+          "controlled_panel_content": "Desk lamp; Cable organizer",
+          "data_testid": "product-category-tab-desk-accessories"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-038 focused acquisition, inspect widget evidence on the Products state, build widget-label-purpose-mismatch candidates, and match the Desk accessories tab candidate with visible text Desk accessories, aria-label and accessible name Fishing supplies, while aria-controls remains desk-accessories-panel."
+    },
+    {
+      "why_semantic": "The two tabs retain their original identities and controlled panels, but each presents the other category's label, so both labels describe the wrong widget purpose.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.categoryTabs.deskAccessories"
+        },
+        {
+          "mutation_property": "visible_text",
+          "subject": "checkout.products.categoryTabs.officeSupplies"
+        }
+      ],
+      "variant_id": "co-sem-112",
+      "seeded_behavior": "On the initial Products route, keep both tab identities, roles, states, aria-controls relationships, keyboard behavior, and panel contents unchanged, but swap the visible and computed accessible labels so the Desk accessories tab reads Office supplies and the Office supplies tab reads Desk accessories.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "paired_targets": [
+          {
+            "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+            "visible_text": "Office supplies",
+            "accessible_name": "Office supplies"
+          },
+          {
+            "selector_hint": "[data-testid=\"product-category-tab-office-supplies\"]",
+            "visible_text": "Desk accessories",
+            "accessible_name": "Desk accessories"
+          }
+        ]
+      },
+      "baseline_behavior": "The Products page exposes a selected Desk accessories tab controlling desk-accessories-panel and an unselected Office supplies tab controlling office-supplies-panel, with each visible and computed accessible label matching its panel content.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-112",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "buttons",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "all_of": [
+          {
+            "bucket": "buttons",
+            "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+            "primary_evidence_key": "widget",
+            "attributes": {
+              "tag": "button",
+              "role": "tab",
+              "text": "Office supplies",
+              "accessible_name": "Office supplies",
+              "aria_controls": "desk-accessories-panel",
+              "aria_selected": "true"
+            },
+            "context": {
+              "controlled_panel": "desk-accessories-panel",
+              "controlled_panel_content": "Lighting and cable tools for a tidy workspace. Desk lamp Cable organizer",
+              "controlled_panel_visible": true,
+              "tablist_name": "Product categories",
+              "data_testid": "product-category-tab-desk-accessories"
+            }
+          },
+          {
+            "bucket": "buttons",
+            "selector_hint": "[data-testid=\"product-category-tab-office-supplies\"]",
+            "primary_evidence_key": "widget",
+            "attributes": {
+              "tag": "button",
+              "role": "tab",
+              "text": "Desk accessories",
+              "accessible_name": "Desk accessories",
+              "aria_controls": "office-supplies-panel",
+              "aria_selected": "false"
+            },
+            "context": {
+              "controlled_panel": "office-supplies-panel",
+              "controlled_panel_content": "Everyday supplies for notes and planning.Notebook set",
+              "controlled_panel_visible": false,
+              "tablist_name": "Product categories",
+              "data_testid": "product-category-tab-office-supplies"
+            }
+          }
+        ]
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-112 focused acquisition on the initial Products state, inspect neutral widget evidence, build widget-label-purpose-mismatch candidates, and require both the Desk-tab identity labelled Office supplies and the Office-tab identity labelled Desk accessories through conjunctive expected evidence; verify clean, one-sided, and co-sem-113 controls do not recover."
+    },
+    {
+      "why_semantic": "The tab consistently identifies Desk accessories, but the unchanged panel it controls contains the Office supplies description and Notebook set instead of Desk accessories content.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "controlled_content",
+          "subject": "checkout.products.categoryTabs.deskAccessories"
+        }
+      ],
+      "variant_id": "co-sem-113",
+      "seeded_behavior": "On the initial Products route, keep the selected Desk accessories tab label, accessible name, role, aria-selected state, roving tabindex, and aria-controls relationship unchanged, but render Office supplies content inside its desk-accessories-panel.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "visible_text": "Desk accessories",
+        "accessible_name": "Desk accessories"
+      },
+      "baseline_behavior": "The Products page initially exposes a selected Desk accessories tab whose visible text and computed accessible name are Desk accessories and whose desk-accessories-panel contains the Desk accessories description, Desk lamp, and Cable organizer.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-113",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"product-category-tab-desk-accessories\"]",
+        "attributes": {
+          "tag": "button",
+          "role": "tab",
+          "text": "Desk accessories",
+          "accessible_name": "Desk accessories",
+          "aria_controls": "desk-accessories-panel",
+          "aria_selected": "true"
+        },
+        "bucket": "buttons",
+        "primary_evidence_key": "widget",
+        "context": {
+          "controlled_panel": "desk-accessories-panel",
+          "controlled_panel_content": "Everyday supplies for notes and planning.Notebook set",
+          "controlled_panel_visible": true,
+          "tablist_name": "Product categories",
+          "data_testid": "product-category-tab-desk-accessories"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-113 focused acquisition on the initial Products state, inspect neutral widget evidence, build widget-label-purpose-mismatch candidates, and recover the Desk accessories tab using its stable selector, label, role, aria-controls target, route, and state while verifying that the visible controlled panel contains the Office supplies description and Notebook set; confirm the separate Office supplies tab and panel remain baseline-correct."
+    },
+    {
+      "why_semantic": "The tablist still groups the Desk accessories and Office supplies category controls and their corresponding product panels, so the unrelated Payment methods accessible name misrepresents the purpose of the widget group.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "widget-label-purpose-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "accessible_name",
+          "subject": "checkout.products.categoryTablist"
+        }
+      ],
+      "variant_id": "co-sem-114",
+      "seeded_behavior": "On the initial Products route, keep the product-category tablist role, child tabs, selected state, roving tabindex, aria-controls relationships, keyboard behavior, panels, and category content unchanged, but change only the tablist accessible name from Product categories to Payment methods.",
+      "expected_candidate": {
+        "candidate_type": "widget-label-purpose-mismatch",
+        "selection_reason": "interactive_widget_with_label_role_or_state_evidence",
+        "type": "widget-label-purpose-mismatch",
+        "selector_hint": "[data-testid=\"product-category-tablist\"]",
+        "visible_text": "Desk accessories Office supplies",
+        "accessible_name": "Payment methods"
+      },
+      "baseline_behavior": "The Products page exposes a Product categories tablist that groups the selected Desk accessories tab and the unselected Office supplies tab, each controlling its corresponding product-category panel.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-114",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "visual_cues",
+        "selector_hint": "[data-testid=\"product-category-tablist\"]",
+        "primary_evidence_key": "widget",
+        "attributes": {
+          "tag": "div",
+          "role": "tablist",
+          "text": "Desk accessories Office supplies",
+          "accessible_name": "Payment methods",
+          "aria_label": "Payment methods"
+        },
+        "context": {
+          "data_testid": "product-category-tablist",
+          "route": "/products",
+          "child_tabs": [
+            {
+              "id": "desk-accessories-tab",
+              "name": "Desk accessories",
+              "aria_controls": "desk-accessories-panel",
+              "aria_selected": "true"
+            },
+            {
+              "id": "office-supplies-tab",
+              "name": "Office supplies",
+              "aria_controls": "office-supplies-panel",
+              "aria_selected": "false"
+            }
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-114 focused acquisition on the initial Products state, inspect neutral tablist evidence, and recover only the product-category-tablist candidate using its stable test ID, tablist role, Payment methods accessible name, unchanged Desk accessories and Office supplies child text, route, and logical state; verify the clean state and co-sem-112/co-sem-113 controls do not recover."
+    }
+  ]
+}

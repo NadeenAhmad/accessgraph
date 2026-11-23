@@ -1,0 +1,24 @@
+# Dated price table (evaluation protocol: docs/evaluation.md). USD per million tokens. Supersedes prices_2026-11-13.yaml.
+# Checked 2026-11-16 on OpenRouter's public model list (https://openrouter.ai/api/v1/models); all LLM calls in this
+# evaluation (AccessGraph and InterA11y) go through OpenRouter, so these are the prices actually charged.
+date: 2026-11-16
+models:
+  anthropic/claude-haiku-5.5:
+    input: 0.10
+    output: 0.50
+    cache_read: 0.01
+    cache_write: 0.125
+    long_prompt_over_tokens: 100000   # above this prompt size: 0.50 / 2.50
+    temperature_supported: false      # not in OpenRouter's supported_parameters
+    verified: true
+  openai/gpt-6-luna:
+    input: 0.10
+    output: 0.50
+    cache_read: 0.01
+    cache_write: 0.125
+    long_prompt_over_tokens: 272000   # above this prompt size: 0.20 / 0.75
+    temperature_supported: false      # seed is supported, temperature is not
+    verified: true
+notes:
+  - "Neither model accepts temperature on OpenRouter; reproducibility comes from the response cache (results/cache)."
+  - "Costs charged to the ledger are OpenRouter's reported usage.cost per call, not these estimates."

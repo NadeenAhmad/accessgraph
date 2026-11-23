@@ -1,0 +1,907 @@
+[
+ {
+  "id": "act:c4a8a4:c19c231ab5175fb62b6a74b998aec0dd965c25c5",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/c19c231ab5175fb62b6a74b998aec0dd965c25c5.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:c4a8a4:107a5e462b4ad6dd297742a2a177e24d32d27c26",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/107a5e462b4ad6dd297742a2a177e24d32d27c26.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:c4a8a4:2f9709573bf080a0feccfb2fd4b4a657383ef235",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/2f9709573bf080a0feccfb2fd4b4a657383ef235.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:c4a8a4:2c1397032aad720fe43dee2be0d326be56957320",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/2c1397032aad720fe43dee2be0d326be56957320.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:c4a8a4:1844d7bce889d85a80b620468baa804eab3ff2c8",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/1844d7bce889d85a80b620468baa804eab3ff2c8.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:c4a8a4:4c72b3b9b06bf1edc3c959070731b65871ee0c8f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/4c72b3b9b06bf1edc3c959070731b65871ee0c8f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:af4423575333947073fa3729f502ff0a0c6c2fbf",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/af4423575333947073fa3729f502ff0a0c6c2fbf.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:5d314574052bf16676abb0e9a67e48dd70116c2e",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/5d314574052bf16676abb0e9a67e48dd70116c2e.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:2a66c7b8d8ef78d350b1c995e0ad232008f6564f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/2a66c7b8d8ef78d350b1c995e0ad232008f6564f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:485f10faf222cd48fea2ab3ee79c2d354e51ea33",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/485f10faf222cd48fea2ab3ee79c2d354e51ea33.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:2f7d82593e287df64b7459695e355a840254255c",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/2f7d82593e287df64b7459695e355a840254255c.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:bac67a5a2ada971100bbec89961ad3e6c869f268",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/bac67a5a2ada971100bbec89961ad3e6c869f268.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:0ab8d652533229aae98191a6a43c2168e1959963",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/0ab8d652533229aae98191a6a43c2168e1959963.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:ce2c30787caebdf1d6adcd6aedfac8fa8842a9c4",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/ce2c30787caebdf1d6adcd6aedfac8fa8842a9c4.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:4629221e66963f356b68f6e17dacea9a937fe7d3",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/4629221e66963f356b68f6e17dacea9a937fe7d3.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:9f373a7eca6b3dc1089e76fa275cdb63c7a8d4b6",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/9f373a7eca6b3dc1089e76fa275cdb63c7a8d4b6.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:2e1787fbc8a76fd8a2f8cae08d72097dab75abfd",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/2e1787fbc8a76fd8a2f8cae08d72097dab75abfd.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:e3fa823fa9ba97ac106cc8d13f2ba7e771cb9c75",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/e3fa823fa9ba97ac106cc8d13f2ba7e771cb9c75.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:4d04a4946e1f06834c89b91f0a765367f9d0d492",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/4d04a4946e1f06834c89b91f0a765367f9d0d492.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:d5ce8939312a4c283084d0a7fdc7dd4cf6b35d4f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/d5ce8939312a4c283084d0a7fdc7dd4cf6b35d4f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:8ff1c1f8ce6c58b66365fd70f6828a89527874e3",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/8ff1c1f8ce6c58b66365fd70f6828a89527874e3.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:qt1vmo:a09270ba161c0259b258844551e94c40cdd6b52e",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/a09270ba161c0259b258844551e94c40cdd6b52e.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:ec40c0a032b11cabc03d71b6884ab9b85ee160ad",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/ec40c0a032b11cabc03d71b6884ab9b85ee160ad.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:df9260fddb4d08ca0669bea363828d089b36317b",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/df9260fddb4d08ca0669bea363828d089b36317b.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:5532e66ea71ed1f352f9911e224cbf290c7cc8e6",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/5532e66ea71ed1f352f9911e224cbf290c7cc8e6.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:53d05e6fdcc63ff61ef1e5ea8454eea318aa038a",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/53d05e6fdcc63ff61ef1e5ea8454eea318aa038a.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:61c507e0aab456cce20538400fc1067be37953a0",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/61c507e0aab456cce20538400fc1067be37953a0.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:5b88bdc5f7d936eaa1fdd2f5f8fdd4022548d5ac",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/5b88bdc5f7d936eaa1fdd2f5f8fdd4022548d5ac.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:ffcbd35493c91b4d8ee42c3a7fba9c2356144257",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/ffcbd35493c91b4d8ee42c3a7fba9c2356144257.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:d00a83015b309b51bebfc2c85f62488daec3a5d1",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/d00a83015b309b51bebfc2c85f62488daec3a5d1.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:895a754e85f4fbc8e11cea52295381f41eb384ca",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/895a754e85f4fbc8e11cea52295381f41eb384ca.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:1aebc3e73c262d1417cfffd8c6e50cfb5fc37f82",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/1aebc3e73c262d1417cfffd8c6e50cfb5fc37f82.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:cc8b4db7f82f4095bc010311b00c73091e427302",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/cc8b4db7f82f4095bc010311b00c73091e427302.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:39063a3b4d2872cbadefc9e252d0492ba44ff74f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/39063a3b4d2872cbadefc9e252d0492ba44ff74f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:off6ek:9fa4aaa2575cccf2f83db23b8a66a584cee96486",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/off6ek/9fa4aaa2575cccf2f83db23b8a66a584cee96486.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:25cb1d68473c174a3f3e464704de6826b7aabdd4",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/25cb1d68473c174a3f3e464704de6826b7aabdd4.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:8a83ca44601cb4ab173c388413df9649c8aac11f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/8a83ca44601cb4ab173c388413df9649c8aac11f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:14faa79c92b5e281d8694f8a18ec00ba0c11da6b",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/14faa79c92b5e281d8694f8a18ec00ba0c11da6b.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:14ecbd9d655c833f5f9c5ee9563c472faee663c4",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/14ecbd9d655c833f5f9c5ee9563c472faee663c4.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:910c8881245425846a502b38758fff7db5c213ef",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/910c8881245425846a502b38758fff7db5c213ef.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:fd12fb78f149251c49409189ee65a041c7d03ec5",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/fd12fb78f149251c49409189ee65a041c7d03ec5.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:79cce8d89309bea03e122d2917d340a525db4de0",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/79cce8d89309bea03e122d2917d340a525db4de0.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:acae544ba63bf9c71988fb67d491c7d404164f52",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/acae544ba63bf9c71988fb67d491c7d404164f52.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:6000a70ba2da9a828fa9c817ae6a0d2c092522fb",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/6000a70ba2da9a828fa9c817ae6a0d2c092522fb.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:d76e8834b616356b2803586a8fbd0825a84e3fc8",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/d76e8834b616356b2803586a8fbd0825a84e3fc8.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:69658c922aa926b0b8e4e1f113620c1dff5d64a9",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/69658c922aa926b0b8e4e1f113620c1dff5d64a9.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:b49b2e:6b63f3bcb8cfa7d388c35ebe82cedf6111e3c8f6",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/b49b2e/6b63f3bcb8cfa7d388c35ebe82cedf6111e3c8f6.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:96785fb73282803fa4ca791ffdc0c3bc46b90702",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/96785fb73282803fa4ca791ffdc0c3bc46b90702.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:cd7898c9fcd7d06565cd55393310c2600ffc070f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/cd7898c9fcd7d06565cd55393310c2600ffc070f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:a67210a4d3e4db840309518c1ec557459b709206",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/a67210a4d3e4db840309518c1ec557459b709206.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:b1a2ce0c3435765e96d31a3262f1ed8c1d92f817",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/b1a2ce0c3435765e96d31a3262f1ed8c1d92f817.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:6616b9ffd712e7789c50b01da8420fd665786677",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/6616b9ffd712e7789c50b01da8420fd665786677.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:61b97f487132c7aca3dd9787e9ff1454903d45fb",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/61b97f487132c7aca3dd9787e9ff1454903d45fb.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:c4eaf50df4fa37f931374c74ac369a018b780ec6",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/c4eaf50df4fa37f931374c74ac369a018b780ec6.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:864ccfb9bdb2c7f797602c5e4f25d1a0ad2aad7c",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/864ccfb9bdb2c7f797602c5e4f25d1a0ad2aad7c.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:941efb7368e46b27b937d34b07fc4d41da01b002",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/941efb7368e46b27b937d34b07fc4d41da01b002.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:dbc6a8459d78e618aab31e7051b4ce69b59c7f2f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/dbc6a8459d78e618aab31e7051b4ce69b59c7f2f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:80e6225b051ac34c23c7c0ede7d28d426d1be084",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/80e6225b051ac34c23c7c0ede7d28d426d1be084.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:0f73e7179e17f050380f0ea350d2551611820fd5",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/0f73e7179e17f050380f0ea350d2551611820fd5.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:ucwvc8:b64d767d873269ff00966630e34ab198fc24368f",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/b64d767d873269ff00966630e34ab198fc24368f.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:e2cc934a42be5a597106214fa0fbcefd6ceac599",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/e2cc934a42be5a597106214fa0fbcefd6ceac599.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:34b98eee090db39d3c703d360e3b8c49d9b8acfa",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/34b98eee090db39d3c703d360e3b8c49d9b8acfa.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:baa48e5f5a149f6d4d8038b693477ec94176d5a0",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/baa48e5f5a149f6d4d8038b693477ec94176d5a0.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:3bb6b76d2dd823e02cace7c6be2a7ebe535d1d97",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/3bb6b76d2dd823e02cace7c6be2a7ebe535d1d97.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:a51e05dc7b64d927ff25bc493bb0aa069c963d29",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/a51e05dc7b64d927ff25bc493bb0aa069c963d29.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:e76345ab4164567a24c0dc9dece56cee1794dc0c",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/e76345ab4164567a24c0dc9dece56cee1794dc0c.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:ddcd6a3065a711139251df4ab4777ae096856c58",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/ddcd6a3065a711139251df4ab4777ae096856c58.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:d7863608ff2aab99c43663cb3701c65c28b75c23",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/d7863608ff2aab99c43663cb3701c65c28b75c23.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:36b590:ac63f6ffcb1831a5614e525627822e7a6f15343d",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/36b590/ac63f6ffcb1831a5614e525627822e7a6f15343d.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:c7661d61606728f898297f6e69f68af3d5b6c6d0",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/c7661d61606728f898297f6e69f68af3d5b6c6d0.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:9863e3ea603a1bdde28e5b94f8675579e33a16d7",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/9863e3ea603a1bdde28e5b94f8675579e33a16d7.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:771c36b9967faec9926af86041d834b4a108a52e",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/771c36b9967faec9926af86041d834b4a108a52e.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:b130285915a8ca42926a11553a5791f44b65d487",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/b130285915a8ca42926a11553a5791f44b65d487.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:a1e9ff296f0728e180aeb920beacb26bf88ddb12",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/a1e9ff296f0728e180aeb920beacb26bf88ddb12.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:474db50232349ade7714e41c88af801d1f1e378b",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/474db50232349ade7714e41c88af801d1f1e378b.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:e4f70ef2843c6239d0bebe46b97a682bd901e749",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/e4f70ef2843c6239d0bebe46b97a682bd901e749.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:4e89fcc7903980482fe12350f864ca75963d6efd",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/4e89fcc7903980482fe12350f864ca75963d6efd.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:b2a671d96ac510ccc6e34dd58a141d13bb196508",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/b2a671d96ac510ccc6e34dd58a141d13bb196508.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:bf3ba787eb7a6819ea1a6adccdfd1f30842ed788",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/bf3ba787eb7a6819ea1a6adccdfd1f30842ed788.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:e6a7c924092d2351c3a5b4361ccde7917ad23c66",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/e6a7c924092d2351c3a5b4361ccde7917ad23c66.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:98f0638a038a244b0bde70ff316cde1be7ce9a3b",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/98f0638a038a244b0bde70ff316cde1be7ce9a3b.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:43730455b69439980b95151be477ca594e0d7556",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/43730455b69439980b95151be477ca594e0d7556.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:45d884e81c4ef8234cfbd85d259dd6a64685c9d2",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/45d884e81c4ef8234cfbd85d259dd6a64685c9d2.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:e64416f9e9792cd76b77ee209a26269d47c3ff97",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/e64416f9e9792cd76b77ee209a26269d47c3ff97.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:afcf56e62d62b8f69b4a2881475f625a1ed7ecf9",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/afcf56e62d62b8f69b4a2881475f625a1ed7ecf9.html",
+  "kind": "act"
+ },
+ {
+  "id": "act:5effbb:ca563b842b32b8fc79ac872f8fc4e799fcf76072",
+  "url": "https://www.w3.org/WAI/content-assets/wcag-act-rules/testcases/5effbb/ca563b842b32b8fc79ac872f8fc4e799fcf76072.html",
+  "kind": "act"
+ },
+ {
+  "id": "intact:qt1vmo:af4423575333947073fa3729f502ff0a0c6c2fbf",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/af4423575333947073fa3729f502ff0a0c6c2fbf.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:eabc191efa65e6613739042a0ae21937cda02428",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/eabc191efa65e6613739042a0ae21937cda02428.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:93ac216a885112ab9882b119a62532c7f6b6c528",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/93ac216a885112ab9882b119a62532c7f6b6c528.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:d64a0231dbcc95b21aafe3b554b9fdcbc9855301",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/d64a0231dbcc95b21aafe3b554b9fdcbc9855301.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:ff150593870cd4c1228d5eb69e2e0bc205e09727",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/ff150593870cd4c1228d5eb69e2e0bc205e09727.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:e9f07d1795d34f948d3dd42051963623109a0bae",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/e9f07d1795d34f948d3dd42051963623109a0bae.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:0411dce372604b1c0b14fe48aae6190882e8110c",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/0411dce372604b1c0b14fe48aae6190882e8110c.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:73f2c2:41c94e01a5809d1558eea96efc67a3ac6c90c148",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/41c94e01a5809d1558eea96efc67a3ac6c90c148.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c4a8a4:c19c231ab5175fb62b6a74b998aec0dd965c25c5",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/c19c231ab5175fb62b6a74b998aec0dd965c25c5.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c4a8a4:107a5e462b4ad6dd297742a2a177e24d32d27c26",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/107a5e462b4ad6dd297742a2a177e24d32d27c26.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c4a8a4:2f9709573bf080a0feccfb2fd4b4a657383ef235",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/2f9709573bf080a0feccfb2fd4b4a657383ef235.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c487ae:a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c487ae:d761116217a5875490cd7a2adf0219bdb1bff5cf",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/d761116217a5875490cd7a2adf0219bdb1bff5cf.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c487ae:ada7438401aba500eb03f678b05b9821a758336a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/ada7438401aba500eb03f678b05b9821a758336a.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c487ae:5d16da98a4089b29ff76c611036c65e1c504c7bc",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/5d16da98a4089b29ff76c611036c65e1c504c7bc.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:c487ae:dee6c55162904cfb77c7f65614c4e6ae2baacea2",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/dee6c55162904cfb77c7f65614c4e6ae2baacea2.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:c7661d61606728f898297f6e69f68af3d5b6c6d0",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/c7661d61606728f898297f6e69f68af3d5b6c6d0.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:771c36b9967faec9926af86041d834b4a108a52e",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/771c36b9967faec9926af86041d834b4a108a52e.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:b130285915a8ca42926a11553a5791f44b65d487",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/b130285915a8ca42926a11553a5791f44b65d487.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:a1e9ff296f0728e180aeb920beacb26bf88ddb12",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/a1e9ff296f0728e180aeb920beacb26bf88ddb12.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:474db50232349ade7714e41c88af801d1f1e378b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/474db50232349ade7714e41c88af801d1f1e378b.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:e4f70ef2843c6239d0bebe46b97a682bd901e749",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/e4f70ef2843c6239d0bebe46b97a682bd901e749.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:5effbb:4e89fcc7903980482fe12350f864ca75963d6efd",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/4e89fcc7903980482fe12350f864ca75963d6efd.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:cc0f0a:6b256544fb761a04ec863859b1fe5a5c84d096af",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/6b256544fb761a04ec863859b1fe5a5c84d096af.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:cc0f0a:1a9ad651245309194777d426823bbd4ad9aade7a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/1a9ad651245309194777d426823bbd4ad9aade7a.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:cc0f0a:b0b11b83ebfd0d8ce9d2261ad4efe2a738fa670b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/b0b11b83ebfd0d8ce9d2261ad4efe2a738fa670b.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:cc0f0a:081e784ed9c1c5f96f02cf04c07b7d861cf3f9af",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/081e784ed9c1c5f96f02cf04c07b7d861cf3f9af.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:b49b2e:25cb1d68473c174a3f3e464704de6826b7aabdd4",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/25cb1d68473c174a3f3e464704de6826b7aabdd4.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:b49b2e:8a83ca44601cb4ab173c388413df9649c8aac11f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/8a83ca44601cb4ab173c388413df9649c8aac11f.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:b49b2e:14ecbd9d655c833f5f9c5ee9563c472faee663c4",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/14ecbd9d655c833f5f9c5ee9563c472faee663c4.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:b49b2e:910c8881245425846a502b38758fff7db5c213ef",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/910c8881245425846a502b38758fff7db5c213ef.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:b49b2e:fd12fb78f149251c49409189ee65a041c7d03ec5",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/fd12fb78f149251c49409189ee65a041c7d03ec5.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:ucwvc8:96785fb73282803fa4ca791ffdc0c3bc46b90702",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/96785fb73282803fa4ca791ffdc0c3bc46b90702.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:ucwvc8:cd7898c9fcd7d06565cd55393310c2600ffc070f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/cd7898c9fcd7d06565cd55393310c2600ffc070f.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:ucwvc8:5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:ucwvc8:a67210a4d3e4db840309518c1ec557459b709206",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/a67210a4d3e4db840309518c1ec557459b709206.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:off6ek:ec40c0a032b11cabc03d71b6884ab9b85ee160ad",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/ec40c0a032b11cabc03d71b6884ab9b85ee160ad.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:off6ek:df9260fddb4d08ca0669bea363828d089b36317b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/df9260fddb4d08ca0669bea363828d089b36317b.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:off6ek:5532e66ea71ed1f352f9911e224cbf290c7cc8e6",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/5532e66ea71ed1f352f9911e224cbf290c7cc8e6.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:off6ek:53d05e6fdcc63ff61ef1e5ea8454eea318aa038a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/53d05e6fdcc63ff61ef1e5ea8454eea318aa038a.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "intact:off6ek:61c507e0aab456cce20538400fc1067be37953a0",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/61c507e0aab456cce20538400fc1067be37953a0.html?bench=intact",
+  "kind": "pair-intact"
+ },
+ {
+  "id": "corrupt:alt-placeholder:qt1vmo:af4423575333947073fa3729f502ff0a0c6c2fbf",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/af4423575333947073fa3729f502ff0a0c6c2fbf.html?bench=alt-placeholder",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:alt-swap:qt1vmo:af4423575333947073fa3729f502ff0a0c6c2fbf",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/qt1vmo/af4423575333947073fa3729f502ff0a0c6c2fbf.html?bench=alt-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:eabc191efa65e6613739042a0ae21937cda02428",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/eabc191efa65e6613739042a0ae21937cda02428.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:93ac216a885112ab9882b119a62532c7f6b6c528",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/93ac216a885112ab9882b119a62532c7f6b6c528.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:d64a0231dbcc95b21aafe3b554b9fdcbc9855301",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/d64a0231dbcc95b21aafe3b554b9fdcbc9855301.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:ff150593870cd4c1228d5eb69e2e0bc205e09727",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/ff150593870cd4c1228d5eb69e2e0bc205e09727.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:e9f07d1795d34f948d3dd42051963623109a0bae",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/e9f07d1795d34f948d3dd42051963623109a0bae.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:0411dce372604b1c0b14fe48aae6190882e8110c",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/0411dce372604b1c0b14fe48aae6190882e8110c.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:autocomplete-swap:73f2c2:41c94e01a5809d1558eea96efc67a3ac6c90c148",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/73f2c2/41c94e01a5809d1558eea96efc67a3ac6c90c148.html?bench=autocomplete-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:title-generic:c4a8a4:c19c231ab5175fb62b6a74b998aec0dd965c25c5",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/c19c231ab5175fb62b6a74b998aec0dd965c25c5.html?bench=title-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:title-generic:c4a8a4:107a5e462b4ad6dd297742a2a177e24d32d27c26",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/107a5e462b4ad6dd297742a2a177e24d32d27c26.html?bench=title-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:title-generic:c4a8a4:2f9709573bf080a0feccfb2fd4b4a657383ef235",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c4a8a4/2f9709573bf080a0feccfb2fd4b4a657383ef235.html?bench=title-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:c487ae:a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:c487ae:a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/a8cc66de4d60e34c7ee0d09fd6ab965ac23d9b4f.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:c487ae:d761116217a5875490cd7a2adf0219bdb1bff5cf",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/d761116217a5875490cd7a2adf0219bdb1bff5cf.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:c487ae:ada7438401aba500eb03f678b05b9821a758336a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/ada7438401aba500eb03f678b05b9821a758336a.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:c487ae:5d16da98a4089b29ff76c611036c65e1c504c7bc",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/5d16da98a4089b29ff76c611036c65e1c504c7bc.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:c487ae:5d16da98a4089b29ff76c611036c65e1c504c7bc",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/5d16da98a4089b29ff76c611036c65e1c504c7bc.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:c487ae:dee6c55162904cfb77c7f65614c4e6ae2baacea2",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/dee6c55162904cfb77c7f65614c4e6ae2baacea2.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:c487ae:dee6c55162904cfb77c7f65614c4e6ae2baacea2",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/c487ae/dee6c55162904cfb77c7f65614c4e6ae2baacea2.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:c7661d61606728f898297f6e69f68af3d5b6c6d0",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/c7661d61606728f898297f6e69f68af3d5b6c6d0.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:c7661d61606728f898297f6e69f68af3d5b6c6d0",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/c7661d61606728f898297f6e69f68af3d5b6c6d0.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:771c36b9967faec9926af86041d834b4a108a52e",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/771c36b9967faec9926af86041d834b4a108a52e.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/2eb4856e68c4cf8b3ed55f7d34b08ad4ae8b3fdd.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:b130285915a8ca42926a11553a5791f44b65d487",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/b130285915a8ca42926a11553a5791f44b65d487.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:b130285915a8ca42926a11553a5791f44b65d487",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/b130285915a8ca42926a11553a5791f44b65d487.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:a1e9ff296f0728e180aeb920beacb26bf88ddb12",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/a1e9ff296f0728e180aeb920beacb26bf88ddb12.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:a1e9ff296f0728e180aeb920beacb26bf88ddb12",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/a1e9ff296f0728e180aeb920beacb26bf88ddb12.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:474db50232349ade7714e41c88af801d1f1e378b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/474db50232349ade7714e41c88af801d1f1e378b.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:474db50232349ade7714e41c88af801d1f1e378b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/474db50232349ade7714e41c88af801d1f1e378b.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:e4f70ef2843c6239d0bebe46b97a682bd901e749",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/e4f70ef2843c6239d0bebe46b97a682bd901e749.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-generic:5effbb:4e89fcc7903980482fe12350f864ca75963d6efd",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/4e89fcc7903980482fe12350f864ca75963d6efd.html?bench=link-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:link-mismatch:5effbb:4e89fcc7903980482fe12350f864ca75963d6efd",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/5effbb/4e89fcc7903980482fe12350f864ca75963d6efd.html?bench=link-mismatch",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:cc0f0a:6b256544fb761a04ec863859b1fe5a5c84d096af",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/6b256544fb761a04ec863859b1fe5a5c84d096af.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:cc0f0a:1a9ad651245309194777d426823bbd4ad9aade7a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/1a9ad651245309194777d426823bbd4ad9aade7a.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:cc0f0a:b0b11b83ebfd0d8ce9d2261ad4efe2a738fa670b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/b0b11b83ebfd0d8ce9d2261ad4efe2a738fa670b.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:cc0f0a:081e784ed9c1c5f96f02cf04c07b7d861cf3f9af",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/cc0f0a/081e784ed9c1c5f96f02cf04c07b7d861cf3f9af.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:b49b2e:25cb1d68473c174a3f3e464704de6826b7aabdd4",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/25cb1d68473c174a3f3e464704de6826b7aabdd4.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:b49b2e:8a83ca44601cb4ab173c388413df9649c8aac11f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/8a83ca44601cb4ab173c388413df9649c8aac11f.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:b49b2e:14ecbd9d655c833f5f9c5ee9563c472faee663c4",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/14ecbd9d655c833f5f9c5ee9563c472faee663c4.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:b49b2e:910c8881245425846a502b38758fff7db5c213ef",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/910c8881245425846a502b38758fff7db5c213ef.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:heading-generic:b49b2e:fd12fb78f149251c49409189ee65a041c7d03ec5",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/b49b2e/fd12fb78f149251c49409189ee65a041c7d03ec5.html?bench=heading-generic",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:html-lang-swap:ucwvc8:96785fb73282803fa4ca791ffdc0c3bc46b90702",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/96785fb73282803fa4ca791ffdc0c3bc46b90702.html?bench=html-lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:html-lang-swap:ucwvc8:cd7898c9fcd7d06565cd55393310c2600ffc070f",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/cd7898c9fcd7d06565cd55393310c2600ffc070f.html?bench=html-lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:html-lang-swap:ucwvc8:5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/5f654ecf0b7a0af4d0ba120a5cd1db2761ffa79c.html?bench=html-lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:html-lang-swap:ucwvc8:a67210a4d3e4db840309518c1ec557459b709206",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/ucwvc8/a67210a4d3e4db840309518c1ec557459b709206.html?bench=html-lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:lang-swap:off6ek:ec40c0a032b11cabc03d71b6884ab9b85ee160ad",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/ec40c0a032b11cabc03d71b6884ab9b85ee160ad.html?bench=lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:lang-swap:off6ek:df9260fddb4d08ca0669bea363828d089b36317b",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/df9260fddb4d08ca0669bea363828d089b36317b.html?bench=lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:lang-swap:off6ek:5532e66ea71ed1f352f9911e224cbf290c7cc8e6",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/5532e66ea71ed1f352f9911e224cbf290c7cc8e6.html?bench=lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:lang-swap:off6ek:53d05e6fdcc63ff61ef1e5ea8454eea318aa038a",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/53d05e6fdcc63ff61ef1e5ea8454eea318aa038a.html?bench=lang-swap",
+  "kind": "pair-corrupted"
+ },
+ {
+  "id": "corrupt:lang-swap:off6ek:61c507e0aab456cce20538400fc1067be37953a0",
+  "url": "http://127.0.0.1:8765/WAI/content-assets/wcag-act-rules/testcases/off6ek/61c507e0aab456cce20538400fc1067be37953a0.html?bench=lang-swap",
+  "kind": "pair-corrupted"
+ }
+]

@@ -1,0 +1,67 @@
+{
+  "description": "Controlled benchmark recovery registry for implemented local-SPA cases.",
+  "schema_version": "benchmark-case-registry-v1",
+  "benchmark_generation": "controlled-local-spas",
+  "family_files": [
+    "families/autocomplete-purpose-mismatch.json",
+    "families/button-label-mismatch.json",
+    "families/image-alt-not-descriptive.json",
+    "families/lang-mismatch.json",
+    "families/language-of-parts-mismatch.json",
+    "families/link-text-mismatch.json",
+    "families/widget-label-purpose-mismatch.json",
+    "families/heading-not-descriptive.json",
+    "families/landmark-purpose-mismatch.json",
+    "families/page-title-not-descriptive.json",
+    "families/table-header-association-mismatch.json",
+    "families/error-message-mismatch.json",
+    "families/form-label-mismatch.json",
+    "families/aria-state-mismatch.json",
+    "families/video-captions-inaccurate.json"
+  ],
+  "explicit_seeded_configurations": [
+    {
+      "desired_activation": "benchmark_runner_profile",
+      "current_activation_status": "focused_runner_runtime_profile_injection_supported",
+      "description": "Developer fixture profile containing the first two retained Checkout pilot seeds.",
+      "configuration_id": "checkout-pilot-001",
+      "baseline_configuration": "clean",
+      "individual_seed_activation_role": "debugging_and_focused_validation",
+      "seed_ids": [
+        "co-sem-001",
+        "co-sem-002"
+      ],
+      "intended_use": "developer_fixture_not_accepted_dataset",
+      "preserves_workflow_routes": true,
+      "app": "checkout-flow",
+      "status": "implemented_pilot_fixture",
+      "planned_seed_count": 2
+    },
+    {
+      "desired_activation": "benchmark_runner_profile",
+      "current_activation_status": "focused_runner_runtime_profile_injection_supported",
+      "description": "Single-case Checkout profile for implemented dataset case co-sem-027.",
+      "configuration_id": "checkout-co-sem-027",
+      "baseline_configuration": "clean",
+      "individual_seed_activation_role": "debugging_and_focused_validation",
+      "seed_ids": [
+        "co-sem-027"
+      ],
+      "intended_use": "implemented_dataset_case_not_accepted",
+      "preserves_workflow_routes": true,
+      "acquisition_requirements": [
+        "controlled_support_destination_capture"
+      ],
+      "app": "checkout-flow",
+      "status": "implemented",
+      "planned_seed_count": 1
+    }
+  ],
+  "notes": [
+    "Runtime profile membership is owned by the SPA benchmark layer, not this registry.",
+    "Ordinary single-case seeded configurations are derived by the compatibility loader; only grouped or acquisition-specific exceptions are stored explicitly.",
+    "The clean runtime profile is intentionally not listed as a scoreable seeded configuration.",
+    "Pilot fixtures are development smoke tests only and do not count toward accepted dataset totals.",
+    "Ground-truth fields are for scoring/evaluation only and must stay out of crawler input, runtime behavior, and model prompts."
+  ]
+}

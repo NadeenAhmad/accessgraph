@@ -1,0 +1,680 @@
+{
+  "candidate_type": "lang-mismatch",
+  "variants": [
+    {
+      "why_semantic": "The document declares Danish while the substantive Products UI is English, so the valid page-language declaration conflicts with the dominant visible page language.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.page.root"
+        }
+      ],
+      "variant_id": "co-sem-011",
+      "seeded_behavior": "Keep the Products page UI in English but declare the document language as Danish.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "da",
+        "document_lang": "da"
+      },
+      "baseline_behavior": "Products page declares valid en and presents substantive English UI content.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-011",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "da",
+          "document_lang": "da"
+        },
+        "bucket": "page"
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-011 focused acquisition, inspect page language evidence on the products route, build candidates, and match the Products page language candidate."
+    },
+    {
+      "why_semantic": "The document declares English while the substantive Products UI is Spanish, so the valid page-language declaration conflicts with the visible page language.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S007"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_content_language",
+          "subject": "checkout.products.list"
+        }
+      ],
+      "variant_id": "co-sem-012",
+      "seeded_behavior": "Start on the normal English Products page, choose Spanish with the normal language control, render the Products page in Spanish, and keep the document language as English.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "en",
+        "document_lang": "en",
+        "strongest_marker_language_hint": "es"
+      },
+      "baseline_behavior": "Products page declares valid en and presents English UI content; choosing Spanish normally updates the Products UI and document language to Spanish.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-012",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "en",
+          "document_lang": "en"
+        },
+        "bucket": "page",
+        "content_markers": {
+          "spanish": [
+            "Productos",
+            "Resumen del carrito",
+            "Lámpara de escritorio"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S007 /products Spanish language",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-012 focused acquisition, inspect page language evidence on the Spanish Products route, build lang-mismatch candidates, and match the Spanish Products page language candidate."
+    },
+    {
+      "why_semantic": "The document declares Danish while the substantive Cart UI is English, so the valid page-language declaration conflicts with the dominant visible page language.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.page.root"
+        }
+      ],
+      "variant_id": "co-sem-013",
+      "seeded_behavior": "After navigating to Cart, keep the Cart UI in English but declare the document language as Danish.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "da",
+        "document_lang": "da"
+      },
+      "baseline_behavior": "Cart page declares valid en and presents substantive English UI content.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-013",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "da",
+          "document_lang": "da"
+        },
+        "bucket": "page",
+        "content_markers": {
+          "english": [
+            "Cart items",
+            "Review selected products before entering checkout details.",
+            "Order total"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-013 focused acquisition, inspect page language evidence on the Cart route, build lang-mismatch candidates, and match the Cart page language candidate."
+    },
+    {
+      "why_semantic": "The document declares English while the substantive Cart UI is Spanish, so the valid page-language declaration conflicts with the visible Cart language.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "visible_content_language",
+          "subject": "checkout.cart.items"
+        }
+      ],
+      "variant_id": "co-sem-014",
+      "seeded_behavior": "Choose Spanish with the normal language control, navigate to Cart, render the Cart page in Spanish, and keep the document language as English.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "en",
+        "document_lang": "en",
+        "strongest_marker_language_hint": "es"
+      },
+      "baseline_behavior": "Cart page declares valid en and presents English UI content; after choosing Spanish, navigating to Cart normally presents Spanish Cart UI with document language es.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-014",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "en",
+          "document_lang": "en"
+        },
+        "bucket": "page",
+        "content_markers": {
+          "spanish": [
+            "Carrito",
+            "Artículos del carrito",
+            "Resumen del carrito",
+            "Continuar a dirección"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart after Spanish language",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-014 focused acquisition, inspect page language evidence on the Spanish Cart route, build lang-mismatch candidates, and match the Spanish Cart page language candidate."
+    },
+    {
+      "why_semantic": "After the normal Products language switch updates visible Products content to Spanish, the document still declares English, so the valid page-language declaration conflicts with the dominant visible page language.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S007"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.page.root"
+        }
+      ],
+      "variant_id": "co-sem-015",
+      "seeded_behavior": "Start on the normal English Products page, choose Spanish with the normal language control, keep the Spanish Products UI, and leave the document language as English instead of updating it to Spanish.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "en",
+        "document_lang": "en",
+        "strongest_marker_language_hint": "es"
+      },
+      "baseline_behavior": "Products page starts in English with valid en, then choosing Spanish updates the Products UI to Spanish and updates the document language to valid es.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-015",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "en",
+          "document_lang": "en"
+        },
+        "bucket": "page",
+        "content_markers": {
+          "spanish": [
+            "Productos",
+            "Productos destacados",
+            "Lámpara de escritorio",
+            "Resumen del carrito"
+          ],
+          "english_minority": [
+            "Checkout Flow",
+            "Products",
+            "Cart"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S007 /products Spanish language",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-015 focused acquisition, click the normal Products Spanish language control, inspect page language evidence in CO-S007, build lang-mismatch candidates, and match the post-switch Spanish Products page language candidate."
+    },
+    {
+      "why_semantic": "After the Products page correctly transitions from English to Spanish and visibly returns to English, the document still declares Spanish, so the valid page-language declaration conflicts with the dominant final English UI.",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S020"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "checkout.page.root"
+        }
+      ],
+      "variant_id": "co-sem-137",
+      "seeded_behavior": "Start with the correct English Products state and lang=en, switch normally to Spanish with lang=es, then switch visibly back to English while retaining the previous Spanish document language declaration lang=es.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "es",
+        "document_lang": "es",
+        "strongest_marker_language_hint": "en"
+      },
+      "baseline_behavior": "Products starts in English with lang=en, switching to Spanish updates both content and lang to es, and switching back to English restores both content and lang to en.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-137",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "es",
+          "document_lang": "es",
+          "title": "Products | Brightlane Checkout"
+        },
+        "attribute_contains": {
+          "body_text_sample": "Browse featured products"
+        },
+        "bucket": "page",
+        "content_markers": {
+          "english": [
+            "Products",
+            "Featured products",
+            "Desk lamp",
+            "Cart summary"
+          ]
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S020 /products English restored after Spanish",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-137 focused acquisition through correct English CO-S001 and Spanish CO-S007 states, activate English, inspect the final English CO-S020 page-language evidence, build lang-mismatch candidates, and require English content with the stale Spanish root declaration. Initial English, intermediate Spanish, clean final English, co-sem-015, and co-sem-130 controls must not recover."
+    },
+    {
+      "why_semantic": "The Help page declares German while its substantive policy, preparation, and clinic-arrival content remains English, so the page language declaration conflicts with the visible page language.",
+      "expected_state": {
+        "routes": [
+          "/help"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.page.help"
+        }
+      ],
+      "variant_id": "bs-sem-159",
+      "seeded_behavior": "Directly open Help with all English content, title, headings, links, and behavior unchanged while declaring the document root language as German.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "de",
+        "document_lang": "de",
+        "strongest_marker_language_hint": "en"
+      },
+      "baseline_behavior": "Help declares document language en and presents substantive English policy and instructional content.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-159",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "de",
+          "document_lang": "de",
+          "title": "Help & policies | Booking Scheduler Benchmark"
+        },
+        "attribute_contains": {
+          "body_text_sample": "Help & policies"
+        },
+        "bucket": "page",
+        "candidate_evidence": {
+          "supporting": {
+            "lang_mismatch_context_v1": {
+              "declared_page_language": {
+                "html_lang": "de",
+                "document_lang": "de",
+                "route": "/help"
+              },
+              "page_text_evidence": {
+                "strongest_marker_language_hint": "en"
+              }
+            }
+          }
+        },
+        "content_markers": {
+          "english": [
+            "Help & policies",
+            "Cancellation and rescheduling",
+            "Preparing for your appointment",
+            "Directions"
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "initial /help",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-159 focused acquisitions by directly opening Help, verify only the root lang changes from en to de while all English content, title, headings, links, local language metadata, navigation, and behavior remain unchanged, inspect page-language evidence, build lang-mismatch candidates, and recover only the seeded Help candidate through its declared root language, English page signal, route, title, and initial state."
+    },
+    {
+      "why_semantic": "The completed Booking confirmation page declares Spanish while its status, appointment details, contact details, clinic information, links, and actions remain English, so the page language declaration conflicts with the visible page language.",
+      "expected_state": {
+        "routes": [
+          "/confirmation"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.page.confirmation"
+        }
+      ],
+      "variant_id": "bs-sem-160",
+      "seeded_behavior": "Complete the canonical booking workflow and keep all Confirmation content, state, links, and behavior in English while declaring the document root language as Spanish.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "es",
+        "document_lang": "es",
+        "strongest_marker_language_hint": "en"
+      },
+      "baseline_behavior": "After the canonical booking workflow, Confirmation declares document language en and presents the confirmed booking state in English.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-160",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "es",
+          "document_lang": "es",
+          "title": "Booking confirmed | Booking Scheduler Benchmark"
+        },
+        "attribute_contains": {
+          "body_text_sample": "Booking confirmed"
+        },
+        "bucket": "page",
+        "candidate_evidence": {
+          "supporting": {
+            "lang_mismatch_context_v1": {
+              "declared_page_language": {
+                "html_lang": "es",
+                "document_lang": "es",
+                "route": "/confirmation"
+              },
+              "page_text_evidence": {
+                "strongest_marker_language_hint": "en"
+              }
+            }
+          }
+        },
+        "content_markers": {
+          "english": [
+            "Booking confirmed",
+            "Your appointment is confirmed",
+            "Confirmed booking",
+            "Contact details",
+            "Book another appointment"
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "initial /confirmation after canonical booking confirmation",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-160 focused acquisitions through the canonical booking workflow, verify only the root lang changes from en to es on Confirmation while the confirmed state, reference, appointment data, contact data, title, headings, links, local language metadata, navigation, and behavior remain unchanged, inspect page-language evidence, build lang-mismatch candidates, and recover only the seeded Confirmation candidate through its declared root language, English page signal, route, title, and initial focused state."
+    },
+    {
+      "why_semantic": "The Booking details page declares German while its instructions, customer-detail labels, hints, progress, appointment summary, links, and actions remain English, so the page language declaration conflicts with the visible page language.",
+      "expected_state": {
+        "routes": [
+          "/details"
+        ],
+        "benchmark_state_ids": [
+          "BS-S003"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.page.details"
+        }
+      ],
+      "variant_id": "bs-sem-161",
+      "seeded_behavior": "Reach Booking details through the canonical service and appointment workflow and keep all content, form semantics, progress, summary, navigation, and behavior in English while declaring the document root language as German.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "de",
+        "document_lang": "de",
+        "strongest_marker_language_hint": "en"
+      },
+      "baseline_behavior": "Booking details declares document language en and presents its customer-detail form, progress, appointment summary, and instructions in English.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-161",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "de",
+          "document_lang": "de",
+          "title": "Booking details | Booking Scheduler Benchmark"
+        },
+        "attribute_contains": {
+          "body_text_sample": "Booking details"
+        },
+        "bucket": "page",
+        "candidate_evidence": {
+          "supporting": {
+            "lang_mismatch_context_v1": {
+              "declared_page_language": {
+                "html_lang": "de",
+                "document_lang": "de",
+                "route": "/details"
+              },
+              "page_text_evidence": {
+                "strongest_marker_language_hint": "en"
+              }
+            }
+          }
+        },
+        "content_markers": {
+          "english": [
+            "Booking details",
+            "Enter required customer details for the selected appointment",
+            "Customer details",
+            "Full name",
+            "Continue to review"
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details after canonical service, date, and time selection",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-161 focused acquisitions through the canonical workflow to BS-S003, verify only the root lang changes from en to de on Details while the title, H1, instructions, form labels, accessible names, input semantics, validation behavior, progress, appointment summary, links, local language metadata, navigation, and behavior remain unchanged, inspect page-language evidence, build lang-mismatch candidates, and recover only the seeded Details candidate through its declared root language, English page signal, route, title, and canonical benchmark state."
+    },
+    {
+      "why_semantic": "The Booking review page declares French while its review notice, appointment summary, customer details, clinic information, modification links, and confirmation action remain English, so the page language declaration conflicts with the visible page language.",
+      "expected_state": {
+        "routes": [
+          "/review"
+        ],
+        "benchmark_state_ids": [
+          "BS-S004"
+        ]
+      },
+      "candidate_type": "lang-mismatch",
+      "mutation_targets": [
+        {
+          "mutation_property": "lang",
+          "subject": "booking.page.review"
+        }
+      ],
+      "variant_id": "bs-sem-162",
+      "seeded_behavior": "Reach Review through the canonical booking workflow and keep the unconfirmed state, all content, summaries, links, actions, navigation, and behavior in English while declaring the document root language as French.",
+      "expected_candidate": {
+        "candidate_type": "lang-mismatch",
+        "selection_reason": "page_language_declaration_with_visible_text_evidence",
+        "type": "lang-mismatch",
+        "html_lang": "fr",
+        "document_lang": "fr",
+        "strongest_marker_language_hint": "en"
+      },
+      "baseline_behavior": "Review declares document language en and presents the unconfirmed appointment, customer details, clinic information, modification links, and confirmation action in English.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-162",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "attributes": {
+          "html_lang": "fr",
+          "document_lang": "fr",
+          "title": "Review appointment | Booking Scheduler Benchmark"
+        },
+        "attribute_contains": {
+          "body_text_sample": "Review appointment"
+        },
+        "bucket": "page",
+        "candidate_evidence": {
+          "supporting": {
+            "lang_mismatch_context_v1": {
+              "declared_page_language": {
+                "html_lang": "fr",
+                "document_lang": "fr",
+                "route": "/review"
+              },
+              "page_text_evidence": {
+                "strongest_marker_language_hint": "en"
+              }
+            }
+          }
+        },
+        "content_markers": {
+          "english": [
+            "Review appointment",
+            "Review only. No appointment has been confirmed yet",
+            "Review appointment details",
+            "Customer details"
+          ]
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S004 /review after canonical customer details submission",
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page",
+          "criterion": "3.1.1 Language of Page"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+          "technique": "H57"
+        }
+      ],
+      "validation_approach": "Run equivalent clean and booking-bs-sem-162 focused acquisitions through the canonical workflow to BS-S004, verify only the root lang changes from en to fr on Review while the unconfirmed state, title, H1, notice, summaries, appointment and customer data, links, actions, local language metadata, navigation, and behavior remain unchanged, inspect page-language evidence, build lang-mismatch candidates, and recover only the seeded Review candidate through its declared root language, English page signal, route, title, and canonical benchmark state."
+    }
+  ]
+}

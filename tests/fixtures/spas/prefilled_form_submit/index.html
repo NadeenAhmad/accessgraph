@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Prefilled form fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Prefilled form fixture</h1>
+      <p id="status">No form submitted</p>
+
+      <form id="ready-form" action="/prefilled_form_submit/ready">
+        <label>
+          Email
+          <input name="email" type="email" required value="ready@example.test">
+        </label>
+        <button id="ready-submit" type="submit">Submit ready form</button>
+      </form>
+
+      <form id="empty-form" action="/prefilled_form_submit/empty">
+        <label>
+          Required empty
+          <input name="empty" required>
+        </label>
+        <button type="submit">Submit empty form</button>
+      </form>
+
+      <form id="login-form" action="/prefilled_form_submit/login">
+        <label>
+          User
+          <input name="user" required value="admin">
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" required value="secret">
+        </label>
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="upload-form" action="/prefilled_form_submit/upload">
+        <input name="upload" type="file">
+        <button type="submit">Upload file</button>
+      </form>
+    </main>
+    <script>
+      document.querySelector("#ready-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.querySelector("#status").textContent = "Ready form submitted";
+      });
+
+      for (const form of document.querySelectorAll("form:not(#ready-form)")) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          document.querySelector("#status").textContent = `${form.id} submitted`;
+        });
+      }
+    </script>
+  </body>
+</html>

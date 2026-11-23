@@ -1,0 +1,7 @@
+[estimate] conformance run 1: 394 cases, about $0.79 (stage fix_round5: $0.816 of $6.95 used)
+{
+  "output": "<repo>/runs/w4a-d2/runs/conformance-v13-run-1",
+  "cases": 394,
+  "evaluations": 394,
+  "errors": 0
+}

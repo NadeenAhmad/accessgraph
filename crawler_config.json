@@ -1,0 +1,17 @@
+{
+  "url": "https://reactrouter.com/",
+  "headless": true,
+  "runs_dir": "runs",
+  "enable_run_timing": true,
+  "crawl": {
+    "max_states": 100,
+    "max_depth": 5,
+    "max_actions_per_state": 5,
+    "back_timeout_ms": 10000,
+    "traversal_strategy": "bfs",
+    "scope_policy": "same_origin",
+    "prioritize_action_candidates": false,
+    "enable_tile_screenshots": false,
+    "wait_timeout_ms": 2000
+  }
+}

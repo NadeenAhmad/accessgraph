@@ -1,0 +1,113 @@
+# D5 apps (evaluation protocol: docs/evaluation.md). Cloned under the D5 apps folder (eval/paths.py, D5_APPS_DIR) on 2026-11-16 (git clone --depth 1),
+# commits pinned below; installed with scripts disabled (npm ci / pnpm / yarn --ignore-scripts or --mode=skip-build).
+# Run locally only. `serve` steps start in order; a step with `ready` is waited for before the next one.
+# `init_storage`: localStorage entries set before every page load (an app whose fake sign-in only checks storage
+# starts signed in as its demo user; sign-in actions stay blocked for the explorer).
+apps:
+  jira-clone-angular:
+    repo: trungvose/jira-clone-angular
+    commit: 20b50e9
+    framework: Angular 20
+    thesis: true
+    dir: jira-clone-angular
+    install: npm ci --ignore-scripts
+    serve: [{cmd: [npx, ng, serve, --host, 127.0.0.1, --port, '4200']}]
+    port: 4200
+    start: /project/board
+  angular-realworld-example-app:
+    repo: realworld-apps/angular-realworld-example-app
+    commit: d426ec8
+    framework: Angular 21
+    thesis: true
+    dir: angular-realworld-example-app
+    install: 'npm install --ignore-scripts; git submodule update --init --depth 1'   # = the spec''s `bun run setup` (bun is not installed)
+    submodule: realworld-apps/realworld 2558884 (theme and assets)
+    serve: [{cmd: [npx, ng, serve, --host, 127.0.0.1, --port, '4201']}]
+    port: 4201
+    start: /
+    note: reads an external API (GET only; the network guard blocks every write)
+  angular-challenges:
+    repo: tomalaforge/angular-challenges
+    commit: 0deb691
+    framework: Angular (Nx)
+    thesis: true
+    dir: angular-challenges
+    install: corepack pnpm install --frozen-lockfile --ignore-scripts
+    serve: [{cmd: [npx, nx, serve, angular-view-transition, --host, 127.0.0.1, --port, '4202']}]
+    port: 4202
+    start: /
+  angular-ssr-course:
+    repo: angular-university/angular-ssr-course
+    commit: 0ac05b4
+    framework: Angular 22
+    thesis: true
+    dir: angular-ssr-course
+    install: npm ci --ignore-scripts
+    serve: [{cmd: [npx, ng, serve, --host, 127.0.0.1, --port, '4203']}]
+    port: 4203
+    start: /
+  angular-course:
+    repo: angular-university/angular-course
+    commit: 53d20ad
+    framework: Angular 22
+    thesis: true
+    dir: angular-course
+    install: npm ci --ignore-scripts
+    serve:
+      - {cmd: [npm, run, server], ready: 'http://127.0.0.1:9000/api/courses'}
+      - {cmd: [npx, ng, serve, --proxy-config, ./proxy.json, --host, 127.0.0.1, --port, '4204']}
+    port: 4204
+    start: /
+  vuestic-admin:
+    repo: epicmaxco/vuestic-admin
+    commit: 9c5b44f
+    framework: Vue 3
+    thesis: true
+    dir: vuestic-admin
+    install: corepack yarn install --mode=skip-build
+    serve: [{cmd: [npx, vite, --host, 127.0.0.1, --port, '5173', --strictPort]}]
+    port: 5173
+    start: /dashboard
+  flowbite-svelte-admin-dashboard:
+    repo: themesberg/flowbite-svelte-admin-dashboard
+    commit: 171b17e
+    framework: Svelte (SvelteKit)
+    thesis: false
+    dir: flowbite-svelte-admin-dashboard
+    install: corepack pnpm install --frozen-lockfile --ignore-scripts
+    serve: [{cmd: [npx, vite, dev, --host, 127.0.0.1, --port, '5174', --strictPort]}]
+    port: 5174
+    start: /
+  react-admin-demo:
+    repo: marmelab/react-admin (examples/demo, Posters Galore)
+    commit: a44d692
+    framework: React
+    thesis: false
+    dir: react-admin
+    install: corepack yarn install --mode=skip-build (packages aliased to source, no build)
+    serve: [{cmd: [npx, vite, --host, 127.0.0.1, --port, '5175', --strictPort], cwd: examples/demo}]
+    port: 5175
+    start: /
+    note: its data provider reads demo.api.marmelab.com (GET only; the network guard blocks every write)
+    init_storage: {username: demo}   # its fake auth accepts any user; the explorer itself never signs in
+  react-admin-simple:
+    repo: marmelab/react-admin (examples/simple)
+    commit: a44d692
+    framework: React
+    thesis: false
+    dir: react-admin
+    install: shared with react-admin-demo
+    serve: [{cmd: [npx, vite, --host, 127.0.0.1, --port, '5176', --strictPort], cwd: examples/simple}]
+    port: 5176
+    start: /
+  react-admin-crm:
+    repo: marmelab/react-admin (examples/crm, Atomic CRM demo)
+    commit: a44d692
+    framework: React
+    thesis: false
+    dir: react-admin
+    install: shared with react-admin-demo
+    serve: [{cmd: [npx, vite, --host, 127.0.0.1, --port, '5177', --strictPort], cwd: examples/crm}]
+    port: 5177
+    start: /
+    note: fake REST server in the browser (MSW)

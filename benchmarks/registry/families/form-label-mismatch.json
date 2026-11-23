@@ -1,0 +1,1112 @@
+{
+  "candidate_type": "form-label-mismatch",
+  "variants": [
+    {
+      "variant_id": "bs-sem-116",
+      "seeded_behavior": "On the initial Services route, keep the Consultation radio control, native label association, value, selection behavior, 30-minute duration, and Consultation description unchanged, but change only its service-name label segment from Consultation to Repair assessment.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"service-radio-svc-consultation\"]",
+        "label": "Repair assessment 30 minutes Initial planning appointment for the benchmark fixture."
+      },
+      "baseline_behavior": "On the initial Services route, the Consultation radio is labelled Consultation and retains its 30-minute duration and Initial planning appointment for the benchmark fixture description.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-116",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"service-radio-svc-consultation\"]",
+        "control": {
+          "id": "service-svc-consultation",
+          "name": "service"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "radio",
+          "accessible_name": "Repair assessment30 minutesInitial planning appointment for the benchmark fixture.",
+          "label": "Repair assessment30 minutesInitial planning appointment for the benchmark fixture."
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "tag": "input",
+                "type": "radio",
+                "name": "service",
+                "id": "service-svc-consultation"
+              },
+              "labeling": {
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Repair assessment",
+                      "30 minutes",
+                      "Initial planning appointment for the benchmark fixture."
+                    ]
+                  }
+                ]
+              },
+              "field_purpose_evidence": {
+                "type": "radio",
+                "name": "service",
+                "id": "service-svc-consultation",
+                "form_step_or_route_context": {
+                  "route": "/services"
+                }
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/services",
+          "document_title": "Select service | Booking Scheduler Benchmark",
+          "form_context": "Available services radio group on the initial Services route.",
+          "purpose_evidence": "The target keeps id service-svc-consultation, name service, native radio semantics, and the Consultation-specific 30-minute duration and planning-appointment description while only its service-name label segment says Repair assessment; the separate Repair assessment service remains present as a sibling option."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S001 /services Select service",
+      "mutation_targets": [
+        {
+          "subject": "booking.services.consultation",
+          "mutation_property": "serviceName"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S001"
+        ],
+        "routes": [
+          "/services"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Booking bs-sem-116 focused acquisition on the initial Services state, inspect neutral form-control and structured label-source evidence, build form-label-mismatch candidates, and recover only the Consultation radio whose service-name segment says Repair assessment while its 30-minute duration, Consultation description, stable control identity, and native label association remain intact."
+    },
+    {
+      "variant_id": "bs-sem-128",
+      "seeded_behavior": "On the Booking Schedule route, keep the date input, native label association, date type, fixture bounds, step, selected-date state, supported-date instructions, slot loading, and navigation unchanged, but change only its native label text from Appointment date to Appointment time.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "input#booking-date",
+        "label": "Appointment time"
+      },
+      "baseline_behavior": "On the Booking Schedule route, the date input is natively labelled Appointment date and uses type date with supported fixture-date instructions before loading separate appointment-time controls.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-128",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#booking-date",
+        "control": {
+          "id": "booking-date"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "date",
+          "required": false,
+          "aria_describedby": "booking-date-help",
+          "accessible_name": "Appointment time",
+          "label": "Appointment time"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#booking-date",
+              "tag": "input",
+              "type": "date",
+              "id": "booking-date",
+              "required": false,
+              "aria_describedby": "booking-date-help",
+              "accessible_name": "Appointment time",
+              "label": "Appointment time"
+            }
+          },
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "selector": "input#booking-date",
+                "tag": "input",
+                "type": "date",
+                "id": "booking-date",
+                "required": false
+              },
+              "labeling": {
+                "visible_label": "Appointment time",
+                "computed_accessible_name": "Appointment time",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Appointment time"
+                    ]
+                  }
+                ],
+                "visible_label_in_accessible_name": true
+              },
+              "field_purpose_evidence": {
+                "type": "date",
+                "id": "booking-date",
+                "descriptions": [
+                  {
+                    "selector": "p#booking-date-help",
+                    "text": "Supported fixture dates: June 16, 2026 and June 18, 2026.",
+                    "relationship_type": "describes",
+                    "method": "aria-describedby"
+                  }
+                ],
+                "form_step_or_route_context": {
+                  "route": "/schedule"
+                }
+              }
+            },
+            "structure": {
+              "nearest_heading": {
+                "selector": "h2#schedule-heading",
+                "text": "Choose a date and time"
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/schedule",
+          "document_title": "Schedule appointment | Booking Scheduler Benchmark",
+          "form_context": "Schedule date selection with supported fixture dates and separate appointment-time controls.",
+          "purpose_evidence": "The target remains a date input with fixture-date instructions and selected-date behavior while its native label and computed accessible name incorrectly identify appointment time."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S002 /schedule Schedule appointment",
+      "mutation_targets": [
+        {
+          "subject": "booking.schedule.date",
+          "mutation_property": "labelText"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S002"
+        ],
+        "routes": [
+          "/schedule"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-128 acquisition through the canonical Booking flow to Schedule, verify only the native date label changes from Appointment date to Appointment time while the input type, fixture constraints, supported-date description, selected-date state, slot controls, and navigation remain unchanged, build form-label-mismatch candidates, and recover only the seeded date input through its stable identity, associated label source, and date-purpose evidence."
+    },
+    {
+      "variant_id": "bs-sem-129",
+      "seeded_behavior": "On the Booking Details route, keep the required Phone control, native label association, telephone type, autocomplete purpose, value handling, validation, submission, and navigation unchanged, but change only its native label text from Phone to Email while retaining the Required marker.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "input#details-phone",
+        "label": "Email Required",
+        "autocomplete": "tel"
+      },
+      "baseline_behavior": "On the Booking Details route, the required Phone control is natively labelled Phone Required and uses type tel, name phone, and autocomplete tel to collect the customer's telephone number.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-129",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "input#details-phone",
+        "control": {
+          "id": "details-phone",
+          "name": "phone"
+        },
+        "attributes": {
+          "tag": "input",
+          "type": "tel",
+          "autocomplete": "tel",
+          "required": true,
+          "accessible_name": "EmailRequired",
+          "label": "EmailRequired"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "input#details-phone",
+              "tag": "input",
+              "type": "tel",
+              "name": "phone",
+              "id": "details-phone",
+              "autocomplete": "tel",
+              "required": true,
+              "accessible_name": "EmailRequired",
+              "label": "EmailRequired"
+            }
+          },
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "selector": "input#details-phone",
+                "tag": "input",
+                "type": "tel",
+                "name": "phone",
+                "id": "details-phone",
+                "autocomplete": "tel",
+                "required": true
+              },
+              "labeling": {
+                "visible_label": "Email REQUIRED",
+                "computed_accessible_name": "EmailRequired",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Email",
+                      "Required"
+                    ]
+                  }
+                ],
+                "visible_label_in_accessible_name": true
+              },
+              "field_purpose_evidence": {
+                "type": "tel",
+                "name": "phone",
+                "id": "details-phone",
+                "autocomplete": "tel",
+                "form_step_or_route_context": {
+                  "route": "/details"
+                }
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form with distinct Full name, Email, Phone, Notes, and Accessibility needs controls.",
+          "purpose_evidence": "The target keeps id details-phone, name phone, type tel, autocomplete tel, required state, telephone value binding, validation, and submission behavior while its natively associated visible label and computed accessible name say Email Required; the separate genuine Email control remains present."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.phone",
+          "mutation_property": "labelText"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-129 acquisition through the canonical Booking flow to Details, verify only the Phone label text changes from Phone to Email while the Required segment, native association, telephone attributes, validation, values, and submission remain unchanged, build form-label-mismatch candidates, and recover only the seeded Phone control through its stable identity, associated label source, and telephone-purpose evidence."
+    },
+    {
+      "variant_id": "bs-sem-130",
+      "seeded_behavior": "On the Booking Details route, keep the optional Accessibility needs textarea, native label association, accessibility-specific placeholder and description, value handling, submission, and navigation unchanged, but change only its native label text from Accessibility needs to Phone while retaining the Optional marker.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "textarea#details-accessibilityNeeds",
+        "label": "Phone Optional"
+      },
+      "baseline_behavior": "On the Booking Details route, the optional Accessibility needs textarea is natively labelled Accessibility needs Optional and is described by accessibility-specific instructions and a matching placeholder.",
+      "risk_subjectivity": "low",
+      "profile": "booking-bs-sem-130",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "textarea#details-accessibilityNeeds",
+        "control": {
+          "id": "details-accessibilityNeeds",
+          "name": "accessibilityNeeds"
+        },
+        "attributes": {
+          "tag": "textarea",
+          "required": false,
+          "aria_describedby": "details-accessibilityNeeds-hint",
+          "placeholder": "Accessibility needs, preparation notes, or special requests",
+          "accessible_name": "PhoneOptional",
+          "label": "PhoneOptional"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "primary": {
+            "form_control": {
+              "selector": "textarea#details-accessibilityNeeds",
+              "tag": "textarea",
+              "name": "accessibilityNeeds",
+              "id": "details-accessibilityNeeds",
+              "placeholder": "Accessibility needs, preparation notes, or special requests",
+              "required": false,
+              "aria_describedby": "details-accessibilityNeeds-hint",
+              "accessible_name": "PhoneOptional",
+              "label": "PhoneOptional"
+            }
+          },
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "selector": "textarea#details-accessibilityNeeds",
+                "tag": "textarea",
+                "name": "accessibilityNeeds",
+                "id": "details-accessibilityNeeds",
+                "placeholder": "Accessibility needs, preparation notes, or special requests",
+                "required": false
+              },
+              "labeling": {
+                "visible_label": "Phone OPTIONAL",
+                "computed_accessible_name": "PhoneOptional",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Phone",
+                      "Optional"
+                    ]
+                  }
+                ],
+                "visible_label_in_accessible_name": true
+              },
+              "field_purpose_evidence": {
+                "name": "accessibilityNeeds",
+                "id": "details-accessibilityNeeds",
+                "placeholder": "Accessibility needs, preparation notes, or special requests",
+                "descriptions": [
+                  {
+                    "selector": "p#details-accessibilityNeeds-hint",
+                    "text": "Share accessibility needs, preparation notes, or special requests for this appointment.",
+                    "relationship_type": "describes",
+                    "method": "aria-describedby"
+                  }
+                ],
+                "form_step_or_route_context": {
+                  "route": "/details"
+                }
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/details",
+          "document_title": "Booking details | Booking Scheduler Benchmark",
+          "form_context": "Customer details form with distinct Phone and Accessibility needs controls.",
+          "purpose_evidence": "The target remains the optional accessibilityNeeds textarea with its accessibility-specific placeholder and associated helper description while its natively associated visible label and computed accessible name say Phone Optional; the separate genuine Phone input remains present."
+        }
+      },
+      "app": "booking-scheduler",
+      "workflow_state": "BS-S003 /details Booking details",
+      "mutation_targets": [
+        {
+          "subject": "booking.details.accessibilityNeeds",
+          "mutation_property": "labelText"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "BS-S003"
+        ],
+        "routes": [
+          "/details"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run focused clean and booking-bs-sem-130 acquisition through the canonical Booking flow to Details, verify only the Accessibility needs label text changes to Phone while the Optional segment, native association, accessibility-specific placeholder and description, value storage, submission, and navigation remain unchanged, build form-label-mismatch candidates, and recover only the seeded textarea through its stable identity, associated label source, and accessibility-purpose evidence."
+    },
+    {
+      "variant_id": "co-sem-086",
+      "seeded_behavior": "On the Payment route, keep the Card number and Security code controls in place with unchanged ids, names, input modes, autocomplete values, validation, and focus order, but swap their visible label text so Card number is labelled Security code and Security code is labelled Card number.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "paired_targets": [
+          {
+            "selector_hint": "[data-testid=\"payment-card-number\"]",
+            "label": "Security code",
+            "autocomplete": "cc-number"
+          },
+          {
+            "selector_hint": "[data-testid=\"payment-security-code\"]",
+            "label": "Card number",
+            "autocomplete": "cc-csc"
+          }
+        ]
+      },
+      "baseline_behavior": "On the Payment route, the Card number field is labelled Card number with autocomplete cc-number and the Security code field is labelled Security code with autocomplete cc-csc.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-086",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "all_of": [
+          {
+            "selector_hint": "[data-testid=\"payment-card-number\"]",
+            "control": {
+              "id": "payment-cardNumber",
+              "name": "cardNumber"
+            },
+            "attributes": {
+              "autocomplete": "cc-number"
+            },
+            "attribute_contains": {
+              "label": "Security code"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          },
+          {
+            "selector_hint": "[data-testid=\"payment-security-code\"]",
+            "control": {
+              "id": "payment-securityCode",
+              "name": "securityCode"
+            },
+            "attributes": {
+              "autocomplete": "cc-csc"
+            },
+            "attribute_contains": {
+              "label": "Card number"
+            },
+            "bucket": "form_controls",
+            "primary_evidence_key": "form_control"
+          }
+        ],
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form with Card details fieldset.",
+          "purpose_evidence": "Card number keeps name cardNumber and autocomplete cc-number; Security code keeps name securityCode and autocomplete cc-csc."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardNumber",
+          "mutation_property": "label_text"
+        },
+        {
+          "subject": "checkout.payment.securityCode",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-086 focused acquisition, inspect form-control evidence on the Payment state, build form-label-mismatch candidates, and require recovery of both paired candidates: Card number with label Security code and autocomplete cc-number, and Security code with label Card number and autocomplete cc-csc."
+    },
+    {
+      "variant_id": "co-sem-087",
+      "seeded_behavior": "On the Address route, keep the Email control in place with unchanged id, name, type, autocomplete, validation, value handling, and focus order, but change its visible label text to Full name.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "label": "Full name",
+        "autocomplete": "email"
+      },
+      "baseline_behavior": "On the Address route, the Email field is labelled Email, uses type email, name email, and autocomplete email.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-087",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-email\"]",
+        "control": {
+          "id": "address-email",
+          "name": "email"
+        },
+        "attributes": {
+          "type": "email",
+          "autocomplete": "email"
+        },
+        "attribute_contains": {
+          "label": "Full name"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "Email keeps id address-email, name email, type email, and autocomplete email while its label says Full name."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.email",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-087 focused acquisition, inspect form-control evidence on the Address state, build form-label-mismatch candidates, and match the Email control candidate with id address-email, name email, type email, autocomplete email, and label containing Full name."
+    },
+    {
+      "variant_id": "co-sem-088",
+      "seeded_behavior": "After progressing from Address to Payment, keep the Payment Card number control in place with unchanged id, name, type, input mode, autocomplete, validation, value handling, and focus order, but change its visible label text to Street address.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "label": "Street address",
+        "autocomplete": "cc-number"
+      },
+      "baseline_behavior": "On the Payment route, the Card number field is labelled Card number, uses name cardNumber, input mode numeric, and autocomplete cc-number.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-088",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-card-number\"]",
+        "control": {
+          "id": "payment-cardNumber",
+          "name": "cardNumber"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-number"
+        },
+        "attribute_contains": {
+          "label": "Street address"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form with Card details fieldset.",
+          "purpose_evidence": "Card number keeps id payment-cardNumber, name cardNumber, input mode numeric, and autocomplete cc-number while its label says Street address."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardNumber",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-088 focused acquisition through Address to Payment, inspect form-control evidence on the Payment state, build form-label-mismatch candidates, and match the Card number control candidate with id payment-cardNumber, name cardNumber, autocomplete cc-number, and label containing Street address."
+    },
+    {
+      "variant_id": "co-sem-107",
+      "seeded_behavior": "On the Address route, keep the Country/region native select in place with unchanged name, options, selected value, autocomplete, validation, required state, value handling, submission, and Review persistence, but change its visible label text to State while the separate State input remains correctly labelled State.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "tag": "select",
+        "label": "State",
+        "autocomplete": "country-name"
+      },
+      "baseline_behavior": "On the Address route, the Country/region native select uses name country, autocomplete country-name, and country options; the separate State input is labelled State, uses name state, and autocomplete address-level1.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-107",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "control": {
+          "name": "country"
+        },
+        "attributes": {
+          "tag": "select",
+          "autocomplete": "country-name",
+          "required": true,
+          "has_value": true
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "tag": "select",
+                "name": "country",
+                "autocomplete": "country-name",
+                "required": true,
+                "value_state": "filled"
+              },
+              "field_purpose_evidence": {
+                "name": "country",
+                "autocomplete": "country-name"
+              },
+              "labeling": {
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "State"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated native select keeps name country, autocomplete country-name, a filled country value, and the United States, Canada, and Germany options while its label says State; the separate input with name state and autocomplete address-level1 also remains correctly labelled State."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.country",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-107 focused acquisition to Address, inspect neutral form-control evidence on CO-S003, build form-label-mismatch candidates, and recover only the native select with name country, autocomplete country-name, a filled value, and an associated label source containing the exact State text segment. The selector-free expectation must reject the clean Country/region select, near-substring label segments, and the genuine State input."
+    },
+    {
+      "variant_id": "co-sem-108",
+      "seeded_behavior": "On the Address route, keep the optional Delivery instructions textarea in place with unchanged name, rows, hint relationship, value handling, persistence, validation, and focus order, but change its visible native label text to Street address while the genuine Street address input remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "tag": "textarea",
+        "label": "Street address",
+        "accessible_name": "Street address"
+      },
+      "baseline_behavior": "On the Address route, the optional Delivery instructions textarea is labelled Delivery instructions, uses name deliveryInstructions, and is described by the hint Optional. Add gate codes, safe-place details, or delivery notes; the separate Street address input remains correctly labelled Street address.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-108",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "control": {
+          "name": "deliveryInstructions"
+        },
+        "attributes": {
+          "tag": "textarea",
+          "required": false,
+          "accessible_name": "Street address"
+        },
+        "primary_evidence_key": "form_control",
+        "candidate_evidence": {
+          "supporting": {
+            "form_label_context_v1": {
+              "schema_version": "form_label_context_v1",
+              "control": {
+                "tag": "textarea",
+                "name": "deliveryInstructions",
+                "required": false
+              },
+              "field_purpose_evidence": {
+                "name": "deliveryInstructions",
+                "descriptions": [
+                  {
+                    "text": "Optional. Add gate codes, safe-place details, or delivery notes.",
+                    "relationship_type": "describes",
+                    "method": "aria-describedby"
+                  }
+                ]
+              },
+              "labeling": {
+                "visible_label": "Street address",
+                "computed_accessible_name": "Street address",
+                "label_sources": [
+                  {
+                    "relationship_type": "labels",
+                    "method": "for",
+                    "text_segments": [
+                      "Street address"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated optional textarea keeps name deliveryInstructions and the delivery-notes hint while its native label and computed accessible name say Street address; the separate input with name streetAddress remains the genuine Street address field."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.deliveryInstructions",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-108 focused acquisition to Address, inspect neutral form-control evidence on CO-S003, build form-label-mismatch candidates, and recover only the optional textarea with name deliveryInstructions, the delivery-notes description, and an associated native label source with the exact Street address text segment. The selector-free expectation must reject the clean textarea, the genuine Street address input, and other wrong-label form cases."
+    },
+    {
+      "variant_id": "co-sem-109",
+      "seeded_behavior": "On the Address route, keep the City control in place with unchanged id, name, type, autocomplete, validation, value handling, required state, and focus order, but change its visible label text to State while the separate State control remains correctly labelled State.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"address-city\"]",
+        "label": "State",
+        "autocomplete": "address-level2"
+      },
+      "baseline_behavior": "On the Address route, the City field is labelled City, uses type text, name city, and autocomplete address-level2; the separate State field is labelled State and uses autocomplete address-level1.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-109",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"address-city\"]",
+        "control": {
+          "id": "address-city",
+          "name": "city"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "address-level2"
+        },
+        "attribute_contains": {
+          "label": "State"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "form_context": "Shipping details form.",
+          "purpose_evidence": "The mutated control keeps id address-city, name city, type text, and autocomplete address-level2 while its label says State; the separate control with id address-state, name state, and autocomplete address-level1 also remains labelled State."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.city",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-109 focused acquisition to Address, inspect form-control evidence on the Shipping address state, build form-label-mismatch candidates, and match the City control using selector address-city, id address-city, name city, type text, autocomplete address-level2, and label containing State so it cannot be confused with the genuine State control."
+    },
+    {
+      "variant_id": "co-sem-110",
+      "seeded_behavior": "On the Payment route, keep the Cardholder name control and its visible label in place with unchanged id, name, type, autocomplete, required state, validation, value handling, and focus order, but override only its computed accessible name to Card number while the genuine Card number control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"payment-cardholder\"]",
+        "label": "Cardholder nameRequired",
+        "accessible_name": "Card number",
+        "autocomplete": "cc-name"
+      },
+      "baseline_behavior": "On the Payment route, the Cardholder name field has the visible label and computed accessible name Cardholder name Required, uses id payment-cardholder, name cardholder, type text, autocomplete cc-name, and remains required; the separate Card number field remains correctly identified.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-110",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-cardholder\"]",
+        "control": {
+          "id": "payment-cardholder",
+          "name": "cardholder"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-name",
+          "required": true,
+          "aria_label": "Card number",
+          "accessible_name": "Card number"
+        },
+        "attribute_contains": {
+          "label": "Cardholder name"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form with Card details fieldset.",
+          "purpose_evidence": "The target keeps selector payment-cardholder, id payment-cardholder, name cardholder, autocomplete cc-name, and visible label Cardholder name while its aria-label and computed accessible name say Card number; the separate input payment-cardNumber remains the genuine Card number field."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardholder",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-110 focused acquisition through Address to Payment, inspect neutral form-control evidence on CO-S004, build form-label-mismatch candidates, and match only the Cardholder control using selector payment-cardholder, id payment-cardholder, name cardholder, autocomplete cc-name, visible label containing Cardholder name, aria-label Card number, and computed accessible name Card number so it cannot be confused with the genuine Card number control."
+    },
+    {
+      "variant_id": "co-sem-111",
+      "seeded_behavior": "On the Payment route, keep the Cardholder name control in place with unchanged id, name, type, autocomplete, required state, validation, value handling, and focus order, but change its visible native label text to Card number so its computed accessible name naturally becomes Card number Required while the genuine Card number control remains unchanged.",
+      "expected_candidate": {
+        "candidate_type": "form-label-mismatch",
+        "selection_reason": "form_control_with_label_and_context_evidence",
+        "type": "form-label-mismatch",
+        "selector_hint": "[data-testid=\"payment-cardholder\"]",
+        "label": "Card numberRequired",
+        "accessible_name": "Card numberRequired",
+        "autocomplete": "cc-name"
+      },
+      "baseline_behavior": "On the Payment route, the Cardholder name field has the visible label and computed accessible name Cardholder name Required, uses id payment-cardholder, name cardholder, type text, autocomplete cc-name, and remains required; the separate Card number field remains correctly identified.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-111",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "form_controls",
+        "selector_hint": "[data-testid=\"payment-cardholder\"]",
+        "control": {
+          "id": "payment-cardholder",
+          "name": "cardholder"
+        },
+        "attributes": {
+          "type": "text",
+          "autocomplete": "cc-name",
+          "required": true,
+          "aria_label": "",
+          "accessible_name": "Card numberRequired"
+        },
+        "attribute_contains": {
+          "label": "Card number"
+        },
+        "primary_evidence_key": "form_control",
+        "context": {
+          "route": "/checkout/payment",
+          "document_title": "Payment | Brightlane Checkout",
+          "form_context": "Payment method form with Card details fieldset.",
+          "purpose_evidence": "The target keeps selector payment-cardholder, id payment-cardholder, name cardholder, and autocomplete cc-name while its native visible label and computed accessible name say Card number; the separate input payment-cardNumber remains the genuine Card number field with autocomplete cc-number."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S004 /checkout/payment Payment",
+      "mutation_targets": [
+        {
+          "subject": "checkout.payment.cardholder",
+          "mutation_property": "label_text"
+        }
+      ],
+      "candidate_type": "form-label-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S004"
+        ],
+        "routes": [
+          "/checkout/payment"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels",
+          "criterion": "2.4.6 Headings and Labels"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-111 focused acquisition through Address to Payment, inspect neutral form-control evidence on CO-S004, build form-label-mismatch candidates, and match only the Cardholder control using selector payment-cardholder, id payment-cardholder, name cardholder, autocomplete cc-name, no aria-label, visible label containing Card number, and computed accessible name Card numberRequired so it cannot be confused with either co-sem-110 or the genuine Card number control."
+    }
+  ]
+}

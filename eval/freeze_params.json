@@ -1,0 +1,142 @@
+{
+  "spec": "EVALUATION_SPEC v5.2",
+  "ag_main": {
+    "provider": "openrouter-vision",
+    "model": "openai/gpt-6-luna",
+    "prompt_version": "confirm_v5_vision",
+    "context_mode": "adaptive_v2",
+    "escalation_policy": "uncertain_history_v1",
+    "temperature": "not sent (unsupported by the model on OpenRouter)",
+    "effort": null,
+    "response_cache": "results/cache"
+  },
+  "explorer": {
+    "policy": "llm",
+    "llm_provider": "openrouter",
+    "llm_model": "openai/gpt-6-luna",
+    "use_screenshot": false,
+    "max_states": 100,
+    "max_depth": 5,
+    "max_actions_per_state": 5,
+    "ranked_scan_window": 25,
+    "traversal_strategy": "bfs",
+    "scope_policy": "same_origin",
+    "submission_allow_hosts": [
+      "127.0.0.1",
+      "localhost"
+    ],
+    "network_guard": true,
+    "outcome_completion_per_state": 3,
+    "outcome_completion_max_actions": 150,
+    "outcome_completion_max_new_states": 50,
+    "actions": "click, select, check, radio, fill-and-submit, fill-only field groups, hover, WAI-ARIA keys, Escape on dialogs",
+    "bounds_choice": "dev reach 2026-11-18: base 86/137 (Checkout 69/110); base + completion: Checkout 69/110; wide (k8, n200, d6): Checkout 70/110 -> paper bounds kept, completion pass added"
+  },
+  "change_record": {
+    "threshold": 0.15,
+    "max_incoming_records": 3,
+    "extraction_caps": "links 600, images 400, buttons 400, form controls 400, headings 300"
+  },
+  "mapping": "eval/mappings/taxonomy_sc_rules.yaml",
+  "prices": "eval/prices_2026-11-16.yaml",
+  "intera11y": {
+    "commit": "8dcf06e",
+    "patch": "eval/patches/intera11y-8dcf06e-omit-temperature.patch",
+    "condition": "full",
+    "effort": "high",
+    "patches": [
+      "eval/patches/intera11y-8dcf06e-omit-temperature.patch",
+      "eval/patches/intera11y-8dcf06e-accessgraph-system.patch",
+      "eval/patches/intera11y-8dcf06e-w4a-rubrics.patch"
+    ]
+  },
+  "freeze_version": 13,
+  "intera11y_plus": {
+    "rubrics": [
+      "2.4.2",
+      "2.4.6"
+    ],
+    "approved": "2026-11-16",
+    "review_file": "eval/INTERA11Y_PLUS_RUBRICS.md"
+  },
+  "external_mapping": "eval/mappings/external_act_rampa.yaml",
+  "rampa": {
+    "commit": "df32363",
+    "patch": "eval/patches/rampa-df32363-accessgraph-row.patch",
+    "model": "openrouter:openai/gpt-6-luna"
+  },
+  "dev_round2": {
+    "decided": "2026-11-16",
+    "split": "results/holdout_split.json",
+    "dev_check": "results/dev/scores/ag-main__openai-gpt-6-luna__round2.json (F1 0.974; fix1 0.978)",
+    "amendment": "eval/PREREGISTRATION.md section 5"
+  },
+  "v4_note": "restore of the start state after a fresh reload accepts URL+route+title (D5 apps with live data); check-page (D2/D3/D6) never restores a state, so the v3 external results are unchanged under v4",
+  "v5_note": "highlight boxes clipped to the screenshot (a crash on elements outside it); verdicts elsewhere unchanged",
+  "single_page_mode": {
+    "explore": {
+      "max_states": 8,
+      "max_depth": 2,
+      "max_actions_per_state": 6
+    },
+    "allow_hosts": [
+      "127.0.0.1",
+      "localhost",
+      "file:"
+    ],
+    "focus": "the case's element first",
+    "judge": "AG-main (adaptive_v2 + escalation)",
+    "judged": "the case's element once; page cases at depth <= 1",
+    "destination_peek": "read-only GET of link targets without a recorded outcome",
+    "time_budget": "when a harness limits the time per page (ACCESSGRAPH_TIME_BUDGET_S; Rampa harness 180 s -> 165 s), each call gets at most the time left, calls after the limit count as uncertain, and the follow-up is skipped with < 30 s left; no limit in InterA11y harness (D2) or on apps"
+  },
+  "uncertain_followup": {
+    "evidence": "destination peek, element pressed on a fresh load (allowed hosts), image render",
+    "samples": 3,
+    "rule": "more decided votes wins; tie -> uncertain"
+  },
+  "model_calls": {
+    "timeout_s": 60,
+    "timeout_scope": "whole request (not only each socket read)",
+    "retry": "one retry after a timeout",
+    "why": "v6 D6: six pages lost to model calls that stalled for minutes while the reply trickled in (normal answers ~4 s, slowest seen 40 s)"
+  },
+  "v8_changes": {
+    "link_context": "a link in a nested list also gets the parent list item text (programmatic_context.parent_list_items; WCAG technique H81); guidance names it",
+    "form_labels": "guidance: a generic label naming no purpose ('Field 1', 'Input', 'Text', 'Value', 'Box') is a violation even if the field's purpose is not otherwise grounded (parallel to the heading guidance)",
+    "dev_check": "F1 0.974, P 1.000 after each change (unchanged)"
+  },
+  "v9_changes": {
+    "same_name_links": "guidance: an equivalent resource is the same content in the same form; different formats or versions of one item are different destinations",
+    "dev_check": "F1 0.974, P 1.000"
+  },
+  "v10_changes": {
+    "recordings": "single-page recordings are reused only by the code that made them (hash of the frozen files in recorded_with.json); older ones are set aside and the page is recorded again",
+    "destination_peek": "saved local HTML pages (file://) are peeked like web pages; destinations of other links with the same name are peeked too (peeked_destination); headings are the rendered ones; main_text added",
+    "same_name_links": "guidance: removed the example 'two ways to contact the same organisation' (contradicts ACT fd3a94); equivalent = same main content even if navigation or breadcrumbs differ",
+    "practice_check": "D2 practice half (dev_round2, $0.49): expert F1 0.917 (v9 0.870), conformance 0.901 (v9 0.765)"
+  },
+  "v11_changes": {
+    "jsonl_line_separators": "candidate files are written ASCII-escaped and read by newline only, so page text with U+2028 cannot split a JSON line (D2 v10 run 1 case C629 failed on this); v10 recordings re-marked for v11 (recorded_with_v10 in recorded_with.json): recording and candidate code are unchanged"
+  },
+  "v12_changes": {
+    "decision": "PI 2026-11-18 ~19:55: fix round 4 from a failure analysis on all datasets (D2 as released, D3, D6, thesis dev cases, our 121 cases); general WCAG/ACT-based fixes only",
+    "hidden_images": "recorder records images shown to sighted users but hidden from assistive technologies or marked decorative (aria-hidden, alt='', role none/presentation, svg/canvas without image role or name, CSS background images; >= 40x40 px); image candidates for them unless inside a named link/button; guidance: violation when informative (WCAG 1.1.1, F3)",
+    "visual_error_fields": "form controls carry visual error signals (error/flag/attention class on field, wrapper, label, legend or fieldset; warning icon; red border); a field shown in error only visually is a 3.3.1 candidate (F81)",
+    "language_of_text_alternatives": "alt/aria-label/aria-labelledby names count as text in the language of the element they name (ACT ucwvc8, off6ek): page text without own lang and passage text include them; a page whose only text is a text alternative gets a 3.1.1 candidate",
+    "form_values": "form controls record their current value (never passwords); a control's outcome lists fields changed and fields that kept a value",
+    "scroll_before_recording": "single-page mode scrolls the page once before exploring (lazy content)",
+    "guidance": "error messages (a message stating a requirement the value fails is correct; message tied to the wrong field; visual-only errors), links (error/placeholder or generic entry-page destinations are not mismatch evidence except for in-page links; URL path as evidence when the destination cannot load), images (complex images naming only the subject; main point suffices; file name/src when the image did not load; hidden informative images), buttons/widgets (judge recorded changes, not the app's status message), autocomplete (billing/shipping tokens), language (text alternatives)"
+  },
+  "v13_changes": {
+    "decision": "PI 2026-11-19 ~14:00: fix round 5, all fixes from the re-analysis of D2 (expert: saved pages erased by their own scripts; conformance: never-judged cases and a hidden-image regression); general WCAG/ACT-based fixes only",
+    "saved_pages_as_saved": "single-page mode, saved pages (files): when the page's own scripts erase its saved content offline (with scripts after 6 s < 50% of the saved elements or text), a copy of the saved file without <script> elements is recorded (with <base> to the original)",
+    "saved_images": "saved pages: lazy images load at once; a <picture> source pointing online gives way to the <img>'s saved copy",
+    "lookalike_letters": "recorder: words mixing Latin with look-alike Greek/Cyrillic letters; image-alt candidates (WCAG 1.1.1 Understanding: characters used for their visual shape are non-text content)",
+    "small_icons": "recorder: CSS background icons 8-40 px next to text, outside links/buttons (at most 10), as hidden images",
+    "canvas_svg_exposure": "canvas without an image role is hidden even with aria-label; svg exposed through named role=img/graphics-symbol parts is not hidden",
+    "hidden_focusable_links": "recorder: links inside aria-hidden that keyboard users can focus; link candidates (ACT 'Link has non-empty accessible name')",
+    "hidden_error_messages": "recorder: error messages referenced by a field or its submit control but not shown, with the form's values; error-message candidates when a field is filled in",
+    "guidance": "images (hidden images: illustrative/mood photos are decorative; image in a control with its own text may name the image; look-alike letters; role=img placeholders are what the page shows), links (aria-label replacing visible text with a generic phrase; hidden focusable links), errors (hidden error message while a filled-in value fails it; hint present before the error does not identify it)"
+  }
+}

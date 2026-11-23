@@ -1,0 +1,12 @@
+{
+  "expert": {
+    "cases": 129,
+    "positives": 69,
+    "parse": "results/d2/parse-expert-full"
+  },
+  "conformance": {
+    "cases": 394,
+    "positives": 151,
+    "parse": "results/d2/parse-conformance-full"
+  }
+}

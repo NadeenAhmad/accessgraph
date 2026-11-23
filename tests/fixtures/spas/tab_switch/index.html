@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tab switch fixture</title>
+    <style>
+      [role="tab"] {
+        display: inline-block;
+        padding: 8px 10px;
+        border: 1px solid #555;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Tab switch fixture</h1>
+      <div role="tablist" aria-label="Fixture tabs">
+        <div id="overview-tab" role="tab" tabindex="0" aria-selected="true" aria-controls="overview-panel">Overview tab</div>
+        <div id="details-tab" role="tab" tabindex="0" aria-selected="false" aria-controls="details-panel">Details tab</div>
+      </div>
+      <section id="overview-panel" role="tabpanel">
+        <h2>Overview panel</h2>
+      </section>
+      <section id="details-panel" role="tabpanel" hidden>
+        <h2>Details panel</h2>
+      </section>
+    </main>
+    <script>
+      const overviewTab = document.querySelector("#overview-tab");
+      const detailsTab = document.querySelector("#details-tab");
+      const overviewPanel = document.querySelector("#overview-panel");
+      const detailsPanel = document.querySelector("#details-panel");
+
+      function activate(which) {
+        const details = which === "details";
+        overviewTab.setAttribute("aria-selected", String(!details));
+        detailsTab.setAttribute("aria-selected", String(details));
+        overviewPanel.hidden = details;
+        detailsPanel.hidden = !details;
+      }
+
+      overviewTab.addEventListener("click", () => activate("overview"));
+      detailsTab.addEventListener("click", () => activate("details"));
+    </script>
+  </body>
+</html>

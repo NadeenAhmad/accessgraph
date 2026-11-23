@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dropdown select fixture</title>
+  </head>
+  <body>
+    <main>
+      <h1>Dropdown select fixture</h1>
+      <label for="choice">Choice</label>
+      <select id="choice" name="choice">
+        <option value="">Choose</option>
+        <option value="alpha">Alpha</option>
+        <option value="beta">Beta</option>
+      </select>
+      <p id="status">No option selected</p>
+    </main>
+    <script>
+      document.querySelector("#choice").addEventListener("change", (event) => {
+        document.querySelector("#status").textContent = `Selected ${event.target.value}`;
+      });
+    </script>
+  </body>
+</html>

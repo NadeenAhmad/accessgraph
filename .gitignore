@@ -1,0 +1,42 @@
+﻿# Python environments
+.venv/
+venv/
+
+# Python cache/bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Test and tooling cache
+.pytest_cache/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+.vite/
+
+# Generated AccessGraph runs and local experiment outputs
+runs/
+runs_*/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+crawler_config.*.json
+
+# Local scratch files
+.tmp_*
+.tmp-*
+
+# W4A eval outputs that stay local (paid-response cache is kept, see eval/PROGRESS.md)
+results/tiny/
+results/cost_ledger.lock
+results/cost_ledger.tmp
+results/d5/export/items/
+
+# Rebuilt by `python -m eval.reproduce` (compare with results/PAPER_NUMBERS.md)
+results/d3d6-final/
+results/PAPER_VALUES-final.md
+# Large data: in the data archive (Zenodo / GitHub release), not in git
+results/cache/

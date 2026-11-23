@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form mode switcher exposure</title>
+  </head>
+  <body>
+    <main>
+      <h1>Form mode switcher</h1>
+      <p id="mode-status">No form mode selected.</p>
+      <button id="contact-mode" type="button">Show contact form</button>
+      <button id="profile-mode" type="button">Show profile form</button>
+
+      <section id="contact-panel" hidden>
+        <h2>Contact form</h2>
+        <form>
+          <label for="contact-name">Full name</label>
+          <input id="contact-name" name="contact_name" autocomplete="name" value="Avery Lee">
+          <label for="contact-email">Email address</label>
+          <input id="contact-email" name="contact_email" type="email" autocomplete="email" value="avery@example.test">
+          <button type="button">Save contact details</button>
+        </form>
+      </section>
+
+      <section id="profile-panel" hidden>
+        <h2>Profile form</h2>
+        <form>
+          <label for="profile-org">Organization</label>
+          <input id="profile-org" name="organization" autocomplete="organization" value="AccessGraph Lab">
+          <label for="profile-title">Job title</label>
+          <input id="profile-title" name="job_title" autocomplete="organization-title" value="Researcher">
+          <button type="button">Save profile details</button>
+        </form>
+      </section>
+    </main>
+    <script>
+      const contactPanel = document.querySelector("#contact-panel");
+      const profilePanel = document.querySelector("#profile-panel");
+      const status = document.querySelector("#mode-status");
+
+      document.querySelector("#contact-mode").addEventListener("click", () => {
+        contactPanel.hidden = false;
+        profilePanel.hidden = true;
+        status.textContent = "Contact form visible.";
+      });
+
+      document.querySelector("#profile-mode").addEventListener("click", () => {
+        contactPanel.hidden = true;
+        profilePanel.hidden = false;
+        status.textContent = "Profile form visible.";
+      });
+    </script>
+  </body>
+</html>

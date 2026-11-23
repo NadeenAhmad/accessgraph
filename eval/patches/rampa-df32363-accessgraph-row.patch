@@ -1,0 +1,99 @@
+diff --git a/bench/lib/tools.mjs b/bench/lib/tools.mjs
+index 45e3469..8694ed4 100644
+--- a/bench/lib/tools.mjs
++++ b/bench/lib/tools.mjs
+@@ -86,6 +86,13 @@ export const TOOLS = {
+     review: 'findings below the threshold and items it sends to review',
+     mapping: 'the criterion of each finding',
+   },
++  accessgraph: {
++    label: 'AccessGraph, single-page mode (W4A evaluation)',
++    module: '../tools/accessgraph.mjs',
++    failure: 'candidates the judge answers violation',
++    review: 'candidates the judge answers uncertain',
++    mapping: 'the success criteria of each AccessGraph type (eval/mappings/taxonomy_sc_rules.yaml)',
++  },
+ }
+ 
+-export const DEFAULT_ORDER = ['axe', 'lighthouse', 'pa11y', 'pa11y-axe', 'ibm', 'alfa', 'qualweb', 'rampa', 'rampa-gemma', 'rampa-probes']
++export const DEFAULT_ORDER = ['axe', 'lighthouse', 'pa11y', 'pa11y-axe', 'ibm', 'alfa', 'qualweb', 'rampa', 'rampa-gemma', 'rampa-probes', 'accessgraph']
+diff --git a/bench/tools/accessgraph.mjs b/bench/tools/accessgraph.mjs
+new file mode 100644
+index 0000000..dfdc533
+--- /dev/null
++++ b/bench/tools/accessgraph.mjs
+@@ -0,0 +1,74 @@
++// AccessGraph's single-page mode (W4A 2027 evaluation; a local addition, not part of Rampa).
++// Each page is recorded once as a single state and every semantic candidate on it is judged by AccessGraph's frozen
++// judge in isolated context (`eval/adapters/ag_single.py` in the AccessGraph repository). A judged violation is a
++// definite failure for the criteria of its type; an uncertain verdict goes to review.
++// Environment: ACCESSGRAPH_HOME (the AccessGraph repository), optionally ACCESSGRAPH_PYTHON and ACCESSGRAPH_STAGE.
++import { spawn } from 'node:child_process'
++import { createHash } from 'node:crypto'
++import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
++import { tmpdir } from 'node:os'
++import { join } from 'node:path'
++import { addHit } from '../lib/env.mjs'
++
++const HOME = process.env.ACCESSGRAPH_HOME
++const PYTHON = process.env.ACCESSGRAPH_PYTHON ?? (HOME ? join(HOME, '.venv', 'bin', 'python') : undefined)
++const STAGE = process.env.ACCESSGRAPH_STAGE ?? 'external'
++const DATASET = process.env.ACCESSGRAPH_DATASET ?? 'w4a-act'
++
++/** Criteria AccessGraph's taxonomy types map to (the frozen mapping file). */
++const CLAIMED = ['1.1.1', '1.2.2', '1.3.1', '1.3.5', '2.4.2', '2.4.4', '2.4.6', '3.1.1', '3.1.2', '3.3.1', '4.1.2']
++
++function runPython(args) {
++  return new Promise((resolveRun, reject) => {
++    const child = spawn(PYTHON, args, { cwd: HOME, stdio: ['ignore', 'pipe', 'pipe'] })
++    let stderr = ''
++    child.stderr.on('data', (chunk) => (stderr += chunk))
++    child.stdout.on('data', () => {})
++    child.on('error', reject)
++    child.on('close', (code) => resolveRun({ code, stderr }))
++  })
++}
++
++/** The page's record in the bench's format, from AccessGraph's result. */
++export function readAccessGraph(result) {
++  const record = { fail: {}, review: {}, failRules: [], other: 0 }
++  for (const row of result.rows ?? []) {
++    const key = row.outcome === 'violation' ? 'fail' : row.outcome === 'uncertain' ? 'review' : undefined
++    if (!key) continue
++    if (key === 'fail') record.failRules.push(row.type)
++    for (const criterion of row.sc ?? []) addHit(record[key], criterion, row.type)
++  }
++  record.failRules = [...new Set(record.failRules)]
++  record.usage = { calls: result.calls ?? 0, paidCalls: result.paid_calls ?? 0, costUsd: result.cost_usd ?? 0, candidates: result.candidates ?? 0 }
++  return record
++}
++
++export async function setup() {
++  if (!HOME || !PYTHON) throw new Error('Set ACCESSGRAPH_HOME to the AccessGraph repository')
++  return {
++    versions: { accessgraph: 'w4a-eval (frozen; see eval/FREEZE.json)', judge: 'AG-main, isolated context' },
++    claimed: CLAIMED,
++    notes: ['AccessGraph judges semantic candidates only; missing or invalid markup is left to rule checkers.'],
++    async worker() {
++      return {
++        async check(page) {
++          const slug = `${page.id}`.replace(/[^A-Za-z0-9]+/g, '-').slice(-80) + '-' + createHash('sha1').update(page.url).digest('hex').slice(0, 8)
++          const dir = await mkdtemp(join(tmpdir(), 'accessgraph-'))
++          try {
++            const request = join(dir, 'request.json')
++            const output = join(dir, 'result.json')
++            await writeFile(request, JSON.stringify({ url: page.url, case_id: page.id, stage: STAGE, run_idx: 1, out_dir: join(HOME, 'runs', DATASET, 'pages', slug) }))
++            const { code, stderr } = await runPython(['-m', 'eval.adapters.ag_single', request, output])
++            const result = JSON.parse(await readFile(output, 'utf8').catch(() => '{}'))
++            if (code !== 0 || result.state !== 'complete') throw new Error(result.error ?? stderr.split('\n').filter(Boolean).pop() ?? `exit ${code}`)
++            return readAccessGraph(result)
++          } finally {
++            await rm(dir, { recursive: true, force: true })
++          }
++        },
++        async close() {},
++      }
++    },
++    async close() {},
++  }
++}

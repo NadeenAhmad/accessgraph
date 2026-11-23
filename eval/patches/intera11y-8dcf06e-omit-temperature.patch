@@ -1,0 +1,14 @@
+diff --git a/runtime/intera11y/src/judge/openrouter.js b/runtime/intera11y/src/judge/openrouter.js
+index d938b07..de9dd1e 100644
+--- a/runtime/intera11y/src/judge/openrouter.js
++++ b/runtime/intera11y/src/judge/openrouter.js
+@@ -142,7 +142,8 @@ function makeOpenRouterClient({ apiKey = process.env.OPENROUTER_API_KEY, model,
+     let used = 0, lastFinish = null, argRetries = 0, answerRepairs = 0;
+     for (let turn = 0; turn < toolBudget + 5; turn++) {
+       const allowTools = decls && used < toolBudget;
+-      const body = { model, messages, temperature: 0, usage: { include: true }, reasoning: { effort: reasoning } };
++      // W4A local patch: models that reject temperature (Haiku 5.5, GPT-6 Luna) get none; see eval/patches in AccessGraph
++      const body = { model, messages, ...(process.env.W4A_OMIT_TEMPERATURE === "1" ? {} : { temperature: 0 }), usage: { include: true }, reasoning: { effort: reasoning } };
+       if (maxOutputTokens != null) body.max_tokens = maxOutputTokens;
+ 
+       if (responseSchema && !allowTools) { body.response_format = { type: 'json_schema', json_schema: { name: 'answer', strict: true, schema: responseSchema } }; }

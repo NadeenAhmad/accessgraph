@@ -1,0 +1,1476 @@
+{
+  "act_cases": 88,
+  "pairs": 51,
+  "tools": {
+    "axe": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      }
+    },
+    "alfa": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      }
+    },
+    "qualweb": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 5,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 6,
+        "fp": 4,
+        "fn": 24,
+        "tn": 29,
+        "precision": 0.6,
+        "recall": 0.2,
+        "f1": 0.3,
+        "recall_ci": [
+          0.0950510717728987,
+          0.3730569641314825
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 7,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 2,
+            "tn": 2
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 5,
+            "fp": 3,
+            "fn": 0,
+            "tn": 0
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 3,
+        "pairs_intact_flagged": 2,
+        "pairs_corrupted_flagged": 5
+      }
+    },
+    "ibm": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 5,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 6,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      }
+    },
+    "pa11y": {
+      "definite": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 30,
+        "tn": 32,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 2,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "tn": 2
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 2,
+        "pairs_intact_flagged": 2,
+        "pairs_corrupted_flagged": 4
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 30,
+        "tn": 32,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 1,
+            "fn": 3,
+            "tn": 2
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 2,
+        "pairs_intact_flagged": 3,
+        "pairs_corrupted_flagged": 4
+      }
+    },
+    "pa11y-axe": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      }
+    },
+    "rampa": {
+      "definite": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 0,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 0
+      },
+      "with review": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 1,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 1
+      },
+      "with low": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 30,
+        "tn": 33,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "recall_ci": [
+          0.0,
+          0.11351339317396876
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 1,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 1
+      }
+    },
+    "rampa-gemma": {
+      "definite": {
+        "tp": 15,
+        "fp": 0,
+        "fn": 15,
+        "tn": 33,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "recall_ci": [
+          0.33154125640533766,
+          0.6684587435946623
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 3,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 36,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 36
+      },
+      "with review": {
+        "tp": 24,
+        "fp": 1,
+        "fn": 6,
+        "tn": 32,
+        "precision": 0.96,
+        "recall": 0.8,
+        "f1": 0.8727272727272728,
+        "recall_ci": [
+          0.6269430358685175,
+          0.9049489282271013
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 1,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 4,
+            "fp": 1,
+            "fn": 0,
+            "tn": 5
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 49,
+        "pairs_intact_flagged": 1,
+        "pairs_corrupted_flagged": 50
+      },
+      "with low": {
+        "tp": 17,
+        "fp": 0,
+        "fn": 13,
+        "tn": 33,
+        "precision": 1.0,
+        "recall": 0.5666666666666667,
+        "f1": 0.7234042553191489,
+        "recall_ci": [
+          0.3919730700081361,
+          0.7262251442353347
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 1,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 3,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 36,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 36
+      }
+    },
+    "rampa-probes": {
+      "definite": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 20,
+        "tn": 33,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "recall_ci": [
+          0.19230498083676134,
+          0.5121994835545616
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 31,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 1,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 3,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 17,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 17
+      },
+      "with review": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 17,
+        "tn": 33,
+        "precision": 1.0,
+        "recall": 0.43333333333333335,
+        "f1": 0.6046511627906976,
+        "recall_ci": [
+          0.2737748557646652,
+          0.6080269299918639
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 31,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 1,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 27,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 27
+      },
+      "with low": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 20,
+        "tn": 33,
+        "precision": 1.0,
+        "recall": 0.3333333333333333,
+        "f1": 0.5,
+        "recall_ci": [
+          0.19230498083676134,
+          0.5121994835545616
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 4,
+        "errors": 31,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 3,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 1,
+            "tn": 3
+          },
+          "off6ek": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 3,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 17,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 17
+      }
+    },
+    "accessgraph": {
+      "definite": {
+        "tp": 29,
+        "fp": 1,
+        "fn": 1,
+        "tn": 32,
+        "precision": 0.9666666666666667,
+        "recall": 0.9666666666666667,
+        "f1": 0.9666666666666667,
+        "recall_ci": [
+          0.8332960900859082,
+          0.9940914096183874
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 1,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 0,
+            "tn": 2
+          },
+          "off6ek": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 1,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 50,
+        "pairs_intact_flagged": 0,
+        "pairs_corrupted_flagged": 50
+      },
+      "with review": {
+        "tp": 29,
+        "fp": 1,
+        "fn": 1,
+        "tn": 32,
+        "precision": 0.9666666666666667,
+        "recall": 0.9666666666666667,
+        "f1": 0.9666666666666667,
+        "recall_ci": [
+          0.8332960900859082,
+          0.9940914096183874
+        ],
+        "inapplicable": 25,
+        "inapplicable_flagged": 3,
+        "errors": 0,
+        "per_rule": {
+          "c4a8a4": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "qt1vmo": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 0,
+            "tn": 2
+          },
+          "off6ek": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 1,
+            "tn": 5
+          },
+          "b49b2e": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0,
+            "tn": 6
+          },
+          "ucwvc8": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 4
+          },
+          "36b590": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0,
+            "tn": 3
+          },
+          "5effbb": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0,
+            "tn": 9
+          }
+        },
+        "pairs_told_apart": 49,
+        "pairs_intact_flagged": 1,
+        "pairs_corrupted_flagged": 50
+      }
+    }
+  },
+  "accessgraph_cost_usd": 0.0448
+}

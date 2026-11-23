@@ -1,0 +1,536 @@
+{
+  "candidate_type": "landmark-purpose-mismatch",
+  "variants": [
+    {
+      "variant_id": "co-sem-052",
+      "seeded_behavior": "On the Products route, keep AppNav as a native nav landmark containing Products and Cart route links with unchanged hrefs and current-route behavior, but change its aria-label and computed accessible name to Order totals.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "nav:nth-of-type(1)",
+        "tag": "nav",
+        "accessible_name": "Order totals",
+        "aria_label": "Order totals"
+      },
+      "baseline_behavior": "AppNav renders a native nav landmark with aria-label Checkout routes and contains Products and Cart route links to /products and /cart.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-052",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "nav:nth-of-type(1)",
+        "attributes": {
+          "tag": "nav",
+          "text": "Products Cart",
+          "accessible_name": "Order totals",
+          "aria_label": "Order totals"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "implicit_role": "navigation",
+          "contained_links": "Products link href /products with aria-current page; Cart link href /cart.",
+          "non_order_totals_evidence": "The landmark contains route-navigation links only, with no subtotal, total, cart-summary, or checkout-action content.",
+          "actual_purpose": "Checkout route navigation"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.navigation.routes",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-052 focused acquisition, inspect landmark evidence on the Products state, build landmark-purpose candidates, and match the AppNav candidate with native nav tag, aria-label Order totals, computed accessible name Order totals, contained Products and Cart route links, and unchanged route-navigation behavior."
+    },
+    {
+      "variant_id": "co-sem-053",
+      "seeded_behavior": "On the Products route, keep the Featured products section as a named product-browsing region with the same visible heading, category tabs, product cards, and add-to-cart controls, but replace its accessible landmark name with Checkout routes.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"products-list-region\"]",
+        "tag": "section",
+        "accessible_name": "Checkout routes",
+        "aria_label": "Checkout routes"
+      },
+      "baseline_behavior": "The Products route exposes the Featured products section as a named region via aria-labelledby=product-list-heading, with visible heading Featured products, category tabs, product cards, and add-to-cart controls.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-053",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"products-list-region\"]",
+        "attributes": {
+          "tag": "section",
+          "accessible_name": "Checkout routes",
+          "aria_label": "Checkout routes"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "implicit_role": "region",
+          "contained_heading": "Featured products",
+          "contained_product_content": "Desk lamp, Notebook set, Cable organizer, category tabs, and add-to-cart controls.",
+          "actual_purpose": "Featured product browsing region"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.products.featuredRegion",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-053 focused acquisition, inspect landmark evidence on the Products state, build landmark-purpose candidates, and match the Featured products region candidate with section tag, aria-label Checkout routes, computed accessible name Checkout routes, visible Featured products heading, category tabs, product cards, and unchanged product-browsing behavior."
+    },
+    {
+      "variant_id": "co-sem-054",
+      "seeded_behavior": "On the Cart route, keep the order-totals aside with aria-label Order totals, unchanged order summary content, preferences, and checkout controls, but expose the landmark with explicit role search.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"cart-totals-region\"]",
+        "tag": "aside",
+        "role": "search",
+        "accessible_name": "Order totals",
+        "aria_label": "Order totals"
+      },
+      "baseline_behavior": "The Cart route exposes the order totals panel as a native aside/complementary landmark with aria-label Order totals, containing cart summary, totals, preferences, delivery information controls, and the Continue to address action.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-054",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"cart-totals-region\"]",
+        "attributes": {
+          "tag": "aside",
+          "role": "search",
+          "accessible_name": "Order totals",
+          "aria_label": "Order totals"
+        },
+        "attribute_contains": {
+          "text": "Order total"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "baseline_implicit_role": "complementary",
+          "contained_order_summary": "Cart summary with items, subtotal, shipping, and order total.",
+          "contained_controls": "Gift receipt, Save cart, Delivery estimate, Shipping information, and Continue to address controls.",
+          "non_search_evidence": "The landmark contains order-total and checkout controls only, with no search input, query behavior, or search results.",
+          "actual_purpose": "Cart order totals and checkout summary"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.cart.orderTotals",
+          "mutation_property": "role"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-054 focused acquisition, inspect landmark evidence on the Cart state, build landmark-purpose candidates, and match the order-totals aside candidate with aside tag, explicit role search, aria-label Order totals, computed accessible name Order totals, cart summary/order total content, and unchanged Cart behavior."
+    },
+    {
+      "variant_id": "co-sem-055",
+      "seeded_behavior": "On the Products route, keep the same visible footer/site content and placement, but expose that site-information area as a valid search landmark using a neutral host with role search.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"app-footer\"]",
+        "tag": "div",
+        "role": "search"
+      },
+      "baseline_behavior": "The Checkout app shell renders a top-level native footer after main content with no explicit role or ARIA label, exposing normal contentinfo semantics for AccessGraph Shop, demo checkout experience, and copyright text.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-055",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"app-footer\"]",
+        "attributes": {
+          "tag": "div",
+          "role": "search"
+        },
+        "attribute_contains": {
+          "text": "AccessGraph Shop"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "baseline_implicit_role": "contentinfo",
+          "valid_host_strategy": "Neutral app-footer host with role search preserves visible footer content and placement while avoiding a native footer host/role conflict.",
+          "contained_footer_content": "AccessGraph Shop, Demo checkout experience, and copyright text.",
+          "non_search_evidence": "The landmark contains footer/site information only, with no search input, query behavior, or search results.",
+          "actual_purpose": "Site footer contentinfo"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.footer.site",
+          "mutation_property": "role"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-055 focused acquisition, inspect landmark evidence on the Products state, build landmark-purpose candidates, and match the app-footer candidate with neutral div tag, explicit role search, AccessGraph Shop footer content, demo/copyright content, and unchanged visual footer placement."
+    },
+    {
+      "variant_id": "co-sem-056",
+      "seeded_behavior": "On the Products route, keep the top-level native footer as a contentinfo landmark with unchanged AccessGraph Shop, demo-experience, and copyright content, but give it the accessible landmark name Checkout routes.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"app-footer\"]",
+        "tag": "footer",
+        "accessible_name": "Checkout routes",
+        "aria_label": "Checkout routes"
+      },
+      "baseline_behavior": "The Checkout app shell renders a top-level native footer after main content with no explicit role or ARIA label, exposing normal contentinfo semantics for AccessGraph Shop, demo checkout experience, and copyright text.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-056",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"app-footer\"]",
+        "attributes": {
+          "tag": "footer",
+          "accessible_name": "Checkout routes",
+          "aria_label": "Checkout routes"
+        },
+        "attribute_contains": {
+          "text": "AccessGraph Shop"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/products",
+          "document_title": "Products | Brightlane Checkout",
+          "implicit_role": "contentinfo",
+          "contained_footer_content": "AccessGraph Shop, Demo checkout experience, and copyright text.",
+          "non_navigation_evidence": "The landmark contains footer/site information only, with no Products or Cart route links.",
+          "actual_purpose": "Site footer contentinfo"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S001 /products Products",
+      "mutation_targets": [
+        {
+          "subject": "checkout.footer.site",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S001"
+        ],
+        "routes": [
+          "/products"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-056 focused acquisition, inspect landmark evidence on the Products state, build landmark-purpose candidates, and match the footer/contentinfo candidate with footer tag, aria-label Checkout routes, computed accessible name Checkout routes, AccessGraph Shop footer content, and unchanged footer placement and contentinfo semantics."
+    },
+    {
+      "variant_id": "co-sem-116",
+      "seeded_behavior": "After normal Products to Cart navigation, keep AppNav as a native nav landmark containing unchanged Products and Cart route links with normal current-route behavior, but change its aria-label and computed accessible name to Checkout progress. Keep the separate Checkout progress named region, heading, workflow steps, and current-step semantics unchanged.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "nav:nth-of-type(1)",
+        "tag": "nav",
+        "accessible_name": "Checkout progress",
+        "aria_label": "Checkout progress"
+      },
+      "baseline_behavior": "On the Cart route, AppNav renders a native nav landmark with aria-label Checkout routes and contains Products and Cart route links, while a separate section named Checkout progress exposes the checkout workflow steps as a region.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-116",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "nav:nth-of-type(1)",
+        "attributes": {
+          "tag": "nav",
+          "text": "Products Cart",
+          "accessible_name": "Checkout progress",
+          "aria_label": "Checkout progress"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "implicit_role": "navigation",
+          "contained_links": "Products link href /products; Cart link href /cart with aria-current page.",
+          "neighboring_progress_landmark": "A separate region named Checkout progress contains Cart Current step, Shipping address Not started, Payment Not started, and Review Not started.",
+          "actual_purpose": "Checkout route navigation"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.navigation.routes",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-116 focused acquisition, inspect landmark evidence on the Cart state, build landmark-purpose candidates, and match only the AppNav candidate by Cart state, native nav tag, stable selector, aria-label Checkout progress, computed accessible name Checkout progress, and contained Products and Cart route links. Confirm the separate section/region named Checkout progress remains unchanged and does not satisfy the expected nav candidate."
+    },
+    {
+      "variant_id": "co-sem-117",
+      "seeded_behavior": "After normal Products to Cart navigation, keep the Checkout progress section as a region containing unchanged Cart, Shipping address, Payment, and Review step states with Cart as the current step, but change its computed accessible name from Checkout progress to Order totals. Keep the separate Order totals complementary landmark and route navigation unchanged.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"checkout-progress\"]",
+        "tag": "section",
+        "accessible_name": "Order totals",
+        "aria_label": "Order totals"
+      },
+      "baseline_behavior": "On the Cart route, a section named Checkout progress exposes the checkout workflow steps as a region with Cart as the current step, while a separate aside named Order totals exposes the complementary pricing summary.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-117",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "helpful_not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"checkout-progress\"]",
+        "attributes": {
+          "tag": "section",
+          "accessible_name": "Order totals",
+          "aria_label": "Order totals"
+        },
+        "attribute_contains": {
+          "text": "Cart"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/cart",
+          "document_title": "Cart | Brightlane Checkout",
+          "implicit_role": "region",
+          "contained_progress_steps": "Cart Current step; Shipping address Not started; Payment Not started; Review Not started.",
+          "neighboring_order_totals_landmark": "A separate aside/complementary landmark named Order totals contains Cart summary, Items, Subtotal, Shipping, Order total, and checkout controls.",
+          "actual_purpose": "Checkout workflow progress"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S002 /cart Cart",
+      "mutation_targets": [
+        {
+          "subject": "checkout.progress",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S002"
+        ],
+        "routes": [
+          "/cart"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-117 focused acquisition, inspect landmark evidence on the Cart state, build landmark-purpose candidates, and match only the Checkout progress candidate by Cart state, stable checkout-progress test ID, native section tag, aria-label Order totals, computed accessible name Order totals, and contained workflow-step text. Confirm the separate aside/complementary landmark named Order totals remains unchanged and does not satisfy the expected progress candidate."
+    },
+    {
+      "variant_id": "co-sem-118",
+      "seeded_behavior": "After normal Products to Cart to Shipping address navigation, keep the Address order-totals aside as a complementary landmark containing the unchanged Cart summary, item count, subtotal, shipping, and order total, but change its aria-label and computed accessible name from Order totals to Shipping details. Keep the separate Shipping details region, address form, and page structure unchanged.",
+      "expected_candidate": {
+        "candidate_type": "landmark-purpose-mismatch",
+        "selection_reason": "visible_landmark_with_role_and_context_evidence",
+        "type": "landmark-purpose-mismatch",
+        "selector_hint": "[data-testid=\"address-totals-region\"]",
+        "tag": "aside",
+        "accessible_name": "Shipping details",
+        "aria_label": "Shipping details"
+      },
+      "baseline_behavior": "On the Shipping address route, the native aside/complementary landmark is named Order totals and contains the checkout pricing summary, while a separate section/region named Shipping details contains the shipping-address form.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-118",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "selector_hint": "[data-testid=\"address-totals-region\"]",
+        "attributes": {
+          "tag": "aside",
+          "accessible_name": "Shipping details",
+          "aria_label": "Shipping details"
+        },
+        "attribute_contains": {
+          "text": "Cart summary"
+        },
+        "bucket": "landmarks",
+        "primary_evidence_key": "landmark",
+        "context": {
+          "route": "/checkout/address",
+          "document_title": "Shipping address | Brightlane Checkout",
+          "implicit_role": "complementary",
+          "contained_order_summary": "Cart summary with 1 item, Subtotal $32.00, Shipping $5.00, and Order total $37.00.",
+          "neighboring_shipping_details_landmark": "A separate section/region named Shipping details contains the shipping-address form and Full name, Email, Street address, City, State, and ZIP code fields.",
+          "actual_purpose": "Address-step order totals and checkout pricing summary"
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S003 /checkout/address Shipping address",
+      "mutation_targets": [
+        {
+          "subject": "checkout.address.orderTotals",
+          "mutation_property": "accessible_name"
+        }
+      ],
+      "candidate_type": "landmark-purpose-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S003"
+        ],
+        "routes": [
+          "/checkout/address"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value",
+          "criterion": "4.1.2 Name, Role, Value"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-118 focused acquisition, navigate through the real UI to Shipping address, inspect landmark evidence on CO-S003, and match only the address-totals aside by its stable test ID, complementary role, Shipping details accessible name, and contained Cart summary/order-total text. Confirm the clean totals landmark, the genuine Shipping details form region, and the co-sem-117 progress-landmark case do not satisfy the expectation."
+    }
+  ]
+}

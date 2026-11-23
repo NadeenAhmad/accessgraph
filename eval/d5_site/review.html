@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility Expert Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite">
+  <p class="note">Loading…</p>
+</main>
+<div class="zoom" id="zoom" hidden role="dialog" aria-label="Enlarged screenshot">
+  <button type="button" class="ghost close" id="zoom-close">Close</button>
+  <img id="zoom-img" alt="">
+</div>
+<script>
+(function () {
+  var reviewer = new URLSearchParams(location.search).get('reviewer') || '';
+  var app = document.getElementById('app');
+  var STORE = 'd5-review-' + reviewer, PENDING = 'd5-pending-' + reviewer;
+  var data, list = [], answers = {}, shownAt = 0;
+
+  function load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; } }
+  function keep(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+  function el(tag, attrs, children) {
+    var n = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === 'text') n.textContent = attrs[k]; else if (k === 'cls') n.className = attrs[k]; else n.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { if (c) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function quote(s) { return '“' + s + '”'; }
+
+  function send(record) {
+    return fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) })
+      .then(function (r) { return r.ok; }).catch(function () { return false; });
+  }
+  function flush() {
+    var pending = load(PENDING, []);
+    if (!pending.length) return;
+    var rest = [];
+    Promise.all(pending.map(function (r) { return send(r).then(function (ok) { if (!ok) rest.push(r); }); }))
+      .then(function () { keep(PENDING, rest); });
+  }
+
+  function frame(screen, img, boxed) {
+    var b = el('div', { cls: 'browser' }, [
+      el('div', { cls: 'tabline' }, [el('span', { cls: 'tab', text: screen.title || '(no page title)' })]),
+      el('div', { cls: 'addr' }, [el('span', { cls: 'url', text: screen.url || '' })])
+    ]);
+    var shot = el('div', { cls: 'shot', 'data-zoom': img }, [el('img', { src: img, alt: boxed })]);
+    b.appendChild(shot);
+    return b;
+  }
+
+  function render(i) {
+    var it = list[i];
+    var base = 'items/' + it.id + '/';
+    var answered = Object.keys(answers).filter(function (k) { return answers[k].agree; }).length;
+    app.innerHTML = '';
+    var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
+    app.appendChild(el('header', { cls: 'topbar' }, [
+      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: 'Accessibility expert review' }), el('h1', { text: it.question })]),
+      el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
+    ]));
+    app.appendChild(el('section', { cls: 'panel task' }, [
+      el('p', { cls: 'big', text: it.kind === 'still'
+        ? 'A tool found the outlined ' + it.noun + ' in a web app. Look at the screen and answer the question above.'
+        : 'A tool found the outlined ' + it.noun + ' in a web app. Look at the screen before and after the user’s action, and answer the question above.' }),
+      el('p', { cls: 'note', text: 'Judge only what you see. The tool’s own answer is hidden from you. Click a screenshot to see it larger.' })
+    ]));
+
+    var action = it.action || '';
+    if (it.kind !== 'still' && it.s1) {
+      app.appendChild(el('section', { cls: 'panel' }, [el('div', { cls: 'flow' }, [
+        el('span', { cls: 'scr key' }, [el('span', { cls: 'num', text: '1' }), 'Screen 1']),
+        el('span', { cls: 'act decisive' }, ['the user ', el('b', { text: action.replace(/^clicks /, 'clicks ') })]),
+        el('span', { cls: 'scr key' }, [el('span', { cls: 'num', text: '2' }), it.external ? 'Another website' : 'Screen 2'])
+      ])]));
+      if (it.clip) {
+        var video = el('video', { cls: 'clip', src: base + it.clip, controls: '', muted: '', loop: '', autoplay: '', playsinline: '', preload: 'auto',
+          'aria-label': 'Video of the action: the user ' + action });
+        video.muted = true;
+        app.appendChild(el('section', { cls: 'panel' }, [el('h2', { text: 'Watch the action' }),
+          el('div', { cls: 'browser' }, [el('div', { cls: 'addr' }, [el('span', { cls: 'url', text: it.s1.url })]), video])]));
+      }
+    }
+    if (it.s1) {
+      var h1 = it.kind === 'still' ? 'The screen; the ' + it.noun + ' is outlined'
+        : (it.kind === 'control' ? 'Screen 1: the user clicks the outlined ' + it.noun : 'Screen 1: the user ' + action + ' (outlined)');
+      app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: it.kind === 'still' ? '•' : '1' }), h1]),
+        frame(it.s1, base + it.s1.file, 'Screen 1 with the element outlined in orange')]));
+    } else {
+      app.appendChild(el('section', { cls: 'panel' }, [el('p', { text: 'The screen for this item could not be captured. Please answer Can’t tell.' })]));
+    }
+    if (it.kind !== 'still') {
+      if (it.external) {
+        app.appendChild(el('div', { cls: 'connector', 'aria-hidden': 'true' }, [el('span', { text: '↓' }), 'the user ', el('em', { text: action })]));
+        app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: '2' }), 'Where it leads']),
+          el('div', { cls: 'external' }, ['This link opens another website (not shown here): ', el('code', { text: it.external })])]));
+      } else if (it.s2) {
+        app.appendChild(el('div', { cls: 'connector', 'aria-hidden': 'true' }, [el('span', { text: '↓' }), 'the user ', el('em', { text: action })]));
+        var h2 = it.kind === 'control' ? 'Screen 2: right after the click'
+          : 'Screen 2: the screen that appears' + (it.type === 'page-title-not-descriptive' ? ' (see the page title in the tab)' : '; the ' + it.noun + ' is outlined');
+        app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: '2' }), h2]),
+          frame(it.s2, base + it.s2.file, 'Screen 2')]));
+      }
+    }
+    var facts = el('dl', { cls: 'facts' });
+    it.facts.forEach(function (f) { facts.appendChild(el('dt', { text: f[0] })); facts.appendChild(el('dd', { text: f[1] })); });
+    app.appendChild(el('section', { cls: 'panel', 'aria-label': 'Facts' }, [facts]));
+
+    var prev = answers[it.id] || {};
+    function choice(name, id, value, label, cls, checked) {
+      var input = el('input', { type: 'radio', name: name, id: id, value: value });
+      if (checked === value) input.checked = true;
+      return el('div', { cls: 'choice ' + cls }, [input, el('label', { for: id, text: label })]);
+    }
+    var reason = el('textarea', { id: 'reason' }); reason.value = prev.reason || '';
+    var status = el('span', { cls: 'status', role: 'status' });
+    var back = el('button', { type: 'button', cls: 'ghost', text: '← Previous' });
+    if (i === 0) back.disabled = true;
+    var save1 = el('button', { type: 'submit', cls: 'primary', text: 'Save and see the tool’s answer →' });
+    var form = el('form', { novalidate: '' }, [
+      el('fieldset', {}, [el('legend', {}, [el('span', { cls: 'num', style: 'width:26px;height:26px;font-size:.85rem;margin-right:8px', text: '1' }), 'Your answer: ' + it.question]),
+        el('div', { cls: 'choices' }, [
+          choice('label', 'v-ok', 'no_violation', 'Yes, it’s fine', 'c-ok', prev.answer), choice('label', 'v-bad', 'violation', 'No (violation)', 'c-bad', prev.answer),
+          choice('label', 'v-unsure', 'cannot_tell', 'Can’t tell', 'c-unsure', prev.answer)])]),
+      el('div', { style: 'display:grid;gap:6px' }, [el('label', { for: 'reason' }, [el('b', { text: 'Why?' })]), reason]),
+      el('div', { cls: 'actions' }, [back, save1, status])
+    ]);
+    var reveal = el('div', { style: 'display:grid;gap:16px;border-top:1px solid var(--line);padding-top:18px' });
+    reveal.hidden = true;
+    var TOOL_SAYS = { violation: 'No (violation)', no_violation: 'Yes, it’s fine', uncertain: 'Can’t tell (the tool could not decide)' };
+
+    function lockStep1() {
+      form.querySelectorAll('input, textarea').forEach(function (n) { n.disabled = true; });
+      save1.hidden = true;
+    }
+    function fetchReveal() {
+      return fetch('/api/reveal', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ reviewer: reviewer, item: it.id }) })
+        .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); });
+    }
+    function showReveal(tool) {
+      reveal.innerHTML = '';
+      var comment = el('textarea', { id: 'agree-comment' }); comment.value = tool.agree_comment || (answers[it.id] || {}).agree_comment || '';
+      var status2 = el('span', { cls: 'status', role: 'status' });
+      var agreed = tool.agree || (answers[it.id] || {}).agree;
+      var form2 = el('form', { novalidate: '', style: 'display:grid;gap:14px' }, [
+        el('fieldset', {}, [el('legend', { text: 'Do you agree with the tool’s answer?' }), el('div', { cls: 'choices' }, [
+          choice('agree', 'a-yes', 'agree', 'Agree', 'c-ok', agreed), choice('agree', 'a-no', 'disagree', 'Disagree', 'c-bad', agreed),
+          choice('agree', 'a-partly', 'partly', 'Partly', 'c-unsure', agreed)])]),
+        el('div', { style: 'display:grid;gap:6px' }, [el('label', { for: 'agree-comment' }, [el('b', { text: 'Comment' }), ' ', el('span', { cls: 'note', text: '(optional)' })]), comment]),
+        el('div', { cls: 'actions' }, [el('button', { type: 'submit', cls: 'primary', text: i + 1 < list.length ? 'Save and next item →' : 'Save' }), status2])
+      ]);
+      reveal.appendChild(el('h2', {}, [el('span', { cls: 'num', text: '2' }), 'The tool’s answer']));
+      reveal.appendChild(el('p', { cls: 'note', text: 'Your answer above is saved and can no longer be changed.' }));
+      reveal.appendChild(el('div', { style: 'font-size:1.1rem' }, ['The tool said: ', el('b', { text: TOOL_SAYS[tool.decision] || tool.decision })]));
+      reveal.appendChild(el('div', { style: 'display:grid;gap:4px' }, [el('b', { text: 'The tool’s explanation' }),
+        el('blockquote', { style: 'margin:0;padding:12px 16px;border-left:4px solid var(--line);background:var(--bg);border-radius:6px', text: tool.sentence })]));
+      reveal.appendChild(form2);
+      reveal.hidden = false;
+      form2.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var chosen = form2.querySelector('input[name="agree"]:checked');
+        if (!chosen) { status2.textContent = 'Pick Agree, Disagree or Partly first.'; return; }
+        status2.textContent = 'Saving…';
+        send({ step: 2, reviewer: reviewer, item: it.id, agree: chosen.value, comment: comment.value.trim() }).then(function (ok) {
+          if (!ok) { status2.textContent = 'Could not save. Check your internet connection and press the button again.'; return; }
+          var a = answers[it.id] || {}; a.agree = chosen.value; a.agree_comment = comment.value.trim(); answers[it.id] = a; keep(STORE, answers);
+          if (i + 1 < list.length) go(i + 1); else { status2.textContent = 'Saved. That was the last item: thank you!'; }
+        });
+      });
+    }
+    if (prev.revealed) {
+      lockStep1();
+      status.textContent = 'Saved.';
+      fetchReveal().then(showReveal).catch(function () { status.textContent = 'Saved. The tool’s answer could not be loaded; please reload the page.'; });
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var chosen = form.querySelector('input[name="label"]:checked');
+      if (!chosen) { status.textContent = 'Pick one of the three answers first.'; return; }
+      save1.disabled = true; status.textContent = 'Saving…';
+      var record = { step: 1, reviewer: reviewer, item: it.id, answer: chosen.value, reason: reason.value.trim(),
+                     seconds: Math.round((Date.now() - shownAt) / 1000), at: new Date().toISOString() };
+      send(record).then(function (ok) {
+        if (!ok) {  // e.g. this item was already answered on another computer: show that saved state
+          return fetchReveal().then(function (tool) {
+            answers[it.id] = { revealed: true }; keep(STORE, answers);
+            lockStep1(); status.textContent = 'You already answered this item earlier.'; showReveal(tool);
+          }).catch(function () { save1.disabled = false; status.textContent = 'Could not save. Check your internet connection and press the button again.'; });
+        }
+        answers[it.id] = { answer: record.answer, reason: record.reason, revealed: true }; keep(STORE, answers);
+        return fetchReveal().then(function (tool) {
+          lockStep1(); status.textContent = 'Saved.'; showReveal(tool);
+          reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }).catch(function () { save1.disabled = false; status.textContent = 'Saved, but the tool’s answer could not be loaded. Press the button again.'; });
+    });
+    back.addEventListener('click', function () { if (i > 0) go(i - 1); });
+
+    var extra = el('div', { style: 'display:grid;gap:16px' });
+    if (it.steps.length || it.kind !== 'still') {
+      var flow = el('div', { cls: 'flow' }, [el('span', { cls: 'scr', text: 'Start page' })]);
+      it.steps.forEach(function (s, k) {
+        flow.appendChild(el('span', { cls: 'act' }, ['the user ', el('b', { text: s.label })]));
+        flow.appendChild(k + 1 < it.steps.length ? el('span', { cls: 'scr', text: 'Screen' }) : el('span', { cls: 'scr key' }, [el('span', { cls: 'num', text: '1' }), 'Screen 1']));
+      });
+      if (!it.steps.length) flow.appendChild(el('span', { cls: 'note', text: '(screen 1 is the start page)' }));
+      extra.appendChild(el('div', { style: 'display:grid;gap:8px' }, [el('b', { text: 'How the user got to screen 1' }), flow]));
+      var thumbs = el('div', { cls: 'thumbs' });
+      it.steps.forEach(function (s, k) {
+        thumbs.appendChild(el('figure', {}, [el('figcaption', { text: (k === 0 ? 'Start page' : 'Screen ' + (k + 1) + ' of the path') + ': the user ' + s.label + ' (outlined)' }),
+          el('div', { cls: 'shot', 'data-zoom': base + s.file }, [el('img', { src: base + s.file, alt: 'Step ' + (k + 1) })])]));
+      });
+      if (it.s1) thumbs.appendChild(el('figure', {}, [el('figcaption', {}, [el('b', { text: 'Screen 1' })]),
+        el('div', { cls: 'shot', 'data-zoom': base + it.s1.file }, [el('img', { src: base + it.s1.file, alt: 'Screen 1' })])]));
+      extra.appendChild(thumbs);
+    }
+    extra.appendChild(el('div', { style: 'display:grid;gap:6px' }, [el('b', { text: 'Rule being checked (WCAG 2.2)' }), el('p', { cls: 'note', text: it.rule })]));
+    app.appendChild(el('section', { cls: 'panel' }, [form, reveal, el('details', {}, [el('summary', { text: 'More evidence: how the user got here, and the rule' }), extra])]));
+
+    app.querySelectorAll('.shot').forEach(function (s) {
+      s.addEventListener('click', function () {
+        document.getElementById('zoom-img').src = s.getAttribute('data-zoom');
+        document.getElementById('zoom').hidden = false; document.getElementById('zoom-close').focus();
+      });
+    });
+    shownAt = Date.now();
+    window.scrollTo(0, 0);
+  }
+
+  function go(i) { location.hash = 'item-' + (i + 1); }
+  function fromHash() {
+    var m = /^#item-(\d+)$/.exec(location.hash);
+    var i = m ? Math.min(Math.max(parseInt(m[1], 10) - 1, 0), list.length - 1) : -1;
+    if (i < 0) { i = list.findIndex(function (it) { return !(answers[it.id] || {}).agree; }); if (i < 0) i = 0; }
+    render(i);
+  }
+
+  document.getElementById('zoom').addEventListener('click', function () { this.hidden = true; });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('zoom').hidden = true; });
+  if (!reviewer) { app.innerHTML = ''; app.appendChild(el('p', { text: 'Please open the personal link you received; it contains your reviewer code.' })); return; }
+  fetch('items.json').then(function (r) { return r.json(); }).then(function (d) {
+    data = d;
+    list = d.items.filter(function (it) { return reviewer.indexOf('second-') !== 0 || it.double; }).sort(function (a, b) { return a.n - b.n; });
+    answers = load(STORE, {});
+    flush();
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  }).catch(function () { app.innerHTML = ''; app.appendChild(el('p', { text: 'The review could not be loaded. Please reload the page.' })); });
+})();
+</script>
+</body>
+</html>

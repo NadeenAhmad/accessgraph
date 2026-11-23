@@ -1,0 +1,281 @@
+run_id,started_at,finished_at,status,stage,system,dataset,split,cost_usd,freeze_hash,command,notes
+smoke-openrouter-smoke-20261113T122219Z-515c0e,2026-11-13T12:22:19+00:00,,started,dev,ag-judge-smoke,synthetic-1,dev,,,phase1 smoke,
+smoke-openrouter-smoke-20261113T122219Z-515c0e,2026-11-13T12:22:19+00:00,2026-11-13T12:22:23+00:00,ok,dev,ag-judge-smoke,synthetic-1,dev,0.000687,,phase1 smoke,anthropic/claude-haiku-5.5 parse=parsed
+smoke-openrouter-smoke-20261113T122223Z-307220,2026-11-13T12:22:23+00:00,,started,dev,ag-judge-smoke,synthetic-1,dev,,,phase1 smoke,
+smoke-openrouter-smoke-20261113T122223Z-307220,2026-11-13T12:22:23+00:00,2026-11-13T12:22:30+00:00,ok,dev,ag-judge-smoke,synthetic-1,dev,0.000541,,phase1 smoke,openai/gpt-6-luna parse=parsed
+dev-explore-discovery-20261116T130249Z-29115f,2026-11-16T13:02:49+00:00,,started,dev,explorer-discovery,dev,dev,,,python -m eval.dev_explore --policy discovery --model None (checkout-flow),
+dev-explore-discovery-20261116T130249Z-29115f,2026-11-16T13:02:49+00:00,2026-11-16T13:05:01+00:00,done,dev,explorer-discovery,dev,dev,0.000000,,python -m eval.dev_explore --policy discovery --model None (checkout-flow),"states 4, 132s, cache hits 0"
+dev-explore-discovery-20261116T130501Z-07a14a,2026-11-16T13:05:01+00:00,,started,dev,explorer-discovery,dev,dev,,,python -m eval.dev_explore --policy discovery --model None (booking-scheduler),
+dev-explore-discovery-20261116T130501Z-07a14a,2026-11-16T13:05:01+00:00,2026-11-16T13:12:22+00:00,done,dev,explorer-discovery,dev,dev,0.000000,,python -m eval.dev_explore --policy discovery --model None (booking-scheduler),"states 17, 440s, cache hits 0"
+dev-ag-main-20261116T131505Z-0b793a,2026-11-16T13:15:05+00:00,,started,dev,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model anthropic/claude-haiku-5.5,
+dev-ag-main-20261116T131515Z-c9a772,2026-11-16T13:15:15+00:00,,started,dev,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna,
+dev-ag-main-20261116T131505Z-0b793a,2026-11-16T13:15:05+00:00,2026-11-16T13:15:29+00:00,failed,dev,AG-main,dev,dev,0.000000,,python -m eval.dev_judge --system AG-main --model anthropic/claude-haiku-5.5,import error in eval/dev_judge.py before any call; fixed
+dev-ag-main-20261116T131515Z-c9a772,2026-11-16T13:15:15+00:00,2026-11-16T13:15:29+00:00,failed,dev,AG-main,dev,dev,0.000000,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna,import error in eval/dev_judge.py before any call; fixed
+dev-ag-main-20261116T131539Z-2f7c13,2026-11-16T13:15:39+00:00,,started,dev,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model anthropic/claude-haiku-5.5,
+dev-intera11y-20261116T131645Z-33a507,2026-11-16T13:16:45+00:00,,started,dev_intera11y,InterA11y,dev,dev,,,python -m eval.intera11y_dev --model anthropic/claude-haiku-5.5,
+dev-ag-main-20261116T131539Z-2f7c13,2026-11-16T13:15:39+00:00,2026-11-16T13:26:40+00:00,done,dev,AG-main,dev,dev,0.359554,,python -m eval.dev_judge --system AG-main --model anthropic/claude-haiku-5.5,"paid calls 236, 662s"
+dev-ag-main-20261116T132652Z-a384e0,2026-11-16T13:26:52+00:00,,started,dev,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna,
+dev-ag-main-20261116T132652Z-a384e0,2026-11-16T13:26:52+00:00,2026-11-16T13:43:57+00:00,done,dev,AG-main,dev,dev,0.277083,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna,"paid calls 226, 1025s"
+dev-ag-main-20261116T134642Z-40eabc,2026-11-16T13:46:42+00:00,,started,dev,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --tag fix1,
+dev-explore-llm-20261116T134642Z-02f2eb,2026-11-16T13:46:42+00:00,,started,dev,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-explore-llm-20261116T134642Z-02f2eb,2026-11-16T13:46:42+00:00,2026-11-16T13:47:30+00:00,stopped,dev,explorer-llm,dev,dev,0.000000,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),stopped by me: LLM saw only the first k_max actions (scan window bug); fixed and re-run
+dev-intera11y-20261116T131645Z-33a507,2026-11-16T13:16:45+00:00,2026-11-16T13:47:54+00:00,done,dev_intera11y,InterA11y,dev,dev,0.137790,,python -m eval.intera11y_dev --model anthropic/claude-haiku-5.5,
+dev-intera11y-20261116T134757Z-652726,2026-11-16T13:47:57+00:00,,started,dev_intera11y,InterA11y,dev,dev,,,python -m eval.intera11y_dev --model openai/gpt-6-luna,
+dev-explore-llm-20261116T135047Z-38174e,2026-11-16T13:50:47+00:00,,started,dev,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-intera11y-20261116T134757Z-652726,2026-11-16T13:47:57+00:00,2026-11-16T13:54:21+00:00,stopped,dev_intera11y,InterA11y,dev,dev,0.000000,,python -m eval.intera11y_dev --model openai/gpt-6-luna,stopped by me to restart with 4 parallel workers; finished cases kept; one in-flight case (<= $0.01) not charged
+dev-intera11y-20261116T135451Z-af889a,2026-11-16T13:54:51+00:00,,started,dev_intera11y,InterA11y,dev,dev,,,python -m eval.intera11y_dev --model openai/gpt-6-luna --workers 4,
+dev-explore-llm-20261116T135047Z-38174e,2026-11-16T13:50:47+00:00,2026-11-16T13:58:24+00:00,stopped,dev,explorer-llm,dev,dev,0.000000,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),stopped by me to run the two apps in parallel; paid plans are cached
+dev-explore-llm-20261116T135831Z-f6d006,2026-11-16T13:58:31+00:00,,started,dev,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-explore-llm-20261116T135831Z-cfced0,2026-11-16T13:58:31+00:00,,started,dev,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),
+dev-intera11y-20261116T135451Z-af889a,2026-11-16T13:54:51+00:00,2026-11-16T14:04:39+00:00,done,dev_intera11y,InterA11y,dev,dev,0.068162,,python -m eval.intera11y_dev --model openai/gpt-6-luna --workers 4,
+dev-ag-main-20261116T134642Z-40eabc,2026-11-16T13:46:42+00:00,2026-11-16T14:05:40+00:00,done,dev,AG-main,dev,dev,0.254777,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --tag fix1,"paid calls 226, 1138s"
+dev-explore-llm-20261116T135831Z-cfced0,2026-11-16T13:58:31+00:00,2026-11-16T14:06:51+00:00,done,dev,explorer-llm,dev,dev,0.002315,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),"states 17, 500s, cache hits 6"
+dev-explore-llm-20261116T141154Z-262b5e,2026-11-16T14:11:54+00:00,,started,dev,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),
+dev-explore-llm-20261116T141154Z-262b5e,2026-11-16T14:11:54+00:00,2026-11-16T14:59:04+00:00,done,dev,explorer-llm,dev,dev,0.011526,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),"states 91, 2831s, cache hits 10"
+dev-explore-llm-20261116T135831Z-f6d006,2026-11-16T13:58:31+00:00,2026-11-16T15:28:22+00:00,done,dev,explorer-llm,dev,dev,0.008591,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),"states 100, 5391s, cache hits 37"
+D3+D6-AG-main-20261116T175455Z-12f3ba,2026-11-16T17:54:55+00:00,,started,external,AG-main,D3+D6,test,,,,
+D2-expert-AG-main-20261116T175553Z-a6bdc9,2026-11-16T17:55:53+00:00,,started,external,AG-main,D2-expert,test,,,,
+D2-expert-AG-main-20261116T175553Z-a6bdc9,2026-11-16T17:55:53+00:00,2026-11-16T17:59:43+00:00,done,external,AG-main,D2-expert,test,0.059103,,,cases=47 out=runs/w4a-d2/runs/expert-run-1
+D2-conformance-AG-main-20261116T175943Z-5ffbc7,2026-11-16T17:59:43+00:00,,started,external,AG-main,D2-conformance,test,,,,
+D5-jira-clone-angular-explore-llm-20261116T180955Z-016d7c,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-jira-clone-angular,test,,,python -m eval.d5 explore jira-clone-angular,
+D5-angular-course-explore-llm-20261116T180955Z-85611c,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-angular-course,test,,,python -m eval.d5 explore angular-course,
+D5-jira-clone-angular-explore-llm-20261116T180955Z-016d7c,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-jira-clone-angular,test,0.000000,,python -m eval.d5 explore jira-clone-angular,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-angular-course-explore-llm-20261116T180955Z-85611c,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-angular-course,test,0.000000,,python -m eval.d5 explore angular-course,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-angular-realworld-example-app-explore-llm-20261116T180955Z-cbe7ec,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-angular-realworld-example-app,test,,,python -m eval.d5 explore angular-realworld-example-app,
+D5-vuestic-admin-explore-llm-20261116T180955Z-94e536,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-vuestic-admin,test,,,python -m eval.d5 explore vuestic-admin,
+D5-angular-realworld-example-app-explore-llm-20261116T180955Z-cbe7ec,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-angular-realworld-example-app,test,0.000000,,python -m eval.d5 explore angular-realworld-example-app,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-vuestic-admin-explore-llm-20261116T180955Z-94e536,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-vuestic-admin,test,0.000000,,python -m eval.d5 explore vuestic-admin,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-angular-challenges-explore-llm-20261116T180955Z-bbc4fc,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-angular-challenges,test,,,python -m eval.d5 explore angular-challenges,
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T180955Z-c40704,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,
+D5-angular-challenges-explore-llm-20261116T180955Z-bbc4fc,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-angular-challenges,test,0.000000,,python -m eval.d5 explore angular-challenges,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T180955Z-c40704,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,0.000000,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-angular-ssr-course-explore-llm-20261116T180955Z-c3971b,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-angular-ssr-course,test,,,python -m eval.d5 explore angular-ssr-course,
+D5-angular-ssr-course-explore-llm-20261116T180955Z-c3971b,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-angular-ssr-course,test,0.000000,,python -m eval.d5 explore angular-ssr-course,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-react-admin-demo-explore-llm-20261116T180955Z-dcea45,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-react-admin-demo,test,,,python -m eval.d5 explore react-admin-demo,
+D5-react-admin-demo-explore-llm-20261116T180955Z-dcea45,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-react-admin-demo,test,0.000000,,python -m eval.d5 explore react-admin-demo,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-react-admin-simple-explore-llm-20261116T180955Z-ab77e6,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-react-admin-simple,test,,,python -m eval.d5 explore react-admin-simple,
+D5-react-admin-simple-explore-llm-20261116T180955Z-ab77e6,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-react-admin-simple,test,0.000000,,python -m eval.d5 explore react-admin-simple,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-react-admin-crm-explore-llm-20261116T180955Z-2fd5f3,2026-11-16T18:09:55+00:00,,started,d5,explorer-llm,D5-react-admin-crm,test,,,python -m eval.d5 explore react-admin-crm,
+D5-react-admin-crm-explore-llm-20261116T180955Z-2fd5f3,2026-11-16T18:09:55+00:00,2026-11-16T18:09:55+00:00,failed,d5,explorer-llm,D5-react-admin-crm,test,0.000000,,python -m eval.d5 explore react-admin-crm,"ScannerError: mapping values are not allowed here
+  in ""<unicode string>"", line 23, column 88:
+     ... e update --init --depth 1 (theme: realworld-apps/realworld 25588 ... 
+                                        "
+D5-jira-clone-angular-explore-llm-20261116T181019Z-094ed0,2026-11-16T18:10:19+00:00,,started,d5,explorer-llm,D5-jira-clone-angular,test,,,python -m eval.d5 explore jira-clone-angular,
+D5-angular-course-explore-llm-20261116T181019Z-5bae9b,2026-11-16T18:10:19+00:00,,started,d5,explorer-llm,D5-angular-course,test,,,python -m eval.d5 explore angular-course,
+D5-react-admin-demo-explore-llm-20261116T181019Z-34a39a,2026-11-16T18:10:19+00:00,,started,d5,explorer-llm,D5-react-admin-demo,test,,,python -m eval.d5 explore react-admin-demo,
+D5-react-admin-demo-explore-llm-20261116T181019Z-34a39a,2026-11-16T18:10:19+00:00,2026-11-16T18:10:39+00:00,done,d5,explorer-llm,D5-react-admin-demo,test,0.000000,,python -m eval.d5 explore react-admin-demo,"states 1, 20s, cache hits 0"
+D5-react-admin-simple-explore-llm-20261116T181039Z-d09385,2026-11-16T18:10:39+00:00,,started,d5,explorer-llm,D5-react-admin-simple,test,,,python -m eval.d5 explore react-admin-simple,
+D5-react-admin-simple-explore-llm-20261116T181039Z-d09385,2026-11-16T18:10:39+00:00,2026-11-16T18:10:48+00:00,done,d5,explorer-llm,D5-react-admin-simple,test,0.000000,,python -m eval.d5 explore react-admin-simple,"states 1, 9s, cache hits 0"
+D5-react-admin-crm-explore-llm-20261116T181048Z-272fc1,2026-11-16T18:10:48+00:00,,started,d5,explorer-llm,D5-react-admin-crm,test,,,python -m eval.d5 explore react-admin-crm,
+D5-react-admin-crm-explore-llm-20261116T181048Z-272fc1,2026-11-16T18:10:48+00:00,2026-11-16T18:11:01+00:00,done,d5,explorer-llm,D5-react-admin-crm,test,0.000000,,python -m eval.d5 explore react-admin-crm,"states 1, 13s, cache hits 0"
+D2-conformance-AG-main-20261116T175943Z-5ffbc7,2026-11-16T17:59:43+00:00,2026-11-16T18:14:18+00:00,done,external,AG-main,D2-conformance,test,0.594660,,,cases=269 out=runs/w4a-d2/runs/conformance-run-1
+D5-jira-clone-angular-explore-llm-20261116T181019Z-094ed0,2026-11-16T18:10:19+00:00,2026-11-16T18:14:29+00:00,done,d5,explorer-llm,D5-jira-clone-angular,test,0.001884,,python -m eval.d5 explore jira-clone-angular,"states 7, 250s, cache hits 3"
+D5-angular-realworld-example-app-explore-llm-20261116T181429Z-872285,2026-11-16T18:14:29+00:00,,started,d5,explorer-llm,D5-angular-realworld-example-app,test,,,python -m eval.d5 explore angular-realworld-example-app,
+D3+D6-AG-main-20261116T175455Z-12f3ba,2026-11-16T17:54:55+00:00,2026-11-16T18:24:50+00:00,done,external,AG-main,D3+D6,test,0.795741,,,
+D2-expert-r2-AG-main-20261116T193851Z-be6738,2026-11-16T19:38:51+00:00,,started,dev_round2,AG-main,D2-expert,practice,,,,
+D3+D6-AG-main-20261116T193856Z-7192b1,2026-11-16T19:38:56+00:00,,started,dev_round2,AG-main,D3+D6,practice,,,,
+D2-expert-r2-AG-main-20261116T193851Z-be6738,2026-11-16T19:38:51+00:00,2026-11-16T19:43:40+00:00,done,dev_round2,AG-main,D2-expert,practice,0.110146,,,cases=47 out=runs/w4a-d2/runs/expert-r2-run-1
+D2-conformance-r2-AG-main-20261116T194340Z-0ffac9,2026-11-16T19:43:40+00:00,,started,dev_round2,AG-main,D2-conformance,practice,,,,
+D3+D6-AG-main-20261116T193856Z-7192b1,2026-11-16T19:38:56+00:00,2026-11-16T19:52:16+00:00,done,dev_round2,AG-main,D3+D6,practice,0.452748,,,
+D2-conformance-r2-AG-main-20261116T194340Z-0ffac9,2026-11-16T19:43:40+00:00,2026-11-16T19:52:23+00:00,done,dev_round2,AG-main,D2-conformance,practice,0.345090,,,cases=134 out=runs/w4a-d2/runs/conformance-r2-run-1
+dev-ag-main-20261116T200835Z-784091,2026-11-16T20:08:35+00:00,,started,dev_round2,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage dev_round2 --tag round2,
+dev-ag-main-20261116T200835Z-784091,2026-11-16T20:08:35+00:00,2026-11-16T20:26:41+00:00,done,dev_round2,AG-main,dev,dev,0.253223,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage dev_round2 --tag round2,"paid calls 224, 1086s"
+D2-expert-v3-AG-main-20261116T202736Z-5ffae8,2026-11-16T20:27:36+00:00,,started,dev_round2,AG-main,D2-expert,all,,,,
+D5-jira-clone-angular-explore-llm-20261116T202736Z-d209e3,2026-11-16T20:27:36+00:00,,started,d5,explorer-llm,D5-jira-clone-angular,test,,,python -m eval.d5 explore jira-clone-angular,
+D5-vuestic-admin-explore-llm-20261116T202736Z-583900,2026-11-16T20:27:36+00:00,,started,d5,explorer-llm,D5-vuestic-admin,test,,,python -m eval.d5 explore vuestic-admin,
+D3+D6-AG-main-20261116T202736Z-ee48b0,2026-11-16T20:27:36+00:00,,started,dev_round2,AG-main,D3+D6,all,,,,
+D5-vuestic-admin-explore-llm-20261116T202736Z-583900,2026-11-16T20:27:36+00:00,2026-11-16T20:27:51+00:00,done,d5,explorer-llm,D5-vuestic-admin,test,0.000000,,python -m eval.d5 explore vuestic-admin,"states 1, 15s, cache hits 0"
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T202751Z-40b69b,2026-11-16T20:27:51+00:00,,started,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T202751Z-40b69b,2026-11-16T20:27:51+00:00,2026-11-16T20:28:29+00:00,done,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,0.000000,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,"states 1, 38s, cache hits 0"
+D5-react-admin-demo-explore-llm-20261116T202829Z-ebef23,2026-11-16T20:28:29+00:00,,started,d5,explorer-llm,D5-react-admin-demo,test,,,python -m eval.d5 explore react-admin-demo,
+D5-react-admin-demo-explore-llm-20261116T202829Z-ebef23,2026-11-16T20:28:29+00:00,2026-11-16T20:29:01+00:00,done,d5,explorer-llm,D5-react-admin-demo,test,0.000000,,python -m eval.d5 explore react-admin-demo,"states 1, 32s, cache hits 0"
+D5-react-admin-simple-explore-llm-20261116T202901Z-bb61ff,2026-11-16T20:29:01+00:00,,started,d5,explorer-llm,D5-react-admin-simple,test,,,python -m eval.d5 explore react-admin-simple,
+D2-expert-v3-AG-main-20261116T202736Z-5ffae8,2026-11-16T20:27:36+00:00,2026-11-16T20:31:56+00:00,done,dev_round2,AG-main,D2-expert,all,0.095739,,,cases=47 out=runs/w4a-d2/runs/expert-v3-run-1
+D2-conformance-v3-AG-main-20261116T203156Z-711a2d,2026-11-16T20:31:56+00:00,,started,dev_round2,AG-main,D2-conformance,all,,,,
+D5-jira-clone-angular-explore-llm-20261116T202736Z-d209e3,2026-11-16T20:27:36+00:00,2026-11-16T20:33:47+00:00,done,d5,explorer-llm,D5-jira-clone-angular,test,0.000591,,python -m eval.d5 explore jira-clone-angular,"states 13, 371s, cache hits 9"
+D5-angular-realworld-example-app-explore-llm-20261116T203347Z-5fa9fe,2026-11-16T20:33:47+00:00,,started,d5,explorer-llm,D5-angular-realworld-example-app,test,,,python -m eval.d5 explore angular-realworld-example-app,
+D2-conformance-v3-AG-main-20261116T203156Z-711a2d,2026-11-16T20:31:56+00:00,2026-11-16T20:42:38+00:00,done,dev_round2,AG-main,D2-conformance,all,0.340799,,,cases=269 out=runs/w4a-d2/runs/conformance-v3-run-1
+D2-expert-v3-AG-main-20261116T204258Z-06fbe2,2026-11-16T20:42:58+00:00,,started,dev_round2,AG-main,D2-expert,all,,,,
+D2-expert-v3-AG-main-20261116T204258Z-06fbe2,2026-11-16T20:42:58+00:00,2026-11-16T20:45:19+00:00,done,dev_round2,AG-main,D2-expert,all,0.084349,,,cases=47 out=runs/w4a-d2/runs/expert-v3-run-2
+D2-conformance-v3-AG-main-20261116T204519Z-0d3088,2026-11-16T20:45:19+00:00,,started,dev_round2,AG-main,D2-conformance,all,,,,
+D3+D6-AG-main-20261116T202736Z-ee48b0,2026-11-16T20:27:36+00:00,2026-11-16T20:45:20+00:00,done,dev_round2,AG-main,D3+D6,all,0.526858,,,
+D5-react-admin-simple-explore-llm-20261116T202901Z-bb61ff,2026-11-16T20:29:01+00:00,2026-11-16T20:49:18+00:00,done,d5,explorer-llm,D5-react-admin-simple,test,0.008658,,python -m eval.d5 explore react-admin-simple,"states 46, 1217s, cache hits 2"
+D5-react-admin-crm-explore-llm-20261116T204918Z-e9eea4,2026-11-16T20:49:18+00:00,,started,d5,explorer-llm,D5-react-admin-crm,test,,,python -m eval.d5 explore react-admin-crm,
+D2-conformance-v3-AG-main-20261116T204519Z-0d3088,2026-11-16T20:45:19+00:00,2026-11-16T20:59:33+00:00,done,dev_round2,AG-main,D2-conformance,all,0.338448,,,cases=269 out=runs/w4a-d2/runs/conformance-v3-run-2
+D2-expert-v3-AG-main-20261116T205933Z-30dd1a,2026-11-16T20:59:33+00:00,,started,dev_round2,AG-main,D2-expert,all,,,,
+D2-expert-v3-AG-main-20261116T205933Z-30dd1a,2026-11-16T20:59:33+00:00,2026-11-16T21:02:11+00:00,done,dev_round2,AG-main,D2-expert,all,0.049985,,,cases=47 out=runs/w4a-d2/runs/expert-v3-run-3
+D2-conformance-v3-AG-main-20261116T210211Z-1ff74e,2026-11-16T21:02:11+00:00,,started,dev_round2,AG-main,D2-conformance,all,,,,
+D5-angular-realworld-example-app-explore-llm-20261116T203347Z-5fa9fe,2026-11-16T20:33:47+00:00,2026-11-16T21:02:55+00:00,done,d5,explorer-llm,D5-angular-realworld-example-app,test,0.000000,,python -m eval.d5 explore angular-realworld-example-app,"states 42, 1748s, cache hits 42"
+D5-angular-challenges-explore-llm-20261116T210255Z-6f049e,2026-11-16T21:02:55+00:00,,started,d5,explorer-llm,D5-angular-challenges,test,,,python -m eval.d5 explore angular-challenges,
+D5-angular-challenges-explore-llm-20261116T210255Z-6f049e,2026-11-16T21:02:55+00:00,2026-11-16T21:03:35+00:00,done,d5,explorer-llm,D5-angular-challenges,test,0.000500,,python -m eval.d5 explore angular-challenges,"states 4, 40s, cache hits 0"
+D5-angular-ssr-course-explore-llm-20261116T210335Z-6c7d27,2026-11-16T21:03:35+00:00,,started,d5,explorer-llm,D5-angular-ssr-course,test,,,python -m eval.d5 explore angular-ssr-course,
+D5-angular-ssr-course-explore-llm-20261116T210335Z-6c7d27,2026-11-16T21:03:35+00:00,2026-11-16T21:12:56+00:00,done,d5,explorer-llm,D5-angular-ssr-course,test,0.003704,,python -m eval.d5 explore angular-ssr-course,"states 14, 561s, cache hits 0"
+D5-angular-course-explore-llm-20261116T211256Z-6c6008,2026-11-16T21:12:56+00:00,,started,d5,explorer-llm,D5-angular-course,test,,,python -m eval.d5 explore angular-course,
+D2-conformance-v3-AG-main-20261116T210211Z-1ff74e,2026-11-16T21:02:11+00:00,2026-11-16T21:17:14+00:00,done,dev_round2,AG-main,D2-conformance,all,0.225661,,,cases=269 out=runs/w4a-d2/runs/conformance-v3-run-3
+D5-react-admin-crm-explore-llm-20261116T204918Z-e9eea4,2026-11-16T20:49:18+00:00,2026-11-16T21:26:12+00:00,done,d5,explorer-llm,D5-react-admin-crm,test,0.031673,,python -m eval.d5 explore react-admin-crm,"states 65, 2214s, cache hits 0"
+D5-vuestic-admin-explore-llm-20261116T213753Z-14017c,2026-11-16T21:37:53+00:00,,started,d5,explorer-llm,D5-vuestic-admin,test,,,python -m eval.d5 explore vuestic-admin,
+D5-vuestic-admin-explore-llm-20261116T213753Z-14017c,2026-11-16T21:37:53+00:00,2026-11-16T22:19:02+00:00,done,d5,explorer-llm,D5-vuestic-admin,test,0.012479,,python -m eval.d5 explore vuestic-admin,"states 100, 2470s, cache hits 1"
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T221902Z-19f800,2026-11-16T22:19:02+00:00,,started,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,
+D5-angular-course-explore-llm-20261116T211256Z-6c6008,2026-11-16T21:12:56+00:00,2026-11-16T22:32:43+00:00,done,d5,explorer-llm,D5-angular-course,test,0.001323,,python -m eval.d5 explore angular-course,"states 79, 4787s, cache hits 49"
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261116T221902Z-19f800,2026-11-16T22:19:02+00:00,2026-11-16T23:02:07+00:00,done,d5,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,0.031723,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,"states 100, 2585s, cache hits 8"
+D5-react-admin-demo-explore-llm-20261116T230207Z-f326b9,2026-11-16T23:02:07+00:00,,started,d5,explorer-llm,D5-react-admin-demo,test,,,python -m eval.d5 explore react-admin-demo,
+D5-react-admin-demo-explore-llm-20261116T230207Z-f326b9,2026-11-16T23:02:07+00:00,2026-11-16T23:48:18+00:00,done,d5,explorer-llm,D5-react-admin-demo,test,0.025735,,python -m eval.d5 explore react-admin-demo,"states 100, 2771s, cache hits 3"
+D5-react-admin-simple-explore-llm-20261116T234818Z-cb5eae,2026-11-16T23:48:18+00:00,,started,d5,explorer-llm,D5-react-admin-simple,test,,,python -m eval.d5 explore react-admin-simple,
+D5-react-admin-simple-explore-llm-20261116T234818Z-cb5eae,2026-11-16T23:48:18+00:00,2026-11-17T00:33:05+00:00,done,d5,explorer-llm,D5-react-admin-simple,test,0.017953,,python -m eval.d5 explore react-admin-simple,"states 53, 2687s, cache hits 13"
+D5-react-admin-crm-explore-llm-20261117T003305Z-9c57a5,2026-11-17T00:33:05+00:00,,started,d5,explorer-llm,D5-react-admin-crm,test,,,python -m eval.d5 explore react-admin-crm,
+D5-react-admin-crm-explore-llm-20261117T003305Z-9c57a5,2026-11-17T00:33:05+00:00,2026-11-17T01:33:29+00:00,done,d5,explorer-llm,D5-react-admin-crm,test,0.033678,,python -m eval.d5 explore react-admin-crm,"states 100, 3623s, cache hits 0"
+D5-AG-main-20261117T013550Z-7edb3f,2026-11-17T01:35:50+00:00,,started,d5,AG-main,D5,test,,,python -m eval.d5 judge,
+D5-AG-main-20261117T013550Z-7edb3f,2026-11-17T01:35:50+00:00,2026-11-17T01:38:33+00:00,failed,d5,AG-main,D5,test,0.033166,,python -m eval.d5 judge,y1 must be greater than or equal to y0
+D5-AG-main-20261117T013907Z-ac8442,2026-11-17T01:39:07+00:00,,started,d5,AG-main,D5,test,,,python -m eval.d5 judge,
+D5-AG-main-20261117T013907Z-ac8442,2026-11-17T01:39:07+00:00,2026-11-17T02:38:43+00:00,done,d5,AG-main,D5,test,0.799303,,python -m eval.d5 judge,600 candidates
+dev-ag-main-20261117T130702Z-070578,2026-11-17T13:07:02+00:00,,started,dev_round2,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage dev_round2 --tag round3,
+dev-ag-main-20261117T130702Z-070578,2026-11-17T13:07:02+00:00,2026-11-17T13:25:31+00:00,done,dev_round2,AG-main,dev,dev,0.260229,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage dev_round2 --tag round3,"paid calls 228, 1109s"
+dev-explore-llm-20261117T143242Z-8f6136,2026-11-17T14:32:42+00:00,,started,phase1_explore,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-explore-llm-20261117T143242Z-3cff46,2026-11-17T14:32:42+00:00,,started,phase1_explore,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-explore-llm-20261117T143242Z-310eb0,2026-11-17T14:32:42+00:00,,started,phase1_explore,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),
+dev-explore-llm-20261117T143242Z-8f6136,2026-11-17T14:32:42+00:00,2026-11-17T16:01:02+00:00,done,phase1_explore,explorer-llm,dev,dev,0.010308,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),"states 100, 5300s, cache hits 24"
+dev-explore-llm-20261117T160102Z-8ffed6,2026-11-17T16:01:02+00:00,,started,phase1_explore,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),
+dev-ag-main-20261117T161208Z-f29bd7,2026-11-17T16:12:08+00:00,,started,phase1_explore,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase1_explore --tag phase1,
+dev-ag-main-20261117T161208Z-f29bd7,2026-11-17T16:12:08+00:00,2026-11-17T16:32:38+00:00,done,phase1_explore,AG-main,dev,dev,0.258534,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase1_explore --tag phase1,"paid calls 227, 1230s"
+dev-explore-llm-20261117T143242Z-310eb0,2026-11-17T14:32:42+00:00,2026-11-17T16:38:23+00:00,done,phase1_explore,explorer-llm,dev,dev,0.009787,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (checkout-flow),"states 124, 7540s, cache hits 23"
+dev-explore-llm-20261117T163823Z-e2fc86,2026-11-17T16:38:23+00:00,,started,phase1_explore,explorer-llm,dev,dev,,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),
+dev-explore-llm-20261117T160102Z-8ffed6,2026-11-17T16:01:02+00:00,2026-11-17T22:48:23+00:00,done,phase1_explore,explorer-llm,dev,dev,0.011890,,python -m eval.dev_explore --policy llm --model openai/gpt-6-luna (booking-scheduler),"states 90, 3539s, cache hits 11"
+dev-ag-main-20261117T231849Z-f299c7,2026-11-17T23:18:49+00:00,,started,phase2_judge,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag phase1,
+dev-ag-main-20261117T231849Z-f299c7,2026-11-17T23:18:49+00:00,2026-11-17T23:20:38+00:00,done,phase2_judge,AG-main,dev,dev,0.009591,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag phase1,"paid calls 0, 109s"
+D3+D6-AG-main-20261117T232853Z-c5870c,2026-11-17T23:28:53+00:00,,started,phase3_final,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261117T232853Z-c5870c,2026-11-17T23:28:53+00:00,2026-11-18T08:09:31+00:00,done,phase3_final,AG-main,D3+D6,all,0.573846,,,
+D3+D6-AG-main-20261118T094424Z-954bda,2026-11-18T09:44:24+00:00,,started,phase3_final,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261118T094424Z-954bda,2026-11-18T09:44:24+00:00,2026-11-18T09:48:52+00:00,done,phase3_final,AG-main,D3+D6,all,0.027176,,,
+dev-ag-main-20261118T095400Z-abfa92,2026-11-18T09:54:00+00:00,,started,phase2_judge,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v8check,
+dev-ag-main-20261118T095400Z-abfa92,2026-11-18T09:54:00+00:00,2026-11-18T09:59:00+00:00,done,phase2_judge,AG-main,dev,dev,0.040957,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v8check,"paid calls 32, 300s"
+dev-ag-main-20261118T095932Z-cc813f,2026-11-18T09:59:32+00:00,,started,phase2_judge,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v8check2,
+dev-ag-main-20261118T095932Z-cc813f,2026-11-18T09:59:32+00:00,2026-11-18T10:02:35+00:00,done,phase2_judge,AG-main,dev,dev,0.046186,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v8check2,"paid calls 39, 183s"
+D3+D6-AG-main-20261118T100313Z-e87c99,2026-11-18T10:03:13+00:00,,started,phase3_final,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261118T100313Z-e87c99,2026-11-18T10:03:13+00:00,2026-11-18T10:13:32+00:00,done,phase3_final,AG-main,D3+D6,all,0.149403,,,
+dev-ag-main-20261118T101434Z-c4a55b,2026-11-18T10:14:34+00:00,,started,phase2_judge,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v9check,
+dev-ag-main-20261118T101434Z-c4a55b,2026-11-18T10:14:34+00:00,2026-11-18T10:17:41+00:00,done,phase2_judge,AG-main,dev,dev,0.044009,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage phase2_judge --tag v9check,"paid calls 32, 186s"
+D3+D6-AG-main-20261118T101819Z-0454a6,2026-11-18T10:18:19+00:00,,started,phase3_final,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261118T101819Z-0454a6,2026-11-18T10:18:19+00:00,2026-11-18T10:27:31+00:00,done,phase3_final,AG-main,D3+D6,all,0.088779,,,
+D2-expert-v9-AG-main-20261118T102812Z-a16261,2026-11-18T10:28:12+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D5-jira-clone-angular-explore-llm-20261118T102814Z-23a92c,2026-11-18T10:28:14+00:00,,started,phase3_final,explorer-llm,D5-jira-clone-angular,test,,,python -m eval.d5 explore jira-clone-angular,
+D5-vuestic-admin-explore-llm-20261118T102815Z-19e342,2026-11-18T10:28:16+00:00,,started,phase3_final,explorer-llm,D5-vuestic-admin,test,,,python -m eval.d5 explore vuestic-admin,
+D5-jira-clone-angular-explore-llm-20261118T102814Z-23a92c,2026-11-18T10:28:14+00:00,2026-11-18T11:06:04+00:00,done,phase3_final,explorer-llm,D5-jira-clone-angular,test,0.004347,,python -m eval.d5 explore jira-clone-angular,"states 97, 2270s, cache hits 12"
+D5-angular-realworld-example-app-explore-llm-20261118T110604Z-aeafaa,2026-11-18T11:06:04+00:00,,started,phase3_final,explorer-llm,D5-angular-realworld-example-app,test,,,python -m eval.d5 explore angular-realworld-example-app,
+D5-vuestic-admin-explore-llm-20261118T102815Z-19e342,2026-11-18T10:28:16+00:00,2026-11-18T11:37:35+00:00,done,phase3_final,explorer-llm,D5-vuestic-admin,test,0.009247,,python -m eval.d5 explore vuestic-admin,"states 150, 4160s, cache hits 3"
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261118T113735Z-2dee87,2026-11-18T11:37:35+00:00,,started,phase3_final,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,
+D2-expert-v9-AG-main-20261118T102812Z-a16261,2026-11-18T10:28:12+00:00,2026-11-18T11:50:41+00:00,done,phase3_final,AG-main,D2-expert,all,0.225838,,,cases=47 out=runs/w4a-d2/runs/expert-v9-run-1
+D2-conformance-v9-AG-main-20261118T115041Z-33baae,2026-11-18T11:50:41+00:00,,started,phase3_final,AG-main,D2-conformance,all,,,,
+D5-angular-realworld-example-app-explore-llm-20261118T110604Z-aeafaa,2026-11-18T11:06:04+00:00,2026-11-18T11:52:20+00:00,done,phase3_final,explorer-llm,D5-angular-realworld-example-app,test,0.007965,,python -m eval.d5 explore angular-realworld-example-app,"states 43, 2776s, cache hits 23"
+D5-angular-challenges-explore-llm-20261118T115220Z-3749cc,2026-11-18T11:52:20+00:00,,started,phase3_final,explorer-llm,D5-angular-challenges,test,,,python -m eval.d5 explore angular-challenges,
+D5-angular-challenges-explore-llm-20261118T115220Z-3749cc,2026-11-18T11:52:20+00:00,2026-11-18T11:52:57+00:00,done,phase3_final,explorer-llm,D5-angular-challenges,test,0.000000,,python -m eval.d5 explore angular-challenges,"states 4, 37s, cache hits 4"
+D5-angular-ssr-course-explore-llm-20261118T115257Z-d2d857,2026-11-18T11:52:57+00:00,,started,phase3_final,explorer-llm,D5-angular-ssr-course,test,,,python -m eval.d5 explore angular-ssr-course,
+D5-angular-ssr-course-explore-llm-20261118T115257Z-d2d857,2026-11-18T11:52:57+00:00,2026-11-18T12:07:17+00:00,done,phase3_final,explorer-llm,D5-angular-ssr-course,test,0.002955,,python -m eval.d5 explore angular-ssr-course,"states 18, 861s, cache hits 11"
+D5-angular-course-explore-llm-20261118T120717Z-660d3e,2026-11-18T12:07:17+00:00,,started,phase3_final,explorer-llm,D5-angular-course,test,,,python -m eval.d5 explore angular-course,
+D2-conformance-v9-AG-main-20261118T115041Z-33baae,2026-11-18T11:50:41+00:00,2026-11-18T12:07:39+00:00,done,phase3_final,AG-main,D2-conformance,all,0.498551,,,cases=269 out=runs/w4a-d2/runs/conformance-v9-run-1
+D2-expert-v9-AG-main-20261118T120829Z-966d83,2026-11-18T12:08:29+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D2-expert-v10p-AG-main-20261118T121731Z-2c1117,2026-11-18T12:17:31+00:00,,started,dev_round2,AG-main,D2-expert,practice,,,,
+D2-expert-v10p-AG-main-20261118T122322Z-9c4a17,2026-11-18T12:23:22+00:00,,started,dev_round2,AG-main,D2-expert,practice,,,,
+D5-flowbite-svelte-admin-dashboard-explore-llm-20261118T113735Z-2dee87,2026-11-18T11:37:35+00:00,2026-11-18T13:10:53+00:00,done,phase3_final,explorer-llm,D5-flowbite-svelte-admin-dashboard,test,0.025049,,python -m eval.d5 explore flowbite-svelte-admin-dashboard,"states 150, 5597s, cache hits 11"
+D5-react-admin-demo-explore-llm-20261118T131053Z-fc283d,2026-11-18T13:10:53+00:00,,started,phase3_final,explorer-llm,D5-react-admin-demo,test,,,python -m eval.d5 explore react-admin-demo,
+D2-expert-v10p-AG-main-20261118T122322Z-9c4a17,2026-11-18T12:23:22+00:00,2026-11-18T13:46:34+00:00,done,dev_round2,AG-main,D2-expert,practice,0.118807,,,cases=47 out=runs/w4a-d2/runs/expert-v10p-run-1
+D2-conformance-v10p-AG-main-20261118T134634Z-f4a5f0,2026-11-18T13:46:34+00:00,,started,dev_round2,AG-main,D2-conformance,practice,,,,
+D2-conformance-v10p-AG-main-20261118T134634Z-f4a5f0,2026-11-18T13:46:34+00:00,2026-11-18T14:13:52+00:00,done,dev_round2,AG-main,D2-conformance,practice,0.373019,,,cases=134 out=runs/w4a-d2/runs/conformance-v10p-run-1
+D2-expert-v10-AG-main-20261118T141525Z-bdf23a,2026-11-18T14:15:25+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D5-angular-course-explore-llm-20261118T120717Z-660d3e,2026-11-18T12:07:17+00:00,2026-11-18T14:20:13+00:00,done,phase3_final,explorer-llm,D5-angular-course,test,0.000000,,python -m eval.d5 explore angular-course,"states 87, 7976s, cache hits 50"
+D2-expert-v10-AG-main-20261118T141525Z-bdf23a,2026-11-18T14:15:25+00:00,2026-11-18T14:25:48+00:00,done,phase3_final,AG-main,D2-expert,all,0.007546,,,cases=47 out=runs/w4a-d2/runs/expert-v10-run-1
+D2-conformance-v10-AG-main-20261118T142548Z-f92e00,2026-11-18T14:25:48+00:00,,started,phase3_final,AG-main,D2-conformance,all,,,,
+D2-expert-v11-AG-main-20261118T144954Z-f089bb,2026-11-18T14:49:54+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D3+D6-AG-main-20261118T145011Z-57d432,2026-11-18T14:50:11+00:00,,started,phase3_final,AG-main,D3+D6,all,,,,
+D2-expert-v11-AG-main-20261118T144954Z-f089bb,2026-11-18T14:49:54+00:00,2026-11-18T15:04:46+00:00,done,phase3_final,AG-main,D2-expert,all,0.028191,,,cases=47 out=runs/w4a-d2/runs/expert-v11-run-1
+D2-conformance-v11-AG-main-20261118T150446Z-0ae1d6,2026-11-18T15:04:46+00:00,,started,phase3_final,AG-main,D2-conformance,all,,,,
+D2-conformance-v11-AG-main-20261118T150446Z-0ae1d6,2026-11-18T15:04:46+00:00,2026-11-18T15:10:44+00:00,done,phase3_final,AG-main,D2-conformance,all,0.105318,,,cases=269 out=runs/w4a-d2/runs/conformance-v11-run-1
+D2-expert-v11-AG-main-20261118T151128Z-647dde,2026-11-18T15:11:28+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D5-react-admin-demo-explore-llm-20261118T131053Z-fc283d,2026-11-18T13:10:53+00:00,2026-11-18T15:21:25+00:00,done,phase3_final,explorer-llm,D5-react-admin-demo,test,0.023036,,python -m eval.d5 explore react-admin-demo,"states 150, 7832s, cache hits 0"
+D5-react-admin-simple-explore-llm-20261118T152125Z-3dd5bf,2026-11-18T15:21:25+00:00,,started,phase3_final,explorer-llm,D5-react-admin-simple,test,,,python -m eval.d5 explore react-admin-simple,
+D2-expert-v11-AG-main-20261118T151128Z-647dde,2026-11-18T15:11:28+00:00,2026-11-18T15:22:20+00:00,done,phase3_final,AG-main,D2-expert,all,0.194673,,,cases=47 out=runs/w4a-d2/runs/expert-v11-run-2
+D2-conformance-v11-AG-main-20261118T152220Z-d734a8,2026-11-18T15:22:20+00:00,,started,phase3_final,AG-main,D2-conformance,all,,,,
+D3+D6-AG-main-20261118T145011Z-57d432,2026-11-18T14:50:11+00:00,2026-11-18T15:23:03+00:00,done,phase3_final,AG-main,D3+D6,all,0.354701,,,
+D2-conformance-v11-AG-main-20261118T152220Z-d734a8,2026-11-18T15:22:20+00:00,2026-11-18T15:46:31+00:00,done,phase3_final,AG-main,D2-conformance,all,0.819319,,,cases=269 out=runs/w4a-d2/runs/conformance-v11-run-2
+D2-expert-v11-AG-main-20261118T154640Z-2a3a29,2026-11-18T15:46:40+00:00,,started,phase3_final,AG-main,D2-expert,all,,,,
+D2-expert-v11-AG-main-20261118T154640Z-2a3a29,2026-11-18T15:46:40+00:00,2026-11-18T16:00:47+00:00,done,phase3_final,AG-main,D2-expert,all,0.183472,,,cases=47 out=runs/w4a-d2/runs/expert-v11-run-3
+D2-conformance-v11-AG-main-20261118T160047Z-96f973,2026-11-18T16:00:47+00:00,,started,phase3_final,AG-main,D2-conformance,all,,,,
+D2-conformance-v11-AG-main-20261118T160047Z-96f973,2026-11-18T16:00:47+00:00,2026-11-18T16:24:32+00:00,done,phase3_final,AG-main,D2-conformance,all,0.814438,,,cases=269 out=runs/w4a-d2/runs/conformance-v11-run-3
+D5-react-admin-crm-explore-llm-20261118T173554Z-2f48a1,2026-11-18T17:35:54+00:00,,started,phase3_final,explorer-llm,D5-react-admin-crm,test,,,python -m eval.d5 explore react-admin-crm,
+D5-react-admin-simple-explore-llm-20261118T152125Z-3dd5bf,2026-11-18T15:21:25+00:00,2026-11-18T17:36:34+00:00,done,phase3_final,explorer-llm,D5-react-admin-simple,test,0.026571,,python -m eval.d5 explore react-admin-simple,"states 84, 8109s, cache hits 36"
+dev-ag-main-20261118T181817Z-2ea754,2026-11-18T18:18:17+00:00,,started,phase3_final,AG-main,dev,dev,,,python -m eval.dev_judge --model openai/gpt-6-luna --stage phase3_final --tag v11check,
+dev-ag-main-20261118T181817Z-2ea754,2026-11-18T18:18:17+00:00,2026-11-18T18:22:10+00:00,done,phase3_final,AG-main,dev,dev,0.044558,,python -m eval.dev_judge --model openai/gpt-6-luna --stage phase3_final --tag v11check,"paid calls 32, 233s"
+dev-ag-main-20261118T183805Z-61862a,2026-11-18T18:38:05+00:00,,started,phase3_final,AG-main,dev,dev,,,python -m eval.dev_judge --model openai/gpt-6-luna --stage phase3_final --tag v11,
+dev-ag-main-20261118T183805Z-61862a,2026-11-18T18:38:05+00:00,2026-11-18T18:58:24+00:00,done,phase3_final,AG-main,dev,dev,0.285733,,python -m eval.dev_judge --model openai/gpt-6-luna --stage phase3_final --tag v11,"paid calls 218, 1219s"
+D5-react-admin-crm-explore-llm-20261118T173554Z-2f48a1,2026-11-18T17:35:54+00:00,2026-11-18T19:06:36+00:00,done,phase3_final,explorer-llm,D5-react-admin-crm,test,0.039139,,python -m eval.d5 explore react-admin-crm,"states 150, 5443s, cache hits 0"
+D3+D6-AG-main-20261118T193222Z-347fd3,2026-11-18T19:32:22+00:00,,started,fix_round4,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261118T193222Z-347fd3,2026-11-18T19:32:22+00:00,2026-11-18T20:26:51+00:00,done,fix_round4,AG-main,D3+D6,all,0.386065,,,
+D2-expert-v12-AG-main-20261118T202711Z-5c9a38,2026-11-18T20:27:11+00:00,,started,fix_round4,AG-main,D2-expert,all,,,,
+dev-ag-main-20261118T202717Z-a830e0,2026-11-18T20:27:17+00:00,,started,fix_round4,AG-main,dev,dev,,,python -m eval.dev_judge --model openai/gpt-6-luna --stage fix_round4 --tag v12,
+dev-ag-main-20261118T203725Z-18261d,2026-11-18T20:37:25+00:00,,started,fix_round4,AG-main,dev,dev,,,python -m eval.dev_judge --model openai/gpt-6-luna --stage fix_round4 --tag v12check,
+dev-ag-main-20261118T202717Z-a830e0,2026-11-18T20:27:17+00:00,2026-11-18T20:50:53+00:00,done,fix_round4,AG-main,dev,dev,0.313551,,python -m eval.dev_judge --model openai/gpt-6-luna --stage fix_round4 --tag v12,"paid calls 238, 1415s"
+dev-ag-main-20261118T203725Z-18261d,2026-11-18T20:37:25+00:00,2026-11-18T20:56:51+00:00,done,fix_round4,AG-main,dev,dev,0.258734,,python -m eval.dev_judge --model openai/gpt-6-luna --stage fix_round4 --tag v12check,"paid calls 221, 1166s"
+D2-expert-v12-AG-main-20261118T202711Z-5c9a38,2026-11-18T20:27:11+00:00,2026-11-18T23:28:02+00:00,done,fix_round4,AG-main,D2-expert,all,0.774123,,,cases=129 out=runs/w4a-d2/runs/expert-v12-run-1
+D2-conformance-v12-AG-main-20261118T232802Z-05252f,2026-11-18T23:28:02+00:00,,started,fix_round4,AG-main,D2-conformance,all,,,,
+D2-expert-v12-AG-main-20261118T233756Z-33a389,2026-11-18T23:37:56+00:00,,started,fix_round4,AG-main,D2-expert,all,,,,
+D2-expert-v12-AG-main-20261118T233809Z-5c0c2d,2026-11-18T23:38:09+00:00,,started,fix_round4,AG-main,D2-expert,all,,,,
+D5-AG-main-20261118T234641Z-8fdcfa,2026-11-18T23:46:41+00:00,,started,fix_round4,AG-main,D5,test,,,python -m eval.d5 judge,
+D2-expert-v12-AG-main-20261118T233809Z-5c0c2d,2026-11-18T23:38:09+00:00,2026-11-18T23:48:13+00:00,done,fix_round4,AG-main,D2-expert,all,0.760471,,,cases=129 out=runs/w4a-d2/runs/expert-v12-run-3
+D2-conformance-v12-AG-main-20261118T234813Z-e62a3d,2026-11-18T23:48:13+00:00,,started,fix_round4,AG-main,D2-conformance,all,,,,
+D2-expert-v12-AG-main-20261118T233756Z-33a389,2026-11-18T23:37:56+00:00,2026-11-18T23:49:18+00:00,done,fix_round4,AG-main,D2-expert,all,0.877775,,,cases=129 out=runs/w4a-d2/runs/expert-v12-run-2
+D2-conformance-v12-AG-main-20261118T234918Z-4de509,2026-11-18T23:49:18+00:00,,started,fix_round4,AG-main,D2-conformance,all,,,,
+D2-conformance-v12-AG-main-20261118T232802Z-05252f,2026-11-18T23:28:02+00:00,2026-11-18T23:50:34+00:00,done,fix_round4,AG-main,D2-conformance,all,1.381982,,,cases=394 out=runs/w4a-d2/runs/conformance-v12-run-1
+D2-conformance-v12-AG-main-20261118T234813Z-e62a3d,2026-11-18T23:48:13+00:00,2026-11-19T00:11:04+00:00,done,fix_round4,AG-main,D2-conformance,all,1.252087,,,cases=394 out=runs/w4a-d2/runs/conformance-v12-run-3
+D2-conformance-v12-AG-main-20261118T234918Z-4de509,2026-11-18T23:49:18+00:00,2026-11-19T00:13:47+00:00,done,fix_round4,AG-main,D2-conformance,all,1.174943,,,cases=394 out=runs/w4a-d2/runs/conformance-v12-run-2
+D5-AG-main-20261118T234641Z-8fdcfa,2026-11-18T23:46:41+00:00,2026-11-19T01:26:14+00:00,done,fix_round4,AG-main,D5,test,1.182961,,python -m eval.d5 judge,600 candidates
+dev-ag-main-20261119T142723Z-54b520,2026-11-19T14:27:23+00:00,,started,fix_round5,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage fix_round5 --tag v13,
+dev-ag-main-20261119T144442Z-17c984,2026-11-19T14:44:42+00:00,,started,fix_round5,AG-main,dev,dev,,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage fix_round5 --tag v13,
+dev-ag-main-20261119T144442Z-17c984,2026-11-19T14:44:42+00:00,2026-11-19T14:54:35+00:00,done,fix_round5,AG-main,dev,dev,0.121232,,python -m eval.dev_judge --system AG-main --model openai/gpt-6-luna --stage fix_round5 --tag v13,"paid calls 96, 593s"
+dev-ag-main-20261119T145531Z-62e8af,2026-11-19T14:55:31+00:00,,started,fix_round5,AG-main,dev,dev,,,python -m eval.dev_judge --model openai/gpt-6-luna --system AG-main --stage fix_round5 --tag v13,
+dev-ag-main-20261119T145531Z-62e8af,2026-11-19T14:55:31+00:00,2026-11-19T15:19:59+00:00,done,fix_round5,AG-main,dev,dev,0.314876,,python -m eval.dev_judge --model openai/gpt-6-luna --system AG-main --stage fix_round5 --tag v13,"paid calls 238, 1467s"
+D3+D6-AG-main-20261119T152116Z-beac5d,2026-11-19T15:21:16+00:00,,started,fix_round5,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261119T152157Z-48098b,2026-11-19T15:21:57+00:00,,started,fix_round5,AG-main,D3+D6,all,,,,
+D2-conformance-v13-AG-main-20261119T160510Z-f711f9,2026-11-19T16:05:10+00:00,,started,fix_round5,AG-main,D2-conformance,all,,,,
+D3+D6-AG-main-20261119T152157Z-48098b,2026-11-19T15:21:57+00:00,2026-11-19T16:13:15+00:00,done,fix_round5,AG-main,D3+D6,all,0.191193,,,
+D2-conformance-v13-AG-main-20261119T161600Z-234307,2026-11-19T16:16:00+00:00,,started,fix_round5,AG-main,D2-conformance,all,,,,
+D3+D6-AG-main-20261119T161617Z-9b9a98,2026-11-19T16:16:17+00:00,,started,fix_round5,AG-main,D3+D6,all,,,,
+D3+D6-AG-main-20261119T161617Z-9b9a98,2026-11-19T16:16:17+00:00,2026-11-19T16:27:15+00:00,done,fix_round5,AG-main,D3+D6,all,0.284341,,,
+D2-conformance-v13-AG-main-20261119T161600Z-234307,2026-11-19T16:16:00+00:00,2026-11-19T16:45:04+00:00,done,fix_round5,AG-main,D2-conformance,all,0.944942,,,cases=394 out=runs/w4a-d2/runs/conformance-v13-run-1
+D2-conformance-v13-AG-main-20261119T164506Z-73dc3c,2026-11-19T16:45:06+00:00,,started,fix_round5,AG-main,D2-conformance,all,,,,
+D2-conformance-v13-AG-main-20261119T164506Z-73dc3c,2026-11-19T16:45:06+00:00,2026-11-19T17:13:13+00:00,done,fix_round5,AG-main,D2-conformance,all,0.499206,,,cases=394 out=runs/w4a-d2/runs/conformance-v13-run-2
+D2-conformance-v13-AG-main-20261119T171313Z-d560a3,2026-11-19T17:13:13+00:00,,started,fix_round5,AG-main,D2-conformance,all,,,,
+D2-conformance-v13-AG-main-20261119T171313Z-d560a3,2026-11-19T17:13:13+00:00,2026-11-19T17:40:45+00:00,done,fix_round5,AG-main,D2-conformance,all,0.478636,,,cases=394 out=runs/w4a-d2/runs/conformance-v13-run-3
+D2-expert-v13-AG-main-20261119T174046Z-71ef94,2026-11-19T17:40:46+00:00,,started,fix_round5,AG-main,D2-expert,all,,,,
+D2-expert-v13-AG-main-20261119T174046Z-71ef94,2026-11-19T17:40:46+00:00,2026-11-19T17:52:11+00:00,done,fix_round5,AG-main,D2-expert,all,0.220594,,,cases=129 out=runs/w4a-d2/runs/expert-v13-run-1
+D2-expert-v13-AG-main-20261119T175212Z-30f2d5,2026-11-19T17:52:12+00:00,,started,fix_round5,AG-main,D2-expert,all,,,,
+D2-expert-v13-AG-main-20261119T175212Z-30f2d5,2026-11-19T17:52:12+00:00,2026-11-19T18:04:28+00:00,done,fix_round5,AG-main,D2-expert,all,0.165931,,,cases=129 out=runs/w4a-d2/runs/expert-v13-run-2
+D2-expert-v13-AG-main-20261119T180428Z-9b314f,2026-11-19T18:04:28+00:00,,started,fix_round5,AG-main,D2-expert,all,,,,
+D2-expert-v13-AG-main-20261119T180428Z-9b314f,2026-11-19T18:04:28+00:00,2026-11-19T18:16:47+00:00,done,fix_round5,AG-main,D2-expert,all,0.165377,,,cases=129 out=runs/w4a-d2/runs/expert-v13-run-3
+D5-AG-main-20261123T151335Z-0bdde2,2026-11-23T15:13:35+00:00,,started,d5_final,AG-main,D5,test,,,python -m eval.d5 judge,
+D5-AG-main-20261123T151335Z-0bdde2,2026-11-23T15:13:35+00:00,2026-11-23T16:10:45+00:00,done,d5_final,AG-main,D5,test,0.604821,,python -m eval.d5 judge,600 candidates

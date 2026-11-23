@@ -1,0 +1,397 @@
+{
+  "candidate_type": "table-header-association-mismatch",
+  "variants": [
+    {
+      "variant_id": "co-sem-074",
+      "seeded_behavior": "After progressing to Review, keep the Review order table caption, headers, row header, row count, column count, visible values, and route behavior unchanged, but change only the Desk lamp line-total data cell headers value from review-item-header-prod-desk-lamp review-line-total-header to review-item-header-prod-desk-lamp review-quantity-header.",
+      "expected_candidate": {
+        "candidate_type": "table-header-association-mismatch",
+        "selection_reason": "table_with_structural_header_associations",
+        "type": "table-header-association-mismatch",
+        "selector_hint": "[data-testid=\"review-order-line-total-prod-desk-lamp\"]",
+        "target_text": "$32.00",
+        "header_ids": [
+          "review-item-header-prod-desk-lamp",
+          "review-quantity-header"
+        ],
+        "associated_headers": [
+          "Desk lamp",
+          "Quantity"
+        ]
+      },
+      "baseline_behavior": "On the Review route, the Desk lamp line-total cell shows $32.00 and its headers value resolves to Desk lamp and Line total.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-074",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "tables",
+        "selector_hint": "[data-testid=\"review-order-table\"]",
+        "primary_evidence_key": "table",
+        "attributes": {
+          "caption": "Product quantities and totals",
+          "header_count": 4,
+          "data_cell_count": 2
+        },
+        "data_cell": {
+          "text": "$32.00",
+          "header_ids": [
+            "review-item-header-prod-desk-lamp",
+            "review-quantity-header"
+          ],
+          "headers_all_resolved": true,
+          "row_index": 1,
+          "column_index": 2
+        },
+        "context": {
+          "route": "/checkout/review",
+          "document_title": "Review | Brightlane Checkout",
+          "table_caption": "Product quantities and totals",
+          "target_cell": "review-order-line-total-prod-desk-lamp",
+          "target_text": "$32.00",
+          "seeded_header_ids": [
+            "review-item-header-prod-desk-lamp",
+            "review-quantity-header"
+          ],
+          "associated_headers": [
+            "Desk lamp",
+            "Quantity"
+          ],
+          "purpose_evidence": "The visible monetary line total remains $32.00 in the Line total column while its resolved column header is Quantity."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S005 /checkout/review Review",
+      "mutation_targets": [
+        {
+          "subject": "checkout.review.orderItems.deskLamp.lineTotalCell",
+          "mutation_property": "table_header_association"
+        }
+      ],
+      "candidate_type": "table-header-association-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S005"
+        ],
+        "routes": [
+          "/checkout/review"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H43",
+          "technique": "H43"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-074 focused acquisition through Review, inspect table evidence on CO-S005, build table-header-association candidates, and match the Review order table candidate containing the Desk lamp line-total cell with headers review-item-header-prod-desk-lamp review-quantity-header."
+    },
+    {
+      "variant_id": "co-sem-075",
+      "seeded_behavior": "After progressing to Review, keep the Review order table caption, headers, row header, row count, column count, visible values, and route behavior unchanged, but change only the Desk lamp quantity data cell headers value from review-item-header-prod-desk-lamp review-quantity-header to review-item-header-prod-desk-lamp review-line-total-header.",
+      "expected_candidate": {
+        "candidate_type": "table-header-association-mismatch",
+        "selection_reason": "table_with_structural_header_associations",
+        "type": "table-header-association-mismatch",
+        "selector_hint": "[data-testid=\"review-order-quantity-prod-desk-lamp\"]",
+        "target_text": "1",
+        "header_ids": [
+          "review-item-header-prod-desk-lamp",
+          "review-line-total-header"
+        ],
+        "associated_headers": [
+          "Desk lamp",
+          "Line total"
+        ]
+      },
+      "baseline_behavior": "On the Review route, the Desk lamp quantity cell shows 1 and its headers value resolves to Desk lamp and Quantity.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-075",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "tables",
+        "selector_hint": "[data-testid=\"review-order-table\"]",
+        "primary_evidence_key": "table",
+        "attributes": {
+          "caption": "Product quantities and totals",
+          "header_count": 4,
+          "data_cell_count": 2
+        },
+        "data_cell": {
+          "text": "1",
+          "header_ids": [
+            "review-item-header-prod-desk-lamp",
+            "review-line-total-header"
+          ],
+          "headers_all_resolved": true,
+          "row_index": 1,
+          "column_index": 1
+        },
+        "context": {
+          "route": "/checkout/review",
+          "document_title": "Review | Brightlane Checkout",
+          "table_caption": "Product quantities and totals",
+          "target_cell": "review-order-quantity-prod-desk-lamp",
+          "target_text": "1",
+          "seeded_header_ids": [
+            "review-item-header-prod-desk-lamp",
+            "review-line-total-header"
+          ],
+          "associated_headers": [
+            "Desk lamp",
+            "Line total"
+          ],
+          "purpose_evidence": "The visible quantity remains 1 in the Quantity column while its resolved column header is Line total."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S005 /checkout/review Review",
+      "mutation_targets": [
+        {
+          "subject": "checkout.review.orderItems.deskLamp.quantityCell",
+          "mutation_property": "table_header_association"
+        }
+      ],
+      "candidate_type": "table-header-association-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S005"
+        ],
+        "routes": [
+          "/checkout/review"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H43",
+          "technique": "H43"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-075 focused acquisition through Review, inspect table evidence on CO-S005, build table-header-association candidates, and match the Review order table candidate containing the Desk lamp quantity cell with headers review-item-header-prod-desk-lamp review-line-total-header."
+    },
+    {
+      "variant_id": "co-sem-131",
+      "seeded_behavior": "After adding Notebook set and progressing to Review, keep the table caption, column headers, product row order, product names, quantities, prices, line-total values, and route behavior unchanged, but change only the Desk lamp line-total data cell headers value from review-item-header-prod-desk-lamp review-line-total-header to review-item-header-prod-notebook-set review-line-total-header.",
+      "expected_candidate": {
+        "candidate_type": "table-header-association-mismatch",
+        "selection_reason": "table_with_structural_header_associations",
+        "type": "table-header-association-mismatch",
+        "selector_hint": "[data-testid=\"review-order-line-total-prod-desk-lamp\"]",
+        "target_text": "$32.00",
+        "header_ids": [
+          "review-item-header-prod-notebook-set",
+          "review-line-total-header"
+        ],
+        "associated_headers": [
+          "Notebook set",
+          "Line total"
+        ]
+      },
+      "baseline_behavior": "On the two-item Review route, the Desk lamp line-total cell shows $32.00 and its headers value resolves to Desk lamp and Line total, while Notebook set remains a separate row with its own row header and $18.00 line total.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-131",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "tables",
+        "selector_hint": "[data-testid=\"review-order-table\"]",
+        "primary_evidence_key": "table",
+        "attributes": {
+          "caption": "Product quantities and totals",
+          "header_count": 5,
+          "data_cell_count": 4
+        },
+        "data_cell": {
+          "text": "$32.00",
+          "header_ids": [
+            "review-item-header-prod-notebook-set",
+            "review-line-total-header"
+          ],
+          "headers_all_resolved": true,
+          "row_index": 1,
+          "column_index": 2
+        },
+        "context": {
+          "route": "/checkout/review",
+          "document_title": "Review | Brightlane Checkout",
+          "table_caption": "Product quantities and totals",
+          "target_cell": "review-order-line-total-prod-desk-lamp",
+          "target_text": "$32.00",
+          "seeded_header_ids": [
+            "review-item-header-prod-notebook-set",
+            "review-line-total-header"
+          ],
+          "associated_headers": [
+            "Notebook set",
+            "Line total"
+          ],
+          "purpose_evidence": "The visible $32.00 cell remains in the Desk lamp row and Line total column while its resolved row header is Notebook set."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S005 /checkout/review Review",
+      "mutation_targets": [
+        {
+          "subject": "checkout.review.orderItems.deskLamp.lineTotalCell",
+          "mutation_property": "table_header_association"
+        }
+      ],
+      "candidate_type": "table-header-association-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S005"
+        ],
+        "routes": [
+          "/checkout/review"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H43",
+          "technique": "H43"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-131 focused acquisition through the real Add Notebook set workflow and Review, inspect table evidence on CO-S005, build table-header-association candidates, and match the Review order table candidate containing the row-1 column-2 Desk lamp line-total cell with the exact unordered header IDs review-item-header-prod-notebook-set and review-line-total-header."
+    },
+    {
+      "variant_id": "co-sem-132",
+      "seeded_behavior": "After adding Notebook set and progressing to Review, keep the table caption, column headers, product row order, product names, quantities, prices, line-total values, and route behavior unchanged, but swap the two line-total data cells' product-row header associations: Desk lamp resolves to Notebook set and Line total, while Notebook set resolves to Desk lamp and Line total.",
+      "expected_candidate": {
+        "candidate_type": "table-header-association-mismatch",
+        "selection_reason": "table_with_structural_header_associations",
+        "type": "table-header-association-mismatch",
+        "paired_targets": [
+          {
+            "selector_hint": "[data-testid=\"review-order-line-total-prod-desk-lamp\"]",
+            "target_text": "$32.00",
+            "header_ids": [
+              "review-item-header-prod-notebook-set",
+              "review-line-total-header"
+            ],
+            "associated_headers": [
+              "Notebook set",
+              "Line total"
+            ]
+          },
+          {
+            "selector_hint": "[data-testid=\"review-order-line-total-prod-notebook-set\"]",
+            "target_text": "$18.00",
+            "header_ids": [
+              "review-item-header-prod-desk-lamp",
+              "review-line-total-header"
+            ],
+            "associated_headers": [
+              "Desk lamp",
+              "Line total"
+            ]
+          }
+        ]
+      },
+      "baseline_behavior": "On the two-item Review route, the Desk lamp line-total cell shows $32.00 and resolves to Desk lamp and Line total, while the Notebook set line-total cell shows $18.00 and resolves to Notebook set and Line total.",
+      "risk_subjectivity": "low",
+      "profile": "checkout-co-sem-132",
+      "expected_human_judgment": "violation",
+      "graph_context_needed": "not_required",
+      "expected_evidence": {
+        "bucket": "tables",
+        "selector_hint": "[data-testid=\"review-order-table\"]",
+        "all_of": [
+          {
+            "bucket": "tables",
+            "selector_hint": "[data-testid=\"review-order-table\"]",
+            "primary_evidence_key": "table",
+            "attributes": {
+              "caption": "Product quantities and totals",
+              "header_count": 5,
+              "data_cell_count": 4
+            },
+            "data_cell": {
+              "text": "$32.00",
+              "header_ids": [
+                "review-item-header-prod-notebook-set",
+                "review-line-total-header"
+              ],
+              "headers_all_resolved": true,
+              "row_index": 1,
+              "column_index": 2
+            }
+          },
+          {
+            "bucket": "tables",
+            "selector_hint": "[data-testid=\"review-order-table\"]",
+            "primary_evidence_key": "table",
+            "attributes": {
+              "caption": "Product quantities and totals",
+              "header_count": 5,
+              "data_cell_count": 4
+            },
+            "data_cell": {
+              "text": "$18.00",
+              "header_ids": [
+                "review-item-header-prod-desk-lamp",
+                "review-line-total-header"
+              ],
+              "headers_all_resolved": true,
+              "row_index": 2,
+              "column_index": 2
+            }
+          }
+        ],
+        "context": {
+          "route": "/checkout/review",
+          "document_title": "Review | Brightlane Checkout",
+          "table_caption": "Product quantities and totals",
+          "paired_targets": [
+            "review-order-line-total-prod-desk-lamp",
+            "review-order-line-total-prod-notebook-set"
+          ],
+          "purpose_evidence": "The visible $32.00 and $18.00 cells remain in the Desk lamp and Notebook set rows respectively, while their resolved product row headers are reciprocally exchanged and both retain Line total."
+        }
+      },
+      "app": "checkout-flow",
+      "workflow_state": "CO-S005 /checkout/review Review",
+      "mutation_targets": [
+        {
+          "subject": "checkout.review.orderItems.deskLamp.lineTotalCell",
+          "mutation_property": "table_header_association"
+        },
+        {
+          "subject": "checkout.review.orderItems.notebookSet.lineTotalCell",
+          "mutation_property": "table_header_association"
+        }
+      ],
+      "candidate_type": "table-header-association-mismatch",
+      "expected_state": {
+        "benchmark_state_ids": [
+          "CO-S005"
+        ],
+        "routes": [
+          "/checkout/review"
+        ]
+      },
+      "wcag_wai_basis": [
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
+          "criterion": "1.3.1 Info and Relationships"
+        },
+        {
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H43",
+          "technique": "H43"
+        }
+      ],
+      "validation_approach": "Run the Checkout co-sem-132 focused acquisition through the real Add Notebook set workflow and Review, inspect table evidence on CO-S005, build the existing table-header-association candidate, and conjunctively require both line-total cells: Desk lamp with exact unordered header IDs review-item-header-prod-notebook-set and review-line-total-header, and Notebook set with review-item-header-prod-desk-lamp and review-line-total-header. Verify clean and co-sem-131-like single-wrong controls do not recover."
+    }
+  ]
+}

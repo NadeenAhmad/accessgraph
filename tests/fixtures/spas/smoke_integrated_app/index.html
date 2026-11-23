@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AccessGraph Integrated Smoke Fixture</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        color: #1f2937;
+        background: #f8fafc;
+      }
+
+      header,
+      main,
+      footer {
+        padding: 16px 24px;
+      }
+
+      header {
+        background: #0f766e;
+        color: white;
+      }
+
+      nav a {
+        color: inherit;
+        margin-right: 16px;
+      }
+
+      button,
+      [role="tab"] {
+        margin: 4px;
+        padding: 8px 10px;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(160px, 220px) 1fr;
+        gap: 18px;
+      }
+
+      aside,
+      section,
+      form {
+        border: 1px solid #cbd5e1;
+        background: white;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+
+      .modal,
+      .image-detail {
+        border: 2px solid #0f766e;
+        box-shadow: 0 12px 32px rgba(15, 118, 110, 0.25);
+      }
+
+      .status-ready {
+        background-color: #dcfce7;
+        color: #14532d;
+        border-color: #22c55e;
+      }
+
+      .focus-layout {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+        gap: 8px;
+      }
+
+      .badge-wall {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+      }
+
+      .inert-badge {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #38bdf8;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header role="banner">
+      <h1>AccessGraph Integrated Smoke Fixture</h1>
+      <nav aria-label="Smoke fixture top navigation">
+        <a href="#home">Home</a>
+        <a href="#workspace">Workspace</a>
+      </nav>
+    </header>
+
+    <main>
+      <p>This local SPA fixture combines crawler-safe interaction and Accessibility context patterns.</p>
+      <button id="activate-workspace" type="button">Activate integrated evidence</button>
+
+      <section id="workspace" class="workspace">
+        <aside aria-label="Workspace sidebar">
+          <nav aria-label="Sidebar navigation">
+            <a href="#profile">Profile</a>
+            <a href="#media">Media</a>
+            <a href="#focus">Focus layout</a>
+          </nav>
+          <div role="navigation" aria-label="Secondary smoke navigation">
+            <a href="#status-panel">Status</a>
+            <a href="#image-gallery">Gallery</a>
+          </div>
+        </aside>
+
+        <div>
+          <section aria-label="Tabbed project panels">
+            <div role="tablist" aria-label="Smoke tabs">
+              <div id="overview-tab" role="tab" tabindex="0" aria-selected="true" aria-controls="overview-panel">Overview tab</div>
+              <div id="details-tab" role="tab" tabindex="0" aria-selected="false" aria-controls="details-panel">Details tab</div>
+            </div>
+            <div id="overview-panel" role="tabpanel">
+              <h2>Overview panel</h2>
+              <p>The overview panel is visible by default.</p>
+            </div>
+            <div id="details-panel" role="tabpanel" hidden>
+              <h2>Details panel</h2>
+              <p>Details appear after the tab is selected.</p>
+            </div>
+          </section>
+
+          <section aria-label="Interactive smoke controls">
+            <button id="open-modal" type="button" aria-controls="smoke-modal">Open smoke modal</button>
+            <button id="toggle-accordion" type="button" aria-expanded="true" aria-controls="accordion-panel">Expand smoke disclosure</button>
+            <button id="switch-language" type="button">Switch visible language</button>
+            <button id="open-image-detail" type="button" aria-controls="image-detail">Open image detail</button>
+            <button id="paint-status" type="button">Paint status message</button>
+          </section>
+
+          <section id="smoke-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <h2 id="modal-title">Smoke modal dialog</h2>
+            <p>The crawler should save this modal evidence in the smoke state.</p>
+            <button id="close-modal" type="button">Close smoke modal</button>
+          </section>
+
+          <section id="accordion-panel">
+            <h2>Smoke disclosure content</h2>
+            <p>Expanded accordion evidence is visible in this state.</p>
+          </section>
+
+          <section id="language-panel">
+            <h2>Language switcher</h2>
+            <p id="english-copy">Current language: English workspace summary.</p>
+            <p id="spanish-copy">Resumen del espacio de trabajo en espanol.</p>
+          </section>
+
+          <form id="profile-form" aria-label="Smoke profile form">
+            <h2>Profile evidence form</h2>
+            <label for="email">Email address</label>
+            <label for="email">Work email</label>
+            <span id="email-name" hidden>Hidden account email label</span>
+            <span id="email-help" class="sr-only">Screen reader only email guidance</span>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value="SMOKE_SECRET_EMAIL_VALUE"
+              autocomplete="email"
+              placeholder="name@example.com"
+              required
+              readonly
+              aria-invalid="true"
+              aria-labelledby="email-name"
+              aria-describedby="email-help">
+            <label>
+              Preferred name
+              <input id="preferred-name" name="preferred-name" value="SMOKE_SECRET_NAME_VALUE" autocomplete="name">
+            </label>
+            <button id="save-profile" type="submit">Save profile evidence</button>
+          </form>
+
+          <section id="image-gallery" aria-label="Image gallery">
+            <h2>Image gallery</h2>
+            <img
+              alt="Team planning board"
+              width="64"
+              height="64"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+            <section id="image-detail" class="image-detail" role="dialog" aria-label="Image detail">
+              <h3>Image detail panel</h3>
+              <a href="#image-story">Related image story</a>
+            </section>
+          </section>
+
+          <section id="media-panel" aria-label="Media player panel">
+            <h2>Training video</h2>
+            <video id="training-video" controls width="320">
+              <source src="training-video.mp4" type="video/mp4">
+              <track kind="captions" srclang="en" label="English captions" src="captions.vtt">
+            </video>
+            <section aria-label="Transcript">
+              <h3>Transcript</h3>
+              <p>The training video explains the current smoke-test workflow.</p>
+            </section>
+          </section>
+
+          <section id="status-panel">
+            <h2>Status evidence</h2>
+            <p id="status-message" role="status">Status awaiting update.</p>
+          </section>
+
+          <section id="focus-layout" aria-label="Focusable layout">
+            <h2>Focus layout</h2>
+            <div class="focus-layout">
+              <a href="#third">Third visually</a>
+              <button type="button">First visually</button>
+              <label>
+                Second visually
+                <input name="layout-field" value="SMOKE_SECRET_LAYOUT_VALUE">
+              </label>
+            </div>
+          </section>
+
+          <section aria-label="Inert visual evidence">
+            <h2>Inert visual badges</h2>
+            <p>These role images are non-actionable and intentionally trigger local truncation metadata.</p>
+            <div id="badge-wall" class="badge-wall" aria-label="Inert badge wall"></div>
+          </section>
+
+          <p id="hidden-noise" hidden>SMOKE_HIDDEN_NOISE_SHOULD_NOT_LEAK</p>
+          <div id="owned-region" hidden>Owned region Accessibility context</div>
+          <button id="owns-region" type="button" aria-owns="owned-region">Owns neutral region</button>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Smoke fixture footer.</p>
+    </footer>
+
+    <script>
+      const activateWorkspace = document.querySelector("#activate-workspace");
+      const statusMessage = document.querySelector("#status-message");
+      const badgeWall = document.querySelector("#badge-wall");
+
+      for (let index = 0; index < 110; index += 1) {
+        const badge = document.createElement("span");
+        badge.className = "inert-badge";
+        badge.setAttribute("role", "img");
+        badge.setAttribute("aria-label", `Inert badge ${index}`);
+        badgeWall.appendChild(badge);
+      }
+
+      activateWorkspace.addEventListener("click", () => {
+        activateWorkspace.hidden = true;
+        statusMessage.textContent = "Profile status";
+        statusMessage.className = "status-ready";
+        statusMessage.setAttribute("data-status", "ready");
+        history.pushState({}, "", "#workspace");
+      });
+    </script>
+  </body>
+</html>

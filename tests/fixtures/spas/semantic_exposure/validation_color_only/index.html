@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Validation color exposure</title>
+  </head>
+  <body>
+    <main>
+      <h1>Validation color exposure</h1>
+      <form id="profile-form" action="/semantic_exposure/validation_color_only/check">
+        <label for="account-email">Account email</label>
+        <input id="account-email" name="account_email" type="email" required value="ready@example.test">
+        <button id="validate-profile" type="submit">Validate profile</button>
+      </form>
+      <p id="status">Validation not run.</p>
+    </main>
+    <script>
+      document.querySelector("#profile-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const status = document.querySelector("#status");
+        status.textContent = "Validation status displayed.";
+        status.style.backgroundColor = "rgb(208, 244, 222)";
+        status.style.color = "rgb(0, 83, 59)";
+      });
+    </script>
+  </body>
+</html>

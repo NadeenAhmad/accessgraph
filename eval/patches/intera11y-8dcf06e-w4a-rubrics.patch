@@ -1,0 +1,234 @@
+diff --git a/runtime/intera11y/rubrics/2.4.2.js b/runtime/intera11y/rubrics/2.4.2.js
+new file mode 100644
+index 0000000..1377ac7
+--- /dev/null
++++ b/runtime/intera11y/rubrics/2.4.2.js
+@@ -0,0 +1,21 @@
++'use strict';
++// W4A addition (InterA11y+), modelled on rubrics/2.4.4.js and 1.1.1.js; based on WCAG 2.2 Understanding 2.4.2,
++// technique G88, failure F25 and ACT rules 2779a5 and c4a8a4. Not part of InterA11y.
++module.exports = {
++  sc: '2.4.2', title: 'Page Titled',
++  preamble: 'A web page passes if it has a title that describes its topic or purpose.',
++  rules: [
++    {
++      from: 'added',
++      text: 'The page must have a non-empty title.',
++      tools: [],
++      rubric: `A page whose title element is missing, or whose title is empty or only white space, fails (ACT 2779a5). Evidence: the document title.`,
++    },
++    {
++      from: 'added',
++      text: 'The page title must describe the topic or purpose of the page.',
++      tools: ['capture_full_page'],
++      rubric: `A title fails when it does not identify the topic or purpose of the page as the page presents it (ACT c4a8a4; F25): a title that names a different page, step, item or topic than the content shows, or a placeholder or generic title ("Untitled", "Page", "New document") on a page with its own topic. A title passes when it identifies what the page is about, even when it is short or also names the site (G88). Judge the title against the page's main heading and its content; do not require it to repeat the heading. Evidence: the title, the page's headings and its visible text.`,
++    },
++  ],
++};
+diff --git a/runtime/intera11y/rubrics/2.4.6.js b/runtime/intera11y/rubrics/2.4.6.js
+new file mode 100644
+index 0000000..4d51a1f
+--- /dev/null
++++ b/runtime/intera11y/rubrics/2.4.6.js
+@@ -0,0 +1,28 @@
++'use strict';
++// W4A addition (InterA11y+), modelled on rubrics/2.4.4.js and 1.1.1.js; based on WCAG 2.2 Understanding 2.4.6,
++// technique G130 and G131 and ACT rules b49b2e and cc0f0a. Landmark and widget names are not covered. Not part of
++// InterA11y.
++module.exports = {
++  sc: '2.4.6', title: 'Headings and Labels',
++  preamble: 'Headings and labels that are present must describe their topic or purpose. 2.4.6 does not require headings or labels to exist, and does not require them to be long.',
++  rules: [
++    {
++      from: 'added',
++      text: 'Headings must describe the topic or purpose of the content they introduce.',
++      tools: ['capture_full_page'],
++      rubric: `A heading fails when its accessible name does not describe the topic or purpose of the content it introduces, that is the content after it up to the next heading of the same or a higher level (ACT b49b2e; G130): a heading that names a different topic, step or item than that content, or a generic text ("Section", "Heading", "Content") where the content has its own topic. A heading passes when it identifies that topic, even briefly. Evidence: the heading's level and name, and the content under it.`,
++    },
++    {
++      from: 'added',
++      text: 'Labels of form fields must describe the purpose of the field.',
++      tools: ['query_ax_node'],
++      rubric: `A form field's label fails when it does not describe what the field is for (ACT cc0f0a; G131): it names other information than the field collects, as its input type, autocomplete purpose, format, placeholder or the surrounding form and group show, or it is generic ("Field 1", "Input") where the purpose is specific. A label passes when it identifies the information asked for, even briefly. Evidence: the computed name and its source, the input type, autocomplete, placeholder, the nearest heading and the text around the field.`,
++    },
++    {
++      from: 'added',
++      text: 'Button names must describe what the button does.',
++      tools: ['interact_and_observe', 'observe_state_after_activation'],
++      rubric: `A button's label fails when it does not describe the button's purpose (G131): it names a different action or object than the button acts on in its context, or it is generic ("Click", "Button", "Go") where the context does not make the action clear. A button passes when its name, read in its context (its form, group or the nearest heading), identifies its action. Evidence: the computed name and its source, the visible text, the element it controls and its state, the nearest heading and the text around it; interact_and_observe and observe_state_after_activation show what activating it does.`,
++    },
++  ],
++};
+diff --git a/runtime/intera11y/src/criteria/2.4.2.js b/runtime/intera11y/src/criteria/2.4.2.js
+new file mode 100644
+index 0000000..aa622f7
+--- /dev/null
++++ b/runtime/intera11y/src/criteria/2.4.2.js
+@@ -0,0 +1,31 @@
++'use strict';
++// W4A addition (InterA11y+): 2.4.2 Page Titled, in InterA11y's criterion format. Not part of InterA11y.
++const { PAGE } = require('./common.js');
++const { toolsOf } = require('../judge/rubric.js');
++const { headingsOf } = require('./descriptive-common.js');
++
++module.exports = {
++  sc: '2.4.2', title: 'Page Titled',
++  probes: ['content'],
++  tools: toolsOf('2.4.2'),
++
++  screen: { select: () => false, scope: 'page' },
++
++  identify() { return [{ xpath: PAGE, kind: 'page-title' }]; },
++
++  assess(c, obs, model) {
++    if (!String(model.doc.title || '').trim()) return { status: 'FAIL', rule: 'no-title', reason: 'The page has no title, or its title is empty, so it has nothing that describes its topic or purpose (ACT 2779a5).' };
++    return { status: 'OPEN', rule: 'title-to-judge' };
++  },
++
++  evidence(c, obs, model) {
++    return {
++      facts: {
++        title: model.doc.title,
++        documentLanguage: model.doc.lang || undefined,
++        headings: headingsOf(model).slice(0, 15).map((h) => ({ level: h.level, text: h.name.slice(0, 120) })),
++        visibleTextExcerpt: String(model.doc.text || '').slice(0, 2000),
++      },
++    };
++  },
++};
+diff --git a/runtime/intera11y/src/criteria/2.4.6.js b/runtime/intera11y/src/criteria/2.4.6.js
+new file mode 100644
+index 0000000..fbb37dc
+--- /dev/null
++++ b/runtime/intera11y/src/criteria/2.4.6.js
+@@ -0,0 +1,53 @@
++'use strict';
++// W4A addition (InterA11y+): 2.4.6 Headings and Labels for headings, form field labels and button names, in
++// InterA11y's criterion format. Landmark and widget names are not covered. Not part of InterA11y.
++const { toolsOf } = require('../judge/rubric.js');
++const { exposed, roleOf, nameOf, attr, headingsOf, sectionOf, surroundings } = require('./descriptive-common.js');
++
++const FIELD_ROLE = /^(textbox|searchbox|combobox|listbox|spinbutton|slider|checkbox|radio|switch)$/;
++const BUTTON_INPUT = /^(button|submit|reset|image)$/i;
++
++function kindOf(e) {
++  const role = roleOf(e);
++  if (role === 'heading') return 'heading';
++  if (role === 'button' || (e.tag === 'input' && BUTTON_INPUT.test(attr(e, 'type') || ''))) return 'button-name';
++  if (FIELD_ROLE.test(role) || /^(select|textarea)$/.test(e.tag) || (e.tag === 'input' && !/^(hidden)$/i.test(attr(e, 'type') || ''))) return 'form-label';
++  return null;
++}
++
++module.exports = {
++  sc: '2.4.6', title: 'Headings and Labels',
++  probes: ['content'],
++  tools: toolsOf('2.4.6'),
++
++  screen: { select: (e) => !!kindOf(e) },
++
++  identify(model) {
++    const out = headingsOf(model).map((h) => ({ xpath: h.xpath, kind: 'heading', h, el: h.el }));
++    for (const e of model.elements) {
++      const kind = kindOf(e);
++      if (kind && kind !== 'heading' && exposed(e) && !e.disabled) out.push({ xpath: e.xpath, kind, el: e });
++    }
++    return out;
++  },
++
++  assess(c) {
++    if (!nameOf(c.el) && !(c.kind === 'heading' && c.h.name)) {
++      return { status: 'NOT_APPLICABLE', rule: 'no-name', reason: 'It has no accessible name. 2.4.6 asks that headings and labels that are present describe their topic or purpose; a missing name is a matter for other criteria (1.3.1, 4.1.2).' };
++    }
++    return { status: 'OPEN', rule: `${c.kind}-to-judge` };
++  },
++
++  evidence(c, obs, model) {
++    const e = c.el, ax = e.ax || {};
++    if (c.kind === 'heading') {
++      const section = sectionOf(model, obs.content, c.h);
++      return { element: e, facts: { headingLevel: c.h.level, accessibleName: ax.name, visibleText: e.text, contentUnderTheHeading: section.text, nextHeadingOfSameOrHigherLevel: section.nextHeading } };
++    }
++    const around = surroundings(model, obs.content, e);
++    if (c.kind === 'form-label') {
++      return { element: e, facts: { computedRole: ax.role, accessibleName: ax.name, nameFrom: ax.nameFrom, inputType: attr(e, 'type') || e.tag, autocomplete: ax.autocomplete || attr(e, 'autocomplete') || undefined, placeholder: attr(e, 'placeholder') || undefined, fieldName: attr(e, 'name') || undefined, required: ax.required || undefined, ...around } };
++    }
++    return { element: e, facts: { computedRole: ax.role, accessibleName: ax.name, nameFrom: ax.nameFrom, visibleText: e.text, type: attr(e, 'type') || undefined, controls: attr(e, 'aria-controls') || undefined, expanded: ax.expanded, pressed: ax.pressed, ...around } };
++  },
++};
+diff --git a/runtime/intera11y/src/criteria/descriptive-common.js b/runtime/intera11y/src/criteria/descriptive-common.js
+new file mode 100644
+index 0000000..875e4f2
+--- /dev/null
++++ b/runtime/intera11y/src/criteria/descriptive-common.js
+@@ -0,0 +1,59 @@
++'use strict';
++// Shared by the W4A additions 2.4.2 and 2.4.6 (InterA11y+; a local addition, not part of InterA11y).
++const { key } = require('../lib/xpath.js');
++
++const exposed = (e) => e && e.rendered && !e.inert && !e.ariaHiddenSelf && !e.ariaHiddenAncestor && !(e.ax && e.ax.ignored);
++const roleOf = (e) => String((e.ax && e.ax.role) || e.role || '').toLowerCase();
++const nameOf = (e) => String((e.ax && e.ax.name) || '').trim();
++const attr = (e, name) => { const m = new RegExp(`\\s${name}\\s*=\\s*("([^"]*)"|'([^']*)'|([^\\s>]+))`, 'i').exec(e.openTag || ''); return m ? (m[2] ?? m[3] ?? m[4]) : null; };
++
++/** Document order of the page model's elements, by normalised XPath. */
++function orderOf(model) {
++  if (!model.__w4aOrder) model.__w4aOrder = new Map(model.elements.map((e, i) => [key(e.xpath), i]));
++  return model.__w4aOrder;
++}
++
++function headingsOf(model) {
++  return model.elements.filter((e) => exposed(e) && roleOf(e) === 'heading').map((e) => ({
++    xpath: e.xpath, el: e, name: nameOf(e) || String(e.text || '').trim(),
++    level: Number((e.ax && e.ax.level) || (/^h([1-6])$/.exec(e.tag) || [])[1] || 2),
++  }));
++}
++
++/** Visible text runs in document order, each with the index of its element. */
++function textRuns(model, content) {
++  const order = orderOf(model);
++  return ((content && content.texts) || []).map((t) => ({ ...t, at: order.get(key(t.xpath)) }))
++    .filter((t) => t.at !== undefined).sort((a, b) => a.at - b.at);
++}
++
++/** The text a heading introduces: what follows it up to the next heading of the same or a higher level. */
++function sectionOf(model, content, heading, limit = 900) {
++  const order = orderOf(model);
++  const start = order.get(key(heading.xpath));
++  const next = headingsOf(model).map((h) => ({ ...h, at: order.get(key(h.xpath)) }))
++    .find((h) => h.at > start && h.level <= heading.level);
++  const end = next ? next.at : Infinity;
++  const inside = new Set(model.elements.filter((e) => key(e.xpath).startsWith(key(heading.xpath) + '/')).map((e) => order.get(key(e.xpath))));
++  let text = '';
++  for (const t of textRuns(model, content)) {
++    if (t.at <= start || inside.has(t.at)) continue;
++    if (t.at >= end || text.length > limit) break;
++    text += (text ? ' | ' : '') + t.text;
++  }
++  return { text: text.slice(0, limit), nextHeading: next ? { level: next.level, text: next.name.slice(0, 120) } : null };
++}
++
++/** The nearest heading before an element, and the text runs just before and after it. */
++function surroundings(model, content, el, around = 3) {
++  const order = orderOf(model);
++  const at = order.get(key(el.xpath));
++  const before = headingsOf(model).map((h) => ({ ...h, at: order.get(key(h.xpath)) })).filter((h) => h.at < at).pop();
++  const runs = textRuns(model, content);
++  const inside = (t) => key(t.xpath) === key(el.xpath) || key(t.xpath).startsWith(key(el.xpath) + '/');
++  const prev = runs.filter((t) => t.at < at && !inside(t)).slice(-around).map((t) => t.text);
++  const next = runs.filter((t) => t.at > at && !inside(t)).slice(0, around).map((t) => t.text);
++  return { precedingHeading: before ? { level: before.level, text: before.name.slice(0, 120) } : null, textBefore: prev, textAfter: next };
++}
++
++module.exports = { exposed, roleOf, nameOf, attr, headingsOf, sectionOf, surroundings };
+diff --git a/runtime/intera11y/src/criteria/index.js b/runtime/intera11y/src/criteria/index.js
+index 072f835..ee537d2 100644
+--- a/runtime/intera11y/src/criteria/index.js
++++ b/runtime/intera11y/src/criteria/index.js
+@@ -1,6 +1,6 @@
+ 'use strict';
+ 
+-const SCS = ["1.1.1","1.4.1","1.4.13","2.1.1","2.1.2","2.4.3","2.4.4","2.4.7","3.3.1","4.1.3"];
++const SCS = ["1.1.1","1.4.1","1.4.13","2.1.1","2.1.2","2.4.2","2.4.3","2.4.4","2.4.6","2.4.7","3.3.1","4.1.3"];  // 2.4.2 and 2.4.6: W4A addition (InterA11y+)
+ const fs = require('fs');
+ const path = require('path');
+ const CRITERIA = {};

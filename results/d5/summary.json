@@ -1,0 +1,113 @@
+{
+  "apps": {
+    "jira-clone-angular": {
+      "framework": "Angular 20",
+      "states": 97,
+      "transitions": 123,
+      "states_depth_1plus": 46,
+      "candidates": 2010,
+      "judged": 14,
+      "violation": 4
+    },
+    "angular-realworld-example-app": {
+      "framework": "Angular 21",
+      "states": 43,
+      "transitions": 456,
+      "states_depth_1plus": 42,
+      "candidates": 1288,
+      "judged": 12,
+      "violation": 2
+    },
+    "angular-challenges": {
+      "framework": "Angular (Nx)",
+      "states": 4,
+      "transitions": 6,
+      "states_depth_1plus": 3,
+      "candidates": 28,
+      "judged": 0,
+      "violation": 0
+    },
+    "angular-ssr-course": {
+      "framework": "Angular 22",
+      "states": 18,
+      "transitions": 32,
+      "states_depth_1plus": 17,
+      "candidates": 272,
+      "judged": 3,
+      "violation": 0
+    },
+    "angular-course": {
+      "framework": "Angular 22",
+      "states": 87,
+      "transitions": 336,
+      "states_depth_1plus": 78,
+      "candidates": 2011,
+      "judged": 21,
+      "violation": 6
+    },
+    "vuestic-admin": {
+      "framework": "Vue 3",
+      "states": 150,
+      "transitions": 149,
+      "states_depth_1plus": 99,
+      "candidates": 14212,
+      "judged": 114,
+      "violation": 16
+    },
+    "flowbite-svelte-admin-dashboard": {
+      "framework": "Svelte (SvelteKit)",
+      "states": 150,
+      "transitions": 392,
+      "states_depth_1plus": 99,
+      "candidates": 20492,
+      "judged": 177,
+      "violation": 16
+    },
+    "react-admin-demo": {
+      "framework": "React",
+      "states": 150,
+      "transitions": 149,
+      "states_depth_1plus": 99,
+      "candidates": 20360,
+      "judged": 139,
+      "violation": 4
+    },
+    "react-admin-simple": {
+      "framework": "React",
+      "states": 84,
+      "transitions": 84,
+      "states_depth_1plus": 83,
+      "candidates": 4518,
+      "judged": 33,
+      "violation": 7
+    },
+    "react-admin-crm": {
+      "framework": "React",
+      "states": 150,
+      "transitions": 158,
+      "states_depth_1plus": 99,
+      "candidates": 13971,
+      "judged": 87,
+      "violation": 8
+    }
+  },
+  "candidates": 79162,
+  "sampled": 600,
+  "decisions": {
+    "no_violation": 514,
+    "violation": 63,
+    "uncertain": 23
+  },
+  "followed_up": 23,
+  "violations_depth_1plus": 44,
+  "violations_by_direction": {
+    "state-local": 35,
+    "forward-button/widget": 2,
+    "backward": 26,
+    "forward-link": 0
+  },
+  "weighted_share_violation": 0.09503995233514279,
+  "weighted_share_of_violations_depth_1plus": 0.7554232789521971,
+  "weighted_share_of_violations_transition_evidence": 0.25314421799022613,
+  "exported": 300
+}
