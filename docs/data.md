@@ -5,6 +5,9 @@ Across the States and Transitions of Single-Page Applications". The code, the re
 the repository https://github.com/NadeenAhmad/accessgraph; `python -m eval.reproduce` there rebuilds every number
 of the paper from the repository alone. These files are needed only to inspect the recordings or to re-judge them.
 
+Download: Zenodo, [doi:10.5281/zenodo.24484345](https://doi.org/10.5281/zenodo.24484345) (version used for the paper: [doi:10.5281/zenodo.24484346](https://doi.org/10.5281/zenodo.24484346)), or the
+[GitHub release v1.0-paper](https://github.com/NadeenAhmad/accessgraph/releases/tag/v1.0-paper).
+
 ## Files
 
 | File | Size | Contents |

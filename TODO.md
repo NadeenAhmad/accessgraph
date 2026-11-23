@@ -19,5 +19,6 @@ The tool's per-item D5 verdicts and the saved model answers stay **out of the pu
 ## Release
 
 - [ ] D1 evaluation run and its results (RQ1, RQ3).
-- [ ] Data archive on Zenodo (DOI) and the same files as GitHub release assets (each at most 2 GB).
-- [ ] Add the DOI to `README.md` (and the paper's citation, once it is published); tag the final release.
+- [x] Data archive, first version: Zenodo [doi:10.5281/zenodo.24484346](https://doi.org/10.5281/zenodo.24484346) (all versions: [doi:10.5281/zenodo.24484345](https://doi.org/10.5281/zenodo.24484345)) and the GitHub release `v1.0-paper`.
+- [ ] Final data (D1, D5 verdicts, expert labels, answer cache): publish as a **new version of the same Zenodo record** ("New version" on the record page), so the all-versions DOI in `README.md` stays valid; the same files as GitHub release assets (each at most 2 GB).
+- [ ] Add the paper's citation to `README.md` once it is published; tag the final release.

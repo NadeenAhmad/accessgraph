@@ -4,6 +4,7 @@
 [![Python 3.10–3.12](https://img.shields.io/badge/Python-3.10%E2%80%933.12-blue.svg)](requirements-lock.txt)
 [![Release](https://img.shields.io/github/v/release/NadeenAhmad/accessgraph?include_prereleases&label=Release)](https://github.com/NadeenAhmad/accessgraph/releases)
 [![WCAG 2.2](https://img.shields.io/badge/WCAG-2.2-purple.svg)](https://www.w3.org/TR/WCAG22/)
+[![Data DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24484345.svg)](https://doi.org/10.5281/zenodo.24484345)
 
 AccessGraph detects **semantic Web accessibility violations across the states and transitions of single-page
 applications (SPAs)**: page titles, headings, landmark names and labels that no longer describe what is on screen,
@@ -140,8 +141,9 @@ Full tables, confidence intervals and per-run results: [results/README.md](resul
 
 ## Data
 
-Recordings that are too large for Git are in the data archive (Zenodo, DOI to follow, and the same files as
-[GitHub release assets](https://github.com/NadeenAhmad/accessgraph/releases)): the explorations of the ten real SPAs,
+Recordings that are too large for Git are in the data archive on Zenodo, [doi:10.5281/zenodo.24484345](https://doi.org/10.5281/zenodo.24484345) (always the
+latest version; the version used for the paper is [doi:10.5281/zenodo.24484346](https://doi.org/10.5281/zenodo.24484346)), and the same files are
+[GitHub release assets](https://github.com/NadeenAhmad/accessgraph/releases): the explorations of the ten real SPAs,
 the recordings of the W3C ACT and Rampa pages, and the expert review material. What each file holds, and what is not
 included and where its owners publish it (InterA11y's datasets, the W3C ACT test cases, Rampa's pairs): [docs/data.md](docs/data.md).
 
@@ -176,7 +178,7 @@ logs.
 
 ## Status
 
-Still to come: the benchmark (D1) and its results, the expert labels for the real SPAs, and the archive DOI. See
+Still to come: the benchmark (D1) and its results, and the expert labels for the real SPAs. See
 [TODO.md](TODO.md); contributors adding the benchmark follow its instructions.
 
 ## License
