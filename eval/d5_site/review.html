@@ -248,7 +248,7 @@
   if (!reviewer) { app.innerHTML = ''; app.appendChild(el('p', { text: 'Please open the personal link you received; it contains your reviewer code.' })); return; }
   fetch('items.json').then(function (r) { return r.json(); }).then(function (d) {
     data = d;
-    list = d.items.filter(function (it) { return reviewer.indexOf('second-') !== 0 || it.double; }).sort(function (a, b) { return a.n - b.n; });
+    list = d.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).sort(function (a, b) { return a.n - b.n; });
     answers = load(STORE, {});
     flush();
     window.addEventListener('hashchange', fromHash);

@@ -74,8 +74,10 @@ excludes 0, otherwise "comparable". Repeatability on D2: Fleiss' κ and flip rat
 - **Sample:** all candidates are generated; a stratified random sample of 600 (type × depth 0 vs ≥ 1 × direction,
   seed 20261116) is judged; weights scale results to all 79,162 candidates.
 - **Expert items:** 163, all 63 items AccessGraph judged violations plus 100 random others (`eval/d5_export165.py`),
-  with sampling weights. One accessibility expert labels all of them; a second trained labeller labels 50 (30% of
-  the items: 30 violations, 20 others); agreement by Cohen's κ, disagreements resolved by discussion.
+  with sampling weights. One labeller labels all of them; three further labellers each label the same
+  30 items (18 that AccessGraph judged violations, 12 others; a seeded subset, `eval/d5_shared30.py`). Agreement on
+  the 30 by Fleiss' κ among the four and Cohen's κ between the main labeller and each of the others; disagreements
+  are resolved by discussion. All labellers answer before AccessGraph's verdict is shown.
 - **Review package per item** (`eval/d5_review.py`): the item's recorded path is replayed in the running app, with
   screenshots of every step, the screen before and after the action with the element outlined, and a short video of
   the action. Where the app cannot show the recorded content again (two apps generate random data on every start),

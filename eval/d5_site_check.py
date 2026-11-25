@@ -6,7 +6,7 @@
 - the element is outlined where the check has one (page language and page title have none);
 - actions have a screen 2 (or the other website's address) and a clip, unless the item uses the recorded screen;
 - no capture problem is left; replayed elements show the recorded content (checked during capture);
-- the second reviewer's list has the 50 marked items (30 the tool called violations, 20 others);
+- each shared reviewer's list has the 30 shared items (18 the tool called violations, 12 others);
 - the tool's answers are nowhere in the public files; they are only in the reveal function, one for each item.
 """
 from __future__ import annotations
@@ -56,10 +56,10 @@ def main() -> int:
         problems.append(f"{where}: no screen 2")
       if not it["external"] and not it["clip"]:
         problems.append(f"{where}: no clip")
-  second = [it for it in items if it["double"]]
+  second = [it for it in items if it["shared"]]
   second_v = sum(1 for it in second if key[it["id"]]["ag_decision"] == "violation")
-  if len(second) != 50 or second_v != 30:
-    problems.append(f"second reviewer list: {len(second)} items, {second_v} violations (expected 50 / 30)")
+  if len(second) != 30 or second_v != 18:
+    problems.append(f"shared reviewers' list: {len(second)} items, {second_v} violations (expected 30 / 18)")
   data_text = (SITE / "public" / "items.json").read_text(encoding="utf-8")  # the item data must carry no verdicts
   for word in ("ag_decision", '"decision"', '"sentence"', "explanation", "violation\""):
     if word in data_text:
@@ -74,7 +74,7 @@ def main() -> int:
   stats = {k: sum(1 for it in items if it["kind"] == k) for k in ("control", "arrival", "still")}
   recorded = sum(1 for i in key if json.loads((CAPTURED / i / "meta.json").read_text()).get("fallback"))
   clips = sum(1 for it in items if it["clip"])
-  print(f"{len(items)} items: {stats}; {clips} with a clip; {recorded} on the recorded screen; second list {len(second)} ({second_v} violations)")
+  print(f"{len(items)} items: {stats}; {clips} with a clip; {recorded} on the recorded screen; shared list {len(second)} ({second_v} violations)")
   for p in problems:
     print("PROBLEM:", p)
   print("OK" if not problems else f"{len(problems)} problems")

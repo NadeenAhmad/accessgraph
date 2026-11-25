@@ -41,7 +41,7 @@
     start.href = 'review.html?reviewer=' + encodeURIComponent(reviewer);
   }
   fetch('items.json').then(function (r) { return r.json(); }).then(function (data) {
-    var n = data.items.filter(function (it) { return reviewer.indexOf('second-') !== 0 || it.double; }).length;
+    var n = data.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).length;
     document.getElementById('count').textContent = n;
   }).catch(function () { document.getElementById('count').textContent = 'the'; });
 })();

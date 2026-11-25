@@ -6,8 +6,9 @@ Writes the Netlify project (eval/paths.py, D5_REVIEW_SITE_DIR): public/ (index.h
 at a time, items.json with what each item shows: question, rule, neutral facts, screenshots, clip, path; items/<id>/
 with the captured images and clips) and a write-only function /api/save that stores each answer in the Netlify Blobs
 store `d5-expert-review`. AccessGraph's verdicts are never written into the site. Answers are also kept in the
-reviewer's browser so they can stop and resume. Personal links (codes main-..., second-..., preview-...) are made
-once in <D5_REVIEW_DATA_DIR>/links.csv (chmod 600); the second reviewer sees only the 50 marked items.
+reviewer's browser so they can stop and resume. Personal links are made once in <D5_REVIEW_DATA_DIR>/links.csv
+(chmod 600): main-... (all items), three shared-... (only the 30 items marked `shared` by eval/d5_shared30.py; PI
+decision 2026-11-25, replacing a single second reviewer on 50 items) and preview-... (the PI; excluded later).
 """
 from __future__ import annotations
 
@@ -142,7 +143,7 @@ def build(endpoint: str) -> None:
     for name in files:
       shutil.copy(cap / name, dest / name)
     kind = meta.get("kind", "still")
-    item = {"id": item_id, "n": int(r["order"]), "double": r["double"] == "1", "type": ctype, "kind": kind, "noun": noun,
+    item = {"id": item_id, "n": int(r["order"]), "shared": r["shared"] == "1", "type": ctype, "kind": kind, "noun": noun,
             "question": question, "rule": rule, "facts": _facts(ctype, ev, meta),
             "s1": {"file": "s1.jpg", "url": meta.get("s1_url", ""), "title": meta.get("s1_title", "")} if "s1.jpg" in files else None,
             "s2": {"file": "s2.jpg", "url": meta.get("s2_url", ""), "title": meta.get("s2_title", "")} if "s2.jpg" in files else None,
@@ -174,24 +175,31 @@ def build(endpoint: str) -> None:
   print(f"site: {len(items)} items, {len(flagged)} flagged, {size:.0f} MB -> {SITE}")
 
 
+ROLES = (("main", "main"), ("shared1", "shared"), ("shared2", "shared"), ("shared3", "shared"), ("preview", "preview"))
+
+
 def _reviewer_codes() -> list[str]:
-  """Personal codes, made once: main (all items), second (the 50 marked items), preview (the PI; excluded later)."""
+  """Personal codes, made once: main (all items), shared1-3 (the 30 shared items), preview (the PI; excluded later).
+
+  Codes that already exist are kept; a role no longer in ROLES (the earlier single `second` reviewer, never used) is
+  dropped, and missing roles get a new code."""
   import os
   import secrets
   import string
   links = PRIVATE / "links.csv"
-  if not links.exists():
-    PRIVATE.mkdir(parents=True, exist_ok=True)
-    os.chmod(PRIVATE, 0o700)
-    alphabet = string.ascii_lowercase + string.digits
-    rows = [{"role": role, "code": f"{role}-" + "".join(secrets.choice(alphabet) for _ in range(10))}
-            for role in ("main", "second", "preview")]
+  PRIVATE.mkdir(parents=True, exist_ok=True)
+  os.chmod(PRIVATE, 0o700)
+  old = {r["role"]: r["code"] for r in _rows(links)} if links.exists() else {}
+  alphabet = string.ascii_lowercase + string.digits
+  rows = [{"role": role, "code": old.get(role) or f"{prefix}-" + "".join(secrets.choice(alphabet) for _ in range(10))}
+          for role, prefix in ROLES]
+  if [(r["role"], r["code"]) for r in rows] != list(old.items()):
     with links.open("w", newline="", encoding="utf-8") as stream:
       writer = csv.DictWriter(stream, fieldnames=["role", "code"])
       writer.writeheader()
       writer.writerows(rows)
     os.chmod(links, 0o600)
-  return [r["code"] for r in _rows(links)]
+  return [r["code"] for r in rows]
 
 
 def main(argv: list[str] | None = None) -> int:
