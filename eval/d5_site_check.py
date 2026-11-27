@@ -59,6 +59,10 @@ def main() -> int:
       problems.append(f"{where}: capture problems {meta['problems']}")
     if r["type"] not in PAGE_LEVEL and not meta.get("fallback") and not meta.get("s1_box"):
       problems.append(f"{where}: element not outlined")
+    if r["type"] not in PAGE_LEVEL and not it["outlined"] and not it.get("mark"):  # every item shows where to look
+      problems.append(f"{where}: neither an outline nor a dashed box")
+    if r["type"] == "lang-mismatch" and "lang" not in it:
+      problems.append(f"{where}: no declared language for the page-code box")
     if it["kind"] == "control" and not meta.get("fallback"):
       if not it["external"] and not (it["s2"] and (folder / "s2.jpg").exists()):
         problems.append(f"{where}: no screen 2")

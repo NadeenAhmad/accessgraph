@@ -118,6 +118,10 @@ def _field_facts(f: dict) -> list[list[str]]:
           ["Field type", _shown(f.get("type") or f.get("role") or f.get("tag"), "(not recorded)")]]
 
 
+def _empty_required(f: dict) -> bool:
+  return bool(f.get("required")) and not f.get("has_value") and bool(f.get("invalid"))
+
+
 def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[list[str]]:
   """Neutral facts from the recording. Rules (from the pilot review, 2026-11-27): each fact says whether it is what is
   visible or what screen readers read, uses the words of the question, reads the field the recording actually holds,
@@ -215,15 +219,21 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
       # the outlined element is a live region, not a field
       rows = [["Element checked", "a live region: screen readers read its text out automatically when it changes"],
               ["Its text", " ".join(live[0]["text"].split())[:160]]]
-      invalid = f if f and (f.get("invalid") or str(f.get("aria_invalid")) == "true") else None
+      invalid = f if f and str(f.get("aria_invalid")) == "true" else None
       rows.append(["Fields marked invalid for screen readers (aria-invalid)",
                    _shown(invalid and f"the field \u201c{invalid.get('accessible_name')}\u201d", "(no field on this screen is marked invalid)")])
+      if f and not invalid and _empty_required(f):
+        rows.append(["Required field left empty", f"the field \u201c{f.get('accessible_name')}\u201d (screen readers are not told it is invalid)"])
       return rows
     rows = [["Field (name read by screen readers)", _shown(name(f) if f else "", "(no name)")],
             ["Field type", _shown(f.get("type") or f.get("role") or f.get("tag"), "(not recorded)")]] if f else \
            [["Field", "(no single field: the question is about the whole screen)"]]
     if f:
-      rows.append(["Field marked invalid for screen readers (aria-invalid)", "yes" if f.get("invalid") or str(f.get("aria_invalid")) == "true" else "no"])
+      # aria-invalid only: a required field that is still empty fails the browser's own check (`invalid` in the
+      # recording), but Chromium does not report it as invalid to screen readers (checked on D5-001, D5-129, D5-265)
+      rows.append(["Field marked invalid for screen readers (aria-invalid)", "yes" if str(f.get("aria_invalid")) == "true" else "no"])
+      if str(f.get("aria_invalid")) != "true" and _empty_required(f):
+        rows.append(["Required field left empty", "yes (screen readers are not told it is invalid)"])
     em = p.get("error_message") or {}
     if f or em:
       method = {"aria-describedby": "linked with aria-describedby", "aria-errormessage": "linked with aria-errormessage"}.get(em.get("method"), em.get("method") or "")
@@ -244,6 +254,40 @@ def _control_action(ctype: str, ev: dict, noun: str) -> str:
   el = p.get("link") or p.get("button") or p.get("widget") or {}
   text = " ".join(str(el.get("text") or el.get("accessible_name") or "").split())[:60]
   return f"clicks \u201c{text}\u201d" if text else f"clicks the outlined {noun}"
+
+
+MARK = (232, 89, 12)  # the orange of the outlines drawn at capture
+
+
+def _draw_mark(path: Path, mark: dict) -> None:
+  """A dashed orange box with a label: where the judged element is when it cannot be outlined."""
+  from PIL import Image, ImageDraw, ImageFont
+  im = Image.open(path).convert("RGB")
+  d = ImageDraw.Draw(im)
+  x, y, w, h = mark["box"]
+  dash, gap, width = 12, 7, 4
+  for x0, y0, x1, y1 in ((x, y, x + w, y), (x, y + h, x + w, y + h), (x, y, x, y + h), (x + w, y, x + w, y + h)):
+    length = max(abs(x1 - x0), abs(y1 - y0))
+    for t in range(0, int(length), dash + gap):
+      e = min(t + dash, length)
+      if y0 == y1:
+        d.line((x0 + t, y0, x0 + e, y1), fill=MARK, width=width)
+      else:
+        d.line((x0, y0 + t, x1, y0 + e), fill=MARK, width=width)
+  try:
+    font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 16)
+  except OSError:
+    font = ImageFont.load_default()
+  left, top, right, bottom = d.multiline_textbbox((0, 0), mark["label"], font=font, spacing=3)
+  tw, th = right - left + 16, bottom - top + 10
+  where = mark.get("label_at", "above")
+  lx, ly = {"above": (x, y - th - 4), "below": (x, y + h + 4), "right": (x + w + 8, y + h / 2 - th / 2),
+            "inside": (x + 6, y + 6)}[where]
+  lx = max(2, min(lx, im.width - tw - 2))
+  ly = max(2, min(ly, im.height - th - 2))
+  d.rectangle((lx, ly, lx + tw, ly + th), fill=MARK)
+  d.multiline_text((lx + 8 - left, ly + 5 - top), mark["label"], font=font, fill="white", spacing=3)
+  im.save(path, quality=88)
 
 
 def build(endpoint: str) -> None:
@@ -295,6 +339,13 @@ def build(endpoint: str) -> None:
     elif meta.get("outline") == "outside":
       item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
     item["outlined"] = outlined
+    mark = (OVERRIDES.get(item_id) or {}).get("mark")
+    if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
+      _draw_mark(dest / "s1.jpg", mark)
+      item["mark"] = True
+    if ctype == "lang-mismatch":
+      page = (ev.get("primary") or {}).get("page") or {}
+      item["lang"] = page.get("html_lang") or page.get("document_lang") or ""
     if meta.get("problems") or not item["s1"]:
       flagged.append({"item_id": item_id, "problems": meta.get("problems") or ["not captured"]})
     items.append(item)

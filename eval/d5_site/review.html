@@ -47,11 +47,19 @@
       .then(function () { keep(PENDING, rest); });
   }
 
-  function frame(screen, img, boxed) {
+  function frame(screen, img, boxed, it) {
+    // the page title and the declared language are judged outside the screenshot: they get the orange box here
+    var titled = it && it.type === 'page-title-not-descriptive';
     var b = el('div', { cls: 'browser' }, [
-      el('div', { cls: 'tabline' }, [el('span', { cls: 'tab', text: screen.title || '(no page title)' })]),
+      el('div', { cls: 'tabline' }, [el('span', { cls: 'tab' + (titled ? ' judged' : ''), text: screen.title || '(no page title)' }),
+        titled ? el('span', { cls: 'judged-tag', text: '← page title (browser tab)' }) : null]),
       el('div', { cls: 'addr' }, [el('span', { cls: 'url', text: screen.url || '' })])
     ]);
+    if (it && it.type === 'lang-mismatch') {
+      b.appendChild(el('div', { cls: 'source' }, [el('span', { text: 'Page code (not visible on the screen):' }),
+        el('code', { cls: 'judged', text: it.lang ? '<html lang="' + it.lang + '">' : '<html> (no lang attribute)' }),
+        el('span', { cls: 'judged-tag', text: '← declared page language' })]));
+    }
     var shot = el('div', { cls: 'shot', 'data-zoom': img }, [el('img', { src: img, alt: boxed })]);
     b.appendChild(shot);
     return b;
@@ -68,7 +76,10 @@
       el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
     ]));
     app.appendChild(el('section', { cls: 'panel task' }, [
-      el('p', { cls: 'big', text: (it.outlined === null ? 'A tool checked this ' + it.noun + ' of a web app. '
+      el('p', { cls: 'big', text: (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
+          : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app (outlined above the screen). '
+          : it.outlined === null ? 'A tool checked this ' + it.noun + ' of a web app. '
+          : it.mark ? 'A tool checked an element of a web app that cannot be outlined; the dashed box and its label show where to look. '
           : it.outlined === false ? 'A tool found a ' + it.noun + ' in a web app; it cannot be outlined on this screen (the facts below say why). '
           : 'A tool found the outlined ' + it.noun + ' in a web app. ')
         + (it.kind === 'still' ? 'Look at the screen and answer the question above.'
@@ -92,10 +103,14 @@
       }
     }
     if (it.s1) {
-      var h1 = it.kind === 'still' ? (it.outlined === null ? 'The screen' : it.outlined === false ? 'The screen (the ' + it.noun + ' cannot be outlined on it)' : 'The screen; the ' + it.noun + ' is outlined')
+      var h1 = it.kind === 'still' ? (it.type === 'page-title-not-descriptive' ? 'The screen; the page title is outlined in the browser tab'
+          : it.type === 'lang-mismatch' ? 'The screen; the declared language is outlined in the page code above it'
+          : it.outlined === null ? 'The screen'
+          : it.mark ? 'The screen; the dashed box shows where to look (see its label)'
+          : it.outlined === false ? 'The screen (the ' + it.noun + ' cannot be outlined on it)' : 'The screen; the ' + it.noun + ' is outlined')
         : (it.kind === 'control' ? 'Screen 1: the user clicks the outlined ' + it.noun : 'Screen 1: the user ' + action + ' (outlined)');
       app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: it.kind === 'still' ? '•' : '1' }), h1]),
-        frame(it.s1, base + it.s1.file, 'Screen 1 with the element outlined in orange')]));
+        frame(it.s1, base + it.s1.file, 'Screen 1 with the element outlined in orange', it)]));
     } else {
       app.appendChild(el('section', { cls: 'panel' }, [el('p', { text: 'The screen for this item could not be captured. Please answer Can’t tell.' })]));
     }
