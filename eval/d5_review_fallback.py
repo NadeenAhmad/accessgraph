@@ -50,7 +50,10 @@ def fallback(item_id: str) -> str:
     top = 0
   view = im.crop((0, top, 1280, min(im.height, top + 800)))
   outline = "none"
-  if box:
+  if override.get("hide_dialogs"):
+    view, outline = _without_dialogs(meta["app"], state, ev), "drawn"
+    meta["dialogs_removed"] = True
+  elif box:
     x0, y0 = box["x"] - 5, box["y"] + offset - top - 5
     x1, y1 = box["x"] + box["width"] + 5, box["y"] + offset - top + box["height"] + 5
     if box["width"] <= 2 or box["height"] <= 2:
@@ -74,10 +77,42 @@ def fallback(item_id: str) -> str:
     (out / step["file"]).unlink(missing_ok=True) if step.get("file") else None
     step["file"] = ""
   meta.update({"fallback": "recorded", "kind": "still", "outline": outline, "s1_url": (ev.get("state_context") or {}).get("url", ""),
-               "s1_title": (ev.get("state_context") or {}).get("title", ""), "replay_problems": meta["problems"], "problems": []})
+               "s1_title": (ev.get("state_context") or {}).get("title", ""), "replay_problems": meta.get("replay_problems") or meta["problems"], "problems": []})
   meta.pop("s2_url", None), meta.pop("s2_title", None), meta.pop("clip", None)
   (out / "meta.json").write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
   return f"{item_id}: recorded screen used (outline: {outline})"
+
+
+def _without_dialogs(app: str, state: str, ev: dict) -> Image.Image:
+  """The recorded page (its saved DOM, scripts off) with open dialogs removed, the judged element outlined: for an
+  element that an open dialog covers on the recorded screen and that no other recorded screen shows (apps that make
+  up new data on every start). The app is served only for its images and fonts."""
+  import io
+  from playwright.sync_api import sync_playwright
+  from eval.d5 import apps, serve
+  xpath = ((ev.get("element_refs") or [{}])[0]).get("xpath") or ""
+  dom = (RUNS / app / "explore" / "states" / state / "dom.html").read_text(encoding="utf-8", errors="ignore")
+  with serve(app), sync_playwright() as pw:
+    browser = pw.chromium.launch()
+    page = browser.new_context(java_script_enabled=False, viewport={"width": 1280, "height": 800}).new_page()
+    spec = apps()[app]
+    page.goto(f"http://127.0.0.1:{spec['port']}{spec.get('start', '/')}")
+    page.set_content(dom, wait_until="load")
+    page.evaluate("""() => { document.querySelectorAll('[role=dialog], [role=alertdialog], dialog, .MuiModal-root, .MuiBackdrop-root, .MuiSnackbar-root')
+      .forEach(d => d.remove()); document.querySelectorAll('noscript').forEach(n => n.remove());
+      document.body.style.overflow = 'auto'; }""")
+    target = page.evaluate_handle("xp => document.evaluate(xp, document, null, 9, null).singleNodeValue", xpath).as_element()
+    # from the top of the page if the element fits there (column headings stay visible), else centred
+    y = target.evaluate("e => e.getBoundingClientRect().top + scrollY + e.getBoundingClientRect().height")
+    page.evaluate("y => scrollTo({top: Math.max(0, y - 760), behavior: 'instant'})", y)
+    page.wait_for_timeout(500)
+    box = target.bounding_box()
+    view = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
+    browser.close()
+  d = ImageDraw.Draw(view)
+  for k in range(4):
+    d.rectangle([box["x"] - 5 - k, box["y"] - 5 - k, box["x"] + box["width"] + 5 + k, box["y"] + box["height"] + 5 + k], outline=MARK)
+  return view
 
 
 def main(argv: list[str]) -> int:

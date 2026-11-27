@@ -97,3 +97,6 @@ details[open] summary { margin-bottom: 12px; }
 @media (max-width: 1640px) { .zoom img { width: 100%; max-width: 100%; } }
 .zoom .close { position: fixed; top: 12px; right: 12px; background: var(--surface); color: var(--fg); border-color: var(--line); }
 .done { color: var(--ok); font-weight: 600; }
+.translate { display: inline-block; margin-left: 10px; padding: 1px 10px; border: 1px solid var(--accent); border-radius: 999px;
+  color: var(--accent); font-size: .85rem; font-weight: 500; text-decoration: none; white-space: nowrap; }
+.translate:hover, .translate:focus-visible { background: var(--accent-soft); }

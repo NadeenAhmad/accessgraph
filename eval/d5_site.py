@@ -73,6 +73,44 @@ def _icon_words() -> frozenset[str]:
   return frozenset(words)
 
 
+LIPSUM = """a ac accumsan adipiscing aenean aliquam aliquet amet ante arcu at auctor augue bibendum blandit commodo condimentum
+congue consectetur consequat convallis cras cubilia curabitur curae cursus dapibus diam dictum dictumst dignissim dis dolor
+donec dui duis efficitur egestas eget eleifend elementum elit enim erat eros est et etiam eu euismod ex facilisi facilisis
+fames faucibus felis fermentum feugiat finibus fringilla fusce gravida habitant habitasse hac hendrerit himenaeos iaculis id
+imperdiet in inceptos integer interdum ipsum justo lacinia lacus laoreet lectus leo libero ligula litora lobortis lorem luctus
+maecenas magna magnis malesuada massa mattis mauris maximus metus mi molestie mollis montes morbi mus nam nascetur natoque nec
+neque netus nibh nisi nisl non nostra nulla nullam nunc odio orci ornare parturient pellentesque penatibus per pharetra
+phasellus placerat platea porta porttitor posuere potenti praesent pretium primis proin pulvinar purus quam quis quisque
+rhoncus ridiculus risus rutrum sagittis sapien scelerisque sed sem semper senectus sit sociosqu sodales sollicitudin suscipit
+suspendisse taciti tellus tempor tempus tincidunt torquent tortor tristique turpis ullamcorper ultrices ultricies urna ut
+varius vehicula vel velit venenatis vestibulum vitae vivamus viverra volutpat vulputate""".split()  # the lorem-ipsum vocabulary
+
+
+def _latin_words() -> frozenset[str]:
+  """The made-up Latin of the apps' sample data (faker's lorem words, used by the react-admin examples, plus the classic
+  lorem-ipsum vocabulary), without the words that are also English; cached in results/d5/latin_words.json. A fact
+  with two or more of them gets a "Translate to English" link on the review page."""
+  cache = ROOT / "results" / "d5" / "latin_words.json"
+  if cache.exists():
+    return frozenset(json.loads(cache.read_text(encoding="utf-8"))["words"])
+  words = set(LIPSUM)
+  from eval.paths import D5_APPS
+  for f in (D5_APPS / "react-admin" / "node_modules" / "@faker-js" / "faker" / "dist").glob("en-*.js"):
+    found = re.search(r"[\"'`](a\.ab\.[a-z.]+)[\"'`]", f.read_text(encoding="utf-8", errors="ignore"))
+    if found:
+      words |= set(found.group(1).split("."))
+  english = Path("/usr/share/dict/words")
+  if english.exists():
+    words -= {w.strip().lower() for w in english.read_text(encoding="utf-8", errors="ignore").split()}
+  cache.write_text(json.dumps({"source": "faker en lorem words (react-admin's @faker-js/faker) + lorem-ipsum vocabulary, "
+                                         "minus /usr/share/dict/words", "words": sorted(words)}, indent=0) + "\n", encoding="utf-8")
+  return frozenset(words)
+
+
+def _needs_translation(text: str) -> bool:
+  return sum(1 for t in re.findall(r"[a-z]+", str(text).lower()) if t in _latin_words()) >= 2
+
+
 def _no_icons(text: str) -> str:
   """Drops icon-font words: one with an underscore (expand_more), or a lowercase one right before a capitalised word or
   a number ("settings Application settings" -> "Application settings")."""
@@ -339,6 +377,7 @@ def build(endpoint: str) -> None:
     elif meta.get("outline") == "outside":
       item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
     item["outlined"] = outlined
+    item["facts"] = [[k, v, 1] if _needs_translation(v) else [k, v] for k, v in item["facts"]]  # 1: a translate link
     mark = (OVERRIDES.get(item_id) or {}).get("mark")
     if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
       _draw_mark(dest / "s1.jpg", mark)

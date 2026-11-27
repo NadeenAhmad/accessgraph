@@ -34,6 +34,10 @@
     return n;
   }
   function quote(s) { return '“' + s + '”'; }
+  function translate(text) {  // opens Google Translate in a new tab with this text
+    return el('a', { cls: 'translate', target: '_blank', rel: 'noopener',
+      href: 'https://translate.google.com/?sl=auto&tl=en&op=translate&text=' + encodeURIComponent(text) }, ['Translate to English ↗']);
+  }
 
   function send(record) {
     return fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) })
@@ -128,7 +132,10 @@
       }
     }
     var facts = el('dl', { cls: 'facts' });
-    it.facts.forEach(function (f) { facts.appendChild(el('dt', { text: f[0] })); facts.appendChild(el('dd', { text: f[1] })); });
+    it.facts.forEach(function (f) {
+      facts.appendChild(el('dt', { text: f[0] }));
+      facts.appendChild(el('dd', {}, [f[1], f[2] ? translate(f[1]) : null]));  // made-up Latin sample data: offer a translation
+    });
     app.appendChild(el('section', { cls: 'panel', 'aria-label': 'Facts' }, [facts]));
 
     var prev = answers[it.id] || {};
@@ -178,7 +185,8 @@
       reveal.appendChild(el('p', { cls: 'note', text: 'Your answer above is saved and can no longer be changed.' }));
       reveal.appendChild(el('div', { style: 'font-size:1.1rem' }, ['The tool said: ', el('b', { text: TOOL_SAYS[tool.decision] || tool.decision })]));
       reveal.appendChild(el('div', { style: 'display:grid;gap:4px' }, [el('b', { text: 'The tool’s explanation' }),
-        el('blockquote', { style: 'margin:0;padding:12px 16px;border-left:4px solid var(--line);background:var(--bg);border-radius:6px', text: tool.sentence })]));
+        el('blockquote', { style: 'margin:0;padding:12px 16px;border-left:4px solid var(--line);background:var(--bg);border-radius:6px' },
+          [tool.sentence, it.facts.some(function (f) { return f[2]; }) ? translate(tool.sentence) : null])]));
       reveal.appendChild(form2);
       reveal.hidden = false;
       form2.addEventListener('submit', function (e) {

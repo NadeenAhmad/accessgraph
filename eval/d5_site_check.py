@@ -45,7 +45,7 @@ def main() -> int:
       problems.append(f"{where}: order {it['n']} != {r['order']}")
     if not it["question"] or not it["rule"] or not it["facts"]:
       problems.append(f"{where}: question, rule or facts missing")
-    if any(v == "(none)" for _k, v in it["facts"]):
+    if any(f[1] == "(none)" for f in it["facts"]):
       problems.append(f"{where}: a fact is a bare (none)")
     box = meta.get("s1_box") if not meta.get("fallback") else None
     if box and box["height"] < 800:
