@@ -47,7 +47,7 @@ def main() -> int:
       problems.append(f"{where}: question, rule or facts missing")
     if any(v == "(none)" for _k, v in it["facts"]):
       problems.append(f"{where}: a fact is a bare (none)")
-    box = (meta.get("s2_box") if it["kind"] == "arrival" else meta.get("s1_box")) if not meta.get("fallback") else None
+    box = meta.get("s1_box") if not meta.get("fallback") else None
     if box and box["height"] < 800:
       if box["y"] < -16 or box["y"] + box["height"] > 816 or box["x"] < -16 or box["x"] + box["width"] > 1296:  # a few pixels past the edge (scrollbar) are fine
         problems.append(f"{where}: outlined element is partly outside the screenshot ({box})")
@@ -57,10 +57,9 @@ def main() -> int:
       problems.append(f"{where}: no screen 1")
     if meta.get("problems"):
       problems.append(f"{where}: capture problems {meta['problems']}")
-    outlined = meta.get("s2_box") if it["kind"] == "arrival" else meta.get("s1_box")
-    if r["type"] not in PAGE_LEVEL and not meta.get("fallback") and not outlined and not (it["kind"] == "arrival" and meta.get("s1_box")):
+    if r["type"] not in PAGE_LEVEL and not meta.get("fallback") and not meta.get("s1_box"):
       problems.append(f"{where}: element not outlined")
-    if it["kind"] in ("control", "arrival") and not meta.get("fallback"):
+    if it["kind"] == "control" and not meta.get("fallback"):
       if not it["external"] and not (it["s2"] and (folder / "s2.jpg").exists()):
         problems.append(f"{where}: no screen 2")
       if not it["external"] and not it["clip"]:
@@ -80,7 +79,7 @@ def main() -> int:
   tool = json.loads(re.search(r"const TOOL = (\{.*?\});\n", reveal, re.S).group(1))
   if set(tool) != set(key) or any(tool[k]["decision"] != key[k]["ag_decision"] for k in key):
     problems.append("reveal function: items or decisions do not match the key")
-  stats = {k: sum(1 for it in items if it["kind"] == k) for k in ("control", "arrival", "still")}
+  stats = {k: sum(1 for it in items if it["kind"] == k) for k in ("control", "still")}
   recorded = sum(1 for i in key if json.loads((CAPTURED / i / "meta.json").read_text()).get("fallback"))
   clips = sum(1 for it in items if it["clip"])
   print(f"{len(items)} items: {stats}; {clips} with a clip; {recorded} on the recorded screen; shared list {len(second)} ({second_v} violations)")

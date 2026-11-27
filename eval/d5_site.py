@@ -280,7 +280,7 @@ def build(endpoint: str) -> None:
     # whether the element can be seen and is outlined on the judged screen; if not, a fact says why
     judged = (refs[0] if refs else {}).get("element_id")
     rbox = next((b.get("bounding_box") for b in ev.get("bounding_boxes") or [] if b.get("element_id") == judged), None)
-    jbox = meta.get("s2_box") if kind == "arrival" else meta.get("s1_box")
+    jbox = meta.get("s1_box")
     no_size = bool(rbox) and (rbox["width"] <= 2 or rbox["height"] <= 2)
     if meta.get("fallback"):
       outlined = meta.get("outline") == "drawn"

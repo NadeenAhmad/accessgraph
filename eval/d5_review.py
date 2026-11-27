@@ -8,14 +8,13 @@ outlined (`step-<k>.jpg`), `s1.jpg` (the screen with the element or action that 
 screen right after that action, when there is one), `clip.mp4` (the action, a few seconds, with a visible pointer),
 and `meta.json` (what was reached, addresses, titles, and whether the replay matched the recording).
 
-Three kinds of items:
+Two kinds of items:
 - control: the element is a link, button or widget; s1 = the recorded screen with it outlined, the action = clicking
   it, s2 = right after (links to other sites are not opened; their address is recorded instead); the path is the
   shortest prefix of the recorded one after which the control looks the same and clicking it gives the same screen;
-- arrival: the check is about a screen reached by an action (headings, landmarks, page titles, form labels on a
-  `backward` item): s1 = the screen before, with the action's element outlined, s2 = the screen reached, with the
-  element outlined;
-- still: images, language, autocomplete, error messages and widget states: s1 only, element outlined.
+- still: everything else: s1 = the judged screen, element outlined. (Until the PI's check on 2026-11-27, a heading,
+  region, page title or form label reached by a click showed the screen before, the click and the screen after; the
+  question is only about the screen reached, so the click is now the last step of the path.)
 
 Pilot review (2026-11-27): for all other items, the earliest screen of the path on which the judged element and what
 it is compared with already look as judged is shown (an action that changes neither is left out); headings and regions
@@ -38,7 +37,6 @@ OUT = ROOT / "results" / "d5" / "review"
 VIEW = {"width": 1280, "height": 800}
 FFMPEG = "/usr/local/bin/ffmpeg"
 CONTROL = {"link-text-mismatch", "button-label-mismatch", "widget-label-purpose-mismatch"}
-ARRIVAL = {"heading-not-descriptive", "landmark-purpose-mismatch", "page-title-not-descriptive", "form-label-mismatch"}
 MARK = (232, 89, 12)
 PLACE_TOP = {"heading-not-descriptive", "landmark-purpose-mismatch"}  # the element at the top, its content below it
 PAGE_LEVEL = {"page-title-not-descriptive", "lang-mismatch"}           # the screen from its top
@@ -113,12 +111,8 @@ def _ns_free(xpath: str) -> str:
   return re.sub(r"/([A-Za-z][\w-]*)(?=\[|/|$)", lambda m: f'/*[local-name()="{m.group(1).lower()}"]', xpath)
 
 
-def kind_of(ctype: str, direction: str, steps: int) -> str:
-  if ctype in CONTROL:
-    return "control"
-  if ctype in ARRIVAL and direction == "backward" and steps > 0:
-    return "arrival"
-  return "still"
+def kind_of(ctype: str) -> str:
+  return "control" if ctype in CONTROL else "still"
 
 
 def _local(url: str) -> bool:
@@ -326,7 +320,7 @@ def _use_earlier(out: Path, meta: dict, cand: dict) -> None:
     (out / name).unlink(missing_ok=True)
   for step in meta["steps"][k:]:
     (out / step["file"]).unlink(missing_ok=True)
-  meta["trimmed"] = {"kind_before": meta["kind"], "steps_before": len(meta["steps"]) + (1 if meta["kind"] == "arrival" else 0),
+  meta["trimmed"] = {"kind_before": meta["kind"], "steps_before": len(meta["steps"]),
                      "steps_now": k, "why": "the judged element and its content already look the same on this screen"}
   meta.update({"kind": "still", "steps": meta["steps"][:k], "s1_box": cand["box"], "s1_url": cand["url"], "s1_title": cand["title"]})
   for key in ("s2_box", "s2_url", "s2_title", "action_label"):
@@ -421,7 +415,7 @@ def capture_item(browser, item_id: str, row: dict, storage: dict, path_limit: in
   evidence = json.loads((src / "evidence.json").read_text(encoding="utf-8"))
   replay = json.loads((src / "replay.json").read_text(encoding="utf-8"))
   steps = replay["steps"] if path_limit is None else replay["steps"][:path_limit]
-  kind = kind_of(row["type"], row["direction"], len(steps))
+  kind = kind_of(row["type"])
   meta = {"item_id": item_id, "app": row["app"], "type": row["type"], "kind": kind, "steps": [], "problems": []}
   video_dir = out / "_video"
   ctx = browser.new_context(viewport=VIEW, record_video_dir=str(video_dir), record_video_size=VIEW)
@@ -438,8 +432,7 @@ def capture_item(browser, item_id: str, row: dict, storage: dict, path_limit: in
   try:
     page.goto(replay["start_url"], wait_until="domcontentloaded", timeout=60000)
     _settle(page, 900)
-    path_steps = steps[:-1] if kind == "arrival" else steps
-    for k, step in enumerate(path_steps, 1):
+    for k, step in enumerate(steps, 1):
       if trim:
         cands.append(_candidate(page, out, k - 1, xpath, row["type"]))
       action = step["action"] or {}
@@ -464,61 +457,36 @@ def capture_item(browser, item_id: str, row: dict, storage: dict, path_limit: in
       if not ok:
         meta["problems"].append(f"step {k}: action failed ({label})")
     recorded_url = (evidence.get("state_context") or {}).get("url") or ""
-    if kind == "arrival":
-      if trim:
-        cands.append(_candidate(page, out, len(path_steps), xpath, row["type"]))
-      last = steps[-1]["action"] or {}
-      el = _locate(page, last)
-      meta["s1_box"] = _shot(page, out / "s1.jpg", el)
-      meta["s1_url"], meta["s1_title"] = page.url, page.title()
-      meta["action_label"] = _step_label(last)
-      if el is not None:
-        span = _film_action(page, el, lambda: _do(page, last, el))
-        clip = span
+    target = _element_by_xpath(page, xpath) if xpath else None
+    meta["reached_url_matches"] = _same_route(page.url, recorded_url)
+    if target is None and xpath:  # page-level checks (page language) have no element to outline
+      meta["problems"].append("judged element not found")
+    elif _content_differs(target, evidence):
+      meta["problems"].append("content differs from the recording")
+    final = _signature(page, xpath, row["type"]) if trim else None
+    if kind == "control":
+      meta["_final_sig"] = _signature(page, xpath, row["type"])
+    meta["s1_box"] = _shot(page, out / "s1.jpg", target, _place(row["type"]))
+    meta["s1_url"], meta["s1_title"] = page.url, page.title()
+    if kind == "control" and target is not None:
+      href = target.evaluate("e => e.closest('a') ? e.closest('a').href : ''") or ""
+      meta["href"] = href
+      if href and not _local(href):
+        meta["external"] = href
       else:
-        meta["problems"].append(f"last step: element not found ({meta['action_label']})")
-        _do(page, last, None)
-        _settle(page)
-      target = _element_by_xpath(page, xpath) if xpath else None
-      if _content_differs(target, evidence):
-        meta["problems"].append("content differs from the recording")
-      final = _signature(page, xpath, row["type"]) if trim else None
-      meta["s2_box"] = _shot(page, out / "s2.jpg", target, _place(row["type"]))
-      meta["s2_url"], meta["s2_title"] = page.url, page.title()
-      meta["reached_url_matches"] = _same_route(page.url, recorded_url)
-      if target is None and xpath and row["type"] != "page-title-not-descriptive":
-        meta["problems"].append("judged element not found on the reached screen")
-    else:
-      target = _element_by_xpath(page, xpath) if xpath else None
-      meta["reached_url_matches"] = _same_route(page.url, recorded_url)
-      if target is None and xpath:  # page-level checks (page language) have no element to outline
-        meta["problems"].append("judged element not found")
-      elif _content_differs(target, evidence):
-        meta["problems"].append("content differs from the recording")
-      final = _signature(page, xpath, row["type"]) if trim else None
-      if kind == "control":
-        meta["_final_sig"] = _signature(page, xpath, row["type"])
-      meta["s1_box"] = _shot(page, out / "s1.jpg", target, _place(row["type"]))
-      meta["s1_url"], meta["s1_title"] = page.url, page.title()
-      if kind == "control" and target is not None:
-        href = target.evaluate("e => e.closest('a') ? e.closest('a').href : ''") or ""
-        meta["href"] = href
-        if href and not _local(href):
-          meta["external"] = href
-        else:
-          popup = []
-          ctx.on("page", lambda p: popup.append(p))
-          clip = _film_action(page, target, lambda: _do(page, {"type": "click"}, target))
-          shown = popup[-1] if popup else page
-          if popup:
-            _settle(shown, 1200)
-            meta["opened_new_tab"] = True
-          shown.evaluate("() => { const c = document.getElementById('__ptr'); if (c) c.remove(); }") if shown is page else None
-          meta["_outcome"] = _outcome(shown)
-          meta["s2_box"] = _shot(shown, out / "s2.jpg")
-          meta["s2_url"], meta["s2_title"] = shown.url, shown.title()
-          if clip is None:
-            meta["problems"].append("click on the element failed")
+        popup = []
+        ctx.on("page", lambda p: popup.append(p))
+        clip = _film_action(page, target, lambda: _do(page, {"type": "click"}, target))
+        shown = popup[-1] if popup else page
+        if popup:
+          _settle(shown, 1200)
+          meta["opened_new_tab"] = True
+        shown.evaluate("() => { const c = document.getElementById('__ptr'); if (c) c.remove(); }") if shown is page else None
+        meta["_outcome"] = _outcome(shown)
+        meta["s2_box"] = _shot(shown, out / "s2.jpg")
+        meta["s2_url"], meta["s2_title"] = shown.url, shown.title()
+        if clip is None:
+          meta["problems"].append("click on the element failed")
     if final and not meta["problems"]:  # (an element without size matches only a screen where it also has none)
       match = next((c for c in cands if c and c["sig"] == final), None)
       if match:
