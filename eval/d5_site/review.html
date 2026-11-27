@@ -76,7 +76,8 @@
     app.innerHTML = '';
     var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
     app.appendChild(el('header', { cls: 'topbar' }, [
-      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: 'Accessibility expert review' }), el('h1', { text: it.question })]),
+      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: 'Accessibility expert review' }), el('h1', { text: it.question }),
+        it.hint ? el('p', { cls: 'hint', text: it.hint }) : null]),
       el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
     ]));
     app.appendChild(el('section', { cls: 'panel task' }, [

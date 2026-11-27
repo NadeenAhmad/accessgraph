@@ -44,8 +44,25 @@ QUESTIONS = {
   "error-message-mismatch": ("If there is an input error on this screen, is it identified and described in text?", "3.3.1 Error Identification, level A: when an input error is detected, the field is identified and the error is described in text.", "field"),
   "autocomplete-purpose-mismatch": ("Does the field's autocomplete value match the information the field asks for?", "1.3.5 Identify Input Purpose, level AA: fields that ask for information about the user declare that purpose correctly.", "field"),
 }
+# one plain line under each question: what it is about (pilot review by the PI, 2026-11-27: terms like "state",
+# "region" or "live region" were not understood without it)
+HINTS = {
+  "link-text-mismatch": "Screen readers read a link's text to the user, often without the text around it (for example in a list of all links on the page).",
+  "button-label-mismatch": "Screen readers read a button's label to the user; it should say what the button does.",
+  "widget-label-purpose-mismatch": "Screen readers read the label of a control (a tab, a menu, a switch, an option in a list …); it should say what the control does.",
+  "image-alt-not-descriptive": "People who cannot see the image hear its text alternative instead. A purely decorative image may have none.",
+  "heading-not-descriptive": "Screen reader users jump from heading to heading to find what they need; a heading should say what its section is about.",
+  "landmark-purpose-mismatch": "A region is a part of the page that screen readers list so users can jump to it (navigation, main content, a form, a footer …). Screen readers announce each region's type and name.",
+  "page-title-not-descriptive": "The page title is the text in the browser tab. Screen readers read it first when a page opens.",
+  "form-label-mismatch": "Screen readers read a field's label when the user reaches the field; it should say what to enter.",
+  "aria-state-mismatch": "The state of a control is whether it is selected, checked, open or pressed. Screen readers tell the user the state; it should match what the screen shows.",
+  "lang-mismatch": "The page code says which language the page is in, so that screen readers pronounce the text correctly.",
+  "error-message-mismatch": "When a user makes an input error (for example, submits a form with a required field left empty), the field must be identified and the error described in text. If there is no input error on this screen, answer Yes, it's fine.",
+  "autocomplete-purpose-mismatch": "The autocomplete value in the page code tells the browser what a field asks for (for example a name or an email address), so the browser can fill it in.",
+}
 LANDMARKS = {"nav": "navigation", "main": "main content", "header": "banner (header)", "footer": "content info (footer)",
-             "aside": "complementary", "section": "region", "form": "form", "search": "search"}
+             "aside": "complementary", "section": "region (a general section of the page)", "form": "form", "search": "search",
+             "region": "region (a general section of the page)"}
 
 
 def _rows(path: Path) -> list[dict]:
@@ -125,8 +142,8 @@ def _label(text: str) -> str:
   return out.replace(" \u201c\u201d", " an icon without text")
 
 
-AX_REGIONS = {"banner": "banner (page header)", "navigation": "navigation", "complementary": "complementary (aside)",
-              "contentinfo": "content info (page footer)", "form": "form", "region": "region", "main": "main content",
+AX_REGIONS = {"banner": "banner (page header)", "navigation": "navigation", "complementary": "complementary (a side section, for example a sidebar)",
+              "contentinfo": "content info (page footer)", "form": "form", "region": "region (a general section of the page)", "main": "main content",
               "search": "search", "sectionheader": "header of a section (screen readers do not announce it as a region)",
               "sectionfooter": "footer of a section (screen readers do not announce it as a region)"}
 ROLE_NAMES = {"button": "button", "a": "link", "menuitem": "menu item", "option": "option in a list", "tab": "tab",
@@ -216,13 +233,13 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
     l = p.get("landmark") or {}
     tag = str(l.get("tag") or "").lower()
     kind = AX_REGIONS.get(ax["role"]) if ax is not None else None
-    rows = [["Region type", kind or LANDMARKS.get(tag) or LANDMARKS.get(str(l.get("role") or "").lower()) or _shown(l.get("role") or tag, "(not recorded)")],
-            ["Region name read by screen readers", _shown(name(l), "(no name: the region has no aria-label, aria-labelledby or title)")]]
-    if not name(l) and l.get("aria_labelledby"):
-      rows.append(["Name source", f"aria-labelledby points to the element with id \u201c{l.get('aria_labelledby')}\u201d, which gives no text"])
+    rows = [["Region type (announced by screen readers)", kind or LANDMARKS.get(tag) or LANDMARKS.get(str(l.get("role") or "").lower()) or _shown(l.get("role") or tag, "(not recorded)")],
+            ["Region name read by screen readers", _shown(name(l), "(no name)")]]
+    if not name(l):
+      rows.append(["Why it has no name", f"the page code says to take its name from another element (aria-labelledby=\u201c{l.get('aria_labelledby')}\u201d), but that element has no text"
+                   if l.get("aria_labelledby") else "the page code gives it none (no aria-label, aria-labelledby or title)"])
     inside = _no_icons(l.get("text_sample") or "")
-    if inside:
-      rows.append(["Text inside the region (start)", inside[:160] + ("\u2026" if len(inside) > 160 else "")])
+    rows.append(["Text inside the region (beginning)", inside[:160] + ("\u2026" if len(inside) > 160 else "") if inside else "(none: the region is empty)"])
     return rows
   if ctype == "page-title-not-descriptive":
     pg = p.get("page") or {}
@@ -240,10 +257,12 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
   if ctype == "aria-state-mismatch":
     a = p.get("aria_state") or {}
     attrs = a.get("state_attributes") or ((s.get("aria_state_context_v1") or {}).get("declared_state")) or {}
-    said = [f"{STATE_NAMES.get(k, (k, {}))[1].get(str(v), f'{k} = {v}')} ({k.replace('_', '-')}=\u201c{v}\u201d)" for k, v in attrs.items()]
+    said = [STATE_NAMES.get(k, (k, {}))[1].get(str(v), f"{k} = {v}") for k, v in attrs.items()]
+    code = [f"{k.replace('_', '-')}=\u201c{v}\u201d" for k, v in attrs.items()]
     return [["Kind of control", _kind(a)], ["Text on the page", _shown(_no_icons(a.get("text")), "(no text)")],
             ["Name read by screen readers", _shown(name(a), "(no name)")],
-            ["State announced to screen readers", _shown("; ".join(said), "(no state recorded)")]]
+            ["State that screen readers announce", _shown(" and ".join(said), "(no state recorded)")],
+            ["In the page code", _shown(", ".join(code), "(no state attribute)")]]
   if ctype == "lang-mismatch":
     pg = p.get("page") or {}
     sample = " ".join(str(s.get("body_text_sample") or pg.get("body_text_sample") or "").split())[:220]
@@ -255,11 +274,12 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
     outlined = ((ev.get("_element_refs") or [{}])[0]).get("xpath")
     if not p.get("form_control") and live and outlined and outlined == live[0].get("xpath"):
       # the outlined element is a live region, not a field
-      rows = [["Element checked", "a live region: screen readers read its text out automatically when it changes"],
-              ["Its text", " ".join(live[0]["text"].split())[:160]]]
+      rows = [["What the tool checked", "an announcement area (a \u201clive region\u201d): when its text changes, screen readers read the new "
+               "text out loud. Apps often put error messages in such areas."],
+              ["Text in the announcement area", " ".join(live[0]["text"].split())[:160]]]
       invalid = f if f and str(f.get("aria_invalid")) == "true" else None
-      rows.append(["Fields marked invalid for screen readers (aria-invalid)",
-                   _shown(invalid and f"the field \u201c{invalid.get('accessible_name')}\u201d", "(no field on this screen is marked invalid)")])
+      rows.append(["Fields marked as having an error, for screen readers (aria-invalid)",
+                   _shown(invalid and f"the field \u201c{invalid.get('accessible_name')}\u201d", "none on this screen")])
       if f and not invalid and _empty_required(f):
         rows.append(["Required field left empty", f"the field \u201c{f.get('accessible_name')}\u201d (screen readers are not told it is invalid)"])
       return rows
@@ -269,16 +289,16 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
     if f:
       # aria-invalid only: a required field that is still empty fails the browser's own check (`invalid` in the
       # recording), but Chromium does not report it as invalid to screen readers (checked on D5-001, D5-129, D5-265)
-      rows.append(["Field marked invalid for screen readers (aria-invalid)", "yes" if str(f.get("aria_invalid")) == "true" else "no"])
+      rows.append(["Field marked as having an error, for screen readers (aria-invalid)", "yes" if str(f.get("aria_invalid")) == "true" else "no"])
       if str(f.get("aria_invalid")) != "true" and _empty_required(f):
         rows.append(["Required field left empty", "yes (screen readers are not told it is invalid)"])
     em = p.get("error_message") or {}
     if f or em:
-      method = {"aria-describedby": "linked with aria-describedby", "aria-errormessage": "linked with aria-errormessage"}.get(em.get("method"), em.get("method") or "")
-      rows.append(["Error message linked to the field (read by screen readers)",
-                   f"\u201c{em['text']}\u201d ({method})" if em.get("text") else "(no error message linked)"])
+      method = {"aria-describedby": "connected with aria-describedby", "aria-errormessage": "connected with aria-errormessage"}.get(em.get("method"), em.get("method") or "")
+      rows.append(["Error message connected to the field (screen readers read it with the field)",
+                   f"\u201c{em['text']}\u201d ({method})" if em.get("text") else "(no error message connected)"])
     if live:
-      rows.append(["Text in live regions (read out automatically by screen readers)", " | ".join(" ".join(t["text"].split())[:140] for t in live[:2])])
+      rows.append(["Text in announcement areas (screen readers read it out loud when it changes)", " | ".join(" ".join(t["text"].split())[:140] for t in live[:2])])
     return rows
   if ctype == "autocomplete-purpose-mismatch":
     f = p.get("form_control") or {}
@@ -373,10 +393,18 @@ def build(endpoint: str) -> None:
     if item_id in OVERRIDES and OVERRIDES[item_id].get("fact"):
       item["facts"].append(OVERRIDES[item_id]["fact"])
     elif no_size:
-      item["facts"].append(["Visible on the screen", "no: the element takes up no space on the page"])
+      empty = ctype == "landmark-purpose-mismatch" and not ((ev.get("primary") or {}).get("landmark") or {}).get("text_sample")
+      item["facts"].append(["Visible on the screen", ("no: the region is empty, so it takes up no space on the page." if empty else
+                            "no: it is hidden on the screen (it takes up no space), so only screen readers find it.")
+                            + (" The dashed box shows where it is." if (OVERRIDES.get(item_id) or {}).get("mark") else "")])
     elif meta.get("outline") == "outside":
       item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
     item["outlined"] = outlined
+    item["hint"] = HINTS[ctype]
+    if ctype == "aria-state-mismatch":  # the question names the control and the state (pilot review: "state" alone was unclear)
+      said, control = dict(item["facts"]).get("State that screen readers announce", ""), dict(item["facts"]).get("Kind of control", "control")
+      if said and not said.startswith("("):
+        item["question"] = f"Screen readers announce this {control} as \u201c{said}\u201d. Does the screen show the same?"
     item["facts"] = [[k, v, 1] if _needs_translation(v) else [k, v] for k, v in item["facts"]]  # 1: a translate link
     mark = (OVERRIDES.get(item_id) or {}).get("mark")
     if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
