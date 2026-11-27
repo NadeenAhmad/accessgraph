@@ -10,11 +10,16 @@ and `meta.json` (what was reached, addresses, titles, and whether the replay mat
 
 Three kinds of items:
 - control: the element is a link, button or widget; s1 = the recorded screen with it outlined, the action = clicking
-  it, s2 = right after (links to other sites are not opened; their address is recorded instead);
+  it, s2 = right after (links to other sites are not opened; their address is recorded instead); the path is the
+  shortest prefix of the recorded one after which the control looks the same and clicking it gives the same screen;
 - arrival: the check is about a screen reached by an action (headings, landmarks, page titles, form labels on a
   `backward` item): s1 = the screen before, with the action's element outlined, s2 = the screen reached, with the
   element outlined;
 - still: images, language, autocomplete, error messages and widget states: s1 only, element outlined.
+
+Pilot review (2026-11-27): for all other items, the earliest screen of the path on which the judged element and what
+it is compared with already look as judged is shown (an action that changes neither is left out); headings and regions
+are placed near the top so their content is visible, other elements in the middle, page-level checks from the top.
 """
 from __future__ import annotations
 
@@ -35,6 +40,47 @@ FFMPEG = "/usr/local/bin/ffmpeg"
 CONTROL = {"link-text-mismatch", "button-label-mismatch", "widget-label-purpose-mismatch"}
 ARRIVAL = {"heading-not-descriptive", "landmark-purpose-mismatch", "page-title-not-descriptive", "form-label-mismatch"}
 MARK = (232, 89, 12)
+PLACE_TOP = {"heading-not-descriptive", "landmark-purpose-mismatch"}  # the element at the top, its content below it
+PAGE_LEVEL = {"page-title-not-descriptive", "lang-mismatch"}           # the screen from its top
+# What makes two screens equivalent for a question: the judged element looks the same (text, attributes, visible) and
+# so does what the question compares it with (the content around it; for page-level checks, the page's content).
+SIGNATURE = """([xp, type]) => {
+  const norm = s => (s || '').replace(/\\s+/g, ' ').trim();
+  const txt = e => norm(e ? (e.innerText !== undefined ? e.innerText : e.textContent) : '');
+  let n = null;
+  if (xp) { try { n = document.evaluate(xp, document, null, 9, null).singleNodeValue; } catch (e) { n = null; } }
+  const vis = e => { if (!e || !e.getBoundingClientRect) return false; const r = e.getBoundingClientRect(); const cs = getComputedStyle(e);
+                     return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none'; };
+  const ATTRS = ['alt', 'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-pressed', 'aria-selected',
+                 'aria-checked', 'aria-current', 'aria-invalid', 'autocomplete', 'src', 'href', 'placeholder', 'role', 'title'];
+  const live = () => [...document.querySelectorAll('[aria-live],[role=alert],[role=status]')].map(txt).filter(Boolean).join(' | ').slice(0, 300);
+  const page = type === 'page-title-not-descriptive' || type === 'lang-mismatch';
+  let ctx = '';
+  if (page) ctx = [...document.querySelectorAll('h1,h2,h3,h4,h5,h6,[role=heading]')].filter(vis).map(txt).join(' | ').slice(0, 600)
+                  + ' || ' + location.pathname + location.hash;
+  else if (n) {
+    if (type === 'landmark-purpose-mismatch') ctx = txt(n).slice(0, 600);
+    else {
+      const own = txt(n).length;
+      let c = n.parentElement;
+      while (c && c !== document.body && txt(c).length <= own + 40) c = c.parentElement;
+      ctx = txt(c).slice(0, 600);
+    }
+    if (type === 'error-message-mismatch') {
+      const d = (n.getAttribute('aria-describedby') || '').split(/\\s+/).filter(Boolean).map(id => document.getElementById(id)).filter(Boolean).map(txt).join(' | ');
+      ctx += ' || ' + d;
+    }
+    if (type === 'aria-state-mismatch') {
+      const ids = (n.getAttribute('aria-controls') || '').split(/\\s+/).filter(Boolean);
+      ctx += ' || ' + ids.map(id => vis(document.getElementById(id)) ? 'shown' : 'hidden').join(',');
+    }
+  }
+  if (type === 'error-message-mismatch') ctx += ' || ' + live();
+  ctx = ctx.replace(/[0-9][0-9.,]*/g, '#');  // several apps make up new figures on every load
+  return JSON.stringify({present: page || !!n, visible: page || vis(n), text: n ? txt(n).slice(0, 300) : '',
+    attrs: n && n.getAttribute ? ATTRS.map(a => n.getAttribute(a)).join('|') : '', ctx, lang: document.documentElement.lang,
+    title: page ? document.title : '', route: type === 'page-title-not-descriptive' ? location.pathname + location.hash : ''});
+}"""
 
 POINTER = """(p) => {
   let c = document.getElementById('__ptr');
@@ -46,6 +92,14 @@ POINTER = """(p) => {
   requestAnimationFrame(() => { c.style.left = p.x + 'px'; c.style.top = p.y + 'px'; });
 }"""
 PRESS = "() => { const c = document.getElementById('__ptr'); if (c) { c.style.transform = 'scale(.6)'; setTimeout(() => c.style.transform = 'scale(1)', 180); } }"
+OUTCOME = """() => {
+  const norm = s => (s || '').replace(/\\s+/g, ' ').trim();
+  const shown = [...document.querySelectorAll('[role=dialog],[role=menu],[role=listbox],[role=alertdialog],dialog[open]')]
+    .filter(e => e.getBoundingClientRect().height > 0).map(e => norm(e.innerText).slice(0, 200));
+  return JSON.stringify({route: location.pathname + location.hash, title: document.title,
+    text: norm((document.querySelector('main') || document.body).innerText).replace(/[0-9][0-9.,]*/g, '#').slice(0, 800),
+    shown: shown.map(t => t.replace(/[0-9][0-9.,]*/g, '#'))});
+}"""
 HIDE = "() => { const c = document.getElementById('__ptr'); if (c) c.style.opacity = '0'; }"
 BY_XPATH = """(xp) => { const n = document.evaluate(xp, document, null, 9, null).singleNodeValue; return !!n; }"""
 
@@ -128,29 +182,155 @@ def _element_by_xpath(page, xpath: str):
   return None
 
 
-def _shot(page, path: Path, element=None) -> dict | None:
-  """Viewport screenshot (JPEG) with the element outlined; returns the element's box in the image."""
+def _unhover(page) -> None:
+  """Moves the mouse off the page, so that a tooltip left by the last hover or click is not in the screenshot."""
+  try:
+    page.mouse.move(-20, -20)
+    page.wait_for_timeout(350)
+  except Exception:
+    pass
+
+
+def _shot(page, path: Path, element=None, place: str = "center") -> dict | None:
+  """Viewport screenshot (JPEG) with the element outlined; returns the element's box in the image. `place`: "center"
+  (the element in the middle, with what surrounds it), "top" (headings and regions: the element near the top, so the
+  content it introduces is visible below it), "page" (page-level checks: the screen from its top)."""
   from PIL import Image, ImageDraw
   box = None
+  _unhover(page)
+  if place == "page":
+    page.evaluate("() => scrollTo(0, 0)")
+    page.wait_for_timeout(250)
   if element is not None:
     try:
-      element.scroll_into_view_if_needed(timeout=3000)
+      if place == "top":  # behavior 'instant': pages with smooth scrolling would still be moving at the screenshot
+        element.evaluate("e => { e.style.scrollMarginTop = '90px'; e.scrollIntoView({block: 'start', behavior: 'instant'}); }")
+      elif place == "center":
+        element.evaluate("e => e.scrollIntoView({block: 'center', inline: 'nearest', behavior: 'instant'})")
       page.wait_for_timeout(250)
       box = element.bounding_box()
+      if box and (box["y"] + box["height"] <= 0 or box["y"] >= VIEW["height"] or box["x"] + box["width"] <= 0 or box["x"] >= VIEW["width"]):
+        element.scroll_into_view_if_needed(timeout=3000)
+        page.wait_for_timeout(250)
+        box = element.bounding_box()
     except Exception:
-      box = None
+      try:
+        element.scroll_into_view_if_needed(timeout=3000)
+        page.wait_for_timeout(250)
+        box = element.bounding_box()
+      except Exception:
+        box = None
   png = path.with_suffix(".png")
   page.screenshot(path=str(png))
   im = Image.open(png).convert("RGB")
-  if box and box["width"] > 0 and box["height"] > 0:
-    d = ImageDraw.Draw(im)
+  if box and box["width"] > 2 and box["height"] > 2:  # an element without size (hidden text) is not outlined
     x0, y0 = max(0, box["x"] - 5), max(0, box["y"] - 5)
     x1, y1 = min(im.width - 1, box["x"] + box["width"] + 5), min(im.height - 1, box["y"] + box["height"] + 5)
-    for k in range(4):
-      d.rectangle([x0 - k, y0 - k, x1 + k, y1 + k], outline=MARK)
+    if x1 > x0 and y1 > y0:
+      d = ImageDraw.Draw(im)
+      for k in range(4):
+        d.rectangle([x0 - k, y0 - k, x1 + k, y1 + k], outline=MARK)
+    else:  # the element is not on the screenshot: no outline, and the site check reports it
+      box = None
   im.save(path, quality=86)
   png.unlink()
   return box
+
+
+def _signature(page, xpath: str, ctype: str) -> dict | None:
+  _unhover(page)
+  for xp in ((xpath, _ns_free(xpath)) if xpath else ("",)):
+    try:
+      sig = json.loads(page.evaluate(SIGNATURE, [xp, ctype]))
+    except Exception:
+      continue
+    if sig.get("present"):
+      return sig
+  return None
+
+
+def _outcome(page) -> dict | None:
+  _unhover(page)
+  try:
+    return json.loads(page.evaluate(OUTCOME))
+  except Exception:
+    return None
+
+
+def shorter_control_path(browser, row: dict, storage: dict, meta: dict) -> int | None:
+  """For a control: the fewest path steps after which the control looks as judged and clicking it leads to the same
+  screen as after the full path. Each try starts in a fresh browser context; None if no shorter path gives that."""
+  replay = json.loads((SRC / "items" / row["item_id"] / "replay.json").read_text(encoding="utf-8"))
+  evidence = json.loads((SRC / "items" / row["item_id"] / "evidence.json").read_text(encoding="utf-8"))
+  xpath = ((evidence.get("element_refs") or [{}])[0]).get("xpath") or ""
+  want, outcome = meta.get("_final_sig"), meta.get("_outcome")
+  if not xpath or not want or (not outcome and not meta.get("external")):
+    return None
+  for k in range(len(replay["steps"])):
+    ctx = browser.new_context(viewport=VIEW)
+    if storage:
+      ctx.add_init_script("".join(f"if (localStorage.getItem({json.dumps(a)}) === null) localStorage.setItem({json.dumps(a)}, {json.dumps(b)});"
+                                  for a, b in storage.items()))
+    page = ctx.new_page()
+    try:
+      page.goto(replay["start_url"], wait_until="domcontentloaded", timeout=60000)
+      _settle(page, 900)
+      ok = True
+      for step in replay["steps"][:k]:
+        action = step["action"] or {}
+        el = _locate(page, action)
+        if el is None and action.get("type") not in ("fill_submit", "key"):
+          ok = False
+          break
+        ok = _do(page, action, el) and ok
+        _settle(page)
+      if not ok or _signature(page, xpath, row["type"]) != want:
+        continue
+      if meta.get("external"):
+        return k
+      target = _element_by_xpath(page, xpath)
+      if target is None or not _do(page, {"type": "click"}, target):
+        continue
+      _settle(page, 1500)
+      if _outcome(page) == outcome:
+        return k
+    except Exception:
+      continue
+    finally:
+      ctx.close()
+  return None
+
+
+def _place(ctype: str) -> str:
+  return "top" if ctype in PLACE_TOP else ("page" if ctype in PAGE_LEVEL else "center")
+
+
+def _candidate(page, out: Path, k: int, xpath: str, ctype: str) -> dict | None:
+  """The screen after k path steps, kept in case the judged element already looks as judged here."""
+  sig = _signature(page, xpath, ctype)
+  if not sig:
+    return None
+  target = _element_by_xpath(page, xpath) if xpath else None
+  shot = out / f"_cand-{k}.jpg"
+  box = _shot(page, shot, target, _place(ctype))
+  return {"k": k, "sig": sig, "file": shot, "box": box, "url": page.url, "title": page.title()}
+
+
+def _use_earlier(out: Path, meta: dict, cand: dict) -> None:
+  """Show the earliest screen on which the judged element and what it is compared with already look as judged:
+  the later steps (and an action that does not change them) are not needed to answer the question."""
+  k = cand["k"]
+  (out / "s1.jpg").unlink(missing_ok=True)
+  cand["file"].rename(out / "s1.jpg")
+  for name in ("s2.jpg", "clip.mp4"):
+    (out / name).unlink(missing_ok=True)
+  for step in meta["steps"][k:]:
+    (out / step["file"]).unlink(missing_ok=True)
+  meta["trimmed"] = {"kind_before": meta["kind"], "steps_before": len(meta["steps"]) + (1 if meta["kind"] == "arrival" else 0),
+                     "steps_now": k, "why": "the judged element and its content already look the same on this screen"}
+  meta.update({"kind": "still", "steps": meta["steps"][:k], "s1_box": cand["box"], "s1_url": cand["url"], "s1_title": cand["title"]})
+  for key in ("s2_box", "s2_url", "s2_title", "action_label"):
+    meta.pop(key, None)
 
 
 def _click(page, element) -> None:
@@ -232,7 +412,7 @@ def _film_action(page, element, action_fn) -> tuple[float, float] | None:
   return (t0, time.monotonic()) if ok else None
 
 
-def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
+def capture_item(browser, item_id: str, row: dict, storage: dict, path_limit: int | None = None) -> dict:
   src = SRC / "items" / item_id
   out = OUT / "items" / item_id
   out.mkdir(parents=True, exist_ok=True)
@@ -240,7 +420,7 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
     old.unlink()
   evidence = json.loads((src / "evidence.json").read_text(encoding="utf-8"))
   replay = json.loads((src / "replay.json").read_text(encoding="utf-8"))
-  steps = replay["steps"]
+  steps = replay["steps"] if path_limit is None else replay["steps"][:path_limit]
   kind = kind_of(row["type"], row["direction"], len(steps))
   meta = {"item_id": item_id, "app": row["app"], "type": row["type"], "kind": kind, "steps": [], "problems": []}
   video_dir = out / "_video"
@@ -251,11 +431,17 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
   t_start = time.monotonic()
   page = ctx.new_page()
   clip = None
+  xpath = ((evidence.get("element_refs") or [{}])[0]).get("xpath") or ""
+  trim = row["type"] not in CONTROL  # a control's outcome can depend on the path, so its path is always kept
+  cands: list[dict | None] = []
+  final = None
   try:
     page.goto(replay["start_url"], wait_until="domcontentloaded", timeout=60000)
     _settle(page, 900)
     path_steps = steps[:-1] if kind == "arrival" else steps
     for k, step in enumerate(path_steps, 1):
+      if trim:
+        cands.append(_candidate(page, out, k - 1, xpath, row["type"]))
       action = step["action"] or {}
       el = _locate(page, action)
       page.evaluate("() => scrollTo(0, 0)")
@@ -277,9 +463,10 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
       meta["steps"].append({"file": shot.name, "label": label, "ok": ok})
       if not ok:
         meta["problems"].append(f"step {k}: action failed ({label})")
-    xpath = ((evidence.get("element_refs") or [{}])[0]).get("xpath") or ""
     recorded_url = (evidence.get("state_context") or {}).get("url") or ""
     if kind == "arrival":
+      if trim:
+        cands.append(_candidate(page, out, len(path_steps), xpath, row["type"]))
       last = steps[-1]["action"] or {}
       el = _locate(page, last)
       meta["s1_box"] = _shot(page, out / "s1.jpg", el)
@@ -295,7 +482,8 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
       target = _element_by_xpath(page, xpath) if xpath else None
       if _content_differs(target, evidence):
         meta["problems"].append("content differs from the recording")
-      meta["s2_box"] = _shot(page, out / "s2.jpg", target)
+      final = _signature(page, xpath, row["type"]) if trim else None
+      meta["s2_box"] = _shot(page, out / "s2.jpg", target, _place(row["type"]))
       meta["s2_url"], meta["s2_title"] = page.url, page.title()
       meta["reached_url_matches"] = _same_route(page.url, recorded_url)
       if target is None and xpath and row["type"] != "page-title-not-descriptive":
@@ -307,7 +495,10 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
         meta["problems"].append("judged element not found")
       elif _content_differs(target, evidence):
         meta["problems"].append("content differs from the recording")
-      meta["s1_box"] = _shot(page, out / "s1.jpg", target)
+      final = _signature(page, xpath, row["type"]) if trim else None
+      if kind == "control":
+        meta["_final_sig"] = _signature(page, xpath, row["type"])
+      meta["s1_box"] = _shot(page, out / "s1.jpg", target, _place(row["type"]))
       meta["s1_url"], meta["s1_title"] = page.url, page.title()
       if kind == "control" and target is not None:
         href = target.evaluate("e => e.closest('a') ? e.closest('a').href : ''") or ""
@@ -323,10 +514,16 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
             _settle(shown, 1200)
             meta["opened_new_tab"] = True
           shown.evaluate("() => { const c = document.getElementById('__ptr'); if (c) c.remove(); }") if shown is page else None
+          meta["_outcome"] = _outcome(shown)
           meta["s2_box"] = _shot(shown, out / "s2.jpg")
           meta["s2_url"], meta["s2_title"] = shown.url, shown.title()
           if clip is None:
             meta["problems"].append("click on the element failed")
+    if final and not meta["problems"]:  # (an element without size matches only a screen where it also has none)
+      match = next((c for c in cands if c and c["sig"] == final), None)
+      if match:
+        _use_earlier(out, meta, match)
+        clip = None
   except Exception as error:  # the item keeps what was captured; the problem is flagged
     meta["problems"].append(f"error: {type(error).__name__}: {str(error)[:160]}")
   finally:
@@ -338,6 +535,8 @@ def capture_item(browser, item_id: str, row: dict, storage: dict) -> dict:
                     "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "24", "-preset", "medium", "-movflags", "+faststart", "-an",
                     str(out / "clip.mp4")], check=False)
     meta["clip"] = (out / "clip.mp4").exists()
+  for f in out.glob("_cand-*.jpg"):
+    f.unlink()
   for f in video_dir.glob("*"):
     f.unlink()
   if video_dir.exists():
@@ -381,7 +580,10 @@ def _step_label(action: dict) -> str:
   if kind == "fill_submit":
     return "fills in the form" + ("" if "no submit" in (action.get("text") or "") else " and submits it")
   verb = {"click": "clicks", "hover": "points at", "key": "presses a key in"}.get(kind, kind)
-  return f"{verb} “{text}”" if text else f"{verb} a {(action.get('tag_name') or 'control').lower()} without a visible name"
+  tag = (action.get("tag_name") or "").lower()
+  noun = {"a": "link", "button": "button", "img": "image", "input": "field", "select": "drop-down list", "textarea": "text field",
+          "svg": "icon", "i": "icon"}.get(tag, "control")
+  return f"{verb} “{text}”" if text else f"{verb} a {noun} without a visible name"
 
 
 def capture(apps_wanted: list[str] | None, items_wanted: list[str] | None) -> None:
@@ -401,6 +603,18 @@ def capture(apps_wanted: list[str] | None, items_wanted: list[str] | None) -> No
         for r in items:
           started = time.monotonic()
           meta = capture_item(browser, r["item_id"], r, storage)
+          full = len(meta["steps"])
+          if meta["kind"] == "control" and full and not meta["problems"]:
+            k = shorter_control_path(browser, r, storage, meta)
+            if k is not None and k < full:
+              short = capture_item(browser, r["item_id"], r, storage, path_limit=k)
+              if not short["problems"] and short.get("_outcome") == meta.get("_outcome") and short.get("external") == meta.get("external"):
+                short["trimmed"] = {"kind_before": "control", "steps_before": full, "steps_now": k,
+                                    "why": "with fewer steps the control looks the same and clicking it leads to the same screen"}
+                (OUT / "items" / r["item_id"] / "meta.json").write_text(json.dumps(short, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+                meta = short
+              else:
+                meta = capture_item(browser, r["item_id"], r, storage)  # the shorter path did not hold up: back to the full one
           print(f"  {r['item_id']} {meta['kind']:8s} {time.monotonic() - started:5.1f}s "
                 f"{'OK' if not meta['problems'] else 'FLAG ' + '; '.join(meta['problems'])[:140]}", flush=True)
         browser.close()

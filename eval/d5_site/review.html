@@ -68,10 +68,12 @@
       el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
     ]));
     app.appendChild(el('section', { cls: 'panel task' }, [
-      el('p', { cls: 'big', text: it.kind === 'still'
-        ? 'A tool found the outlined ' + it.noun + ' in a web app. Look at the screen and answer the question above.'
-        : 'A tool found the outlined ' + it.noun + ' in a web app. Look at the screen before and after the user’s action, and answer the question above.' }),
-      el('p', { cls: 'note', text: 'Judge only what you see. The tool’s own answer is hidden from you. Click a screenshot to see it larger.' })
+      el('p', { cls: 'big', text: (it.outlined === null ? 'A tool checked this ' + it.noun + ' of a web app. '
+          : it.outlined === false ? 'A tool found a ' + it.noun + ' in a web app; it cannot be outlined on this screen (the facts below say why). '
+          : 'A tool found the outlined ' + it.noun + ' in a web app. ')
+        + (it.kind === 'still' ? 'Look at the screen and answer the question above.'
+          : 'Look at the screen before and after the user’s action, and answer the question above.') }),
+      el('p', { cls: 'note', text: 'Judge from the screens and the facts below them. The tool’s own answer is hidden from you. Click a screenshot to see it larger.' })
     ]));
 
     var action = it.action || '';
@@ -90,7 +92,7 @@
       }
     }
     if (it.s1) {
-      var h1 = it.kind === 'still' ? 'The screen; the ' + it.noun + ' is outlined'
+      var h1 = it.kind === 'still' ? (it.outlined === null ? 'The screen' : it.outlined === false ? 'The screen (the ' + it.noun + ' cannot be outlined on it)' : 'The screen; the ' + it.noun + ' is outlined')
         : (it.kind === 'control' ? 'Screen 1: the user clicks the outlined ' + it.noun : 'Screen 1: the user ' + action + ' (outlined)');
       app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: it.kind === 'still' ? '•' : '1' }), h1]),
         frame(it.s1, base + it.s1.file, 'Screen 1 with the element outlined in orange')]));
@@ -215,6 +217,7 @@
       extra.appendChild(el('div', { style: 'display:grid;gap:8px' }, [el('b', { text: 'How the user got to screen 1' }), flow]));
       var thumbs = el('div', { cls: 'thumbs' });
       it.steps.forEach(function (s, k) {
+        if (!s.file) return;  // recorded-screen items: the path is given as text only
         thumbs.appendChild(el('figure', {}, [el('figcaption', { text: (k === 0 ? 'Start page' : 'Screen ' + (k + 1) + ' of the path') + ': the user ' + s.label + ' (outlined)' }),
           el('div', { cls: 'shot', 'data-zoom': base + s.file }, [el('img', { src: base + s.file, alt: 'Step ' + (k + 1) })])]));
       });

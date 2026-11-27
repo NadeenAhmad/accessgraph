@@ -6,6 +6,9 @@
 - the element is outlined where the check has one (page language and page title have none);
 - actions have a screen 2 (or the other website's address) and a clip, unless the item uses the recorded screen;
 - no capture problem is left; replayed elements show the recorded content (checked during capture);
+- no fact is a bare "(none)" (an empty value says what it means, pilot review 2026-11-27);
+- the outlined element is inside the screenshot, and headings and regions sit in the upper part of it, so the content
+  they introduce is visible below them;
 - each shared reviewer's list has the 30 shared items (18 the tool called violations, 12 others);
 - the tool's answers are nowhere in the public files; they are only in the reveal function, one for each item.
 """
@@ -42,8 +45,14 @@ def main() -> int:
       problems.append(f"{where}: order {it['n']} != {r['order']}")
     if not it["question"] or not it["rule"] or not it["facts"]:
       problems.append(f"{where}: question, rule or facts missing")
-    if any(v == "(none)" for k, v in it["facts"] if k in ("Link text", "Visible text", "Heading text")) and r["type"] not in ("button-label-mismatch", "widget-label-purpose-mismatch"):
-      problems.append(f"{where}: main fact empty")
+    if any(v == "(none)" for _k, v in it["facts"]):
+      problems.append(f"{where}: a fact is a bare (none)")
+    box = (meta.get("s2_box") if it["kind"] == "arrival" else meta.get("s1_box")) if not meta.get("fallback") else None
+    if box and box["height"] < 800:
+      if box["y"] < -16 or box["y"] + box["height"] > 816 or box["x"] < -16 or box["x"] + box["width"] > 1296:  # a few pixels past the edge (scrollbar) are fine
+        problems.append(f"{where}: outlined element is partly outside the screenshot ({box})")
+      elif r["type"] == "heading-not-descriptive" and box["y"] > 300:  # (regions are fully inside, so their content shows)
+        problems.append(f"{where}: heading or region too low to show its content (y={box['y']:.0f})")
     if not it["s1"] or not (folder / "s1.jpg").exists():
       problems.append(f"{where}: no screen 1")
     if meta.get("problems"):
