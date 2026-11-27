@@ -81,7 +81,7 @@
       el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
     ]));
     app.appendChild(el('section', { cls: 'panel task' }, [
-      el('p', { cls: 'big', text: (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
+      el('p', { cls: 'big', text: it.about ? it.about + ' Look at the screen and answer the question above.' : (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
           : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app (outlined above the screen). '
           : it.outlined === null ? 'A tool checked this ' + it.noun + ' of a web app. '
           : it.mark ? 'A tool checked an element of a web app that cannot be outlined; the dashed box and its label show where to look. '

@@ -274,9 +274,9 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
     outlined = ((ev.get("_element_refs") or [{}])[0]).get("xpath")
     if not p.get("form_control") and live and outlined and outlined == live[0].get("xpath"):
       # the outlined element is a live region, not a field
-      rows = [["What the tool checked", "an announcement area (a \u201clive region\u201d): when its text changes, screen readers read the new "
-               "text out loud. Apps often put error messages in such areas."],
-              ["Text in the announcement area", " ".join(live[0]["text"].split())[:160]]]
+      rows = [["What the tool checked", "a read-aloud area: the app tells screen readers to read its text out loud whenever it changes "
+               "(in the page code: a live region). Apps often show error messages this way."],
+              ["Text in the read-aloud area", " ".join(live[0]["text"].split())[:160]]]
       invalid = f if f and str(f.get("aria_invalid")) == "true" else None
       rows.append(["Fields marked as having an error, for screen readers (aria-invalid)",
                    _shown(invalid and f"the field \u201c{invalid.get('accessible_name')}\u201d", "none on this screen")])
@@ -298,7 +298,7 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
       rows.append(["Error message connected to the field (screen readers read it with the field)",
                    f"\u201c{em['text']}\u201d ({method})" if em.get("text") else "(no error message connected)"])
     if live:
-      rows.append(["Text in announcement areas (screen readers read it out loud when it changes)", " | ".join(" ".join(t["text"].split())[:140] for t in live[:2])])
+      rows.append(["Text in read-aloud areas (screen readers read it out loud when it changes; in the page code: live regions)", " | ".join(" ".join(t["text"].split())[:140] for t in live[:2])])
     return rows
   if ctype == "autocomplete-purpose-mismatch":
     f = p.get("form_control") or {}
@@ -401,6 +401,13 @@ def build(endpoint: str) -> None:
       item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
     item["outlined"] = outlined
     item["hint"] = HINTS[ctype]
+    if dict(item["facts"]).get("What the tool checked", "").startswith("a read-aloud area"):
+      item["noun"] = "read-aloud area"
+      item["about"] = ("The tool checked the outlined area as a possible error message: the app tells screen readers to read it out "
+                       "loud whenever its text changes, which is how apps often announce errors." if outlined else
+                       "The tool checked a hidden read-aloud area as a possible error message: the app tells screen readers to read "
+                       "it out loud whenever its text changes, which is how apps often announce errors. It is not visible on the "
+                       "screen; its text is in the facts below.")
     if ctype == "aria-state-mismatch":  # the question names the control and the state (pilot review: "state" alone was unclear)
       said, control = dict(item["facts"]).get("State that screen readers announce", ""), dict(item["facts"]).get("Kind of control", "control")
       if said and not said.startswith("("):

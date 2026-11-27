@@ -50,9 +50,11 @@ def fallback(item_id: str) -> str:
     top = 0
   view = im.crop((0, top, 1280, min(im.height, top + 800)))
   outline = "none"
-  if override.get("hide_dialogs"):
-    view, outline = _without_dialogs(meta["app"], state, ev), "drawn"
-    meta["dialogs_removed"] = True
+  if override.get("hide_dialogs") or override.get("rebuild"):
+    view, outline = _rebuilt(meta["app"], state, ev, bool(override.get("hide_dialogs")), override.get("label")), "drawn"
+    meta["rebuilt"] = True
+    if override.get("hide_dialogs"):
+      meta["dialogs_removed"] = True
   elif box:
     x0, y0 = box["x"] - 5, box["y"] + offset - top - 5
     x1, y1 = box["x"] + box["width"] + 5, box["y"] + offset - top + box["height"] + 5
@@ -83,10 +85,12 @@ def fallback(item_id: str) -> str:
   return f"{item_id}: recorded screen used (outline: {outline})"
 
 
-def _without_dialogs(app: str, state: str, ev: dict) -> Image.Image:
-  """The recorded page (its saved DOM, scripts off) with open dialogs removed, the judged element outlined: for an
-  element that an open dialog covers on the recorded screen and that no other recorded screen shows (apps that make
-  up new data on every start). The app is served only for its images and fonts."""
+def _rebuilt(app: str, state: str, ev: dict, hide_dialogs: bool, label: str | None) -> Image.Image:
+  """The recorded page (its saved DOM, scripts off), scrolled so that the judged element shows in full, outlined, with
+  an optional label: for an element that the recorded screenshot does not show (an open dialog covers it, or it lies
+  below the recorded view and the recording has no box for it) in apps that make up new data on every start, where
+  no other recorded screen shows it. hide_dialogs: open dialogs are removed first. The app is served only for its
+  images and fonts."""
   import io
   from playwright.sync_api import sync_playwright
   from eval.d5 import apps, serve
@@ -98,13 +102,14 @@ def _without_dialogs(app: str, state: str, ev: dict) -> Image.Image:
     spec = apps()[app]
     page.goto(f"http://127.0.0.1:{spec['port']}{spec.get('start', '/')}")
     page.set_content(dom, wait_until="load")
-    page.evaluate("""() => { document.querySelectorAll('[role=dialog], [role=alertdialog], dialog, .MuiModal-root, .MuiBackdrop-root, .MuiSnackbar-root')
-      .forEach(d => d.remove()); document.querySelectorAll('noscript').forEach(n => n.remove());
-      document.body.style.overflow = 'auto'; }""")
+    if hide_dialogs:
+      page.evaluate("""() => document.querySelectorAll('[role=dialog], [role=alertdialog], dialog, .MuiModal-root, .MuiBackdrop-root, .MuiSnackbar-root')
+        .forEach(d => d.remove())""")
+    page.evaluate("() => { document.querySelectorAll('noscript').forEach(n => n.remove()); document.body.style.overflow = 'auto'; }")
     target = page.evaluate_handle("xp => document.evaluate(xp, document, null, 9, null).singleNodeValue", xpath).as_element()
     # from the top of the page if the element fits there (column headings stay visible), else centred
     y = target.evaluate("e => e.getBoundingClientRect().top + scrollY + e.getBoundingClientRect().height")
-    page.evaluate("y => scrollTo({top: Math.max(0, y - 760), behavior: 'instant'})", y)
+    page.evaluate("y => scrollTo({top: Math.max(0, y - 700), behavior: 'instant'})", y)  # clear of floating buttons
     page.wait_for_timeout(500)
     box = target.bounding_box()
     view = Image.open(io.BytesIO(page.screenshot())).convert("RGB")
@@ -112,6 +117,18 @@ def _without_dialogs(app: str, state: str, ev: dict) -> Image.Image:
   d = ImageDraw.Draw(view)
   for k in range(4):
     d.rectangle([box["x"] - 5 - k, box["y"] - 5 - k, box["x"] + box["width"] + 5 + k, box["y"] + box["height"] + 5 + k], outline=MARK)
+  if label:  # an orange tag above the outline (below it when there is no room)
+    from PIL import ImageFont
+    try:
+      font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 17)
+    except OSError:
+      font = ImageFont.load_default()
+    left, top, right, bottom = d.textbbox((0, 0), label, font=font)
+    tw, th = right - left + 18, bottom - top + 12
+    lx = max(2, min(box["x"] - 9, view.width - tw - 2))
+    ly = box["y"] - 9 - th if box["y"] - 9 - th >= 0 else box["y"] + box["height"] + 9
+    d.rectangle((lx, ly, lx + tw, ly + th), fill=MARK)
+    d.text((lx + 9 - left, ly + 6 - top), label, font=font, fill="white")
   return view
 
 
