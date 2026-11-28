@@ -29,6 +29,10 @@ TEXTS = {
     "sentence": "The link says “Settings” and leads to the User settings page, so its text describes where it goes.",
     "correct": "no_violation",
     "why": "The link text “Settings” says where the link goes, and it opens the User settings page. The tool is right.",
+    # the guided practice: the answer to click, a sample reason, and the agreement with a sample comment
+    "reason": "The link text “Settings” says where it goes, and the link opens the Settings page.",
+    "agree": "agree",
+    "agree_comment": "The tool is right: the link text matches the page it opens.",
   },
   "D5-258": {
     "sentence": "The switch has no label of its own, but the text in its row is about buyer review notifications, and the "
@@ -37,6 +41,11 @@ TEXTS = {
     "why": "Screen readers read no label for this switch (a checkbox in the page code): the text next to it is not connected to it, so a screen reader "
            "user hears only “checkbox” and cannot tell what it turns on or off. The tool is wrong here: it judged "
            "from the visible text around the switch, which screen readers do not read as the switch's label.",
+    "reason": "Screen readers read no label for this switch. The text next to it is not connected to it, so a screen reader "
+              "user hears only “checkbox”.",
+    "agree": "disagree",
+    "agree_comment": "The tool judged from the visible text next to the switch, but screen readers do not read that text as the "
+                     "switch's label.",
   },
 }
 

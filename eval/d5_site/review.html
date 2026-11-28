@@ -38,6 +38,12 @@
     return n;
   }
   function quote(s) { return '“' + s + '”'; }
+  function suggest(scope, name, value) {  // practice: highlight the choice to click
+    var input = scope.querySelector('input[name="' + name + '"][value="' + value + '"]');
+    if (!input) return;
+    input.parentNode.classList.add('suggest');
+    input.parentNode.appendChild(el('span', { cls: 'suggest-tag', text: '\u2190 click this' }));
+  }
   function translate(text) {  // opens Google Translate in a new tab with this text
     return el('a', { cls: 'translate', target: '_blank', rel: 'noopener',
       href: 'https://translate.google.com/?sl=auto&tl=en&op=translate&text=' + encodeURIComponent(text) }, ['Translate to English ↗']);
@@ -74,19 +80,19 @@
     var base = (practice ? 'examples/' : 'items/') + it.id + '/';
     var answered = Object.keys(answers).filter(function (k) { return answers[k].agree; }).length;
     app.innerHTML = '';
-    var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
-    app.appendChild(el('header', { cls: 'topbar' }, [
-      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: practice ? 'Practice example: nothing is saved' : 'Accessibility expert review' }), el('h1', { text: it.question }),
-        it.hint ? el('p', { cls: 'hint', text: it.hint }) : null]),
-      el('div', { cls: 'progress' }, [el('span', { text: practice ? 'Example ' + (i + 1) + ' of ' + list.length : 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), practice ? null : bar])
-    ]));
-    if (practice) {
+    if (practice) {  // at the very top (PI's check)
       var skip = el('a', { href: 'review.html?reviewer=' + encodeURIComponent(reviewer), text: 'skip the examples and start the review' });
       skip.addEventListener('click', function () { keep(DONE, 1); });
       app.appendChild(el('section', { cls: 'panel practice' }, [el('p', {}, [el('b', { text: 'Practice (example ' + (i + 1) + ' of ' + list.length + '). ' }),
         'Answer as you would in the review: give your own answer first, then you see the tool\u2019s answer and say whether you agree. '
         + 'At the end you see the correct answer. Nothing you answer here is saved. (Or ', skip, '.)'])]));
     }
+    var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
+    app.appendChild(el('header', { cls: 'topbar' }, [
+      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: practice ? 'Practice example: nothing is saved' : 'Accessibility expert review' }), el('h1', { text: it.question }),
+        it.hint ? el('p', { cls: 'hint', text: it.hint }) : null]),
+      el('div', { cls: 'progress' }, [el('span', { text: practice ? 'Example ' + (i + 1) + ' of ' + list.length : 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), practice ? null : bar])
+    ]));
     app.appendChild(el('section', { cls: 'panel task' }, [
       el('p', { cls: 'big', text: it.about ? it.about + ' Look at the screen and answer the question above.' : (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
           : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app; it is not visible on the screen, so the facts below give it. '
@@ -169,6 +175,13 @@
       el('div', { style: 'display:grid;gap:6px' }, [el('label', { for: 'reason' }, [el('b', { text: 'Why?' })]), reason]),
       el('div', { cls: 'actions' }, [back, save1, status])
     ]);
+    if (practice) {  // guided practice: which answer to click, with a sample reason (it can be changed)
+      var NAMES = { no_violation: 'Yes, it\u2019s fine', violation: 'No (violation)', cannot_tell: 'Can\u2019t tell' };
+      suggest(form, 'label', it.example.correct);
+      if (!reason.value) reason.value = it.example.reason;
+      form.insertBefore(el('p', { cls: 'guide' }, [el('b', { text: 'Step 1. ' }), 'For this example, click ', el('b', { text: NAMES[it.example.correct] }),
+        ' (highlighted). A sample reason is filled in below; in the review you write your own. Then press ', el('b', { text: 'See the tool\u2019s answer' }), '.']), form.firstChild);
+    }
     var reveal = el('div', { style: 'display:grid;gap:16px;border-top:1px solid var(--line);padding-top:18px' });
     reveal.hidden = true;
     var TOOL_SAYS = { violation: 'No (violation)', no_violation: 'Yes, it’s fine', uncertain: 'Can’t tell (the tool could not decide)' };
@@ -199,6 +212,13 @@
       reveal.appendChild(el('div', { style: 'display:grid;gap:4px' }, [el('b', { text: 'The tool’s explanation' }),
         el('blockquote', { style: 'margin:0;padding:12px 16px;border-left:4px solid var(--line);background:var(--bg);border-radius:6px' },
           [tool.sentence, it.facts.some(function (f) { return f[2]; }) ? translate(tool.sentence) : null])]));
+      if (practice) {
+        suggest(form2, 'agree', it.example.agree);
+        if (!comment.value) comment.value = it.example.agree_comment;
+        var AGREE_NAMES = { agree: 'Agree', disagree: 'Disagree', partly: 'Partly' };
+        reveal.appendChild(el('p', { cls: 'guide' }, [el('b', { text: 'Step 2. ' }), 'This is the tool\u2019s answer. The tool can be right or wrong, so compare it with your own answer. '
+          + 'Here, click ', el('b', { text: AGREE_NAMES[it.example.agree] }), ' (highlighted); a sample comment is filled in. Then press ', el('b', { text: 'See the correct answer' }), '.']));
+      }
       reveal.appendChild(form2);
       reveal.hidden = false;
       form2.addEventListener('submit', function (e) {

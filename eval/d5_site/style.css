@@ -118,3 +118,6 @@ details[open] summary { margin-bottom: 12px; }
 .profile .other input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); width: min(100%, 420px); }
 .profile fieldset .other { margin: 4px 0 0 26px; }
 .profile [hidden] { display: none !important; }
+.guide { margin: 0 0 12px; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 6px; }
+.choice.suggest { outline: 3px dashed var(--accent); outline-offset: 3px; border-radius: 8px; }
+.suggest-tag { margin-left: 8px; color: var(--accent); font-weight: 600; white-space: nowrap; }
