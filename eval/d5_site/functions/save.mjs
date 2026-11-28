@@ -12,10 +12,10 @@ const text = (v, n) => (typeof v === "string" ? v.slice(0, n) : "");
 const PROFILE = {
   role: ["bachelor", "master", "phd_researcher", "practitioner", "other"],
   time: ["lt6m", "6to12m", "1to3y", "gt3y"],
-  wcag: ["never", "course_project", "regular"],
-  screen_reader: ["never", "tried", "regular"],
+  assistive_tech: ["never", "tried", "regular"],  // screen readers, magnifiers, voice control ...
 };
 const AREAS = ["web", "documents", "other", "none"];
+const STANDARDS = ["wcag", "pdfua", "other", "none"];
 
 export default async (req) => {
   if (req.method !== "POST") return new Response("Use POST", { status: 405 });
@@ -34,6 +34,12 @@ export default async (req) => {
     const areas = Array.isArray(p.areas) ? p.areas.filter((a) => AREAS.includes(a)) : [];
     if (!areas.length) return new Response("Unknown areas", { status: 400 });
     profile.areas = [...new Set(areas)];
+    if (profile.role === "other") profile.role_other = text(p.role_other, 200);  // what "Other" means, in their words
+    if (profile.areas.includes("other")) profile.areas_other = text(p.areas_other, 200);
+    const standards = Array.isArray(p.standards) ? p.standards.filter((a) => STANDARDS.includes(a)) : [];
+    if (!standards.length) return new Response("Unknown standards", { status: 400 });
+    profile.standards = [...new Set(standards)];
+    if (profile.standards.includes("other")) profile.standards_other = text(p.standards_other, 200);
     const key = `${reviewer}/_profile`;
     const old = await store.get(key, { type: "json" });
     await store.setJSON(key, { reviewer, consent: true, consent_at: new Date().toISOString(), profile,

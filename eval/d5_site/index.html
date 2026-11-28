@@ -34,20 +34,25 @@
         <select name="role"><option value="">Choose …</option><option value="bachelor">Bachelor's student</option>
           <option value="master">Master's student</option><option value="phd_researcher">PhD student or researcher</option>
           <option value="practitioner">Accessibility practitioner</option><option value="other">Other</option></select></label>
+      <label class="field other" id="role-other" hidden><span>Your role</span><input type="text" name="role_other" maxlength="200"></label>
       <fieldset class="field"><legend>Accessibility work you have done so far (tick all that apply)</legend>
         <label><input type="checkbox" name="areas" value="web"> Web pages or web apps</label>
         <label><input type="checkbox" name="areas" value="documents"> PDFs or other documents</label>
         <label><input type="checkbox" name="areas" value="other"> Other (for example mobile apps)</label>
+        <label class="other" id="areas-other" hidden><span>Which?</span> <input type="text" name="areas_other" maxlength="200"></label>
         <label><input type="checkbox" name="areas" value="none"> None yet</label></fieldset>
       <label class="field"><span>Time you have spent working on accessibility, in total</span>
         <select name="time"><option value="">Choose …</option><option value="lt6m">Less than 6 months</option>
           <option value="6to12m">6 to 12 months</option><option value="1to3y">1 to 3 years</option><option value="gt3y">More than 3 years</option></select></label>
-      <label class="field"><span>WCAG (the Web Content Accessibility Guidelines)</span>
-        <select name="wcag"><option value="">Choose …</option><option value="never">I have not used it</option>
-          <option value="course_project">I have used it in a course or project</option><option value="regular">I use it regularly</option></select></label>
-      <label class="field"><span>Screen readers</span>
-        <select name="screen_reader"><option value="">Choose …</option><option value="never">I have not used one</option>
-          <option value="tried">I have tried one a few times</option><option value="regular">I use one regularly for testing</option></select></label>
+      <fieldset class="field"><legend>Accessibility guidelines or standards you have worked with (tick all that apply)</legend>
+        <label><input type="checkbox" name="standards" value="wcag"> WCAG (Web Content Accessibility Guidelines)</label>
+        <label><input type="checkbox" name="standards" value="pdfua"> PDF/UA (accessible PDF documents)</label>
+        <label><input type="checkbox" name="standards" value="other"> Other (for example EN 301 549 or Section 508)</label>
+        <label class="other" id="standards-other" hidden><span>Which?</span> <input type="text" name="standards_other" maxlength="200"></label>
+        <label><input type="checkbox" name="standards" value="none"> None yet</label></fieldset>
+      <label class="field"><span>Assistive technologies (for example screen readers, screen magnifiers, voice control)</span>
+        <select name="assistive_tech"><option value="">Choose …</option><option value="never">I have not used any</option>
+          <option value="tried">I have tried them a few times</option><option value="regular">I use them regularly for testing</option></select></label>
       <label class="consent"><input type="checkbox" name="consent"> I agree that my answers, my reasons and the time I take per item are stored and used for research, and may be published in anonymised form (linked to a code, never to my name). Taking part is voluntary, and I can stop at any time.</label>
     </form>
   </section>
@@ -78,16 +83,26 @@
     var profiled = false; try { profiled = !!localStorage.getItem(PROFILE_DONE); } catch (e) {}
     function values() {
       var f = new FormData(form);
-      return { role: f.get('role'), time: f.get('time'), wcag: f.get('wcag'), screen_reader: f.get('screen_reader'), areas: f.getAll('areas'), consent: !!f.get('consent') };
+      return { role: f.get('role'), time: f.get('time'), assistive_tech: f.get('assistive_tech'), areas: f.getAll('areas'), standards: f.getAll('standards'),
+               consent: !!f.get('consent'), role_other: (f.get('role_other') || '').trim(), areas_other: (f.get('areas_other') || '').trim(),
+               standards_other: (f.get('standards_other') || '').trim() };
     }
-    function complete(v) { return v.role && v.time && v.wcag && v.screen_reader && v.areas.length && v.consent; }
+    function complete(v) {
+      return v.role && v.time && v.assistive_tech && v.areas.length && v.standards.length && v.consent
+        && (v.role !== 'other' || v.role_other) && (v.areas.indexOf('other') < 0 || v.areas_other) && (v.standards.indexOf('other') < 0 || v.standards_other);
+    }
     function update() {
+      var v = values();  // "Other" opens a text field to say what
+      document.getElementById('role-other').hidden = v.role !== 'other';
+      document.getElementById('areas-other').hidden = v.areas.indexOf('other') < 0;
+      document.getElementById('standards-other').hidden = v.standards.indexOf('other') < 0;
       var ok = profiled || complete(values());
       start.setAttribute('aria-disabled', ok ? 'false' : 'true'); start.style.opacity = ok ? '' : '.45';
-      who.textContent = ok ? '' : 'Please answer the questions above and tick the consent box first.';
+      who.textContent = ok ? '' : 'Please answer the questions above (and say what “Other” is) and tick the consent box first.';
     }
     if (profiled) document.getElementById('before').hidden = true;
     form.addEventListener('change', update);
+    form.addEventListener('input', update);
     update();
     start.addEventListener('click', function (e) {
       if (profiled) return;
@@ -96,7 +111,9 @@
       if (!complete(v)) { update(); return; }
       who.textContent = 'Saving…';
       fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'profile', reviewer: reviewer, consent: true,
-        profile: { role: v.role, time: v.time, wcag: v.wcag, screen_reader: v.screen_reader, areas: v.areas } }) })
+        profile: { role: v.role, time: v.time, assistive_tech: v.assistive_tech, areas: v.areas, standards: v.standards,
+                   role_other: v.role === 'other' ? v.role_other : '', areas_other: v.areas.indexOf('other') >= 0 ? v.areas_other : '',
+                   standards_other: v.standards.indexOf('other') >= 0 ? v.standards_other : '' } }) })
         .then(function (r) {
           if (!r.ok) throw new Error(String(r.status));
           try { localStorage.setItem(PROFILE_DONE, '1'); } catch (err) {}

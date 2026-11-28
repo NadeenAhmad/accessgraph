@@ -115,3 +115,6 @@ details[open] summary { margin-bottom: 12px; }
 .profile select { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); max-width: 100%; }
 .profile .consent { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
 .profile .consent input { margin-top: 4px; }
+.profile .other input { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--fg); width: min(100%, 420px); }
+.profile fieldset .other { margin: 4px 0 0 26px; }
+.profile [hidden] { display: none !important; }
