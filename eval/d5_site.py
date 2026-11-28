@@ -70,6 +70,8 @@ def _rows(path: Path) -> list[dict]:
     return list(csv.DictReader(stream))
 
 
+EXAMPLES = ROOT / "results" / "d5" / "examples"  # eval/d5_examples.py
+EXAMPLES_CAPTURED = ROOT / "results" / "d5" / "review" / "examples"
 _OVERRIDES_FILE = ROOT / "results" / "d5" / "review" / "overrides.json"  # item-by-item review decisions (optional)
 OVERRIDES = {k: v for k, v in (json.loads(_OVERRIDES_FILE.read_text(encoding="utf-8")) if _OVERRIDES_FILE.exists() else {}).items()
              if not k.startswith("_")}
@@ -376,6 +378,73 @@ def _draw_mark(path: Path, mark: dict) -> None:
   im.save(path, quality=88)
 
 
+def _make_item(r: dict, src: Path, cap_root: Path, dest_root: Path, ax_names: dict) -> tuple[dict, dict]:
+  """One item as the review page shows it (study items and the two practice examples), its media copied to
+  dest_root/<id>/; returns the item and the capture's meta."""
+  item_id, ctype = r["item_id"], r["type"]
+  cap = cap_root / item_id
+  meta = json.loads((cap / "meta.json").read_text(encoding="utf-8")) if (cap / "meta.json").exists() else {}
+  full = json.loads((src / "items" / item_id / "evidence.json").read_text(encoding="utf-8"))
+  ev, refs = full.get("evidence") or {}, full.get("element_refs") or []
+  question, rule, noun = QUESTIONS[ctype]
+  dest = dest_root / item_id
+  dest.mkdir()
+  files = [f.name for f in cap.glob("*") if f.suffix in (".jpg", ".mp4")] if cap.exists() else []
+  for name in files:
+    shutil.copy(cap / name, dest / name)
+  kind = meta.get("kind", "still")
+  item = {"id": item_id, "n": int(r["order"]), "shared": r["shared"] == "1", "type": ctype, "kind": kind, "noun": noun,
+          "question": question, "rule": rule, "facts": _facts(ctype, {**ev, "_element_refs": refs}, meta, ax_names.get(item_id)),
+          "s1": {"file": "s1.jpg", "url": meta.get("s1_url", ""), "title": meta.get("s1_title", "")} if "s1.jpg" in files else None,
+          "s2": {"file": "s2.jpg", "url": meta.get("s2_url", ""), "title": meta.get("s2_title", "")} if "s2.jpg" in files else None,
+          "clip": "clip.mp4" if "clip.mp4" in files else None,
+          "action": _label(meta.get("action_label") or (_control_action(ctype, ev, noun) if kind == "control" else "")),
+          "external": meta.get("external"),
+          "recorded": meta.get("fallback") == "recorded",
+          "steps": [{"file": s["file"] if s.get("file") in files else "",
+                     "label": _step_label(_label(s["label"]), ((ax_names.get(item_id) or {}).get("steps") or {}).get(str(k)))}
+                    for k, s in enumerate(meta.get("steps", []))]}
+  # whether the element can be seen and is outlined on the judged screen; if not, a fact says why
+  judged = (refs[0] if refs else {}).get("element_id")
+  rbox = next((b.get("bounding_box") for b in ev.get("bounding_boxes") or [] if b.get("element_id") == judged), None)
+  jbox = meta.get("s1_box")
+  no_size = bool(rbox) and (rbox["width"] <= 2 or rbox["height"] <= 2)
+  if meta.get("fallback"):
+    outlined = meta.get("outline") == "drawn"
+  else:
+    outlined = bool(jbox) and jbox["width"] > 2 and jbox["height"] > 2
+  if ctype in ("page-title-not-descriptive", "lang-mismatch"):
+    outlined = None  # page-level questions have no element to outline
+  if item_id in OVERRIDES and OVERRIDES[item_id].get("fact"):
+    item["facts"].append(OVERRIDES[item_id]["fact"])
+  elif no_size:
+    empty = ctype == "landmark-purpose-mismatch" and not ((ev.get("primary") or {}).get("landmark") or {}).get("text_sample")
+    item["facts"].append(["Visible on the screen", ("no: the region is empty, so it takes up no space on the page." if empty else
+                          "no: it is hidden on the screen (it takes up no space), so only screen readers find it.")
+                          + (" The dashed box shows where it is." if (OVERRIDES.get(item_id) or {}).get("mark") else "")])
+  elif meta.get("outline") == "outside":
+    item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
+  item["outlined"] = outlined
+  item["hint"] = HINTS[ctype]
+  if dict(item["facts"]).get("What the tool checked", "").startswith("a read-aloud area"):
+    item["noun"] = "read-aloud area"
+    item["about"] = ("The tool checked the outlined area as a possible error message: the app tells screen readers to read it out "
+                     "loud whenever its text changes, which is how apps often announce errors." if outlined else
+                     "The tool checked a hidden read-aloud area as a possible error message: the app tells screen readers to read "
+                     "it out loud whenever its text changes, which is how apps often announce errors. It is not visible on the "
+                     "screen; its text is in the facts below.")
+  if ctype == "aria-state-mismatch":  # the question names the control and the state (pilot review: "state" alone was unclear)
+    said, control = dict(item["facts"]).get("State that screen readers announce", ""), dict(item["facts"]).get("Kind of control", "control")
+    if said and not said.startswith("("):
+      item["question"] = f"Screen readers announce this {control} as \u201c{said}\u201d. Does the screen show the same?"
+  item["facts"] = [[k, v, 1] if _needs_translation(v) else [k, v] for k, v in item["facts"]]  # 1: a translate link
+  mark = (OVERRIDES.get(item_id) or {}).get("mark")
+  if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
+    _draw_mark(dest / "s1.jpg", mark)
+    item["mark"] = True
+  return item, meta
+
+
 def build(endpoint: str) -> None:
   key = sorted(_rows(SRC / "key_do_not_share.csv"), key=lambda r: int(r["order"]))
   codes = _reviewer_codes()
@@ -387,72 +456,23 @@ def build(endpoint: str) -> None:
   items, flagged = [], []
   excluded = {k: v["exclude"] for k, v in OVERRIDES.items() if v.get("exclude")}  # left out of the review, with the reason
   for r in key:
-    item_id, ctype = r["item_id"], r["type"]
-    if item_id in excluded:
+    if r["item_id"] in excluded:
       continue
-    cap = CAPTURED / item_id
-    meta = json.loads((cap / "meta.json").read_text(encoding="utf-8")) if (cap / "meta.json").exists() else {}
-    full = json.loads((SRC / "items" / item_id / "evidence.json").read_text(encoding="utf-8"))
-    ev, refs = full.get("evidence") or {}, full.get("element_refs") or []
-    question, rule, noun = QUESTIONS[ctype]
-    dest = PUBLIC / "items" / item_id
-    dest.mkdir()
-    files = [f.name for f in cap.glob("*") if f.suffix in (".jpg", ".mp4")] if cap.exists() else []
-    for name in files:
-      shutil.copy(cap / name, dest / name)
-    kind = meta.get("kind", "still")
-    item = {"id": item_id, "n": int(r["order"]), "shared": r["shared"] == "1", "type": ctype, "kind": kind, "noun": noun,
-            "question": question, "rule": rule, "facts": _facts(ctype, {**ev, "_element_refs": refs}, meta, ax_names.get(item_id)),
-            "s1": {"file": "s1.jpg", "url": meta.get("s1_url", ""), "title": meta.get("s1_title", "")} if "s1.jpg" in files else None,
-            "s2": {"file": "s2.jpg", "url": meta.get("s2_url", ""), "title": meta.get("s2_title", "")} if "s2.jpg" in files else None,
-            "clip": "clip.mp4" if "clip.mp4" in files else None,
-            "action": _label(meta.get("action_label") or (_control_action(ctype, ev, noun) if kind == "control" else "")),
-            "external": meta.get("external"),
-            "recorded": meta.get("fallback") == "recorded",
-            "steps": [{"file": s["file"] if s.get("file") in files else "",
-                       "label": _step_label(_label(s["label"]), ((ax_names.get(item_id) or {}).get("steps") or {}).get(str(k)))}
-                      for k, s in enumerate(meta.get("steps", []))]}
-    # whether the element can be seen and is outlined on the judged screen; if not, a fact says why
-    judged = (refs[0] if refs else {}).get("element_id")
-    rbox = next((b.get("bounding_box") for b in ev.get("bounding_boxes") or [] if b.get("element_id") == judged), None)
-    jbox = meta.get("s1_box")
-    no_size = bool(rbox) and (rbox["width"] <= 2 or rbox["height"] <= 2)
-    if meta.get("fallback"):
-      outlined = meta.get("outline") == "drawn"
-    else:
-      outlined = bool(jbox) and jbox["width"] > 2 and jbox["height"] > 2
-    if ctype in ("page-title-not-descriptive", "lang-mismatch"):
-      outlined = None  # page-level questions have no element to outline
-    if item_id in OVERRIDES and OVERRIDES[item_id].get("fact"):
-      item["facts"].append(OVERRIDES[item_id]["fact"])
-    elif no_size:
-      empty = ctype == "landmark-purpose-mismatch" and not ((ev.get("primary") or {}).get("landmark") or {}).get("text_sample")
-      item["facts"].append(["Visible on the screen", ("no: the region is empty, so it takes up no space on the page." if empty else
-                            "no: it is hidden on the screen (it takes up no space), so only screen readers find it.")
-                            + (" The dashed box shows where it is." if (OVERRIDES.get(item_id) or {}).get("mark") else "")])
-    elif meta.get("outline") == "outside":
-      item["facts"].append(["Visible on the screen", "no: it is outside the part of the page shown here (for example further down in an open list)"])
-    item["outlined"] = outlined
-    item["hint"] = HINTS[ctype]
-    if dict(item["facts"]).get("What the tool checked", "").startswith("a read-aloud area"):
-      item["noun"] = "read-aloud area"
-      item["about"] = ("The tool checked the outlined area as a possible error message: the app tells screen readers to read it out "
-                       "loud whenever its text changes, which is how apps often announce errors." if outlined else
-                       "The tool checked a hidden read-aloud area as a possible error message: the app tells screen readers to read "
-                       "it out loud whenever its text changes, which is how apps often announce errors. It is not visible on the "
-                       "screen; its text is in the facts below.")
-    if ctype == "aria-state-mismatch":  # the question names the control and the state (pilot review: "state" alone was unclear)
-      said, control = dict(item["facts"]).get("State that screen readers announce", ""), dict(item["facts"]).get("Kind of control", "control")
-      if said and not said.startswith("("):
-        item["question"] = f"Screen readers announce this {control} as \u201c{said}\u201d. Does the screen show the same?"
-    item["facts"] = [[k, v, 1] if _needs_translation(v) else [k, v] for k, v in item["facts"]]  # 1: a translate link
-    mark = (OVERRIDES.get(item_id) or {}).get("mark")
-    if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
-      _draw_mark(dest / "s1.jpg", mark)
-      item["mark"] = True
+    item, meta = _make_item(r, SRC, CAPTURED, PUBLIC / "items", ax_names)
     if meta.get("problems") or not item["s1"]:
-      flagged.append({"item_id": item_id, "problems": meta.get("problems") or ["not captured"]})
+      flagged.append({"item_id": r["item_id"], "problems": meta.get("problems") or ["not captured"]})
     items.append(item)
+  # the two practice examples shown before the review (eval/d5_examples.py); not study items, nothing is saved
+  examples = []
+  if (EXAMPLES / "examples.json").exists() and (EXAMPLES_CAPTURED / "items").exists():
+    texts = json.loads((EXAMPLES / "examples.json").read_text(encoding="utf-8"))
+    (PUBLIC / "examples").mkdir()
+    for r in sorted(_rows(EXAMPLES / "key_do_not_share.csv"), key=lambda r: int(r["order"])):
+      item, meta = _make_item(r, EXAMPLES, EXAMPLES_CAPTURED / "items", PUBLIC / "examples", {})
+      if meta.get("problems") or not item["s1"]:
+        flagged.append({"item_id": r["item_id"], "problems": meta.get("problems") or ["example not captured"]})
+      examples.append({**item, "example": texts[r["item_id"]]})
+    (PUBLIC / "examples.json").write_text(json.dumps({"items": examples}, ensure_ascii=False) + "\n", encoding="utf-8")
   (PUBLIC / "items.json").write_text(json.dumps({"items": items}, ensure_ascii=False) + "\n", encoding="utf-8")
   for name in ("index.html", "review.html", "style.css"):
     shutil.copy(TEMPLATES / name, PUBLIC / name)
@@ -471,7 +491,8 @@ def build(endpoint: str) -> None:
   (ROOT / "results" / "d5" / "site-flagged.json").write_text(json.dumps(flagged, indent=2) + "\n", encoding="utf-8")
   (ROOT / "results" / "d5" / "site-excluded.json").write_text(json.dumps(excluded, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
   size = sum(f.stat().st_size for f in PUBLIC.rglob("*") if f.is_file()) / 1e6
-  print(f"site: {len(items)} items ({len(excluded)} excluded: {', '.join(sorted(excluded))}), {len(flagged)} flagged, {size:.0f} MB -> {SITE}")
+  print(f"site: {len(items)} items ({len(excluded)} excluded: {', '.join(sorted(excluded))}), {len(examples)} practice examples, "
+        f"{len(flagged)} flagged, {size:.0f} MB -> {SITE}")
 
 
 ROLES = (("main", "main"), ("shared1", "shared"), ("shared2", "shared"), ("shared3", "shared"), ("preview", "preview"))

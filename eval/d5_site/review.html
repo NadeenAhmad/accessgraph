@@ -18,13 +18,17 @@
 </div>
 <script>
 (function () {
-  var reviewer = new URLSearchParams(location.search).get('reviewer') || '';
+  var params = new URLSearchParams(location.search);
+  var reviewer = params.get('reviewer') || '';
+  // practice: the two worked examples before the review (examples.json); nothing is sent or stored
+  var practice = params.get('examples') === '1';
+  var DONE = 'd5-examples-done-' + reviewer;
   var app = document.getElementById('app');
   var STORE = 'd5-review-' + reviewer, PENDING = 'd5-pending-' + reviewer;
   var data, list = [], answers = {}, shownAt = 0;
 
   function load(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; } }
-  function keep(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+  function keep(key, value) { if (practice && key !== DONE) return; try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
   function el(tag, attrs, children) {
     var n = document.createElement(tag);
     Object.keys(attrs || {}).forEach(function (k) {
@@ -67,15 +71,22 @@
 
   function render(i) {
     var it = list[i];
-    var base = 'items/' + it.id + '/';
+    var base = (practice ? 'examples/' : 'items/') + it.id + '/';
     var answered = Object.keys(answers).filter(function (k) { return answers[k].agree; }).length;
     app.innerHTML = '';
     var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
     app.appendChild(el('header', { cls: 'topbar' }, [
-      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: 'Accessibility expert review' }), el('h1', { text: it.question }),
+      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: practice ? 'Practice example: nothing is saved' : 'Accessibility expert review' }), el('h1', { text: it.question }),
         it.hint ? el('p', { cls: 'hint', text: it.hint }) : null]),
-      el('div', { cls: 'progress' }, [el('span', { text: 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), bar])
+      el('div', { cls: 'progress' }, [el('span', { text: practice ? 'Example ' + (i + 1) + ' of ' + list.length : 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), practice ? null : bar])
     ]));
+    if (practice) {
+      var skip = el('a', { href: 'review.html?reviewer=' + encodeURIComponent(reviewer), text: 'skip the examples and start the review' });
+      skip.addEventListener('click', function () { keep(DONE, 1); });
+      app.appendChild(el('section', { cls: 'panel practice' }, [el('p', {}, [el('b', { text: 'Practice (example ' + (i + 1) + ' of ' + list.length + '). ' }),
+        'Answer as you would in the review: give your own answer first, then you see the tool\u2019s answer and say whether you agree. '
+        + 'At the end you see the correct answer. Nothing you answer here is saved. (Or ', skip, '.)'])]));
+    }
     app.appendChild(el('section', { cls: 'panel task' }, [
       el('p', { cls: 'big', text: it.about ? it.about + ' Look at the screen and answer the question above.' : (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
           : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app; it is not visible on the screen, so the facts below give it. '
@@ -149,7 +160,7 @@
     var status = el('span', { cls: 'status', role: 'status' });
     var back = el('button', { type: 'button', cls: 'ghost', text: '← Previous' });
     if (i === 0) back.disabled = true;
-    var save1 = el('button', { type: 'submit', cls: 'primary', text: 'Save and see the tool’s answer →' });
+    var save1 = el('button', { type: 'submit', cls: 'primary', text: practice ? 'See the tool’s answer →' : 'Save and see the tool’s answer →' });
     var form = el('form', { novalidate: '' }, [
       el('fieldset', {}, [el('legend', {}, [el('span', { cls: 'num', style: 'width:26px;height:26px;font-size:.85rem;margin-right:8px', text: '1' }), 'Your answer: ' + it.question]),
         el('div', { cls: 'choices' }, [
@@ -180,10 +191,10 @@
           choice('agree', 'a-yes', 'agree', 'Agree', 'c-ok', agreed), choice('agree', 'a-no', 'disagree', 'Disagree', 'c-bad', agreed),
           choice('agree', 'a-partly', 'partly', 'Partly', 'c-unsure', agreed)])]),
         el('div', { style: 'display:grid;gap:6px' }, [el('label', { for: 'agree-comment' }, [el('b', { text: 'Comment' }), ' ', el('span', { cls: 'note', text: '(optional)' })]), comment]),
-        el('div', { cls: 'actions' }, [el('button', { type: 'submit', cls: 'primary', text: i + 1 < list.length ? 'Save and next item →' : 'Save' }), status2])
+        el('div', { cls: 'actions' }, [el('button', { type: 'submit', cls: 'primary', text: practice ? 'See the correct answer →' : i + 1 < list.length ? 'Save and next item →' : 'Save' }), status2])
       ]);
       reveal.appendChild(el('h2', {}, [el('span', { cls: 'num', text: '2' }), 'The tool’s answer']));
-      reveal.appendChild(el('p', { cls: 'note', text: 'Your answer above is saved and can no longer be changed.' }));
+      reveal.appendChild(el('p', { cls: 'note', text: practice ? 'In the review, your answer above is saved at this point and can no longer be changed.' : 'Your answer above is saved and can no longer be changed.' }));
       reveal.appendChild(el('div', { style: 'font-size:1.1rem' }, ['The tool said: ', el('b', { text: TOOL_SAYS[tool.decision] || tool.decision })]));
       reveal.appendChild(el('div', { style: 'display:grid;gap:4px' }, [el('b', { text: 'The tool’s explanation' }),
         el('blockquote', { style: 'margin:0;padding:12px 16px;border-left:4px solid var(--line);background:var(--bg);border-radius:6px' },
@@ -194,6 +205,7 @@
         e.preventDefault();
         var chosen = form2.querySelector('input[name="agree"]:checked');
         if (!chosen) { status2.textContent = 'Pick Agree, Disagree or Partly first.'; return; }
+        if (practice) { form2.querySelectorAll('input, textarea, button').forEach(function (n) { n.disabled = true; }); showAnswer(); return; }
         status2.textContent = 'Saving…';
         send({ step: 2, reviewer: reviewer, item: it.id, agree: chosen.value, comment: comment.value.trim() }).then(function (ok) {
           if (!ok) { status2.textContent = 'Could not save. Check your internet connection and press the button again.'; return; }
@@ -201,6 +213,22 @@
           if (i + 1 < list.length) go(i + 1); else { status2.textContent = 'Saved. That was the last item: thank you!'; }
         });
       });
+    }
+    function showAnswer() {  // practice only: the correct answer, why, and whether the tool was right
+      var ex = it.example, last = i + 1 >= list.length;
+      var next = el('button', { type: 'button', cls: 'primary', text: last ? 'Start the review →' : 'Next example →' });
+      next.addEventListener('click', function () {
+        if (!last) { go(i + 1); return; }
+        keep(DONE, 1); location.href = 'review.html?reviewer=' + encodeURIComponent(reviewer);
+      });
+      var box = el('div', { cls: 'answer-key ' + (ex.tool_right ? 'right' : 'wrong') }, [
+        el('h2', { text: 'The correct answer: ' + (TOOL_SAYS[ex.correct] || ex.correct) }),
+        el('p', { text: ex.why }),
+        el('p', { cls: 'verdict' }, [el('b', { text: ex.tool_right ? 'Here the tool was right.' : 'Here the tool was wrong.' })]),
+        last ? el('p', { text: 'The tool can be right or wrong. Judge each item yourself from the screens and the facts; your own judgement is what counts.' }) : null,
+        el('div', { cls: 'actions' }, [next])]);
+      reveal.appendChild(box);
+      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     if (prev.revealed) {
       lockStep1();
@@ -216,6 +244,13 @@
       e.preventDefault();
       var chosen = form.querySelector('input[name="label"]:checked');
       if (!chosen) { status.textContent = 'Pick one of the three answers first.'; return; }
+      if (practice) {
+        answers[it.id] = { answer: chosen.value };
+        lockStep1(); status.textContent = 'Your practice answer (not saved).';
+        showReveal({ decision: it.example.tool, sentence: it.example.sentence });
+        reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       save1.disabled = true; status.textContent = 'Saving…';
       var record = { step: 1, reviewer: reviewer, item: it.id, answer: chosen.value, reason: reason.value.trim(),
                      seconds: Math.round((Date.now() - shownAt) / 1000), at: new Date().toISOString() };
@@ -280,11 +315,11 @@
   document.getElementById('zoom').addEventListener('click', function () { this.hidden = true; });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('zoom').hidden = true; });
   if (!reviewer) { app.innerHTML = ''; app.appendChild(el('p', { text: 'Please open the personal link you received; it contains your reviewer code.' })); return; }
-  fetch('items.json').then(function (r) { return r.json(); }).then(function (d) {
+  fetch(practice ? 'examples.json' : 'items.json').then(function (r) { return r.json(); }).then(function (d) {
     data = d;
-    list = d.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).sort(function (a, b) { return a.n - b.n; });
-    answers = load(STORE, {});
-    flush();
+    list = practice ? d.items : d.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).sort(function (a, b) { return a.n - b.n; });
+    answers = practice ? {} : load(STORE, {});
+    if (!practice) flush();
     window.addEventListener('hashchange', fromHash);
     fromHash();
   }).catch(function () { app.innerHTML = ''; app.appendChild(el('p', { text: 'The review could not be loaded. Please reload the page.' })); });

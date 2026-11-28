@@ -12,7 +12,8 @@
   they introduce is visible below them;
 - each shared reviewer's list has the shared items that are not excluded (30 drawn: 18 the tool called violations,
   12 others; 29 and 17 after the exclusion);
-- the tool's answers are nowhere in the public files; they are only in the reveal function, one for each item.
+- the tool's answers are nowhere in the public item data; they are only in the reveal function, one for each item;
+- the two practice examples (examples.json) are not study items, and the tool is right in one and wrong in the other.
 """
 from __future__ import annotations
 
@@ -77,6 +78,16 @@ def main() -> int:
   want_v = sum(1 for r in want if r["ag_decision"] == "violation")
   if len(second) != len(want) or second_v != want_v:
     problems.append(f"shared reviewers' list: {len(second)} items, {second_v} violations (expected {len(want)} / {want_v})")
+  examples = SITE / "public" / "examples.json"  # the two practice examples: not study items, each with its answer key
+  if examples.exists():
+    ex = json.loads(examples.read_text(encoding="utf-8"))["items"]
+    if len(ex) != 2 or any(e["id"] in key for e in ex) or sorted(e["example"]["tool_right"] for e in ex) != [False, True]:
+      problems.append("practice examples: expected 2 items outside the study, one where the tool is right and one where it is wrong")
+    for e in ex:
+      if not (SITE / "public" / "examples" / e["id"] / "s1.jpg").exists():
+        problems.append(f"practice example {e['id']}: no screen 1")
+  else:
+    problems.append("no practice examples (python -m eval.d5_examples prepare / capture)")
   data_text = (SITE / "public" / "items.json").read_text(encoding="utf-8")  # the item data must carry no verdicts
   for word in ("ag_decision", '"decision"', '"sentence"', "explanation", "violation\""):
     if word in data_text:

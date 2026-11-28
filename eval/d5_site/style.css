@@ -99,3 +99,11 @@ details[open] summary { margin-bottom: 12px; }
 .hint { margin: 2px 0 0; color: var(--muted); font-size: 1rem; max-width: 70ch; }
 .drawn-note { margin: 0 0 8px; font-size: .9rem; color: var(--muted); }
 .drawn-note::before { content: ''; display: inline-block; width: 14px; height: 10px; margin-right: 8px; border: 2px solid var(--mark); border-radius: 2px; vertical-align: -1px; }
+.panel.practice { border-left: 4px solid var(--accent); background: var(--accent-soft); }
+.panel.practice p { margin: 0; }
+.answer-key { display: grid; gap: 8px; padding: 16px 18px; border-radius: 8px; border: 2px solid var(--ok); background: var(--surface); }
+.answer-key.wrong { border-color: var(--bad); }
+.answer-key h2 { margin: 0; font-size: 1.15rem; }
+.answer-key p { margin: 0; }
+.answer-key .verdict { color: var(--ok); }
+.answer-key.wrong .verdict { color: var(--bad); }

@@ -23,11 +23,13 @@
       <li>Below the screens, a short list of facts shows what screen readers read for the element next to the text on the page. When a question names what screen readers read, judge that text.</li>
       <li><b>Step 1:</b> give your own answer, <b>Yes, it's fine</b>, <b>No (violation)</b> or <b>Can't tell</b>, with a short reason. Judge from the screens and the facts below them.</li>
       <li><b>Step 2:</b> after you save, the tool's answer and its explanation appear, and you say whether you agree. Your step 1 answer cannot be changed after that.</li>
+      <li>Before the first item, two short practice examples show how it works: in one the tool is right, in the other it is wrong. Nothing you answer there is saved.</li>
       <li>Each item takes about 1–2 minutes: <b><span id="count">…</span> items</b> in total. You can stop at any time and come back with the same link; your answers are kept. Please use the same computer and browser each time, not a private window.</li>
     </ul>
   </section>
   <div class="actions">
-    <a class="button primary" id="start" href="review.html">Start the review</a>
+    <a class="button primary" id="start" href="review.html">Start with two examples</a>
+    <a id="examples" href="review.html">See the two examples again</a>
     <span class="status" id="who"></span>
   </div>
 </main>
@@ -37,9 +39,16 @@
   var start = document.getElementById('start');
   if (!reviewer) {
     start.removeAttribute('href'); start.setAttribute('aria-disabled', 'true'); start.style.opacity = '.45';
+    document.getElementById('examples').hidden = true;
     document.getElementById('who').textContent = 'Please open the personal link you received; it contains your reviewer code.';
   } else {
-    start.href = 'review.html?reviewer=' + encodeURIComponent(reviewer);
+    // first visit: two practice examples first; later visits go straight to the items
+    var done = false; try { done = !!localStorage.getItem('d5-examples-done-' + reviewer); } catch (e) {}
+    var items = 'review.html?reviewer=' + encodeURIComponent(reviewer), examples = items + '&examples=1';
+    start.href = done ? items : examples;
+    start.textContent = done ? 'Continue the review' : 'Start with two examples';
+    var again = document.getElementById('examples');
+    if (done) again.href = examples; else again.hidden = true;
   }
   fetch('items.json').then(function (r) { return r.json(); }).then(function (data) {
     var n = data.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).length;
