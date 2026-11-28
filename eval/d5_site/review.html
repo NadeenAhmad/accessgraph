@@ -38,6 +38,12 @@
     return n;
   }
   function quote(s) { return '“' + s + '”'; }
+  function blocked(status, group, text) {  // what stops the user is shown in red until it is fixed
+    status.textContent = text; status.classList.add('error');
+    if (!group) return;
+    group.classList.add('invalid');
+    group.addEventListener('change', function () { group.classList.remove('invalid'); status.classList.remove('error'); status.textContent = ''; }, { once: true });
+  }
   function suggest(scope, name, value) {  // practice: highlight the choice to click
     var input = scope.querySelector('input[name="' + name + '"][value="' + value + '"]');
     if (!input) return;
@@ -224,11 +230,11 @@
       form2.addEventListener('submit', function (e) {
         e.preventDefault();
         var chosen = form2.querySelector('input[name="agree"]:checked');
-        if (!chosen) { status2.textContent = 'Pick Agree, Disagree or Partly first.'; return; }
+        if (!chosen) { blocked(status2, form2.querySelector('.choices'), 'Pick Agree, Disagree or Partly first.'); return; }
         if (practice) { form2.querySelectorAll('input, textarea, button').forEach(function (n) { n.disabled = true; }); showAnswer(); return; }
         status2.textContent = 'Saving…';
         send({ step: 2, reviewer: reviewer, item: it.id, agree: chosen.value, comment: comment.value.trim() }).then(function (ok) {
-          if (!ok) { status2.textContent = 'Could not save. Check your internet connection and press the button again.'; return; }
+          if (!ok) { status2.classList.add('error'); status2.textContent = 'Could not save. Check your internet connection and press the button again.'; return; }
           var a = answers[it.id] || {}; a.agree = chosen.value; a.agree_comment = comment.value.trim(); answers[it.id] = a; keep(STORE, answers);
           if (i + 1 < list.length) go(i + 1); else { status2.textContent = 'Saved. That was the last item: thank you!'; }
         });
@@ -257,13 +263,13 @@
         if (err && err.message === '409') {  // the server has no answer for this item (e.g. test answers were cleared): unlock it
           delete answers[it.id]; keep(STORE, answers); render(i); return;
         }
-        status.textContent = 'Saved. The tool’s answer could not be loaded; please reload the page.';
+        status.classList.add('error'); status.textContent = 'Saved. The tool’s answer could not be loaded; please reload the page.';
       });
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var chosen = form.querySelector('input[name="label"]:checked');
-      if (!chosen) { status.textContent = 'Pick one of the three answers first.'; return; }
+      if (!chosen) { blocked(status, form.querySelector('.choices'), 'Pick one of the three answers first.'); return; }
       if (practice) {
         answers[it.id] = { answer: chosen.value };
         lockStep1(); status.textContent = 'Your practice answer (not saved).';
@@ -279,14 +285,14 @@
           return fetchReveal().then(function (tool) {
             answers[it.id] = { revealed: true }; keep(STORE, answers);
             lockStep1(); status.textContent = 'You already answered this item earlier.'; showReveal(tool);
-          }).catch(function () { save1.disabled = false; status.textContent = 'Could not save. Check your internet connection and press the button again.'; });
+          }).catch(function () { save1.disabled = false; status.classList.add('error'); status.textContent = 'Could not save. Check your internet connection and press the button again.'; });
         }
         answers[it.id] = { answer: record.answer, reason: record.reason, revealed: true }; keep(STORE, answers);
         return fetchReveal().then(function (tool) {
           lockStep1(); status.textContent = 'Saved.'; showReveal(tool);
           reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-      }).catch(function () { save1.disabled = false; status.textContent = 'Saved, but the tool’s answer could not be loaded. Press the button again.'; });
+      }).catch(function () { save1.disabled = false; status.classList.add('error'); status.textContent = 'Saved, but the tool’s answer could not be loaded. Press the button again.'; });
     });
     back.addEventListener('click', function () { if (i > 0) go(i - 1); });
 

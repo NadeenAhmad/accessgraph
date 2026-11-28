@@ -121,3 +121,9 @@ details[open] summary { margin-bottom: 12px; }
 .guide { margin: 0 0 12px; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 6px; }
 .choice.suggest { outline: 3px dashed var(--accent); outline-offset: 3px; border-radius: 8px; }
 .suggest-tag { margin-left: 8px; color: var(--accent); font-weight: 600; white-space: nowrap; }
+.invalid { outline: 2px solid var(--bad); outline-offset: 4px; border-radius: 6px; }
+.profile .invalid select, .profile .invalid input[type=text] { border-color: var(--bad); }
+.error-msg { display: block; color: var(--bad); font-weight: 600; font-size: .9rem; margin-top: 4px; }
+.status.error { color: var(--bad); font-weight: 600; }
+.profile .consent { flex-wrap: wrap; }
+.profile .consent .error-msg { flex-basis: 100%; margin: 0 0 0 24px; }

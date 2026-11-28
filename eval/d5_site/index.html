@@ -30,30 +30,30 @@
   <section class="panel" id="before">
     <h2>Before you start <span class="note" style="font-weight:400">(once, about 30 seconds)</span></h2>
     <form id="profile" class="profile" novalidate>
-      <label class="field"><span>Your current role</span>
+      <label class="field" id="f-role"><span>Your current role</span>
         <select name="role"><option value="">Choose …</option><option value="bachelor">Bachelor's student</option>
           <option value="master">Master's student</option><option value="phd_researcher">PhD student or researcher</option>
           <option value="practitioner">Accessibility practitioner</option><option value="other">Other</option></select></label>
       <label class="field other" id="role-other" hidden><span>Your role</span><input type="text" name="role_other" maxlength="200"></label>
-      <fieldset class="field"><legend>Accessibility work you have done so far (tick all that apply)</legend>
+      <fieldset class="field" id="f-areas"><legend>Accessibility work you have done so far (tick all that apply)</legend>
         <label><input type="checkbox" name="areas" value="web"> Web pages or web apps</label>
         <label><input type="checkbox" name="areas" value="documents"> PDFs or other documents</label>
         <label><input type="checkbox" name="areas" value="other"> Other (for example mobile apps)</label>
         <label class="other" id="areas-other" hidden><span>Which?</span> <input type="text" name="areas_other" maxlength="200"></label>
         <label><input type="checkbox" name="areas" value="none"> None yet</label></fieldset>
-      <label class="field"><span>Time you have spent working on accessibility, in total</span>
+      <label class="field" id="f-time"><span>Time you have spent working on accessibility, in total</span>
         <select name="time"><option value="">Choose …</option><option value="lt6m">Less than 6 months</option>
           <option value="6to12m">6 to 12 months</option><option value="1to3y">1 to 3 years</option><option value="gt3y">More than 3 years</option></select></label>
-      <fieldset class="field"><legend>Accessibility guidelines or standards you have worked with (tick all that apply)</legend>
+      <fieldset class="field" id="f-standards"><legend>Accessibility guidelines or standards you have worked with (tick all that apply)</legend>
         <label><input type="checkbox" name="standards" value="wcag"> WCAG (Web Content Accessibility Guidelines)</label>
         <label><input type="checkbox" name="standards" value="pdfua"> PDF/UA (accessible PDF documents)</label>
         <label><input type="checkbox" name="standards" value="other"> Other (for example EN 301 549 or Section 508)</label>
         <label class="other" id="standards-other" hidden><span>Which?</span> <input type="text" name="standards_other" maxlength="200"></label>
         <label><input type="checkbox" name="standards" value="none"> None yet</label></fieldset>
-      <label class="field"><span>Assistive technologies (for example screen readers, screen magnifiers, voice control)</span>
+      <label class="field" id="f-assistive"><span>Assistive technologies (for example screen readers, screen magnifiers, voice control)</span>
         <select name="assistive_tech"><option value="">Choose …</option><option value="never">I have not used any</option>
           <option value="tried">I have tried them a few times</option><option value="regular">I use them regularly for testing</option></select></label>
-      <label class="consent"><input type="checkbox" name="consent"> I agree that my answers, my reasons and the time I take per item are stored and used for research, and may be published in anonymised form (linked to a code, never to my name). Taking part is voluntary, and I can stop at any time.</label>
+      <label class="consent" id="f-consent"><input type="checkbox" name="consent"> I agree that my answers, my reasons and the time I take per item are stored and used for research, and may be published in anonymised form (linked to a code, never to my name). Taking part is voluntary, and I can stop at any time.</label>
     </form>
   </section>
   <div class="actions">
@@ -87,18 +87,38 @@
                consent: !!f.get('consent'), role_other: (f.get('role_other') || '').trim(), areas_other: (f.get('areas_other') || '').trim(),
                standards_other: (f.get('standards_other') || '').trim() };
     }
-    function complete(v) {
-      return v.role && v.time && v.assistive_tech && v.areas.length && v.standards.length && v.consent
-        && (v.role !== 'other' || v.role_other) && (v.areas.indexOf('other') < 0 || v.areas_other) && (v.standards.indexOf('other') < 0 || v.standards_other);
+    function missing(v) {  // [field id, what to do] for every answer still missing
+      var m = [];
+      if (!v.role) m.push(['f-role', 'Please choose your role.']);
+      else if (v.role === 'other' && !v.role_other) m.push(['role-other', 'Please say what your role is.']);
+      if (!v.areas.length) m.push(['f-areas', 'Please tick at least one (or “None yet”).']);
+      else if (v.areas.indexOf('other') >= 0 && !v.areas_other) m.push(['areas-other', 'Please say which.']);
+      if (!v.time) m.push(['f-time', 'Please choose how long.']);
+      if (!v.standards.length) m.push(['f-standards', 'Please tick at least one (or “None yet”).']);
+      else if (v.standards.indexOf('other') >= 0 && !v.standards_other) m.push(['standards-other', 'Please say which.']);
+      if (!v.assistive_tech) m.push(['f-assistive', 'Please choose one.']);
+      if (!v.consent) m.push(['f-consent', 'Please tick this box to take part.']);
+      return m;
+    }
+    function complete(v) { return !missing(v).length; }
+    var tried = false;  // after a press of the button with answers missing, the marks follow every change
+    function mark(list) {
+      form.querySelectorAll('.invalid').forEach(function (n) { n.classList.remove('invalid'); });
+      form.querySelectorAll('.error-msg').forEach(function (n) { n.remove(); });
+      list.forEach(function (m) {
+        var box = document.getElementById(m[0]); box.classList.add('invalid');
+        var msg = document.createElement('span'); msg.className = 'error-msg'; msg.textContent = m[1]; box.appendChild(msg);
+      });
     }
     function update() {
       var v = values();  // "Other" opens a text field to say what
       document.getElementById('role-other').hidden = v.role !== 'other';
       document.getElementById('areas-other').hidden = v.areas.indexOf('other') < 0;
       document.getElementById('standards-other').hidden = v.standards.indexOf('other') < 0;
-      var ok = profiled || complete(values());
-      start.setAttribute('aria-disabled', ok ? 'false' : 'true'); start.style.opacity = ok ? '' : '.45';
-      who.textContent = ok ? '' : 'Please answer the questions above (and say what “Other” is) and tick the consent box first.';
+      var list = profiled ? [] : missing(v);
+      if (tried) mark(list);
+      if (!list.length) { who.textContent = ''; who.classList.remove('error'); }
+      else if (tried) { who.textContent = 'Please complete the answers marked in red above.'; who.classList.add('error'); }
     }
     function show() {  // the questions first; the examples link only once they are answered
       document.getElementById('before').hidden = profiled;
@@ -120,8 +140,13 @@
       if (profiled) return;
       e.preventDefault();
       var v = values();
-      if (!complete(v)) { update(); return; }
-      who.textContent = 'Saving…';
+      if (!complete(v)) {
+        tried = true; update();
+        var first = form.querySelector('.invalid');
+        if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); var input = first.querySelector('input, select'); if (input) input.focus({ preventScroll: true }); }
+        return;
+      }
+      who.classList.remove('error'); who.textContent = 'Saving…';
       fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'profile', reviewer: reviewer, consent: true,
         profile: { role: v.role, time: v.time, assistive_tech: v.assistive_tech, areas: v.areas, standards: v.standards,
                    role_other: v.role === 'other' ? v.role_other : '', areas_other: v.areas.indexOf('other') >= 0 ? v.areas_other : '',
@@ -130,7 +155,7 @@
           if (!r.ok) throw new Error(String(r.status));
           try { localStorage.setItem(PROFILE_DONE, '1'); } catch (err) {}
           location.href = start.href;
-        }).catch(function () { who.textContent = 'Could not save. Check your internet connection and press the button again.'; });
+        }).catch(function () { who.classList.add('error'); who.textContent = 'Could not save. Check your internet connection and press the button again.'; });
     });
   }
   fetch('items.json').then(function (r) { return r.json(); }).then(function (data) {
