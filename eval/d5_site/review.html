@@ -205,7 +205,12 @@
     if (prev.revealed) {
       lockStep1();
       status.textContent = 'Saved.';
-      fetchReveal().then(showReveal).catch(function () { status.textContent = 'Saved. The tool’s answer could not be loaded; please reload the page.'; });
+      fetchReveal().then(showReveal).catch(function (err) {
+        if (err && err.message === '409') {  // the server has no answer for this item (e.g. test answers were cleared): unlock it
+          delete answers[it.id]; keep(STORE, answers); render(i); return;
+        }
+        status.textContent = 'Saved. The tool’s answer could not be loaded; please reload the page.';
+      });
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
