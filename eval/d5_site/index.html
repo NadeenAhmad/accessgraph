@@ -123,6 +123,10 @@
     function show() {  // the questions first; the examples link only once they are answered
       document.getElementById('before').hidden = profiled;
       again.hidden = !(profiled && done);
+      // a link that has not answered the questions is new: it starts with the examples, whatever this browser remembers
+      var straight = profiled && done;
+      start.href = straight ? items : examples;
+      start.textContent = straight ? 'Continue the review' : 'Start with two examples';
       update();
     }
     form.addEventListener('change', update);
@@ -154,7 +158,7 @@
         .then(function (r) {
           if (!r.ok) throw new Error(String(r.status));
           try { localStorage.setItem(PROFILE_DONE, '1'); } catch (err) {}
-          location.href = start.href;
+          location.href = examples;  // first visit of this link: always the two examples next
         }).catch(function () { who.classList.add('error'); who.textContent = 'Could not save. Check your internet connection and press the button again.'; });
     });
   }
