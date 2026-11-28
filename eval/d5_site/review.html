@@ -335,6 +335,9 @@
   document.getElementById('zoom').addEventListener('click', function () { this.hidden = true; });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('zoom').hidden = true; });
   if (!reviewer) { app.innerHTML = ''; app.appendChild(el('p', { text: 'Please open the personal link you received; it contains your reviewer code.' })); return; }
+  // consent and the experience questions come first (start page); a bookmark to this page must not skip them
+  var profiled = false; try { profiled = !!localStorage.getItem('d5-profile-done-' + reviewer); } catch (e) { profiled = true; }
+  if (!profiled) { location.replace('./?reviewer=' + encodeURIComponent(reviewer)); return; }
   fetch(practice ? 'examples.json' : 'items.json').then(function (r) { return r.json(); }).then(function (d) {
     data = d;
     list = practice ? d.items : d.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).sort(function (a, b) { return a.n - b.n; });
