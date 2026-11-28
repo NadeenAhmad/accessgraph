@@ -333,14 +333,15 @@ def _draw_mark(path: Path, mark: dict) -> None:
       else:
         d.line((x0, y0 + t, x1, y0 + e), fill=MARK, width=width)
   try:
-    font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 16)
+    font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", mark.get("size", 16))
   except OSError:
     font = ImageFont.load_default()
   left, top, right, bottom = d.multiline_textbbox((0, 0), mark["label"], font=font, spacing=3)
-  tw, th = right - left + 16, bottom - top + 10
-  where = mark.get("label_at", "above")
-  lx, ly = {"above": (x, y - th - 4), "below": (x, y + h + 4), "right": (x + w + 8, y + h / 2 - th / 2),
-            "inside": (x + 6, y + 6)}[where]
+  tw, th = right - left + 16, bottom - top + 8
+  # label_xy: a spot chosen by eye where the label covers no page content (PI's check: a label inside the box hid
+  # part of the menu the question is about)
+  lx, ly = mark["label_xy"] if "label_xy" in mark else {"above": (x, y - th - 4), "below": (x, y + h + 4),
+                                                         "right": (x + w + 8, y + h / 2 - th / 2)}[mark.get("label_at", "above")]
   lx = max(2, min(lx, im.width - tw - 2))
   ly = max(2, min(ly, im.height - th - 2))
   d.rectangle((lx, ly, lx + tw, ly + th), fill=MARK)
@@ -420,9 +421,6 @@ def build(endpoint: str) -> None:
     if mark and "s1.jpg" in files:  # where an element that cannot be outlined is (dashed box with a label)
       _draw_mark(dest / "s1.jpg", mark)
       item["mark"] = True
-    if ctype == "lang-mismatch":
-      page = (ev.get("primary") or {}).get("page") or {}
-      item["lang"] = page.get("html_lang") or page.get("document_lang") or ""
     if meta.get("problems") or not item["s1"]:
       flagged.append({"item_id": item_id, "problems": meta.get("problems") or ["not captured"]})
     items.append(item)

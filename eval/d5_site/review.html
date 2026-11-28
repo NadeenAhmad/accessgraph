@@ -59,11 +59,7 @@
         titled ? el('span', { cls: 'judged-tag', text: '← page title (browser tab)' }) : null]),
       el('div', { cls: 'addr' }, [el('span', { cls: 'url', text: screen.url || '' })])
     ]);
-    if (it && it.type === 'lang-mismatch') {
-      b.appendChild(el('div', { cls: 'source' }, [el('span', { text: 'Page code (not visible on the screen):' }),
-        el('code', { cls: 'judged', text: it.lang ? '<html lang="' + it.lang + '">' : '<html> (no lang attribute)' }),
-        el('span', { cls: 'judged-tag', text: '← declared page language' })]));
-    }
+
     var shot = el('div', { cls: 'shot', 'data-zoom': img }, [el('img', { src: img, alt: boxed })]);
     b.appendChild(shot);
     return b;
@@ -82,7 +78,7 @@
     ]));
     app.appendChild(el('section', { cls: 'panel task' }, [
       el('p', { cls: 'big', text: it.about ? it.about + ' Look at the screen and answer the question above.' : (it.type === 'page-title-not-descriptive' ? 'A tool checked the page title of a web app (outlined in the browser tab). '
-          : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app (outlined above the screen). '
+          : it.type === 'lang-mismatch' ? 'A tool checked the language declared in the page code of a web app; it is not visible on the screen, so the facts below give it. '
           : it.outlined === null ? 'A tool checked this ' + it.noun + ' of a web app. '
           : it.mark ? 'A tool checked an element of a web app that cannot be outlined; the dashed box and its label show where to look. '
           : it.outlined === false ? 'A tool found a ' + it.noun + ' in a web app; it cannot be outlined on this screen (the facts below say why). '
@@ -109,12 +105,16 @@
     }
     if (it.s1) {
       var h1 = it.kind === 'still' ? (it.type === 'page-title-not-descriptive' ? 'The screen; the page title is outlined in the browser tab'
-          : it.type === 'lang-mismatch' ? 'The screen; the declared language is outlined in the page code above it'
+          : it.type === 'lang-mismatch' ? 'The screen (the declared language is in the facts below)'
           : it.outlined === null ? 'The screen'
           : it.mark ? 'The screen; the dashed box shows where to look (see its label)'
           : it.outlined === false ? 'The screen (the ' + it.noun + ' cannot be outlined on it)' : 'The screen; the ' + it.noun + ' is outlined')
         : (it.kind === 'control' ? 'Screen 1: the user clicks the outlined ' + it.noun : 'Screen 1: the user ' + action + ' (outlined)');
+      // our marks must not be taken for the app's own styling (PI's check: an app showing its selected tab in orange)
+      var drawn = it.mark ? 'The orange boxes and labels are drawn by us to show where to look; they are not part of the app.'
+        : (it.outlined || it.type === 'page-title-not-descriptive') ? 'The orange box is drawn by us to show the ' + (it.type === 'page-title-not-descriptive' ? 'page title' : it.noun) + '; it is not part of the app.' : '';
       app.appendChild(el('section', { cls: 'panel' }, [el('h2', {}, [el('span', { cls: 'num', text: it.kind === 'still' ? '•' : '1' }), h1]),
+        drawn ? el('p', { cls: 'drawn-note', text: drawn }) : null,
         frame(it.s1, base + it.s1.file, 'Screen 1 with the element outlined in orange', it)]));
     } else {
       app.appendChild(el('section', { cls: 'panel' }, [el('p', { text: 'The screen for this item could not be captured. Please answer Can’t tell.' })]));
@@ -244,6 +244,8 @@
       });
       if (!it.steps.length) flow.appendChild(el('span', { cls: 'note', text: '(screen 1 is the start page)' }));
       extra.appendChild(el('div', { style: 'display:grid;gap:8px' }, [el('b', { text: 'How the user got to screen 1' }), flow]));
+      if (it.steps.some(function (s) { return s.file; }))
+        extra.appendChild(el('p', { cls: 'drawn-note', text: 'The orange boxes in these screens are drawn by us to show what the user clicks; they are not part of the app.' }));
       var thumbs = el('div', { cls: 'thumbs' });
       it.steps.forEach(function (s, k) {
         if (!s.file) return;  // recorded-screen items: the path is given as text only
