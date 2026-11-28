@@ -160,6 +160,33 @@ def _kind(el: dict) -> str:
   return ROLE_NAMES.get(role) or ROLE_NAMES.get(tag) or (role or tag or "(not recorded)")
 
 
+def _kind_in_list(el: dict, ax: dict | None) -> str:
+  """An option names the field whose drop-down list it is in (PI's check: "option in a list" did not say which list)."""
+  owner = (ax or {}).get("owner")
+  if not owner:
+    return _kind(el)
+  name, shown = owner.get("name") or "", _no_icons(owner.get("visible") or "")
+  if name and (not shown or shown == name):
+    return f"option in the drop-down list of the \u201c{name}\u201d field"
+  if shown:
+    return f"option in the drop-down list of the field that shows \u201c{shown}\u201d" + (f" (screen readers read its name as \u201c{name}\u201d)" if name else "")
+  return _kind(el)
+
+
+def _step_label(label: str, info: dict | None) -> str:
+  """A path step whose element has no text in the recording, described with what Chromium computes for it on the
+  recorded page (PI's check: "a field without a visible name" was the Company field)."""
+  if "without a visible name" not in label or not info:
+    return label
+  noun = {"button": "button", "link": "link", "textbox": "field", "combobox": "field", "searchbox": "field"}.get(info.get("role"), "control")
+  if info.get("name"):
+    if label.startswith("presses a key in"):
+      return f"types in the \u201c{info['name']}\u201d field"
+    return f"clicks the {noun} \u201c{info['name']}\u201d (no visible text)"
+  cut = label.index(" without a visible name")
+  return label[:label.rfind(" a ", 0, cut)] + f" a {noun} that has no name" + (" (an icon)" if noun in ("button", "link") else "")
+
+
 def _shown(value, empty: str) -> str:
   """A fact value; `empty` says in words what an empty value means (never a bare "(none)" that could be misread)."""
   text = " ".join(str(value).split()) if value not in (None, "") else ""
@@ -198,7 +225,7 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
             ["Button label read by screen readers", _shown(name(b), "(no label)")]]
   if ctype == "widget-label-purpose-mismatch":
     w = p.get("widget") or {}
-    return [["Kind of control", _kind(w)], ["Text on the page", _shown(_no_icons(w.get("text")), "(no text)")],
+    return [["Kind of control", _kind_in_list(w, ax)], ["Text on the page", _shown(_no_icons(w.get("text")), "(no text)")],
             ["Control label read by screen readers", _shown(name(w), "(no label)")]]
   if ctype == "image-alt-not-descriptive":
     i = p.get("image") or {}
@@ -259,7 +286,7 @@ def _facts(ctype: str, ev: dict, meta: dict, ax: dict | None = None) -> list[lis
     attrs = a.get("state_attributes") or ((s.get("aria_state_context_v1") or {}).get("declared_state")) or {}
     said = [STATE_NAMES.get(k, (k, {}))[1].get(str(v), f"{k} = {v}") for k, v in attrs.items()]
     code = [f"{k.replace('_', '-')}=\u201c{v}\u201d" for k, v in attrs.items()]
-    return [["Kind of control", _kind(a)], ["Text on the page", _shown(_no_icons(a.get("text")), "(no text)")],
+    return [["Kind of control", _kind_in_list(a, ax)], ["Text on the page", _shown(_no_icons(a.get("text")), "(no text)")],
             ["Name read by screen readers", _shown(name(a), "(no name)")],
             ["State that screen readers announce", _shown(" and ".join(said), "(no state recorded)")],
             ["In the page code", _shown(", ".join(code), "(no state attribute)")]]
@@ -382,7 +409,9 @@ def build(endpoint: str) -> None:
             "action": _label(meta.get("action_label") or (_control_action(ctype, ev, noun) if kind == "control" else "")),
             "external": meta.get("external"),
             "recorded": meta.get("fallback") == "recorded",
-            "steps": [{"file": s["file"] if s.get("file") in files else "", "label": _label(s["label"])} for s in meta.get("steps", [])]}
+            "steps": [{"file": s["file"] if s.get("file") in files else "",
+                       "label": _step_label(_label(s["label"]), ((ax_names.get(item_id) or {}).get("steps") or {}).get(str(k)))}
+                      for k, s in enumerate(meta.get("steps", []))]}
     # whether the element can be seen and is outlined on the judged screen; if not, a fact says why
     judged = (refs[0] if refs else {}).get("element_id")
     rbox = next((b.get("bounding_box") for b in ev.get("bounding_boxes") or [] if b.get("element_id") == judged), None)

@@ -107,6 +107,11 @@ def _rebuilt(app: str, state: str, ev: dict, hide_dialogs: bool, label: str | No
         .forEach(d => d.remove())""")
     page.evaluate("() => { document.querySelectorAll('noscript').forEach(n => n.remove()); document.body.style.overflow = 'auto'; }")
     target = page.evaluate_handle("xp => document.evaluate(xp, document, null, 9, null).singleNodeValue", xpath).as_element()
+    # an element further down inside a scrolling list (an open drop-down list): the list is scrolled so that it shows
+    target.evaluate("""e => { for (let p = e.parentElement; p && p !== document.body; p = p.parentElement) {
+      const st = getComputedStyle(p);
+      if (/(auto|scroll)/.test(st.overflowY) && p.scrollHeight > p.clientHeight) {
+        p.scrollTop += e.getBoundingClientRect().top - p.getBoundingClientRect().top - p.clientHeight / 2 + e.offsetHeight / 2; break; } } }""")
     # from the top of the page if the element fits there (column headings stay visible), else centred
     y = target.evaluate("e => e.getBoundingClientRect().top + scrollY + e.getBoundingClientRect().height")
     page.evaluate("y => scrollTo({top: Math.max(0, y - 700), behavior: 'instant'})", y)  # clear of floating buttons

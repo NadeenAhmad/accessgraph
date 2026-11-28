@@ -29,6 +29,29 @@ UNHIDE = """xp => { let n = document.evaluate(xp, document, null, 9, null).singl
   return out; }"""
 
 
+# an option in a list: the field whose drop-down list it is (the element that controls or owns the list)
+OWNER = """xp => { const n = document.evaluate(xp, document, null, 9, null).singleNodeValue; const list = n && n.closest('[role=listbox], [role=menu]');
+  if (!list || !list.id) return null;
+  const base = list.id.endsWith('-listbox') ? document.getElementById(list.id.slice(0, -8)) : null;
+  const ctl = [...document.querySelectorAll(`[aria-controls~="${list.id}"], [aria-owns~="${list.id}"]`)];
+  const owner = base || ctl.find(e => e.matches('input, select, textarea, [role=combobox]')) || ctl[0];
+  if (!owner) return null;
+  owner.setAttribute('data-d5-owner', '1');
+  const label = owner.id ? document.querySelector(`label[for="${CSS.escape(owner.id)}"]`) : null;
+  return (label ? label.innerText : owner.innerText || owner.value || '').trim().replace(/\\s+/g, ' ').slice(0, 80); }"""
+
+
+def _ax(cdp, expression: str) -> dict:
+  """Chromium's accessibility node (role, name) for the element a JS expression returns."""
+  remote = cdp.send("Runtime.evaluate", {"expression": expression})
+  if "objectId" not in remote["result"]:
+    return {}
+  backend = cdp.send("DOM.describeNode", {"objectId": remote["result"]["objectId"]})["node"]["backendNodeId"]
+  tree = cdp.send("Accessibility.getPartialAXTree", {"backendNodeId": backend, "fetchRelatives": False})["nodes"]
+  node = tree[0] if tree else {}
+  return {"role": (node.get("role") or {}).get("value") or "", "name": _norm((node.get("name") or {}).get("value"))}
+
+
 def _norm(text) -> str:
   return " ".join(str(text or "").split())
 
@@ -75,6 +98,37 @@ def main() -> int:
       recorded, tag = _recorded(ev)
       result[r["item_id"]] = {"found": True, "role": role, "name": name, "ignored": bool(ax.get("ignored")),
                               "hidden_by_open_overlay": hidden_by, "covered_by_modal_dialog": covered, "recorded_name": recorded}
+      if role in ("option", "menuitem"):  # PI's check: "option in a list" did not say which list
+        shown = page.evaluate(OWNER, xpath)
+        if shown is not None:
+          result[r["item_id"]]["owner"] = {**_ax(cdp, "document.querySelector('[data-d5-owner]')"), "visible": shown}
+      # path steps whose element has no text in the recording ("clicks a button without a visible name"): the name
+      # screen readers read and the visible label, from the page the step starts on
+      replay = json.loads((SRC / "items" / r["item_id"] / "replay.json").read_text(encoding="utf-8"))
+      steps = {}
+      for k, step in enumerate(replay["steps"]):
+        action = step["action"] or {}
+        if (action.get("text") or action.get("accessible_name")) or not (action.get("selector") or action.get("dom_path")):
+          continue
+        # React-made ids (":r3p:") change between renders: an id selector matches the right element on the page saved
+        # right after the action (where the id was taken), a structural path on the page the step starts on
+        by_id = "#" in str(action.get("selector") or "")
+        for state, sel in ((step["to"], action.get("selector")), (step["from"], action.get("dom_path")), (step["from"], action.get("selector")))[0 if by_id else 1:]:
+          sdom = RUNS / r["app"] / "explore" / "states" / state / "dom.html"
+          if not sel or not sdom.exists():
+            continue
+          page.set_content(sdom.read_text(encoding="utf-8", errors="ignore"), wait_until="domcontentloaded")
+          try:
+            found = page.evaluate("s => !!document.querySelector(s)", sel)
+          except Exception:
+            found = False
+          if found:
+            node = _ax(cdp, f"document.querySelector({json.dumps(sel)})")
+            node["visible_text"] = _norm(page.evaluate("s => document.querySelector(s).innerText || ''", sel))
+            steps[str(k)] = node
+            break
+      if steps:
+        result[r["item_id"]]["steps"] = steps
       if recorded != name:
         differs.append((r["order"], r["item_id"], r["type"], tag, role + (" ignored" if ax.get("ignored") else ""), recorded[:60], name[:60]))
     browser.close()
