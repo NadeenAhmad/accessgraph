@@ -357,8 +357,11 @@ def build(endpoint: str) -> None:
     shutil.rmtree(PUBLIC)
   (PUBLIC / "items").mkdir(parents=True)
   items, flagged = [], []
+  excluded = {k: v["exclude"] for k, v in OVERRIDES.items() if v.get("exclude")}  # left out of the review, with the reason
   for r in key:
     item_id, ctype = r["item_id"], r["type"]
+    if item_id in excluded:
+      continue
     cap = CAPTURED / item_id
     meta = json.loads((cap / "meta.json").read_text(encoding="utf-8")) if (cap / "meta.json").exists() else {}
     full = json.loads((SRC / "items" / item_id / "evidence.json").read_text(encoding="utf-8"))
@@ -439,8 +442,9 @@ def build(endpoint: str) -> None:
   (SITE / "package.json").write_text(json.dumps({"name": "d5-expert-review", "private": True, "type": "module",
                                                  "dependencies": {"@netlify/blobs": "8.1.0"}}, indent=1) + "\n")
   (ROOT / "results" / "d5" / "site-flagged.json").write_text(json.dumps(flagged, indent=2) + "\n", encoding="utf-8")
+  (ROOT / "results" / "d5" / "site-excluded.json").write_text(json.dumps(excluded, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
   size = sum(f.stat().st_size for f in PUBLIC.rglob("*") if f.is_file()) / 1e6
-  print(f"site: {len(items)} items, {len(flagged)} flagged, {size:.0f} MB -> {SITE}")
+  print(f"site: {len(items)} items ({len(excluded)} excluded: {', '.join(sorted(excluded))}), {len(flagged)} flagged, {size:.0f} MB -> {SITE}")
 
 
 ROLES = (("main", "main"), ("shared1", "shared"), ("shared2", "shared"), ("shared3", "shared"), ("preview", "preview"))

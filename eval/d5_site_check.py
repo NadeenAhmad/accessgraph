@@ -2,14 +2,16 @@
 
   python -m eval.d5_site_check
 
-- every one of the 165 items is in the site, in the shuffled order, with its question, rule, facts and screen 1;
+- every one of the 163 items is in the site, in the shuffled order, with its question, rule, facts and screen 1, except
+  the items excluded in results/d5/review/overrides.json (2 read-aloud-area items, PI decision 2026-11-28);
 - the element is outlined where the check has one (page language and page title have none);
 - actions have a screen 2 (or the other website's address) and a clip, unless the item uses the recorded screen;
 - no capture problem is left; replayed elements show the recorded content (checked during capture);
 - no fact is a bare "(none)" (an empty value says what it means, pilot review 2026-11-27);
 - the outlined element is inside the screenshot, and headings and regions sit in the upper part of it, so the content
   they introduce is visible below them;
-- each shared reviewer's list has the 30 shared items (18 the tool called violations, 12 others);
+- each shared reviewer's list has the shared items that are not excluded (30 drawn: 18 the tool called violations,
+  12 others; 29 and 17 after the exclusion);
 - the tool's answers are nowhere in the public files; they are only in the reveal function, one for each item.
 """
 from __future__ import annotations
@@ -29,7 +31,10 @@ PAGE_LEVEL = {"lang-mismatch", "page-title-not-descriptive"}
 
 def main() -> int:
   problems = []
-  key = {r["item_id"]: r for r in csv.DictReader((SRC / "key_do_not_share.csv").open(encoding="utf-8"))}
+  overrides = ROOT / "results" / "d5" / "review" / "overrides.json"
+  excluded = {k for k, v in (json.loads(overrides.read_text(encoding="utf-8")) if overrides.exists() else {}).items()
+              if isinstance(v, dict) and v.get("exclude")}
+  key = {r["item_id"]: r for r in csv.DictReader((SRC / "key_do_not_share.csv").open(encoding="utf-8")) if r["item_id"] not in excluded}
   items = json.loads((SITE / "public" / "items.json").read_text(encoding="utf-8"))["items"]
   by_id = {it["id"]: it for it in items}
   if set(by_id) != set(key):
@@ -70,8 +75,10 @@ def main() -> int:
         problems.append(f"{where}: no clip")
   second = [it for it in items if it["shared"]]
   second_v = sum(1 for it in second if key[it["id"]]["ag_decision"] == "violation")
-  if len(second) != 30 or second_v != 18:
-    problems.append(f"shared reviewers' list: {len(second)} items, {second_v} violations (expected 30 / 18)")
+  want = [r for r in key.values() if r["shared"] == "1"]  # the drawn 30 (18 violations) without the excluded items
+  want_v = sum(1 for r in want if r["ag_decision"] == "violation")
+  if len(second) != len(want) or second_v != want_v:
+    problems.append(f"shared reviewers' list: {len(second)} items, {second_v} violations (expected {len(want)} / {want_v})")
   data_text = (SITE / "public" / "items.json").read_text(encoding="utf-8")  # the item data must carry no verdicts
   for word in ("ag_decision", '"decision"', '"sentence"', "explanation", "violation\""):
     if word in data_text:
@@ -81,7 +88,7 @@ def main() -> int:
       problems.append(f"{page} contains item data")
   reveal = (SITE / "netlify" / "functions" / "reveal.mjs").read_text(encoding="utf-8")
   tool = json.loads(re.search(r"const TOOL = (\{.*?\});\n", reveal, re.S).group(1))
-  if set(tool) != set(key) or any(tool[k]["decision"] != key[k]["ag_decision"] for k in key):
+  if not set(key) <= set(tool) or any(tool[k]["decision"] != key[k]["ag_decision"] for k in key):
     problems.append("reveal function: items or decisions do not match the key")
   stats = {k: sum(1 for it in items if it["kind"] == k) for k in ("control", "still")}
   recorded = sum(1 for i in key if json.loads((CAPTURED / i / "meta.json").read_text()).get("fallback"))

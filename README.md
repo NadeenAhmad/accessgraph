@@ -150,8 +150,8 @@ included and where its owners publish it (InterA11y's datasets, the W3C ACT test
 ## Expert review of the real SPAs
 
 The ten real SPAs have no ground truth, so labellers with a background in Web accessibility research label a
-stratified sample of AccessGraph's findings (163 items) on a review website: https://a11y-review-4u8202.netlify.app
-(answering needs a personal link). One labeller labels all items and three others label the same 30, for agreement.
+stratified sample of AccessGraph's findings (161 items) on a review website: https://a11y-review-4u8202.netlify.app
+(answering needs a personal link). One labeller labels all items and three others label the same 29, for agreement.
 Each item shows the screens before and after the user's action, replayed in the running app, with a short video.
 The labeller first answers without seeing AccessGraph's verdict; then the verdict is shown and they say whether they
 agree. Protocol: [docs/evaluation.md](docs/evaluation.md#d5-real-spas-and-the-expert-review). AccessGraph's per-item

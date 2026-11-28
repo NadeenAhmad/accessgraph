@@ -74,10 +74,13 @@ excludes 0, otherwise "comparable". Repeatability on D2: Fleiss' κ and flip rat
 - **Sample:** all candidates are generated; a stratified random sample of 600 (type × depth 0 vs ≥ 1 × direction,
   seed 20261116) is judged; weights scale results to all 79,162 candidates.
 - **Expert items:** 163, all 63 items AccessGraph judged violations plus 100 random others (`eval/d5_export165.py`),
-  with sampling weights. One labeller labels all of them; three further labellers each label the same
-  30 items (18 that AccessGraph judged violations, 12 others; a seeded subset, `eval/d5_shared30.py`). Agreement on
-  the 30 by Fleiss' κ among the four and Cohen's κ between the main labeller and each of the others; disagreements
-  are resolved by discussion. All labellers answer before AccessGraph's verdict is shown.
+  with sampling weights. Two of them are left out of the review: in both, AccessGraph checked a read-aloud area
+  (an ARIA live region) as a possible error message, not a field, so the input-error question does not fit them,
+  and labellers cannot be expected to know what a live region is. One labeller
+  labels the other 161; three further labellers each label the same 29 items (a seeded subset of 30, 18 that
+  AccessGraph judged violations and 12 others, `eval/d5_shared30.py`, of which one is left out). Agreement on the 29
+  by Fleiss' κ among the four and Cohen's κ between the main labeller and each of the others; disagreements are
+  resolved by discussion. All labellers answer before AccessGraph's verdict is shown.
 - **Review package per item** (`eval/d5_review.py`): the item's recorded path is replayed in the running app, with
   screenshots of every step, the screen before and after the action with the element outlined, and a short video of
   the action. Where the app cannot show the recorded content again (two apps generate random data on every start),
