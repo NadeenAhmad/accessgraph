@@ -100,10 +100,18 @@
       start.setAttribute('aria-disabled', ok ? 'false' : 'true'); start.style.opacity = ok ? '' : '.45';
       who.textContent = ok ? '' : 'Please answer the questions above (and say what “Other” is) and tick the consent box first.';
     }
-    if (profiled) document.getElementById('before').hidden = true;
+    function show() { document.getElementById('before').hidden = profiled; update(); }
     form.addEventListener('change', update);
     form.addEventListener('input', update);
-    update();
+    show();
+    // the server decides: the questions come back whenever it has no answers for this link
+    fetch('/api/profile', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ reviewer: reviewer }) })
+      .then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d) return;
+        profiled = !!d.done;
+        try { if (profiled) localStorage.setItem(PROFILE_DONE, '1'); else localStorage.removeItem(PROFILE_DONE); } catch (e) {}
+        show();
+      }).catch(function () {});
     start.addEventListener('click', function (e) {
       if (profiled) return;
       e.preventDefault();

@@ -479,6 +479,8 @@ def build(endpoint: str) -> None:
   (SITE / "netlify" / "functions").mkdir(parents=True, exist_ok=True)
   save = (TEMPLATES / "functions" / "save.mjs").read_text(encoding="utf-8").replace("__REVIEWERS__", json.dumps(codes))
   (SITE / "netlify" / "functions" / "save.mjs").write_text(save, encoding="utf-8")
+  profile = (TEMPLATES / "functions" / "profile.mjs").read_text(encoding="utf-8").replace("__REVIEWERS__", json.dumps(codes))
+  (SITE / "netlify" / "functions" / "profile.mjs").write_text(profile, encoding="utf-8")
   # the tool's answers live only in the reveal function (server side), never in the public files
   tool = {k: {"decision": v["decision"], "sentence": v["sentence"]}
           for k, v in json.loads((SRC / "explanations.json").read_text(encoding="utf-8")).items()}
