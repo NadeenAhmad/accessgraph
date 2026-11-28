@@ -100,7 +100,11 @@
       start.setAttribute('aria-disabled', ok ? 'false' : 'true'); start.style.opacity = ok ? '' : '.45';
       who.textContent = ok ? '' : 'Please answer the questions above (and say what “Other” is) and tick the consent box first.';
     }
-    function show() { document.getElementById('before').hidden = profiled; update(); }
+    function show() {  // the questions first; the examples link only once they are answered
+      document.getElementById('before').hidden = profiled;
+      again.hidden = !(profiled && done);
+      update();
+    }
     form.addEventListener('change', update);
     form.addEventListener('input', update);
     show();
