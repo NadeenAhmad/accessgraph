@@ -91,11 +91,11 @@
       skip.addEventListener('click', function () { keep(DONE, 1); });
       app.appendChild(el('section', { cls: 'panel practice' }, [el('p', {}, [el('b', { text: 'Practice (example ' + (i + 1) + ' of ' + list.length + '). ' }),
         'Answer as you would in the review: give your own answer first, then you see the tool\u2019s answer and say whether you agree. '
-        + 'At the end you see the correct answer. Nothing you answer here is saved. (Or ', skip, '.)'])]));
+        + 'At the end you see the correct answer. Your answers to these two examples are not saved; from the first review item on, your answers are saved. (Or ', skip, '.)'])]));
     }
     var bar = el('div', { cls: 'bar' }, [el('span', { style: 'width:' + (100 * answered / list.length) + '%' })]);
     app.appendChild(el('header', { cls: 'topbar' }, [
-      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: practice ? 'Practice example: nothing is saved' : 'Accessibility expert review' }), el('h1', { text: it.question }),
+      el('div', { style: 'display:grid;gap:4px' }, [el('div', { cls: 'eyebrow', text: practice ? 'Practice example: answers to the examples are not saved' : 'Accessibility expert review' }), el('h1', { text: it.question }),
         it.hint ? el('p', { cls: 'hint', text: it.hint }) : null]),
       el('div', { cls: 'progress' }, [el('span', { text: practice ? 'Example ' + (i + 1) + ' of ' + list.length : 'Item ' + (i + 1) + ' of ' + list.length + ' · ' + answered + ' answered' }), practice ? null : bar])
     ]));
@@ -272,7 +272,7 @@
       if (!chosen) { blocked(status, form.querySelector('.choices'), 'Pick one of the three answers first.'); return; }
       if (practice) {
         answers[it.id] = { answer: chosen.value };
-        lockStep1(); status.textContent = 'Your practice answer (not saved).';
+        lockStep1(); status.textContent = 'Your answer to this example (examples are not saved).';
         showReveal({ decision: it.example.tool, sentence: it.example.sentence });
         reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
