@@ -8,6 +8,14 @@ const REVIEWERS = __REVIEWERS__;
 const ANSWERS = ["violation", "no_violation", "cannot_tell"];
 const AGREE = ["agree", "disagree", "partly"];
 const text = (v, n) => (typeof v === "string" ? v.slice(0, n) : "");
+// once per link, on the start page: consent and the labeller's experience (for the paper's description of the labellers)
+const PROFILE = {
+  role: ["bachelor", "master", "phd_researcher", "practitioner", "other"],
+  time: ["lt6m", "6to12m", "1to3y", "gt3y"],
+  wcag: ["never", "course_project", "regular"],
+  screen_reader: ["never", "tried", "regular"],
+};
+const AREAS = ["web", "documents", "other", "none"];
 
 export default async (req) => {
   if (req.method !== "POST") return new Response("Use POST", { status: 405 });
@@ -15,9 +23,25 @@ export default async (req) => {
   try { body = await req.json(); } catch { return new Response("Not JSON", { status: 400 }); }
   const reviewer = String(body.reviewer || "");
   if (!REVIEWERS.includes(reviewer)) return new Response("Unknown reviewer link", { status: 400 });
+  const store = getStore({ name: STORE, consistency: "strong" });
+  if (body.step === "profile") {
+    if (body.consent !== true) return new Response("Consent is needed", { status: 400 });
+    const p = body.profile || {}, profile = {};
+    for (const [k, allowed] of Object.entries(PROFILE)) {
+      if (!allowed.includes(p[k])) return new Response(`Unknown ${k}`, { status: 400 });
+      profile[k] = p[k];
+    }
+    const areas = Array.isArray(p.areas) ? p.areas.filter((a) => AREAS.includes(a)) : [];
+    if (!areas.length) return new Response("Unknown areas", { status: 400 });
+    profile.areas = [...new Set(areas)];
+    const key = `${reviewer}/_profile`;
+    const old = await store.get(key, { type: "json" });
+    await store.setJSON(key, { reviewer, consent: true, consent_at: new Date().toISOString(), profile,
+                               history: old ? [...(old.history || []), { profile: old.profile, consent_at: old.consent_at }] : [] });
+    return Response.json({ ok: true });
+  }
   const item = String(body.item || "");
   if (!/^D5-\d{3}$/.test(item)) return new Response("Unknown item", { status: 400 });
-  const store = getStore({ name: STORE, consistency: "strong" });
   const key = `${reviewer}/${item}`;
   const record = (await store.get(key, { type: "json" })) || { reviewer, item, history: [] };
   const now = new Date().toISOString();

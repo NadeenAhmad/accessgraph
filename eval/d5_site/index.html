@@ -27,6 +27,30 @@
       <li>Each item takes about 1–2 minutes: <b><span id="count">…</span> items</b> in total. You can stop at any time and come back with the same link; your answers are kept. Please use the same computer and browser each time, not a private window.</li>
     </ul>
   </section>
+  <section class="panel" id="before">
+    <h2>Before you start <span class="note" style="font-weight:400">(once, about 30 seconds)</span></h2>
+    <form id="profile" class="profile" novalidate>
+      <label class="field"><span>Your current role</span>
+        <select name="role"><option value="">Choose …</option><option value="bachelor">Bachelor's student</option>
+          <option value="master">Master's student</option><option value="phd_researcher">PhD student or researcher</option>
+          <option value="practitioner">Accessibility practitioner</option><option value="other">Other</option></select></label>
+      <fieldset class="field"><legend>Accessibility work you have done so far (tick all that apply)</legend>
+        <label><input type="checkbox" name="areas" value="web"> Web pages or web apps</label>
+        <label><input type="checkbox" name="areas" value="documents"> PDFs or other documents</label>
+        <label><input type="checkbox" name="areas" value="other"> Other (for example mobile apps)</label>
+        <label><input type="checkbox" name="areas" value="none"> None yet</label></fieldset>
+      <label class="field"><span>Time you have spent working on accessibility, in total</span>
+        <select name="time"><option value="">Choose …</option><option value="lt6m">Less than 6 months</option>
+          <option value="6to12m">6 to 12 months</option><option value="1to3y">1 to 3 years</option><option value="gt3y">More than 3 years</option></select></label>
+      <label class="field"><span>WCAG (the Web Content Accessibility Guidelines)</span>
+        <select name="wcag"><option value="">Choose …</option><option value="never">I have not used it</option>
+          <option value="course_project">I have used it in a course or project</option><option value="regular">I use it regularly</option></select></label>
+      <label class="field"><span>Screen readers</span>
+        <select name="screen_reader"><option value="">Choose …</option><option value="never">I have not used one</option>
+          <option value="tried">I have tried one a few times</option><option value="regular">I use one regularly for testing</option></select></label>
+      <label class="consent"><input type="checkbox" name="consent"> I agree that my answers, my reasons and the time I take per item are stored and used for research, and may be published in anonymised form (linked to a code, never to my name). Taking part is voluntary, and I can stop at any time.</label>
+    </form>
+  </section>
   <div class="actions">
     <a class="button primary" id="start" href="review.html">Start with two examples</a>
     <a id="examples" href="review.html">See the two examples again</a>
@@ -39,7 +63,7 @@
   var start = document.getElementById('start');
   if (!reviewer) {
     start.removeAttribute('href'); start.setAttribute('aria-disabled', 'true'); start.style.opacity = '.45';
-    document.getElementById('examples').hidden = true;
+    document.getElementById('examples').hidden = true; document.getElementById('before').hidden = true;
     document.getElementById('who').textContent = 'Please open the personal link you received; it contains your reviewer code.';
   } else {
     // first visit: two practice examples first; later visits go straight to the items
@@ -49,6 +73,36 @@
     start.textContent = done ? 'Continue the review' : 'Start with two examples';
     var again = document.getElementById('examples');
     if (done) again.href = examples; else again.hidden = true;
+    // consent and experience, once per link (kept in this browser; saved on the server)
+    var PROFILE_DONE = 'd5-profile-done-' + reviewer, form = document.getElementById('profile'), who = document.getElementById('who');
+    var profiled = false; try { profiled = !!localStorage.getItem(PROFILE_DONE); } catch (e) {}
+    function values() {
+      var f = new FormData(form);
+      return { role: f.get('role'), time: f.get('time'), wcag: f.get('wcag'), screen_reader: f.get('screen_reader'), areas: f.getAll('areas'), consent: !!f.get('consent') };
+    }
+    function complete(v) { return v.role && v.time && v.wcag && v.screen_reader && v.areas.length && v.consent; }
+    function update() {
+      var ok = profiled || complete(values());
+      start.setAttribute('aria-disabled', ok ? 'false' : 'true'); start.style.opacity = ok ? '' : '.45';
+      who.textContent = ok ? '' : 'Please answer the questions above and tick the consent box first.';
+    }
+    if (profiled) document.getElementById('before').hidden = true;
+    form.addEventListener('change', update);
+    update();
+    start.addEventListener('click', function (e) {
+      if (profiled) return;
+      e.preventDefault();
+      var v = values();
+      if (!complete(v)) { update(); return; }
+      who.textContent = 'Saving…';
+      fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ step: 'profile', reviewer: reviewer, consent: true,
+        profile: { role: v.role, time: v.time, wcag: v.wcag, screen_reader: v.screen_reader, areas: v.areas } }) })
+        .then(function (r) {
+          if (!r.ok) throw new Error(String(r.status));
+          try { localStorage.setItem(PROFILE_DONE, '1'); } catch (err) {}
+          location.href = start.href;
+        }).catch(function () { who.textContent = 'Could not save. Check your internet connection and press the button again.'; });
+    });
   }
   fetch('items.json').then(function (r) { return r.json(); }).then(function (data) {
     var n = data.items.filter(function (it) { return reviewer.indexOf('shared-') !== 0 || it.shared; }).length;
